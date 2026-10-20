@@ -89,6 +89,7 @@ export function SectorBlocks() {
               <span key={l}>{l}</span>
             ))}
           </h3>
+          <p className="scard__tagline">{chemicals.tagline}</p>
           <p className="scard__text">{chemicals.text}</p>
           {chemicals.cta.href ? (
             <a href={chemicals.cta.href} className="sbtn">
@@ -106,6 +107,7 @@ export function SectorBlocks() {
         <h3 id="t-alimentos" className="scard__title">
           {food.title}
         </h3>
+        <p className="scard__tagline">{food.tagline}</p>
         <p className="scard__text scard__text--wide">{food.text}</p>
         <MiniCards items={food.steps} className="minis--four" />
         <div className="shighlight">
@@ -118,6 +120,7 @@ export function SectorBlocks() {
         <h3 id="t-materiales" className="scard__title">
           {materials.title}
         </h3>
+        <p className="scard__tagline">{materials.tagline}</p>
         <p className="scard__text scard__text--wide">{materials.text}</p>
         <SmartImage {...materials.image} className="scard__img scard__img--wide" />
         <MiniCards items={materials.steps} className="minis--two" />
@@ -139,6 +142,7 @@ export function SectorBlocks() {
           <h3 id="t-energia" className="scard__title">
             {energy.title}
           </h3>
+          <p className="scard__tagline">{energy.tagline}</p>
           <p className="scard__text">{energy.text}</p>
           <ul className="sfeatures">
             {energy.features.map((f) => (
@@ -162,6 +166,7 @@ export function SectorBlocks() {
         <h3 id="t-bpo" className="scard__title">
           {bpo.title}
         </h3>
+        <p className="scard__tagline">{bpo.tagline}</p>
         <p className="scard__text scard__text--wide">{bpo.text}</p>
         <div className="scallout">
           <div>
@@ -180,10 +185,12 @@ export function SectorBlocks() {
 
       <article id={sectorIds.mro} className="sblock scard scard--split-right" aria-labelledby="t-mro">
         <div className="scard__body">
-          <h3 id="t-mro" className="scard__title">
-            {mro.title}
+          <h3 id="t-mro" className="scard__title scard__title--long">
+            {mro.title.map((l) => (
+              <span key={l}>{l}</span>
+            ))}
           </h3>
-          <p className="scard__subtitle">{mro.subtitle}</p>
+          <p className="scard__tagline">{mro.tagline}</p>
           <p className="scard__text">{mro.text}</p>
         </div>
         <div className="scard__media">

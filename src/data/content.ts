@@ -99,7 +99,6 @@ export const mainNav: MegaPanel[] = [
     layout: 'three',
     columns: [
       {
-        heading: ['Manufactura'],
         links: [
           L('Químicos y Ciencias de la Vida', `${routes.sectores}#quimicos-y-ciencias-de-la-vida`),
           L('Alimentos y Bebidas', `${routes.sectores}#alimentos-y-bebidas`),
@@ -107,8 +106,11 @@ export const mainNav: MegaPanel[] = [
         ],
       },
       {
-        heading: ['Servicios'],
-        links: [L('Energía', `${routes.sectores}#energia`), L('BPO & IT', `${routes.sectores}#bpo-kpo-it`), L('MRO', `${routes.sectores}#mro`), L('OTROS', `${routes.sectores}#otros-sectores`)],
+        links: [
+          L('Hub energético', `${routes.sectores}#energia`),
+          L('BPO/KPO & IT', `${routes.sectores}#bpo-kpo-it`),
+          L('Servicios aeronáuticos', `${routes.sectores}#mro`),
+        ],
       },
     ],
   },
