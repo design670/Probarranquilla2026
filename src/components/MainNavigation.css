@@ -4,6 +4,16 @@
   z-index: 20;
 }
 
+/* Al hacer scroll la barra queda fija arriba */
+.main-nav.is-fixed {
+  position: fixed;
+  z-index: 60;
+}
+
+.main-nav.is-fixed .main-nav__bar {
+  box-shadow: 0 8px 24px rgba(0, 20, 45, 0.22);
+}
+
 .main-nav__bar {
   --pad-left: 49px;
   --pad-right: 40px;

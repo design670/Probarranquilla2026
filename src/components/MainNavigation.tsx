@@ -94,6 +94,7 @@ export function MainNavigation() {
     import.meta.env.DEV ? new URLSearchParams(window.location.search).get('mega') : null,
   );
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [fixed, setFixed] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const closeTimer = useRef<number>();
   const hoverOpenedAt = useRef(0);
@@ -135,6 +136,29 @@ export function MainNavigation() {
 
   useEffect(() => () => window.clearTimeout(closeTimer.current), []);
 
+  // Menú fijo: al llegar al borde superior de la ventana se queda pegado arriba.
+  // La barra ya está fuera del flujo (absolute), así que el cambio no mueve la página.
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const anchor = navRef.current?.parentElement;
+      if (!anchor) return;
+      setFixed(anchor.getBoundingClientRect().top <= 0);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
+
   const isMouse = (e: ReactPointerEvent) => e.pointerType === 'mouse' && isDesktop();
 
   const onTriggerEnter = (id: string) => (e: ReactPointerEvent) => {
@@ -157,7 +181,7 @@ export function MainNavigation() {
   };
 
   return (
-    <nav ref={navRef} className="main-nav" aria-label="Principal" onPointerEnter={cancelClose} onPointerLeave={onNavLeave}>
+    <nav ref={navRef} className={`main-nav${fixed ? ' is-fixed' : ''}`} aria-label="Principal" onPointerEnter={cancelClose} onPointerLeave={onNavLeave}>
       <div className={`main-nav__bar ${openId ? 'has-open' : ''}`}>
         <a href="/" className="main-nav__logo" aria-label={`${brand.name}, inicio`}>
           <SmartImage src={brand.logoWhite} alt={brand.name} kind="logo" width={78} height={38} loading="eager" className="on-dark" />

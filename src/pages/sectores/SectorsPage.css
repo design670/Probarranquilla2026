@@ -62,7 +62,7 @@
 /* Sticky: acompaña el recorrido y se detiene al terminar la grilla */
 .sectors__aside {
   position: sticky;
-  top: 24px;
+  top: calc(var(--nav-h) + 24px);
 }
 
 /* ---------- CTA final ---------- */

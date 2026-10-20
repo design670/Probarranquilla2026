@@ -28,7 +28,7 @@
  */
 .what-banner {
   position: sticky;
-  top: calc(24px + var(--i) * 96px);
+  top: calc(var(--nav-h) + 24px + var(--i) * 96px);
   box-shadow: 0 -6px 18px rgba(0, 20, 50, 0.1);
   min-height: 414px;
   display: flex;
