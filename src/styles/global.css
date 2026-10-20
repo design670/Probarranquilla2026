@@ -7,7 +7,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   /* Las anclas (#seccion) quedan debajo del menú fijo */
-  scroll-padding-top: var(--nav-h);
+  scroll-padding-top: var(--header-h);
 }
 
 body {
@@ -59,6 +59,13 @@ button {
 :focus-visible {
   outline: 2px solid var(--c-blue-bright);
   outline-offset: 2px;
+}
+
+/* La barra blanca se queda arriba al hacer scroll; la azul se fija justo debajo (MainNavigation) */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 61;
 }
 
 .container {

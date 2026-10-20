@@ -83,13 +83,21 @@
   --radius-lg: 16px;
   --radius-xl: 20px;
 
-  /* Alto del menú fijo: los elementos sticky y las anclas quedan debajo de él */
+  /* Menú fijo = barra blanca + barra azul. Los elementos sticky y las anclas quedan debajo */
+  --util-h: 58px;
   --nav-h: 68px;
+  --header-h: calc(var(--util-h) + var(--nav-h));
 }
 
 @media (max-width: 1000px) {
   :root {
     --nav-h: 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --util-h: 48px;
   }
 }
 

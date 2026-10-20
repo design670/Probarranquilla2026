@@ -136,7 +136,7 @@ export function MainNavigation() {
 
   useEffect(() => () => window.clearTimeout(closeTimer.current), []);
 
-  // Menú fijo: al llegar al borde superior de la ventana se queda pegado arriba.
+  // Menú fijo: al llegar bajo la barra blanca se queda pegado ahí.
   // La barra ya está fuera del flujo (absolute), así que el cambio no mueve la página.
   useEffect(() => {
     let frame = 0;
@@ -144,7 +144,10 @@ export function MainNavigation() {
       frame = 0;
       const anchor = navRef.current?.parentElement;
       if (!anchor) return;
-      setFixed(anchor.getBoundingClientRect().top <= 0);
+      // Se fija cuando llega al borde inferior de la barra blanca (que es sticky)
+      const header = document.querySelector('.site-header');
+      const limit = header ? header.getBoundingClientRect().bottom : 0;
+      setFixed(anchor.getBoundingClientRect().top <= limit);
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);

@@ -21,7 +21,7 @@ export function SiteShell({
 }) {
   return (
     <>
-      <header>
+      <header className="site-header">
         <UtilityBar />
       </header>
       <main>

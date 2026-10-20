@@ -7,6 +7,7 @@
 /* Al hacer scroll la barra queda fija arriba */
 .main-nav.is-fixed {
   position: fixed;
+  top: var(--util-h);
   z-index: 60;
 }
 
