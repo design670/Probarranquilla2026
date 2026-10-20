@@ -1,0 +1,202 @@
+/* Área del caso: va debajo de la barra superior y la navegación flota encima */
+.showcase {
+  position: relative;
+  background: #0d1a2c;
+}
+
+/*
+ * Alto según el ancho de pantalla, con topes (765 px a 1366 px). Sin aspect-ratio:
+ * con max-height, el navegador recortaba el ancho en pantallas grandes.
+ */
+.showcase__slide {
+  position: relative;
+  width: 100%;
+  height: clamp(640px, 56vw, 780px);
+}
+
+/* Foto y tarjeta se funden juntas; los puntos quedan fijos */
+.showcase__photo,
+.showcase__card {
+  transition: opacity 0.3s ease;
+}
+
+.is-fading .showcase__photo,
+.is-fading .showcase__card {
+  opacity: 0;
+}
+
+.showcase__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.showcase .smart-placeholder__label {
+  margin-top: 140px;
+}
+
+/* Tarjeta anclada a la derecha del área del caso */
+.showcase__layer {
+  position: absolute;
+  top: 173px;
+  right: 44px;
+  width: 460px;
+}
+
+.showcase__card {
+  min-height: 486px;
+  padding: 57px 34px 40px;
+  background: var(--c-blue-case);
+  border-radius: 19px;
+  color: var(--c-white);
+}
+
+.showcase__logo {
+  display: block;
+  height: 52px;
+  width: auto;
+}
+
+.showcase__text {
+  margin-top: 48px;
+  font-size: 26px;
+  line-height: 31px;
+}
+
+.showcase__text strong {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Puntos del carrusel, como los del hero del Home */
+.showcase__dots {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.showcase__dot {
+  width: 20px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--c-dot-gray);
+  transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+.showcase__dot.is-active {
+  width: 38px;
+  background: var(--c-blue-bright);
+}
+
+.showcase__dot:not(.is-active):hover {
+  background: #8a949c;
+}
+
+/* Área táctil mayor sin cambiar el tamaño visible del punto */
+.showcase__dot {
+  position: relative;
+}
+
+.showcase__dot::after {
+  content: '';
+  position: absolute;
+  inset: -15px -4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase__photo,
+  .showcase__card,
+  .showcase__dot {
+    transition: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .showcase__slide {
+    height: 640px;
+  }
+  .showcase__layer {
+    top: 160px;
+    right: 32px;
+    width: 400px;
+  }
+  .showcase__card {
+    min-height: 0;
+    padding: 44px 28px 40px;
+  }
+  .showcase__logo {
+    height: 46px;
+  }
+  .showcase__text {
+    margin-top: 36px;
+    font-size: 22px;
+    line-height: 28px;
+  }
+}
+
+@media (max-width: 900px) {
+  .showcase__slide {
+    height: 600px;
+  }
+  .showcase__layer {
+    top: auto;
+    bottom: 32px;
+    right: var(--gutter);
+    width: min(360px, 55%);
+  }
+  .showcase__text {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  /* La tarjeta baja a la esquina: los puntos pasan a la izquierda */
+  .showcase__dots {
+    left: var(--gutter);
+    transform: none;
+  }
+}
+
+/* Móvil: la foto arriba y la tarjeta en el flujo, debajo */
+@media (max-width: 700px) {
+  .showcase {
+    background: var(--c-white);
+  }
+  .showcase__slide {
+    height: auto;
+  }
+  .showcase__photo {
+    position: relative;
+    height: 380px;
+    object-position: 35% 60% !important;
+  }
+  .showcase__layer {
+    position: static;
+    width: auto;
+    padding: 20px var(--gutter) 28px;
+  }
+  .showcase__card {
+    padding: 32px 22px 30px;
+    border-radius: 16px;
+  }
+  .showcase__logo {
+    height: 40px;
+  }
+  .showcase__text {
+    margin-top: 26px;
+    font-size: 19px;
+    line-height: 1.35;
+  }
+  /* Los puntos van sobre la foto, abajo */
+  .showcase__dots {
+    left: 50%;
+    top: 340px;
+    bottom: auto;
+    transform: translateX(-50%);
+  }
+}

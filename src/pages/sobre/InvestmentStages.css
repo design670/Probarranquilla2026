@@ -1,0 +1,133 @@
+.stages {
+  margin-top: 20px;
+  padding: 92px 0 95px;
+  background: #003f7a;
+  color: var(--c-white);
+}
+
+.stages__title {
+  font-size: 44px;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  text-align: center;
+}
+
+.stages__title span {
+  display: block;
+}
+
+.stages__list {
+  list-style: none;
+  margin: 94px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+  gap: 29px;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  min-height: 470px;
+  padding: 43px 43px 42px;
+  background: #0d4981;
+  border: 1px solid #165085;
+  border-radius: 20px;
+}
+
+.stage__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0e1b2e;
+}
+
+.stage__number--teal {
+  background: #00a99d;
+}
+
+.stage__number--orange {
+  background: #f37021;
+}
+
+.stage__number--yellow {
+  background: var(--c-yellow);
+}
+
+.stage__title {
+  margin-top: 14px;
+  font-size: 35px;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.stage__title span {
+  display: block;
+}
+
+/* Párrafo + línea fina al pie, alineada en las tres tarjetas */
+.stage__text {
+  flex: 1;
+  margin-top: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #3d6d9a;
+  font-size: 19px;
+  line-height: 20px;
+  color: #b4c3d6;
+}
+
+.stage__text--justify {
+  text-align: justify;
+}
+
+@media (max-width: 1100px) {
+  .stages__title {
+    font-size: 36px;
+  }
+  .stage {
+    padding: 32px 28px;
+  }
+  .stage__title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 900px) {
+  .stages {
+    padding: 64px 0;
+  }
+  .stages__title span {
+    display: inline;
+  }
+  .stages__title span + span::before {
+    content: ' ';
+  }
+  .stages__list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .stage {
+    min-height: 0;
+  }
+  .stage__text--justify {
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .stages__title {
+    font-size: 26px;
+    line-height: 1.1;
+  }
+  .stage__text {
+    font-size: 17px;
+    line-height: 1.4;
+  }
+}

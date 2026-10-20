@@ -1,0 +1,264 @@
+/* Continúa el azul de "Ventajas" y se oscurece hacia abajo */
+.support {
+  scroll-margin-top: 24px;
+  padding: 0 0 111px;
+  background: linear-gradient(180deg, var(--c-navy-deep) 0%, #0c1733 45%, #071029 100%);
+  color: var(--c-white);
+}
+
+.support__title {
+  text-align: center;
+  font-size: 44px;
+  letter-spacing: -0.025em;
+}
+
+.support__subtitle {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 22px;
+  line-height: 27px;
+}
+
+.support__subtitle span {
+  display: block;
+}
+
+/* ---------- Selector de etapas ---------- */
+
+.support__steps-scroll {
+  margin-top: 78px;
+}
+
+.support__steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 210px);
+  justify-content: center;
+}
+
+/* Línea fina que une los círculos, a todo el ancho del contenedor */
+.support__steps::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  right: 9px;
+  top: 30px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.support__step {
+  position: relative;
+  isolation: isolate; /* el halo queda detrás del círculo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 6px 6px;
+  color: #e2e8f0;
+  border-radius: 10px;
+}
+
+.support__num {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #0b1530;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--c-white);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.support__label {
+  font-size: 19px;
+  line-height: 20px;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.support__label span {
+  display: block;
+}
+
+.support__step:hover .support__num {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Activa: turquesa con halo */
+.support__step.is-active .support__num {
+  background: var(--c-teal);
+  border-color: var(--c-teal);
+  color: #0b1530;
+}
+
+.support__step.is-active .support__num::after {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1px solid rgba(35, 170, 153, 0.45);
+  background: rgba(35, 170, 153, 0.08);
+  z-index: -1;
+}
+
+.support__step.is-active .support__label {
+  color: var(--c-teal);
+  font-weight: 600;
+}
+
+/* ---------- Panel ---------- */
+
+.support__panel {
+  margin-top: 54px;
+  padding: 47px 47px 47px 48px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+}
+
+.support__panel-inner {
+  display: grid;
+  grid-template-columns: 510fr 511fr;
+  gap: 49px;
+  min-height: 321px;
+  animation: support-fade 0.25s ease;
+}
+
+@keyframes support-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.support__panel-title {
+  margin-top: 12px;
+  font-size: 44px;
+  letter-spacing: -0.025em;
+}
+
+.support__desc {
+  margin-top: 30px;
+  font-size: 18px;
+  line-height: 29px;
+  color: #b9c2d3;
+}
+
+.support__box {
+  margin-top: 30px;
+  padding: 22px 24px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.support__box-label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-teal);
+}
+
+.support__box-text {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 21px;
+  color: #c5cbd8;
+}
+
+.support__photo {
+  width: 100%;
+  height: 100%;
+  min-height: 321px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .support__panel-inner {
+    animation: none;
+  }
+}
+
+@media (max-width: 1240px) {
+  .support__steps {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .support {
+    padding-bottom: 64px;
+  }
+  .support__title {
+    font-size: 34px;
+  }
+  .support__subtitle {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  .support__subtitle span {
+    display: inline;
+  }
+  .support__subtitle span + span::before {
+    content: ' ';
+  }
+  /* Las cinco etapas se recorren deslizando dentro de su franja */
+  .support__steps-scroll {
+    margin-top: 40px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    padding-bottom: 8px;
+  }
+  .support__steps {
+    grid-template-columns: repeat(5, 170px);
+    justify-content: start;
+    width: max-content;
+  }
+  .support__label {
+    font-size: 16px;
+  }
+  .support__panel {
+    margin-top: 32px;
+    padding: 28px;
+  }
+  .support__panel-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .support__panel-title {
+    margin-top: 0;
+    font-size: 32px;
+  }
+  .support__photo {
+    min-height: 0;
+    aspect-ratio: 511 / 321;
+  }
+}
+
+@media (max-width: 640px) {
+  .support__title {
+    font-size: 28px;
+  }
+  .support__panel {
+    padding: 20px;
+  }
+  .support__panel-title {
+    font-size: 26px;
+  }
+  .support__desc {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}

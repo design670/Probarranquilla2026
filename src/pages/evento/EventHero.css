@@ -1,0 +1,128 @@
+/* Degradado muestreado de la referencia: azul noche → violeta → rojo */
+.event-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  height: 708px;
+  padding-bottom: 100px;
+  color: var(--c-white);
+  background: linear-gradient(
+    90deg,
+    #001d39 0%,
+    #00203d 11%,
+    #733b4d 29%,
+    #993e49 36.6%,
+    #c03f3e 44%,
+    #e23e30 51%,
+    #e23e30 100%
+  );
+}
+
+.event-hero .event-hero__content {
+  padding-left: calc(var(--gutter) - 8px);
+}
+
+.event-hero__title {
+  font-size: 68px;
+  line-height: 67px;
+  letter-spacing: -0.035em;
+}
+
+.event-hero__title span,
+.event-hero__subtitle span,
+.event-hero__text span {
+  display: block;
+}
+
+.event-hero__subtitle {
+  margin-top: 22px;
+  font-size: 26px;
+  line-height: 27px;
+}
+
+.event-hero__text {
+  margin-top: 32px;
+  font-size: 20px;
+  line-height: 27px;
+}
+
+.event-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 19px;
+  margin-top: 56px;
+}
+
+.event-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  height: 43px;
+  padding: 0 24px;
+  border-radius: 3px;
+  font-size: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.event-hero__btn--primary {
+  background: var(--c-blue-bright);
+  color: var(--c-white);
+}
+
+.event-hero__btn--primary:hover {
+  background: #0a63b8;
+}
+
+.event-hero__btn--secondary {
+  background: var(--c-white);
+  color: var(--c-blue-bright);
+}
+
+.event-hero__btn--secondary:hover {
+  background: #e8eef6;
+}
+
+@media (max-width: 900px) {
+  .event-hero {
+    height: auto;
+    min-height: 600px;
+    padding: 170px 0 64px;
+    background: linear-gradient(160deg, #001d39 0%, #2a2a4a 30%, #993e49 60%, #e23e30 85%);
+  }
+  .event-hero__title {
+    font-size: 48px;
+    line-height: 1.02;
+  }
+  .event-hero__actions {
+    margin-top: 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .event-hero .event-hero__content {
+    padding-left: var(--gutter);
+  }
+  .event-hero__title {
+    font-size: 36px;
+  }
+  .event-hero__subtitle {
+    font-size: 21px;
+    line-height: 1.25;
+  }
+  .event-hero__text {
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  .event-hero__subtitle span,
+  .event-hero__text span {
+    display: inline;
+  }
+  .event-hero__subtitle span + span::before,
+  .event-hero__text span + span::before {
+    content: ' ';
+  }
+  .event-hero__btn {
+    font-size: 16px;
+    padding: 0 16px;
+  }
+}

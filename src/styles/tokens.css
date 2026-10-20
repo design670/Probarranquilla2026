@@ -1,0 +1,91 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist-Regular.woff2') format('woff2'),
+    url('/fonts/Geist-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Solo para el énfasis en negrita del texto del caso de éxito, visible en Home.jpg */
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Tipografía */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Geist', sans-serif;
+
+  /* Colores (muestreados de Home.jpg) */
+  --c-white: #ffffff;
+  --c-navy: #00264a; /* azul institucional / footer */
+  --c-navy-nav: #001e3a; /* barra de navegación, botón EN, Contáctanos */
+  --c-navy-deep: #111e40; /* casos de éxito, tarjeta 469 USD */
+  --c-blue-case: #004382; /* tarjeta del caso de éxito */
+  --c-blue-title: #013f7a; /* títulos azules */
+  --c-blue-link: #004380; /* textos de la barra superior */
+  --c-blue-bright: #0154a4; /* tarjeta +20, indicador activo, bordes de filtros */
+  --c-teal: #23aa99;
+  --c-orange: #ff5a20;
+  --c-yellow: #fbbf09;
+  --c-gray-news: #f3f4f6;
+  --c-gray-allies: #f7f8fa;
+  --c-dot-gray: #6c757c;
+  --c-arrow-dim: #253252;
+  --c-social-bg: #162741;
+  --c-meta-icon: #001e3a;
+
+  /* Tonos de páginas internas (muestreados de "Instalate en Barranquilla.jpg") */
+  --c-sky: #00acf4; /* cifras destacadas y etiquetas sobre azul */
+  --c-sky-soft: #2e92f4; /* título de la tarjeta portuaria */
+  --c-teal-bright: #04c0a7; /* franja "Logística" */
+  --c-pill-bg: #e0f2fe; /* fondo de etiquetas delineadas */
+  --c-gray-card: #e7ebee; /* tarjeta de infraestructura */
+  --c-gray-line: #c9d0d8;
+  --c-placeholder: #c4c4c4; /* área reservada para recurso visual */
+  --c-port-card: #143757;
+  --c-text-muted: #63738a;
+  --c-text-soft: #306390;
+  --c-slate: #94a3b8;
+  --c-talent-teal: #053452;
+  --c-talent-navy: #082c4e;
+  --c-lavender: #ecf0fb; /* fondo del listado de noticias */
+  --c-lime: #a1c617; /* pestaña "Hablemos" */
+
+  /* Capas de color del mosaico */
+  --ov-blue: #3f68d4;
+  --ov-cyan: #18a1d7;
+  --ov-navy: #0c263f;
+  --ov-steel: #224668;
+  --ov-orange: #e77129;
+
+  /* Línea de color del footer */
+  --footer-line: linear-gradient(90deg, #244081 0%, #2fa79a 35%, #b1906f 55%, #f28f31 80%, #fbbf09 100%);
+
+  /* Layout */
+  --container: 1184px;
+  --gutter: 24px;
+  --radius-sm: 4px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 16px;
+  }
+}

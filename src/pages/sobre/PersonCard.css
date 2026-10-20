@@ -1,0 +1,201 @@
+/*
+ * Frente (retrato + nombre + cargo) y capa de información comparten la misma
+ * celda de grid: la card mide lo que necesite el más alto de los dos, así que
+ * la capa nunca recorta el texto y el hover no cambia la altura de la fila.
+ */
+.person {
+  position: relative;
+  display: grid;
+  /* 402 px de la referencia + margen para nombres de dos líneas en la capa */
+  min-height: 408px;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--c-white);
+}
+
+.person__front,
+.person__bio {
+  grid-area: 1 / 1;
+}
+
+/* ---------- Estado inicial ---------- */
+
+.person__front {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 10px 10px 40px;
+  text-align: left;
+  border-radius: inherit;
+}
+
+.person__front:focus-visible {
+  outline: none;
+}
+
+/* El anillo de foco va en la card (la capa cubriría el del botón) */
+.person:has(.person__front:focus-visible) {
+  outline: 3px solid #0054a3;
+  outline-offset: 3px;
+}
+
+.person__front > * {
+  transition: opacity 0.22s ease;
+}
+
+.person__photo-wrap {
+  display: block;
+}
+
+.person__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 355 / 252;
+  height: auto;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.person__name {
+  display: block;
+  margin-top: 20px;
+  padding: 0 32px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 25px;
+  letter-spacing: -0.03em;
+  color: #000;
+}
+
+.person__role {
+  display: block;
+  margin-top: 10px;
+  padding: 0 32px;
+  font-size: 18.5px;
+  line-height: 22px;
+  color: #6b7280;
+}
+
+/* ---------- Capa de información ---------- */
+
+.person__bio {
+  z-index: 1;
+  padding: 32px 5.5% 30px;
+  background: var(--hover-bg);
+  border-radius: inherit;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  /* Al salir, la visibilidad cambia cuando termina el fundido */
+  transition: opacity 0.22s ease, visibility 0s linear 0.22s;
+}
+
+.person__bio-head {
+  /* El encabezado entra un poco más que el párrafo, como en la referencia */
+  padding-left: 6.5%;
+}
+
+.person__bio-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--hover-name);
+}
+
+.person__bio-role {
+  margin-top: 12px;
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--hover-body);
+}
+
+.person__bio-text {
+  margin-top: 36px;
+  font-size: 17px;
+  line-height: 1.18;
+  color: var(--hover-body);
+}
+
+/* Hover (solo dispositivos con puntero real), foco de teclado o toque */
+@media (hover: hover) {
+  .person:hover .person__bio {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.22s ease, visibility 0s;
+  }
+  .person:hover .person__front > * {
+    opacity: 0;
+  }
+}
+
+.person.is-open .person__bio {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.22s ease, visibility 0s;
+}
+
+.person.is-open .person__front > * {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .person__front > *,
+  .person__bio,
+  .person:hover .person__bio,
+  .person.is-open .person__bio {
+    transition: none;
+  }
+}
+
+/* Alturas uniformes por breakpoint: caben el nombre en 2 líneas y la descripción completa */
+@media (max-width: 1100px) {
+  .person {
+    min-height: 448px;
+  }
+  .person__front {
+    padding-bottom: 28px;
+  }
+  .person__name {
+    padding: 0 20px;
+    font-size: 22px;
+  }
+  .person__role {
+    padding: 0 20px;
+    font-size: 17px;
+  }
+  .person__bio-name {
+    font-size: 22px;
+  }
+  .person__bio-role {
+    font-size: 17px;
+  }
+  .person__bio-text {
+    margin-top: 28px;
+    font-size: 16px;
+    line-height: 1.22;
+  }
+}
+
+@media (max-width: 900px) {
+  .person {
+    min-height: 390px;
+  }
+}
+
+@media (max-width: 560px) {
+  .person {
+    min-height: 372px;
+  }
+}
+
+@media (max-width: 640px) {
+  .person__bio {
+    padding: 26px 20px 24px;
+  }
+  .person__bio-head {
+    padding-left: 4px;
+  }
+}

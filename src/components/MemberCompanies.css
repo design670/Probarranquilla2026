@@ -1,0 +1,117 @@
+.members {
+  padding: 83px 0 77px;
+  overflow: hidden;
+}
+
+.members__title {
+  text-align: center;
+  font-size: 44px;
+}
+
+.members__rows {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ---------- Desplazamiento infinito ---------- */
+
+.members__marquee {
+  --scale: 1;
+  overflow: hidden;
+  /* Los extremos se desvanecen para que los logos entren y salgan suaves */
+  mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+
+.members__track {
+  display: flex;
+  width: max-content;
+  animation: members-scroll var(--duration, 40s) linear infinite;
+}
+
+.members__marquee--reverse .members__track {
+  animation-direction: reverse;
+}
+
+/* Pausa al pasar el cursor para poder leer un logo */
+.members__marquee:hover .members__track {
+  animation-play-state: paused;
+}
+
+@keyframes members-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.members__row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* El espacio va dentro de cada slot: las dos copias quedan idénticas y el ciclo no salta */
+.members__slot {
+  flex: none;
+  height: 70px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tamaño por logo desde los datos (--w), escalable por breakpoint */
+.members__logo {
+  width: calc(var(--w) * var(--scale) * 1px) !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .members__track {
+    animation: none;
+  }
+  /* Sin movimiento: la franja se puede recorrer deslizando */
+  .members__marquee {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .members {
+    padding: 56px 0 56px;
+  }
+  .members__title {
+    font-size: 34px;
+  }
+  .members__rows {
+    margin-top: 44px;
+    gap: 24px;
+  }
+  .members__marquee {
+    --scale: 0.85;
+  }
+  .members__slot {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .members__title {
+    font-size: 28px;
+  }
+  .members__marquee {
+    --scale: 0.7;
+  }
+  .members__slot {
+    height: 56px;
+    padding: 0 18px;
+  }
+}

@@ -1,0 +1,154 @@
+.team {
+  margin-top: 20px;
+  padding: 94px 0 91px;
+  background: var(--c-gray-allies);
+}
+
+.team__title {
+  font-size: 42px;
+  text-align: center;
+  line-height: 0.98;
+}
+
+.team__title span {
+  display: block;
+}
+
+.team__intro {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 25px;
+  line-height: 27px;
+  color: var(--c-blue-title);
+}
+
+.team__intro span {
+  display: block;
+}
+
+/* Filtros centrados en dos filas, como en la referencia */
+.team__filters {
+  max-width: 1110px;
+  margin: 53px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.team__filter {
+  display: inline-flex;
+  align-items: center;
+  height: 42px;
+  padding: 0 25px;
+  border-radius: 3px;
+  background: var(--c-white);
+  color: #0054a3;
+  font-size: 21px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.team__filter:hover {
+  background: #e8eef6;
+}
+
+.team__filter[aria-pressed='true'] {
+  background: #0054a3;
+  color: var(--c-white);
+}
+
+.team__filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 25px;
+}
+
+.team__groups {
+  margin-top: 94px;
+}
+
+.team-group + .team-group {
+  margin-top: 83px;
+}
+
+.team-group__title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: var(--c-blue-case);
+}
+
+.team-group__description {
+  margin-top: 8px;
+  font-size: 21px;
+  color: #4b5563;
+}
+
+/* Tres columnas de ancho constante; grupos de 1-2 personas quedan a la izquierda */
+.team-group__grid {
+  list-style: none;
+  margin: 37px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 36px 29px;
+}
+
+/* Estilos de la card de integrante: PersonCard.css */
+
+@media (max-width: 900px) {
+  .team {
+    padding: 64px 0;
+  }
+  .team__intro {
+    font-size: 19px;
+    line-height: 1.4;
+  }
+  .team__intro span {
+    display: inline;
+  }
+  .team__intro span + span::before {
+    content: ' ';
+  }
+  .team__filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 36px;
+  }
+  .team__filters-row {
+    display: contents;
+  }
+  .team__filter {
+    height: 38px;
+    padding: 0 16px;
+    font-size: 17px;
+  }
+  .team__groups {
+    margin-top: 56px;
+  }
+  .team-group + .team-group {
+    margin-top: 56px;
+  }
+  .team-group__title {
+    font-size: 22px;
+  }
+  .team-group__description {
+    font-size: 18px;
+  }
+  .team-group__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .team-group__grid {
+    grid-template-columns: 1fr;
+  }
+}

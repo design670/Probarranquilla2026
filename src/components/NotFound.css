@@ -1,0 +1,54 @@
+.not-found {
+  min-height: 560px;
+  display: flex;
+  align-items: flex-end;
+  background: var(--c-navy);
+  color: var(--c-white);
+}
+
+.not-found__content {
+  padding-top: 170px;
+  padding-bottom: 110px;
+}
+
+.not-found__title {
+  font-size: 48px;
+  letter-spacing: -0.02em;
+}
+
+.not-found__text {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.not-found__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.not-found__btn {
+  display: inline-flex;
+  align-items: center;
+  height: 43px;
+  padding: 0 24px;
+  border-radius: 3px;
+  background: var(--c-blue-bright);
+  font-size: 18px;
+}
+
+.not-found__btn--ghost {
+  background: transparent;
+  border: 1px solid var(--c-white);
+}
+
+@media (max-width: 640px) {
+  .not-found__title {
+    font-size: 32px;
+  }
+  .not-found__content {
+    padding-top: 140px;
+    padding-bottom: 56px;
+  }
+}

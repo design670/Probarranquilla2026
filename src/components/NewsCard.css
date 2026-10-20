@@ -1,0 +1,163 @@
+/* Filtros de categoría (Home y página de noticias) */
+.news__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 42px;
+  padding: 0 11px;
+  border: 1px solid var(--c-blue-bright);
+  border-radius: 3px;
+  color: var(--c-blue-title);
+  font-size: 20px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.news__chip[aria-disabled='true'] {
+  cursor: default;
+}
+
+.news__chip:not([aria-disabled='true']):hover {
+  background: rgba(1, 84, 164, 0.06);
+}
+
+.news__chip[aria-pressed='true'] {
+  background: var(--c-blue-bright);
+  color: var(--c-white);
+}
+
+/* ---------- Tarjeta ---------- */
+
+.news__card {
+  padding: 14px 14px 18px;
+  background: var(--c-white);
+  border-radius: 8px;
+  position: relative;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+/* Hover y foco de teclado: la tarjeta sube, pasa a azul oscuro y el texto a blanco */
+.news__card:hover,
+.news__card:focus-within {
+  background: var(--c-navy-nav);
+  transform: translateY(-8px);
+}
+
+/* Cubre el hueco que deja al subir, para que el cursor no la "pierda" en el borde inferior */
+.news__card:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 8px;
+}
+
+.news__card:hover .news__headline,
+.news__card:focus-within .news__headline,
+.news__card:hover .news__meta,
+.news__card:focus-within .news__meta {
+  color: var(--c-white);
+}
+
+.news__card:hover .news__meta-icon,
+.news__card:focus-within .news__meta-icon {
+  background: var(--c-white);
+  color: var(--c-navy-nav);
+}
+
+.news__link:focus-visible {
+  outline-color: var(--c-white);
+}
+
+.news__link {
+  display: block;
+  border-radius: 6px;
+}
+
+.news__media {
+  aspect-ratio: 393 / 311;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.news__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.news__headline {
+  margin-top: 24px;
+  font-size: 19px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--c-navy-nav);
+  transition: color 0.25s ease;
+}
+
+.news__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--c-navy-nav);
+  transition: color 0.25s ease;
+}
+
+.news__meta-icon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--c-meta-icon);
+  color: var(--c-white);
+  transition: background-color 0.25s ease, color 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Variante de cuadrícula: metadatos abajo y titular de máx. 3 líneas */
+.news__card--grid {
+  display: flex;
+  flex-direction: column;
+  padding: 13px 13px 12px;
+}
+
+.news__card--grid .news__media {
+  aspect-ratio: 363 / 288;
+}
+
+.news__card--grid .news__headline {
+  margin-top: 22px;
+  /* 19 px: Montserrat es más ancha que la fuente de la captura; así los
+     titulares completos de la referencia caben en 3 líneas */
+  font-size: 19px;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.news__card--grid .news__meta {
+  margin-top: auto;
+  padding-top: 13px;
+  font-size: 12px;
+}
+
+.news__card--grid .news__meta-icon {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 900px) {
+  .news__chip {
+    font-size: 16px;
+    height: 38px;
+  }
+}

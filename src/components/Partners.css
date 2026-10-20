@@ -1,0 +1,55 @@
+.partners {
+  padding-top: 71px;
+}
+
+.partners__box {
+  background: var(--c-gray-allies);
+  border-radius: var(--radius-xl);
+  padding: 34px 24px 56px;
+  text-align: center;
+}
+
+.partners__title {
+  font-size: 44px;
+}
+
+.partners__logos {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px 86px;
+}
+
+.partners__logo {
+  height: auto;
+  max-height: 66px;
+  width: auto;
+  object-fit: contain;
+  /* Algunos logos traen fondo blanco: se funde con el gris del contenedor */
+  mix-blend-mode: multiply;
+}
+
+@media (max-width: 900px) {
+  .partners {
+    padding-top: 48px;
+  }
+  .partners__title {
+    font-size: 34px;
+  }
+  .partners__logos {
+    gap: 24px 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .partners__title {
+    font-size: 28px;
+  }
+  .partners__box {
+    padding: 28px 16px 36px;
+  }
+}

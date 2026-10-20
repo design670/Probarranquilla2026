@@ -1,0 +1,116 @@
+.utility-bar {
+  background: var(--c-white);
+  font-size: 15px;
+  position: relative;
+  z-index: 30;
+}
+
+.utility-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+  height: 58px;
+  padding-right: calc(var(--gutter) + 13px);
+}
+
+.utility-bar__clock {
+  color: var(--c-navy-nav);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.utility-bar__links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  padding: 0;
+}
+
+.utility-bar__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--c-blue-link);
+  white-space: nowrap;
+}
+
+.utility-bar__links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.utility-bar__lang {
+  position: relative;
+}
+
+.utility-bar__lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 42px;
+  padding: 0 13px 0 10px;
+  background: var(--c-navy-nav);
+  color: var(--c-white);
+  border-radius: 2px;
+}
+
+.utility-bar__flag {
+  flex: none;
+}
+
+.utility-bar__lang-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  min-width: 140px;
+  list-style: none;
+  padding: 6px;
+  margin: 0;
+  background: var(--c-white);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 6px 20px rgba(0, 30, 58, 0.16);
+}
+
+.utility-bar__lang-menu a {
+  display: block;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--c-navy);
+}
+
+.utility-bar__lang-menu a:hover,
+.utility-bar__lang-menu a[aria-current] {
+  background: var(--c-gray-news);
+}
+
+@media (max-width: 1100px) {
+  .utility-bar__inner,
+  .utility-bar__links {
+    gap: 22px;
+  }
+  .utility-bar {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .utility-bar__clock {
+    display: none;
+  }
+  .utility-bar__inner {
+    justify-content: space-between;
+    padding-right: var(--gutter);
+    height: 48px;
+    gap: 12px;
+  }
+  .utility-bar__links {
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 18px;
+    font-size: 13px;
+  }
+  .utility-bar__lang-btn {
+    height: 34px;
+  }
+}

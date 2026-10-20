@@ -1,0 +1,203 @@
+.what {
+  background: var(--c-lavender);
+  padding: 131px 0 277px;
+}
+
+.what__title {
+  text-align: center;
+}
+
+.what__list {
+  margin-top: 226px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Separaciones de la referencia entre banners */
+.what-banner + .what-banner {
+  margin-top: 208px;
+}
+
+.what-banner:nth-child(3) {
+  margin-top: 320px;
+}
+
+/*
+ * Al hacer scroll cada banner se fija un poco más abajo que el anterior y el
+ * siguiente se monta encima, dejando ver la franja superior de los previos.
+ */
+.what-banner {
+  position: sticky;
+  top: calc(24px + var(--i) * 96px);
+  box-shadow: 0 -6px 18px rgba(0, 20, 50, 0.1);
+  min-height: 414px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 16px;
+  border-top: 4px solid var(--banner-line);
+  background: var(--banner-color);
+  color: var(--banner-text);
+}
+
+.what-banner__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.what-banner .smart-placeholder__label {
+  margin-left: 45%;
+}
+
+/* Capa de color sólida a la izquierda que se funde con la foto */
+.what-banner__shade {
+  position: absolute;
+  inset: 0;
+  background: var(--banner-shade);
+  pointer-events: none;
+}
+
+.what-banner__content {
+  position: relative;
+  width: calc(var(--text-width) + 61px);
+  max-width: 100%;
+  padding: 56px 0 56px 61px;
+}
+
+.what-banner__label {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--banner-label);
+}
+
+.what-banner__title {
+  margin-top: 26px;
+  font-family: var(--font-body);
+  font-size: 31px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--banner-title);
+}
+
+.what-banner__body {
+  margin-top: 32px;
+  font-size: 19.5px;
+  line-height: 27px;
+}
+
+.what-banner__body strong {
+  font-weight: 600;
+}
+
+.what-banner--navy {
+  --banner-color: #001d39;
+  --banner-line: #6b92ff;
+  --banner-text: var(--c-white);
+  --banner-label: #a3acbb;
+  --banner-title: #6b92ff;
+  --banner-shade: linear-gradient(
+    90deg,
+    #001d39 0%,
+    #001d39 42%,
+    rgba(0, 29, 57, 0.72) 52%,
+    rgba(0, 40, 90, 0.42) 70%,
+    rgba(0, 40, 90, 0.3) 100%
+  );
+}
+
+.what-banner--gold {
+  --banner-color: #f6a61c;
+  --banner-line: #f37021;
+  --banner-text: #0e1b2e;
+  --banner-label: #0e1b2e;
+  --banner-title: #0e1b2e;
+  --banner-shade: linear-gradient(
+    90deg,
+    #f6a61c 0%,
+    #f6a61c 37%,
+    rgba(246, 166, 28, 0.55) 48%,
+    rgba(246, 166, 28, 0.12) 62%,
+    rgba(246, 166, 28, 0) 75%
+  );
+}
+
+.what-banner--orange {
+  --banner-color: #f17023;
+  --banner-line: #a2440b;
+  --banner-text: var(--c-white);
+  --banner-label: var(--c-white);
+  --banner-title: var(--c-white);
+  --banner-shade: linear-gradient(
+    90deg,
+    #f17023 0%,
+    rgba(241, 112, 35, 0.9) 22%,
+    rgba(241, 112, 35, 0.55) 42%,
+    rgba(241, 112, 35, 0.18) 66%,
+    rgba(241, 112, 35, 0.1) 100%
+  );
+}
+
+.what-banner--orange .what-banner__content {
+  padding-left: 48px;
+}
+
+@media (max-width: 900px) {
+  .what {
+    padding: 72px 0 96px;
+  }
+  .what__list {
+    margin-top: 56px;
+  }
+  .what-banner + .what-banner,
+  .what-banner:nth-child(3) {
+    margin-top: 48px;
+  }
+  .what-banner__content,
+  .what-banner--orange .what-banner__content {
+    padding: 40px 32px;
+  }
+}
+
+/* Móvil: la foto arriba y el texto sobre el color sólido debajo */
+@media (max-width: 640px) {
+  .what-banner {
+    position: relative;
+    top: auto;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+  }
+  .what-banner__img {
+    position: relative;
+    height: 220px;
+  }
+  .what-banner .smart-placeholder__label {
+    margin-left: 0;
+  }
+  .what-banner__shade {
+    inset: auto 0 0;
+    top: 160px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0, var(--banner-color) 60px);
+  }
+  .what-banner__content,
+  .what-banner--orange .what-banner__content {
+    width: auto;
+    padding: 8px 20px 28px;
+  }
+  .what-banner__label {
+    font-size: 17px;
+  }
+  .what-banner__title {
+    margin-top: 12px;
+    font-size: 25px;
+  }
+  .what-banner__body {
+    margin-top: 16px;
+    font-size: 17px;
+    line-height: 1.45;
+  }
+}

@@ -1,0 +1,185 @@
+/* ---------- Hero (Botelines.png: 400 px de alto a 1366 px) ---------- */
+
+.page-hero.page-hero--resource {
+  height: clamp(360px, 29.3vw, 440px);
+}
+
+.page-hero--resource .page-hero__shade {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 29, 61, 0.96) 0%,
+    rgba(0, 29, 61, 0.8) 22%,
+    rgba(0, 29, 61, 0.4) 44%,
+    rgba(0, 29, 61, 0.08) 62%,
+    rgba(0, 29, 61, 0) 75%
+  );
+}
+
+.page-hero--resource .page-hero__content {
+  bottom: 86px;
+}
+
+/* Hero con párrafo y botón: altura mínima y el contenido empuja hacia arriba */
+.page-hero.page-hero--resource-rich {
+  height: auto;
+  min-height: clamp(400px, 34vw, 480px);
+  display: flex;
+  align-items: flex-end;
+}
+
+.page-hero--resource-rich .page-hero__content {
+  position: relative;
+  bottom: auto;
+  padding-top: 160px;
+  padding-bottom: 72px;
+}
+
+.resource-hero__text {
+  max-width: 640px;
+  margin-top: 16px;
+  font-size: 17px;
+  line-height: 1.45;
+  color: #e2e8f0;
+}
+
+.resource-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 28px;
+  padding: 0 24px;
+  border-radius: 3px;
+  background: var(--c-white);
+  color: var(--c-navy);
+  font-size: 17px;
+  transition: background-color 0.2s ease;
+}
+
+.resource-hero__cta:hover {
+  background: #dbe7f5;
+}
+
+.resource-hero__cta:focus-visible {
+  outline: 2px solid var(--c-white);
+  outline-offset: 3px;
+}
+
+.page-hero--resource .page-hero__title {
+  font-size: 44px;
+  line-height: 44px;
+  letter-spacing: -0.035em;
+}
+
+.page-hero--resource .page-hero__description {
+  margin-top: 21px;
+  font-size: 21.5px;
+  line-height: 23px;
+}
+
+/* ---------- Listado ---------- */
+
+.resources {
+  padding: 179px 0 86px;
+  background: var(--c-gray-news);
+}
+
+/* Cards de 386 px (3 por fila); si hay menos, quedan centradas */
+.resources__grid {
+  --cols: 3;
+  --col-gap: 12px;
+  list-style: none;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 58px var(--col-gap);
+}
+
+.resources__grid > li {
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--col-gap)) / var(--cols));
+  min-width: 0;
+}
+
+/* Boletines: la grilla completa queda alineada a la izquierda como en la referencia */
+.resources--library .resources__grid {
+  justify-content: flex-start;
+}
+
+/* Pocas cards (Guia-del-inversionista.png): centradas y más cerca del hero */
+.resources--featured {
+  padding: 117px 0 77px;
+}
+
+@media (max-width: 1024px) {
+  .resources {
+    padding: 112px 0 72px;
+  }
+  .resources--featured {
+    padding: 80px 0 72px;
+  }
+  .resources__grid {
+    --cols: 2;
+    --col-gap: 16px;
+    row-gap: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .page-hero--resource .page-hero__content {
+    bottom: 56px;
+  }
+  .page-hero--resource-rich .page-hero__content {
+    bottom: auto;
+    padding-top: 140px;
+    padding-bottom: 56px;
+  }
+  .page-hero--resource .page-hero__title {
+    font-size: 40px;
+    line-height: 1.05;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-hero.page-hero--resource {
+    height: 440px;
+  }
+  .page-hero--resource .page-hero__content {
+    bottom: 40px;
+  }
+  .page-hero.page-hero--resource-rich {
+    height: auto;
+    min-height: 440px;
+  }
+  .page-hero--resource-rich .page-hero__content {
+    bottom: auto;
+    padding-top: 120px;
+    padding-bottom: 40px;
+  }
+  .resource-hero__text {
+    font-size: 16px;
+  }
+  .resource-hero__cta {
+    width: 100%;
+    justify-content: center;
+  }
+  .page-hero--resource .page-hero__title {
+    font-size: 32px;
+    line-height: 1.1;
+  }
+  .page-hero--resource .page-hero__description {
+    margin-top: 16px;
+    font-size: 17px;
+    line-height: 1.35;
+  }
+  .resources {
+    padding: 48px 0 56px;
+  }
+  .resources--featured {
+    padding: 48px 0 56px;
+  }
+  .resources__grid {
+    --cols: 1;
+    row-gap: 24px;
+  }
+}

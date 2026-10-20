@@ -1,0 +1,10 @@
+node_modules
+dist
+*.tsbuildinfo
+
+# Material fuente del cliente (logos, manuales de marca; hasta 190 MB por archivo).
+# El sitio usa las versiones procesadas en public/assets.
+src/Img/
+
+.DS_Store
+Thumbs.db

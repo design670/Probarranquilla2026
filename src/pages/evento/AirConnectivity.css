@@ -1,0 +1,227 @@
+.air {
+  padding: 82px 0 63px;
+  background: var(--c-navy-deep);
+  color: var(--c-white);
+}
+
+.air__title {
+  text-align: center;
+  font-size: 44px;
+  letter-spacing: -0.025em;
+}
+
+.air__subtitle {
+  margin-top: 26px;
+  text-align: center;
+  font-size: 22px;
+}
+
+/* Tarjeta blanca en dos columnas: datos a la izquierda, mapa a la derecha */
+.air__card {
+  display: grid;
+  grid-template-columns: 492fr 557fr;
+  gap: 71px;
+  margin-top: 42px;
+  padding: 32px;
+  background: var(--c-white);
+  border-radius: 20px;
+  color: #0f172a;
+}
+
+.air__card-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+}
+
+.air__intro {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 21px;
+  color: #64748b;
+}
+
+.air__table-wrap {
+  margin-top: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.air__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.air__caption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 16px;
+  background: #0f172a;
+  color: var(--c-white);
+  font-size: 20px;
+}
+
+.air__caption svg {
+  color: #2dd4bf;
+}
+
+.air__table th,
+.air__table td {
+  padding: 0 16px;
+  text-align: left;
+  font-weight: 400;
+}
+
+.air__table td {
+  text-align: right;
+}
+
+.air__table thead th {
+  height: 29px;
+  font-size: 13px;
+  color: #64748b;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.air__table thead th + th {
+  text-align: right;
+}
+
+.air__table tbody tr {
+  height: 47px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.air__table tbody strong {
+  font-weight: 600;
+}
+
+.air__swatch {
+  display: inline-block;
+  width: 14px;
+  height: 3px;
+  margin-right: 8px;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+.air__duration {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.air__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.air__table tfoot tr {
+  height: 46px;
+  background: #f8fafc;
+  font-size: 13px;
+}
+
+.air__total {
+  color: #14b8a6;
+}
+
+.air__airlines-label {
+  margin-top: 26px;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #334155;
+}
+
+.air__airlines {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.air__airlines li {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 11px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.air__map {
+  min-height: 523px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #1e2a46;
+}
+
+.air__map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1100px) {
+  .air__card {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 900px) {
+  .air {
+    padding: 56px 0;
+  }
+  .air__title {
+    font-size: 34px;
+  }
+  .air__subtitle {
+    font-size: 18px;
+  }
+  .air__card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+  .air__map {
+    min-height: 0;
+    aspect-ratio: 557 / 523;
+  }
+}
+
+@media (max-width: 640px) {
+  .air__title {
+    font-size: 28px;
+  }
+  .air__card {
+    padding: 18px;
+  }
+  .air__card-title {
+    font-size: 24px;
+  }
+  .air__caption {
+    font-size: 17px;
+  }
+  .air__table th,
+  .air__table td {
+    padding: 0 10px;
+  }
+  .air__table thead th {
+    font-size: 12px;
+  }
+}

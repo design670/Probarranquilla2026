@@ -1,0 +1,39 @@
+.eyebrow {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: var(--c-blue-bright);
+}
+
+.eyebrow--pill {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid var(--c-blue-bright);
+  border-radius: 999px;
+  background: var(--c-pill-bg);
+  color: var(--c-blue-title);
+}
+
+/* Sobre fondos oscuros: borde y texto celeste, sin relleno */
+.eyebrow--pill-dark {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid var(--c-sky);
+  border-radius: 999px;
+  color: var(--c-sky);
+  font-size: 14px;
+}
+
+.title-rule {
+  display: block;
+  width: 80px;
+  height: 4px;
+  margin: 18px auto 0;
+  border-radius: 2px;
+  background: var(--c-blue-bright);
+}

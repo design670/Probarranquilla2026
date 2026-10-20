@@ -1,0 +1,85 @@
+/* La tarjeta y los filtros viven en NewsCard.css */
+.news {
+  background: var(--c-gray-news);
+  padding: 58px 0 83px;
+}
+
+.news__title {
+  font-size: 44px;
+}
+
+.news__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 37px;
+}
+
+.news__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* El carrusel recorta en vertical (overflow-x); 8 px de aire arriba
+   compensados en el margen dejan ver la tarjeta elevada sin mover el layout */
+.news__track {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 8px max(var(--gutter), calc((100% - var(--container)) / 2)) 0;
+  display: flex;
+  gap: 19px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: max(var(--gutter), calc((100% - var(--container)) / 2));
+  scrollbar-width: none;
+}
+
+.news__track::-webkit-scrollbar {
+  display: none;
+}
+
+.news__track .news__card {
+  flex: 0 0 421px;
+  scroll-snap-align: start;
+}
+
+.news__empty {
+  margin-top: 48px;
+  color: var(--c-blue-title);
+}
+
+@media (max-width: 900px) {
+  .news {
+    padding: 52px 0 60px;
+  }
+  .news__title {
+    font-size: 34px;
+  }
+  .news__toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .news__track .news__card {
+    flex-basis: 340px;
+  }
+}
+
+@media (max-width: 640px) {
+  .news__title {
+    font-size: 28px;
+  }
+  .news__track {
+    flex-direction: column;
+    overflow: visible;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .news__track .news__card {
+    flex-basis: auto;
+  }
+  .news__filters {
+    gap: 8px;
+  }
+}

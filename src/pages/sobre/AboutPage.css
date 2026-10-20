@@ -1,0 +1,61 @@
+/* Hero: velo azul sobre toda la foto, más denso abajo y a la izquierda; esquinas inferiores redondeadas */
+.page-hero--about {
+  height: 707px;
+  border-radius: 0 0 16px 16px;
+}
+
+.page-hero--about .page-hero__shade {
+  background: linear-gradient(180deg, rgba(0, 60, 140, 0.2) 0%, rgba(0, 40, 100, 0.28) 55%, rgba(0, 25, 60, 0.6) 100%),
+    linear-gradient(90deg, rgba(0, 30, 70, 0.45) 0%, rgba(0, 30, 70, 0.2) 50%, rgba(0, 30, 70, 0) 75%);
+}
+
+.page-hero--about .page-hero__content {
+  bottom: 190px;
+}
+
+.page-hero--about .page-hero__title {
+  letter-spacing: -0.035em;
+}
+
+.page-hero--about .page-hero__description {
+  margin-top: 26px;
+  font-size: 27px;
+  line-height: 27.5px;
+}
+
+/* Aliados pegado al consejo directivo y miembros más compacto, como en la referencia */
+.about-tail .partners {
+  padding-top: 0;
+}
+
+.about-tail .members {
+  padding-top: 42px;
+}
+
+@media (max-width: 900px) {
+  .page-hero--about {
+    height: 600px;
+  }
+  .page-hero--about .page-hero__content {
+    bottom: 80px;
+  }
+  .about-tail .partners {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-hero--about {
+    height: 560px;
+  }
+  .page-hero--about .page-hero__img {
+    object-position: 72% 50%;
+  }
+  .page-hero--about .page-hero__content {
+    bottom: 56px;
+  }
+  .page-hero--about .page-hero__description {
+    font-size: 18px;
+    line-height: 1.35;
+  }
+}

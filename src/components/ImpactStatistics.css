@@ -1,0 +1,258 @@
+.impact {
+  background: var(--c-teal);
+  color: var(--c-white);
+  padding: 62px 0 105px;
+  text-align: center;
+}
+
+.impact__title {
+  font-size: 42px;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+
+.impact__title span {
+  display: block;
+}
+
+.impact__intro {
+  max-width: 930px;
+  margin: 26px auto 0;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+/* Variante sin título (páginas internas): párrafo a todo el contenedor */
+.impact--plain {
+  padding: 86px 0 90px;
+}
+
+.impact--plain .impact__intro {
+  max-width: none;
+  margin-top: 0;
+  font-size: 23px;
+  line-height: 1.18;
+}
+
+.impact--plain .impact__tabs {
+  margin-top: 46px;
+}
+
+/* Las pestañas van juntas dentro de una sola barra delineada (pedido del cliente) */
+.impact__tabs {
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  gap: 4px;
+  margin: 52px auto 0;
+  padding: 4px;
+  border: 1px solid var(--c-white);
+  border-radius: 6px;
+}
+
+.impact__tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 41px;
+  padding: 0 22px;
+  font-size: 18px;
+  border-radius: 3px;
+  color: var(--c-white);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.impact__tab[aria-selected='true'] {
+  background: var(--c-white);
+  color: var(--c-blue-bright);
+}
+
+.impact__tab[aria-selected='false']:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.impact__grid {
+  list-style: none;
+  padding: 0;
+  margin: 70px 4px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  text-align: left;
+}
+
+.impact__card {
+  min-height: 278px;
+  padding: 36px 20px 47px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 36px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+/* Al pasar el cursor, la card se eleva; las vecinas no se mueven */
+.impact__card {
+  position: relative;
+}
+
+.impact__card:hover {
+  transform: translateY(-60px);
+}
+
+/* Cubre el hueco que deja la card al subir, para que el cursor no la "pierda" */
+.impact__card:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 60px;
+}
+
+.tone-navy { background: var(--c-navy-deep); }
+.tone-orange { background: var(--c-orange); }
+.tone-yellow { background: var(--c-yellow); }
+.tone-blue { background: var(--c-blue-bright); }
+.tone-amber { background: #ff9800; }
+.tone-red { background: #e23e30; }
+
+/*
+ * Turismo de reuniones: el contenido arranca arriba y la última línea de cada
+ * valor queda a la misma altura (el valor de dos líneas crece hacia arriba).
+ */
+.impact__grid--value-bottom .impact__card {
+  justify-content: flex-start;
+  gap: 32px;
+  padding-top: 42px;
+}
+
+.impact__grid--value-bottom .impact__label {
+  max-width: 232px;
+  font-size: 22px;
+  line-height: 1.02;
+}
+
+.impact__grid--value-bottom .impact__value {
+  min-height: calc(2 * 0.98em);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.impact__value {
+  font-size: 54px;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.impact__value span {
+  display: block;
+}
+
+.impact__label {
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  max-width: 220px;
+}
+
+.impact__label span {
+  display: block;
+}
+
+.impact__card.is-long {
+  gap: 30px;
+  padding-bottom: 20px;
+}
+
+.impact__card.is-long .impact__label {
+  font-size: 20px;
+  line-height: 1.04;
+  max-width: 200px;
+}
+
+.impact__empty {
+  margin-top: 70px;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+@media (max-width: 1100px) {
+  .impact__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .impact__card {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 900px) {
+  .impact {
+    padding: 52px 0 64px;
+  }
+  .impact__title {
+    font-size: 32px;
+  }
+  .impact__intro {
+    font-size: 18px;
+  }
+  .impact__tabs {
+    margin-top: 36px;
+  }
+  .impact__tab {
+    font-size: 15px;
+    padding: 0 16px;
+  }
+  .impact__grid {
+    margin: 40px 0 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .impact__title {
+    font-size: 26px;
+  }
+  .impact__value {
+    font-size: 40px;
+  }
+  .impact__label {
+    font-size: 20px;
+  }
+  .impact__card {
+    min-height: 200px;
+    padding: 24px 16px 28px;
+    gap: 22px;
+  }
+  .impact__card.is-long .impact__label {
+    font-size: 16px;
+  }
+  /* La barra ocupa el ancho y cada pestaña puede pasar a dos líneas */
+  .impact__tabs {
+    width: 100%;
+  }
+  .impact__tab {
+    flex: 1 1 0;
+    height: auto;
+    min-height: 41px;
+    min-width: 0;
+    padding: 6px 10px;
+    text-align: center;
+  }
+  .impact__tab .arrow-swap {
+    min-width: 0;
+  }
+  .impact__tab .arrow-swap__text {
+    flex: 0 1 auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .impact__grid {
+    grid-template-columns: 1fr;
+  }
+}

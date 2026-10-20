@@ -1,0 +1,95 @@
+.hablemos {
+  --w: 51px;
+  --h: 158px;
+  position: fixed;
+  right: 0;
+  bottom: 73px;
+  z-index: 40;
+  width: var(--w);
+  height: var(--h);
+  overflow: hidden;
+  border-radius: 6px 0 0 6px;
+  background: var(--c-lime);
+  color: var(--c-navy-nav);
+  transition: background-color 0.35s ease;
+}
+
+/* Caimán: más ancho que el botón para cubrirlo por completo en reposo */
+.hablemos__caiman {
+  position: absolute;
+  left: -15px;
+  top: 0;
+  width: 81px;
+  height: 279px;
+  fill: var(--c-lime);
+  transition: transform 0.45s cubic-bezier(0.3, 0.7, 0.3, 1);
+}
+
+.hablemos__content {
+  position: relative;
+  height: 100%;
+  padding: 16px 0 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hablemos__label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 19px;
+  line-height: 1;
+}
+
+.hablemos__icon {
+  flex: none;
+}
+
+/* Hover/foco: el caimán sube y solo asoma la cola; el botón queda blanco */
+.hablemos:hover,
+.hablemos:focus-visible {
+  background: var(--c-white);
+}
+
+.hablemos:hover .hablemos__caiman,
+.hablemos:focus-visible .hablemos__caiman {
+  transform: translate(-4px, calc(-100% + 24px));
+}
+
+.hablemos:hover .hablemos__content,
+.hablemos:focus-visible .hablemos__content {
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 24px;
+}
+
+.hablemos:focus-visible {
+  outline: 2px solid var(--c-navy-nav);
+  outline-offset: 2px;
+}
+
+/* En móvil, más pequeño y pegado abajo para no tapar el contenido */
+@media (max-width: 640px) {
+  .hablemos {
+    --w: 40px;
+    --h: 124px;
+    bottom: 16px;
+  }
+  .hablemos__caiman {
+    left: -12px;
+    width: 64px;
+    height: 220px;
+  }
+  .hablemos__content {
+    padding: 12px 0 10px;
+  }
+  .hablemos__label {
+    font-size: 15px;
+  }
+  .hablemos__icon {
+    width: 20px;
+    height: 20px;
+  }
+}

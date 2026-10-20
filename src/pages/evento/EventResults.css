@@ -1,0 +1,144 @@
+.ev-results {
+  padding: 82px 0 106px;
+  background: var(--c-gray-news);
+}
+
+.ev-results__title {
+  text-align: center;
+}
+
+.ev-results__text {
+  margin-top: 36px;
+  text-align: center;
+  font-size: 22px;
+  line-height: 27px;
+  color: var(--c-blue-title);
+}
+
+.ev-results__text span {
+  display: block;
+}
+
+.ev-results__grid {
+  list-style: none;
+  margin: 84px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.ev-stat {
+  display: flex;
+  flex-direction: column;
+  min-height: 328px;
+  padding: 50px 34px 52px;
+  border-radius: 24px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.ev-stat__value {
+  font-size: 72px;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+.ev-stat__label {
+  font-size: 28px;
+  line-height: 31px;
+  letter-spacing: -0.035em;
+}
+
+.ev-stat__label span {
+  display: block;
+}
+
+/* Azul: cifra arriba y descripción abajo */
+.ev-stat--navy {
+  justify-content: space-between;
+  background: var(--c-navy-deep);
+  color: var(--c-white);
+}
+
+/* Naranja: todo centrado; la cifra se reduce para que quepa "USD" */
+.ev-stat--orange {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #ff5b20;
+  color: var(--c-white);
+}
+
+.ev-stat--orange .ev-stat__value {
+  margin-top: 30px;
+  font-size: 58px;
+}
+
+.ev-stat__unit {
+  font-size: 46px;
+  letter-spacing: -0.02em;
+}
+
+.ev-stat--orange .ev-stat__label {
+  margin-top: 14px;
+  line-height: 29px;
+}
+
+/* Turquesa: cifra y descripción juntas, arriba */
+.ev-stat--teal {
+  background: #2ed3bf;
+  color: var(--c-blue-title);
+}
+
+.ev-stat--teal .ev-stat__value {
+  margin-top: 14px;
+}
+
+.ev-stat--teal .ev-stat__label {
+  margin-top: 46px;
+}
+
+@media (max-width: 1100px) {
+  .ev-stat {
+    padding: 36px 24px;
+  }
+  .ev-stat__value {
+    font-size: 56px;
+  }
+  .ev-stat--orange .ev-stat__value {
+    font-size: 44px;
+  }
+  .ev-stat__unit {
+    font-size: 34px;
+  }
+  .ev-stat__label {
+    font-size: 22px;
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 900px) {
+  .ev-results {
+    padding: 56px 0 64px;
+  }
+  .ev-results__text {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+  .ev-results__text span {
+    display: inline;
+  }
+  .ev-results__text span + span::before {
+    content: ' ';
+  }
+  .ev-results__grid {
+    grid-template-columns: 1fr;
+    margin-top: 40px;
+    gap: 16px;
+  }
+  .ev-stat {
+    min-height: 220px;
+  }
+}

@@ -1,0 +1,40 @@
+.arrow-swap {
+  --arrow-shift: calc(var(--arrow-size) + var(--arrow-gap));
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--arrow-gap);
+}
+
+.arrow-swap__lead,
+.arrow-swap__text,
+.arrow-swap__trail {
+  flex: none;
+  transition: transform 0.19s ease, opacity 0.19s ease;
+}
+
+.arrow-swap__lead {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  opacity: 0;
+  transform: translate(-6px, -50%);
+}
+
+/* El disparador es el enlace o botón que contiene la etiqueta */
+:is(a, button):hover .arrow-swap__text,
+:is(a, button):focus-visible .arrow-swap__text {
+  transform: translateX(var(--arrow-shift));
+}
+
+:is(a, button):hover .arrow-swap__lead,
+:is(a, button):focus-visible .arrow-swap__lead {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+:is(a, button):hover .arrow-swap__trail,
+:is(a, button):focus-visible .arrow-swap__trail {
+  opacity: 0;
+  transform: translateX(calc(var(--arrow-shift) + 6px));
+}

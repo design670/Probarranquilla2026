@@ -1,0 +1,39 @@
+.smart-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #5b6573;
+  font-family: var(--font-body);
+  text-align: center;
+}
+
+.smart-placeholder--photo {
+  width: 100%;
+  height: 100%;
+  background-color: #c9ced6;
+  background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0 12px, transparent 12px 24px);
+}
+
+.smart-placeholder--photo .smart-placeholder__label {
+  margin: 12px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 11px;
+  line-height: 1.3;
+  align-self: flex-start;
+}
+
+.smart-placeholder--logo {
+  flex: none;
+  max-width: 100%;
+  border: 1px dashed #b7bec8;
+  border-radius: var(--radius-sm);
+  padding: 2px 4px;
+}
+
+.smart-placeholder--logo .smart-placeholder__label {
+  font-size: 10px;
+  line-height: 1.15;
+}
