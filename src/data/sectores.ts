@@ -36,7 +36,7 @@ export const sectorIds = {
 
 export const sectorIndex = [
   {
-    label: '01. MANUFACTURA',
+    label: 'MANUFACTURA',
     id: sectorIds.manufactura,
     links: [
       { label: 'Químicos y Ciencias de la Vida', id: sectorIds.quimicos },
@@ -45,7 +45,7 @@ export const sectorIndex = [
     ],
   },
   {
-    label: '02. SERVICIOS',
+    label: 'SERVICIOS',
     id: sectorIds.servicios,
     links: [
       { label: 'Hub energético', id: sectorIds.energia },
@@ -54,7 +54,7 @@ export const sectorIndex = [
     ],
   },
   {
-    label: '03. OTROS',
+    label: 'OTROS',
     id: sectorIds.otros,
     links: [{ label: 'Otros sectores con potencial', id: sectorIds.otros }],
   },
