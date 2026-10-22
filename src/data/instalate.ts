@@ -18,16 +18,16 @@ const A = (src: string, alt: string, extra: Partial<ImageAsset> = {}): ImageAsse
 });
 
 export const instalateAssets = {
-  hero: A('hero-malecon.jpg', 'Malecón del río Magdalena en Barranquilla al atardecer', { position: '60% 55%' }),
+  hero: A('hero-malecon.jpg', 'Vista aérea del Gran Malecón y el río Magdalena al atardecer, con canchas iluminadas y la ciudad al fondo', { position: '50% 45%' }),
   puerto: A('plataforma-portuaria.jpg', 'Actividad portuaria en Barranquilla'),
   mapaConectividad: A('mapa-conectividad-aerea.png', 'Mapa de rutas aéreas desde Barranquilla hacia Panamá, Miami, Fort Lauderdale y Curazao', { position: '100% 50%' }),
   mapaTerminales: A('mapa-terminales-portuarias.png', 'Mapa del río Magdalena con las terminales portuarias de Barranquilla'),
   zonasFrancas: {
     barranquilla: A('zf-barranquilla.jpg', 'Vista aérea de la Zona Franca de Barranquilla junto al río'),
     zofia: A('zf-zofia.jpg', 'Portería de ZOFIA Zona Franca Internacional del Atlántico'),
-    palermo: A('zf-palermo.jpg', 'Muelle de Palermo Sociedad Portuaria'),
-    cayena: A('zf-la-cayena.jpg', 'Bodega en la Zona Franca La Cayena'),
-    zoma: A('zf-zoma.jpg', 'Vista aérea de ZOMA Zona Franca Malambo'),
+    palermo: A('zf-palermo.jpg', 'Vista aérea de las instalaciones de Palermo Sociedad Portuaria'),
+    cayena: A('zf-la-cayena.jpg', 'Vista aérea de la entrada y bodegas de la Zona Franca La Cayena'),
+    zoma: A('zf-zoma.jpg', 'Imagen del proyecto de la entrada de ZOMA Zona Franca Malambo'),
   },
   logosZonasFrancas: {
     barranquilla: A('logo-zf-barranquilla.png', 'Zona Franca de Barranquilla', { fit: 'contain' }),
@@ -49,12 +49,15 @@ export const instalateAssets = {
 
 /* ---------- A. Hero ---------- */
 export const instalateHero = {
-  title: ['Barranquilla y el', 'Atlántico ofrecen una', 'plataforma competitiva', 'para el nearshoring.'],
+  title: ['Instálate en Barranquilla'],
   primary: { label: 'Explora las ventajas', href: PENDING_HREF } satisfies Link,
   secondary: { label: 'Solicita acompañamiento', href: PENDING_HREF } satisfies Link,
 };
 
 /* ---------- B. Impacto ---------- */
+/** Frase principal sobre la sección verde (antes estaba en el hero) */
+export const instalateImpactTitle = ['Barranquilla y el Atlántico: Una ubicación estratégica,', 'la principal economía del Caribe colombiano', 'y un territorio que conecta talento,', 'negocios y oportunidades.'];
+
 export const instalateImpactIntro =
   'Su ubicación estratégica, conectividad internacional, infraestructura portuaria y logística, talento humano y sólida base empresarial permiten a las compañías acercar sus operaciones a mercados clave, fortalecer sus cadenas de suministro y encontrar en el territorio las capacidades necesarias para crecer y expandirse desde Colombia.';
 
@@ -82,31 +85,83 @@ export const port = {
   ] as { icon: IconName; title: string; text: string }[],
 };
 
-/* ---------- D. Conectividad ---------- */
+/* ---------- D. Conectividad estratégica ---------- */
+type L = { dx: number; dy: number; anchor: 'start' | 'middle' | 'end' };
+const lbl = (dx: number, dy: number, anchor: L['anchor']): L => ({ dx, dy, anchor });
+
+export type ConnectivityMap = {
+  geo: 'internacional' | 'nacional';
+  kind: 'air' | 'sea' | 'road';
+  hubLabel: L;
+  stops: { id: string; name: string; label: L }[];
+  ariaLabel: string;
+};
+
 export type ConnectivityContent = {
+  /** Título del cuadro (sin número) */
+  title: string;
   heading: string;
-  subheading: string;
-  items: { icon: IconName; title: string; text: string }[];
-  map: ImageAsset;
-  highlight: { title: string; chips: { icon: IconName; text: string[] }[] };
+  subheading?: string;
+  /** Lista con ícono (aérea, telecomunicaciones) */
+  items?: { icon: IconName; title?: string; text: string }[];
+  /** Cifras grandes (portuaria) */
+  stats?: { icon: IconName; value: string; text: string }[];
+  /** Tabla de distancias (terrestre) */
+  table?: { columns: [string, string, string]; rows: [string, string, string][] };
+  map: ConnectivityMap;
+  /** Cuadro azul sobre el mapa: cifras en chips o un texto */
+  highlight?: { title?: string; chips?: { icon: IconName; text: string[] }[]; text?: string };
 };
 
 export const connectivity = {
-  number: '01',
-  title: ['Conexiones que', 'acercan a mercados'],
+  title: 'Conectividad Estratégica',
   tabs: [
+    {
+      id: 'portuaria',
+      label: 'Conectividad portuaria',
+      content: {
+        title: 'Una plataforma portuaria para el mundo',
+        heading: 'CONECTIVIDAD PORTUARIA',
+        subheading: 'Cerca de los principales mercados',
+        stats: [
+          { icon: 'calendar', value: '5 a 8 días', text: 'de tránsito entre Barranquilla y el Puerto de Miami, que se conecta con gran parte de Estados Unidos.' },
+          { icon: 'dollar', value: '40% menos', text: 'en costos de flete frente a envíos desde Asia.' },
+          { icon: 'leaf', value: '80% menos', text: 'emisiones de carbono por tonelada comparado con rutas desde China.' },
+        ],
+        map: {
+          geo: 'internacional',
+          kind: 'sea',
+          hubLabel: lbl(0, 28, 'middle'),
+          stops: [{ id: 'miami', name: 'Puerto de Miami', label: lbl(-10, 16, 'end') }],
+          ariaLabel: 'Mapa de la ruta marítima entre Barranquilla y el Puerto de Miami',
+        },
+      },
+    },
     {
       id: 'aerea',
       label: 'Conectividad aérea',
       content: {
+        title: 'Conexiones que acercan a mercados',
         heading: 'CONECTIVIDAD AÉREA',
         subheading: 'Acceso eficiente a mercados internacionales',
         items: [
-          { icon: 'plane', title: 'Vuelos directos', text: 'desde Barranquilla a Madrid, Panamá, Miami, Aruba y Fort Lauderdale, conectando con Norteamérica, Europa y el Caribe.' },
-          { icon: 'pin', title: '3 aeropuertos internacionales a menos de 100 km:', text: 'Barranquilla, Cartagena y Santa Marta, con 9 destinos y 65 frecuencias.' },
-          { icon: 'compass', title: 'Rutas estratégicas', text: 'a Ciudad de México, Lima, Miami, Panamá, Nueva York, San José y Santo Domingo.' },
+          { icon: 'plane', title: 'Vuelos directos internacionales', text: 'a Madrid, Panamá, Miami, Fort Lauderdale, Aruba y Curazao.' },
+          { icon: 'pin', title: 'Vuelos directos nacionales', text: 'a Bogotá, Cali, Medellín, Bucaramanga, Cúcuta, Riohacha, San Andrés y Montería.' },
         ],
-        map: instalateAssets.mapaConectividad,
+        map: {
+          geo: 'internacional',
+          kind: 'air',
+          hubLabel: lbl(0, 28, 'middle'),
+          stops: [
+            { id: 'madrid', name: 'Madrid', label: lbl(-10, -12, 'end') },
+            { id: 'miami', name: 'Miami', label: lbl(-10, 16, 'end') },
+            { id: 'fll', name: 'Fort Lauderdale', label: lbl(10, -6, 'start') },
+            { id: 'panama', name: 'Ciudad de Panamá', label: lbl(0, 24, 'middle') },
+            { id: 'aruba', name: 'Aruba', label: lbl(-8, -12, 'end') },
+            { id: 'curazao', name: 'Curazao', label: lbl(8, -12, 'start') },
+          ],
+          ariaLabel: 'Mapa de vuelos directos desde Barranquilla a Madrid, Miami, Fort Lauderdale, Ciudad de Panamá, Aruba y Curazao',
+        },
         highlight: {
           title: 'CONEXIÓN RÁPIDA A BOGOTÁ',
           chips: [
@@ -115,20 +170,91 @@ export const connectivity = {
             { icon: 'calendar', text: ['164 frecuencias', 'semanales'] },
           ],
         },
-      } as ConnectivityContent,
+      },
     },
-    // Contenido no suministrado: la pestaña se muestra pero no se activa hasta tenerlo.
-    { id: 'terrestre', label: 'Conectividad terrestre', content: null as ConnectivityContent | null },
-    { id: 'telecom', label: 'Conectividad en telecomunicaciones', content: null as ConnectivityContent | null },
-  ],
+    {
+      id: 'terrestre',
+      label: 'Conectividad terrestre',
+      content: {
+        title: 'Una puerta de entrada a Colombia',
+        heading: 'PROXIMIDAD DESDE BARRANQUILLA',
+        table: {
+          columns: ['Ciudad destino', 'Proximidad', 'Tiempo estimado'],
+          rows: [
+            ['Cartagena', '120 km', '2 h'],
+            ['Santa Marta', '100 km', '1 h 40 min'],
+            ['Bogotá', '1.048 km', '18 h'],
+            ['Medellín', '772 km', '12 h'],
+            ['Cali', '1.179 km', '19 h 34 min'],
+            ['Montería', '376 km', '6 h'],
+            ['Riohacha', '268 km', '4 h 49 min'],
+            ['Sincelejo', '258 km', '4 h 17 min'],
+            ['Bucaramanga', '699 km', '12 h'],
+          ],
+        },
+        map: {
+          geo: 'nacional',
+          kind: 'road',
+          hubLabel: lbl(-14, 4, 'end'),
+          stops: [
+            { id: 'cartagena', name: 'Cartagena', label: lbl(-10, 14, 'end') },
+            { id: 'santamarta', name: 'Santa Marta', label: lbl(0, -12, 'middle') },
+            { id: 'bogota', name: 'Bogotá', label: lbl(10, 6, 'start') },
+            { id: 'medellin', name: 'Medellín', label: lbl(-10, 5, 'end') },
+            { id: 'cali', name: 'Cali', label: lbl(-10, 5, 'end') },
+            { id: 'monteria', name: 'Montería', label: lbl(-10, 6, 'end') },
+            { id: 'riohacha', name: 'Riohacha', label: lbl(10, 5, 'start') },
+            { id: 'sincelejo', name: 'Sincelejo', label: lbl(10, 4, 'start') },
+            { id: 'bucaramanga', name: 'Bucaramanga', label: lbl(10, 5, 'start') },
+          ],
+          ariaLabel: 'Mapa de Colombia con las conexiones terrestres desde Barranquilla',
+        },
+        highlight: {
+          text: 'Ubicación estratégica entre Cartagena y Santa Marta, dos importantes nodos logísticos del Caribe colombiano, con acceso terrestre a ambas ciudades en aproximadamente dos horas.',
+        },
+      },
+    },
+    {
+      id: 'telecom',
+      label: 'Conectividad en telecomunicaciones',
+      content: {
+        // Pendiente: título del cuadro propio para esta pestaña (se usa el de aérea)
+        title: 'Conexiones que acercan a mercados',
+        heading: 'TELECOMUNICACIONES',
+        items: [
+          { icon: 'globe', text: '4 de los 10 cables submarinos de fibra óptica que conectan a Colombia con el mundo entran por el Atlántico.' },
+          { icon: 'compass', text: 'El territorio tiene baja exposición a desastres naturales, que favorecen la conectividad y continuidad de las operaciones empresariales.' },
+        ],
+        map: {
+          geo: 'internacional',
+          kind: 'air',
+          hubLabel: lbl(0, 28, 'middle'),
+          stops: [],
+          ariaLabel: 'Mapa del Caribe con Barranquilla',
+        },
+      },
+    },
+  ] as { id: string; label: string; content: ConnectivityContent }[],
 };
 
 /* ---------- E. Infraestructura ---------- */
 export const infrastructure = {
   eyebrow: 'INFRAESTRUCTURA CON ESTÁNDARES INTERNACIONALES',
-  title: ['Infraestructura con estándares', 'internacionales'],
+  title: ['Un territorio con infraestructura', 'con estándares internacionales'],
   intro:
-    'Barranquilla y el Atlántico cuentan con una infraestructura portuaria de vocación multimodal, con ocho terminales públicos en operación, que permite atender diferentes tipos de carga y conectar al territorio con más de 120 países. Esta capacidad, sumada a la ubicación estratégica del departamento y su conexión con el interior del país, fortalece su posición como plataforma logística y exportadora para empresas con visión internacional.',
+    'Barranquilla y el Atlántico cuentan con una oferta de zonas francas y parques industriales que facilita la instalación y expansión de empresas. Estos espacios ofrecen infraestructura especializada y condiciones para el desarrollo de operaciones industriales, logísticas y de servicios, conectadas con el ecosistema empresarial del territorio y los mercados nacionales e internacionales.',
+  zones: {
+    title: 'Zonas francas, una plataforma para operar desde Colombia',
+    text: 'Las zonas francas son áreas delimitadas del territorio colombiano que cuentan con un régimen especial tributario, aduanero y de comercio exterior, diseñado para facilitar la instalación y operación de empresas industriales, logísticas y de servicios.',
+    benefitsTitle: '¿Qué beneficios ofrecen?',
+    benefits: [
+      { icon: 'dollar', title: 'Beneficios tributarios', text: 'Tratamiento tributario especial, sujeto a requisitos.' },
+      { icon: 'box', title: 'Facilidades aduaneras', text: 'Ingreso de mercancías bajo condiciones especiales.' },
+      { icon: 'globe', title: 'Acceso a mercados', text: 'Operaciones para atender mercados nacionales e internacionales.' },
+    ] as { icon: IconName; title: string; text: string }[],
+    howTitle: '¿Cómo funcionan?',
+    howText: 'Las empresas pueden establecerse en una zona franca, obtener la calificación correspondiente y desarrollar actividades autorizadas bajo este régimen, cumpliendo los requisitos establecidos por la normativa colombiana.',
+  },
   cardTitle: 'Infraestructura portuaria multipropósito (2025)',
   stats: [
     { icon: 'flame', value: '+1.7 millones de toneladas', label: 'carbón al granel' },
@@ -165,6 +291,8 @@ export const freeZones = {
 
 /* ---------- H. Talento ---------- */
 export const talent = {
+  title: 'Talento Joven y Productivo',
+  subtitle: 'El Atlántico es el centro de educación del Caribe colombiano',
   intro:
     'Las empresas que llegan al territorio encuentran una base de talento en crecimiento, con una oferta de formación que responde progresivamente a las necesidades de sectores productivos y de servicios. La presencia de instituciones educativas, programas de formación técnica y profesional y el desarrollo de capacidades bilingües y digitales fortalecen la competitividad del departamento y generan condiciones para que nuevas operaciones puedan instalarse, crecer y desarrollar actividades de mayor valor agregado.',
   facts: [

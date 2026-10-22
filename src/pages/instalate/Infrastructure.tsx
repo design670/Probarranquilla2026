@@ -1,11 +1,11 @@
 import { infrastructure } from '../../data/instalate';
-import { SmartImage } from '../../components/SmartImage';
 import { LineIcon } from '../../components/LineIcon';
 import { Eyebrow } from '../../components/Eyebrow';
 import './Infrastructure.css';
-import { CountUp } from '../../components/CountUp';
 
+/** Infraestructura con estándares internacionales: zonas francas y sus beneficios. */
 export function Infrastructure() {
+  const z = infrastructure.zones;
   return (
     <section className="infra" aria-labelledby="infra-title">
       <div className="container">
@@ -19,28 +19,25 @@ export function Infrastructure() {
           <p className="infra__intro">{infrastructure.intro}</p>
         </header>
 
-        <div className="infra__card">
-          <h3 className="infra__card-title">{infrastructure.cardTitle}</h3>
-          <div className="infra__grid">
-            <ul className="infra__stats">
-              {infrastructure.stats.map((s) => (
-                <li key={s.value + s.label}>
-                  <span className="infra__icon">
-                    <LineIcon name={s.icon} size={22} />
-                  </span>
-                  <span>
-                    <strong className="infra__value">
-                      <CountUp value={s.value} />
-                    </strong>
-                    <span className="infra__label">{s.label}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <div className="infra__map">
-              <SmartImage {...infrastructure.map} className="infra__map-img" />
-            </div>
-          </div>
+        <div className="infra__card infra__zones">
+          <h3 className="infra__card-title">{z.title}</h3>
+          <p className="infra__zones-text">{z.text}</p>
+
+          <h4 className="infra__zones-sub">{z.benefitsTitle}</h4>
+          <ul className="infra__benefits">
+            {z.benefits.map((b) => (
+              <li key={b.title}>
+                <span className="infra__icon">
+                  <LineIcon name={b.icon} size={22} />
+                </span>
+                <strong className="infra__benefit-title">{b.title}</strong>
+                <span className="infra__benefit-text">{b.text}</span>
+              </li>
+            ))}
+          </ul>
+
+          <h4 className="infra__zones-sub">{z.howTitle}</h4>
+          <p className="infra__zones-text">{z.howText}</p>
         </div>
       </div>
     </section>

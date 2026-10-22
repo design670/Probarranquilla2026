@@ -149,3 +149,87 @@
     padding: 56px 0;
   }
 }
+
+/* Zonas francas: texto, beneficios y cómo funcionan */
+.infra__zones-text {
+  margin-top: 14px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--c-blue-title);
+}
+
+.infra__zones-sub {
+  margin-top: 32px;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  color: var(--c-blue-title);
+}
+
+.infra__benefits {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.infra__benefits li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 28px 22px;
+  border: 1px solid var(--c-gray-line);
+  border-radius: 14px;
+  background: var(--c-white);
+  text-align: center;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.infra__benefits li:hover {
+  background: var(--c-navy-nav);
+  transform: translateY(-6px);
+}
+
+.infra__benefit-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  color: var(--c-blue-title);
+  transition: color 0.25s ease;
+}
+
+.infra__benefit-text {
+  font-size: 15px;
+  line-height: 1.45;
+  color: #475569;
+  transition: color 0.25s ease;
+}
+
+.infra__benefits li:hover .infra__benefit-title,
+.infra__benefits li:hover .infra__benefit-text {
+  color: var(--c-white);
+}
+
+.infra__benefits li:hover .infra__icon {
+  background: var(--c-white);
+  color: var(--c-navy-nav);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .infra__benefits li {
+    transition: none;
+  }
+  .infra__benefits li:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .infra__benefits {
+    grid-template-columns: 1fr;
+  }
+  .infra__zones-text {
+    font-size: 16px;
+  }
+}

@@ -235,3 +235,54 @@
     gap: 18px;
   }
 }
+
+/* Título del formulario centrado */
+.ev-contact__title--center {
+  text-align: center;
+}
+
+/* Sin título arriba: la lista de contactos arranca sin margen ni línea superior */
+.ev-contact__people--solo {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* El título ocupa todo el ancho de la caja, arriba de contactos y formulario */
+.ev-contact__box > .ev-contact__title--center {
+  grid-column: 1 / -1;
+  margin-bottom: -27px; /* 71px de separación entre columnas → ~44px bajo el título */
+}
+
+/* Tarjetas de contacto un poco más abajo, alineadas con el inicio del formulario */
+.ev-contact__team {
+  padding-top: 26px;
+}
+
+@media (max-width: 900px) {
+  .ev-contact__team {
+    padding-top: 0;
+  }
+}
+
+/* Mismo tamaño y estilo que el título de la sección anterior (Kit de promoción de ciudad) */
+.ev-contact__box > .ev-contact__title--center {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--c-white);
+}
+
+@media (max-width: 900px) {
+  .ev-contact__box > .ev-contact__title--center {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ev-contact__box > .ev-contact__title--center {
+    font-size: 28px;
+  }
+}

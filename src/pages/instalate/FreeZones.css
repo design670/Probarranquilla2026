@@ -128,3 +128,138 @@
     margin-top: 16px;
   }
 }
+
+/* ---------- Carrusel de zonas francas (como el de hoteles) ---------- */
+.zones__arrows {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.zones__arrows button {
+  display: inline-flex;
+  padding: 6px 0;
+  color: var(--c-navy);
+}
+
+.zones__arrows button:disabled {
+  color: #cbd5e1;
+  cursor: default;
+}
+
+.zones__arrows button:not(:disabled):hover {
+  color: var(--c-blue-bright);
+}
+
+.zones__track {
+  --per-view: 3;
+  --gap: 19px;
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 8px 0 14px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - var(--gap) * (var(--per-view) - 1)) / var(--per-view));
+  gap: var(--gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.zones__track::-webkit-scrollbar {
+  display: none;
+}
+
+.zones__track:focus-visible {
+  outline-offset: 4px;
+}
+
+/* Tarjeta: foto + nombre, mismo diseño que las noticias y hoteles */
+.zone-card {
+  position: relative;
+  scroll-snap-align: start;
+  padding: 14px 14px 20px;
+  border-radius: 8px;
+  background: var(--c-white);
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.zone-card:hover {
+  background: var(--c-navy-nav);
+  transform: translateY(-8px);
+}
+
+.zone-card__media {
+  aspect-ratio: 393 / 311;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.zone-card__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.zone-card__name {
+  margin: 20px 0 0;
+  font-size: 19px;
+  line-height: 1.3;
+  color: var(--c-navy-nav);
+  transition: color 0.25s ease;
+}
+
+.zone-card:hover .zone-card__name {
+  color: var(--c-white);
+}
+
+.zones__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.zones__dot {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #dbe3ec;
+  transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+.zones__dot::after {
+  content: '';
+  position: absolute;
+  inset: -15px -4px;
+}
+
+.zones__dot.is-active {
+  width: 40px;
+  background: var(--c-navy);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zone-card,
+  .zones__dot {
+    transition: none;
+  }
+  .zone-card:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .zones__track {
+    --per-view: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .zones__track {
+    --per-view: 1;
+  }
+}

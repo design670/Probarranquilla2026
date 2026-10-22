@@ -2,11 +2,10 @@ import { SiteShell } from '../../components/SiteShell';
 import { PageHero } from '../../components/PageHero';
 import { ImpactStatistics } from '../../components/ImpactStatistics';
 import { SuccessStories } from '../../components/SuccessStories';
-import { instalateAssets, instalateHero, instalateImpactIntro } from '../../data/instalate';
-import { PortPlatform } from './PortPlatform';
+import { instalateAssets, instalateHero, instalateImpactIntro, instalateImpactTitle } from '../../data/instalate';
 import { Connectivity } from './Connectivity';
 import { Infrastructure } from './Infrastructure';
-import { FreeZonesIntro, FreeZonesOffer } from './FreeZones';
+import { FreeZonesOffer } from './FreeZones';
 import { Talent } from './Talent';
 import { Training, VisionBanner } from './Training';
 
@@ -22,11 +21,9 @@ export function InstalatePage() {
         />
       }
     >
-      <ImpactStatistics intro={instalateImpactIntro} />
-      <PortPlatform />
+      <ImpactStatistics title={instalateImpactTitle} intro={instalateImpactIntro} />
       <Connectivity />
       <Infrastructure />
-      <FreeZonesIntro />
       <FreeZonesOffer />
       <Talent />
       <Training />

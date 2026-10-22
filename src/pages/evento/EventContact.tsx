@@ -104,15 +104,16 @@ export function EventContact() {
   );
 
   return (
-    <section id={eventAnchors.formulario} className="ev-contact" aria-labelledby="ev-contact-title">
+    <section id={eventAnchors.formulario} className="ev-contact" aria-labelledby="ev-form-title">
       <div className="ev-contact__box">
+        {/* Título centrado sobre las dos columnas (contactos y formulario) */}
+        <h2 id="ev-form-title" className="ev-contact__title ev-contact__title--center">
+          {eventForm.title.map((l) => (
+            <span key={l}>{l}</span>
+          ))}
+        </h2>
         <div className="ev-contact__team">
-          <h2 id="ev-contact-title" className="ev-contact__title">
-            {eventContact.title.map((l) => (
-              <span key={l}>{l}</span>
-            ))}
-          </h2>
-          <ul className="ev-contact__people">
+          <ul className="ev-contact__people ev-contact__people--solo">
             {eventContact.people.map((p) => (
               <li key={p.email} className="ev-person">
                 <SmartImage {...p.photo} className="ev-person__photo" />
@@ -129,11 +130,6 @@ export function EventContact() {
         </div>
 
         <form className="ev-form" noValidate onSubmit={onSubmit} aria-labelledby="ev-form-title">
-          <h2 id="ev-form-title" className="ev-contact__title">
-            {eventForm.title.map((l) => (
-              <span key={l}>{l}</span>
-            ))}
-          </h2>
           <div className="ev-form__grid">
             <div className="ev-form__field">
               <label htmlFor="ev-name">{f.name}</label>

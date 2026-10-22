@@ -7,9 +7,27 @@
   padding: 76px 0 0;
 }
 
+/* Título, subtítulo destacado e introducción, centrados */
+.talent__title {
+  text-align: center;
+  font-size: 44px;
+  letter-spacing: -0.025em;
+  color: var(--c-white);
+}
+
+.talent__subtitle {
+  margin-top: 14px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.25;
+  color: #2dd4bf;
+}
+
 .talent__intro {
   max-width: 1090px;
-  margin: 0 auto;
+  margin: 28px auto 0;
   text-align: center;
   font-size: 20px;
   line-height: 1.22;
@@ -309,5 +327,23 @@
   }
   .talent__program dd {
     font-size: 28px;
+  }
+}
+
+@media (max-width: 900px) {
+  .talent__title {
+    font-size: 34px;
+  }
+  .talent__subtitle {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 640px) {
+  .talent__title {
+    font-size: 28px;
+  }
+  .talent__subtitle {
+    font-size: 18px;
   }
 }

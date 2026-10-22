@@ -282,3 +282,7 @@ Plantilla compartida: `src/components/ResourcePage.tsx` + `ResourceCard.tsx` (Bo
 - Fotos (las envía el cliente) en `public/assets/evento/hoteles/`: puerta-de-oro, marriott, ghl, el-prado, estelar-alto-prado, hilton-garden-inn, dann-carlton, dorado-plaza (.jpg).
 - Hotel Dorado Plaza: la dirección enviada (Carrera 53, Calle 100-86) es la misma del Hilton Garden Inn. Confirmar la correcta.
 - Hotel GHL Barranquilla: el cliente no indicó salones; la tarjeta solo muestra habitaciones y dirección.
+
+## Instálate — Oferta de zonas francas
+- Foto de la Zona Franca de Barranquilla: pendiente (`public/assets/instalate/zf-barranquilla.jpg`). Su sitio oficial bloquea la descarga.
+- Fotos de ZOFIA, La Cayena y Palermo: de probarranquilla.org (600 px de ancho, algo pequeñas). ZOMA: imagen del proyecto (render) de zomazf.com. Reemplazar por fotos reales en alta resolución si las hay.

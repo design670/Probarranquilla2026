@@ -298,7 +298,7 @@ export const memberHotels = {
       rooms: '126',
       venues: null,
       address: 'Calle 107 No. 50-69, Barranquilla, Atlántico',
-      href: 'https://www.ghlhoteles.com/hoteles/colombia/barranquilla/ghl-collection-barranquilla/',
+      href: 'https://www.ghlgrandbarranquilla.com/',
       photo: H('ghl', 'Hotel GHL Barranquilla'),
     },
     {
@@ -307,7 +307,7 @@ export const memberHotels = {
       rooms: '213',
       venues: '13 salones, capacidad máxima 600 personas en auditorio.',
       address: 'Carrera 54 #70-10, Barranquilla, Atlántico',
-      href: 'https://www.hotelelpradobarranquilla.com/',
+      href: 'https://hotelelpradobarranquilla.com/',
       photo: H('el-prado', 'Hotel El Prado en Barranquilla'),
     },
     {
@@ -316,7 +316,7 @@ export const memberHotels = {
       rooms: '180',
       venues: '3 salones, capacidad máxima 150 personas en auditorio.',
       address: 'Cl. 76 No. 56-29, Barranquilla, Atlántico',
-      href: 'https://www.hotelesestelar.com/destinos-estelar/colombia/barranquilla/',
+      href: 'https://www.estelarenaltoprado.com/es/',
       photo: H('estelar-alto-prado', 'Hotel Estelar Alto Prado en Barranquilla'),
     },
     {
@@ -325,7 +325,7 @@ export const memberHotels = {
       rooms: '123',
       venues: '+10 salones, capacidad máxima 900 personas en auditorio.',
       address: 'Carrera 53, Calle 100-86, Barranquilla, Atlántico',
-      href: 'https://www.hilton.com/es/hotels/baqacgi-hilton-garden-inn-barranquilla/events/',
+      href: 'https://www.hilton.com/es/locations/colombia/barranquilla/hilton-garden-inn/',
       photo: H('hilton-garden-inn', 'Hotel Hilton Garden Inn Barranquilla'),
     },
     {
@@ -344,7 +344,7 @@ export const memberHotels = {
       venues: '7 salones, capacidad máxima 300 personas en auditorio.',
       // Pendiente: es la misma dirección del Hilton Garden Inn (ver PENDIENTES.md)
       address: 'Carrera 53, Calle 100-86, Barranquilla, Atlántico',
-      href: 'https://doradoplaza.com/hoteles/hotel-dorado-plaza-alto-prado',
+      href: 'https://www.doradoplaza.com/es',
       photo: H('dorado-plaza', 'Hotel Dorado Plaza Alto Prado'),
     },
   ] satisfies Hotel[],
@@ -357,8 +357,8 @@ export const eventContact = {
   people: [
     {
       name: 'Fiorella Rivera',
-      role: 'Gerencia de Turismo de Reuniones',
-      email: 'Fiorella.rivera@probarranquilla.org',
+      role: 'Gerente de Turismo de Reuniones',
+      email: 'fiorella.rivera@probarranquilla.org',
       photo: { src: '/assets/equipo/fiorella-rivera.jpg', alt: '', fit: 'cover', position: '50% 25%' } as ImageAsset,
     },
     {

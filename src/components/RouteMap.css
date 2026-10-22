@@ -1,0 +1,110 @@
+.rmap {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.rmap__land {
+  fill: #2a3a5f;
+  stroke: #3b4e78;
+  stroke-width: 0.6;
+}
+
+.rmap__focus {
+  fill: #3a5288;
+  stroke: #5873b0;
+  stroke-width: 0.8;
+}
+
+.rmap__line {
+  fill: none;
+  stroke: #2dd4bf;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: rmap-draw 0.9s ease forwards;
+  animation-delay: inherit;
+}
+
+/* Rutas marítimas y terrestres: punteadas (sin animación de trazo) */
+.rmap--sea .rmap__line,
+.rmap--road .rmap__line {
+  stroke-dasharray: 0.012 0.012;
+  stroke-dashoffset: 0;
+  animation: none;
+}
+
+.rmap--sea .rmap__line {
+  stroke: #7dd3fc;
+}
+
+@keyframes rmap-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.rmap__route {
+  animation: rmap-fade 0.4s ease both;
+}
+
+@keyframes rmap-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.rmap__dot {
+  fill: #2dd4bf;
+  stroke: #0f1b36;
+  stroke-width: 2;
+}
+
+.rmap__arrow {
+  fill: none;
+  stroke: #2dd4bf;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.rmap__hub {
+  fill: #ff5b20;
+  stroke: var(--c-white);
+  stroke-width: 2;
+}
+
+.rmap__hub-halo {
+  fill: rgba(255, 91, 32, 0.25);
+}
+
+.rmap__label {
+  fill: var(--c-white);
+  font-size: 15px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: #1e2a46;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.rmap__label--hub {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rmap__line,
+  .rmap__route {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Avión que recorre cada ruta aérea */
+.rmap__plane path {
+  fill: var(--c-white);
+  stroke: #0f1b36;
+  stroke-width: 0.8;
+}
