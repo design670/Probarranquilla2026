@@ -1,6 +1,7 @@
+/* Mismo fondo gris que la sección de noticias del Home, para que las tarjetas blancas resalten */
 .hotels {
   padding: 105px 0 55px;
-  background: #f8fafc;
+  background: var(--c-gray-news);
 }
 
 .hotels__title {
@@ -8,17 +9,220 @@
   line-height: 43px;
 }
 
-.hotels__title span {
+/* Subtítulos de grupo: Venues / Hoteles */
+.hotels__group {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--c-blue-title);
+}
+
+.hotels__title + .hotels__group {
+  margin-top: 48px;
+}
+
+/* ---------- Tarjeta (mismo diseño que las noticias del Home) ---------- */
+.venue,
+.hotel {
+  position: relative;
+  padding: 14px 14px 18px;
+  border-radius: 8px;
+  background: var(--c-white);
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+/* Hover y foco de teclado: la tarjeta sube, pasa a azul oscuro y el texto a blanco */
+.venue:hover,
+.venue:focus-within,
+.hotel:hover,
+.hotel:focus-within {
+  background: var(--c-navy-nav);
+  transform: translateY(-8px);
+}
+
+/* Cubre el hueco que deja al subir, para que el cursor no la "pierda" en el borde inferior */
+.venue:hover::after,
+.hotel:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 8px;
+}
+
+.venue__media,
+.hotel__media {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.venue__photo,
+.hotel__photo {
   display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hotel__media {
+  aspect-ratio: 393 / 311;
+}
+
+.venue__name,
+.hotel__name {
+  margin-bottom: 0;
+  font-size: 19px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--c-navy-nav);
+  transition: color 0.25s ease;
+}
+
+/* Datos con ícono en círculo, como la ubicación y fecha de las noticias */
+.hotel__facts {
+  flex: 1;
+  margin: 14px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hotel__facts div {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  column-gap: 8px;
+  row-gap: 2px;
+  align-items: center;
+}
+
+.hotel__facts dt,
+.venue__fact {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--c-navy-nav);
+  transition: color 0.25s ease;
+}
+
+.hotel__facts dt {
+  display: contents;
+}
+
+.hotel__facts dd {
+  grid-column: 2;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--c-navy-nav);
+  transition: color 0.25s ease;
+}
+
+.hotel__icon {
+  grid-row: span 2;
+  align-self: start;
+}
+
+.hotel__icon,
+.venue__fact .hotel__icon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--c-meta-icon);
+  color: var(--c-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.venue:is(:hover, :focus-within) :is(.venue__name, .venue__fact, .venue__capacity),
+.hotel:is(:hover, :focus-within) :is(.hotel__name, .hotel__facts dt, .hotel__facts dd) {
+  color: var(--c-white);
+}
+
+.venue:is(:hover, :focus-within) .hotel__icon,
+.hotel:is(:hover, :focus-within) .hotel__icon {
+  background: var(--c-white);
+  color: var(--c-navy-nav);
+}
+
+/* ---------- Venue destacado: foto a la izquierda, datos a la derecha ---------- */
+.venue {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 28px;
+  margin-top: 20px;
+  padding: 14px;
+}
+
+.venue__media {
+  min-height: 300px;
+}
+
+.venue__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 24px 24px 0;
+}
+
+.venue__name {
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+.venue__fact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.venue__capacity {
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--c-navy-nav);
+  transition: color 0.25s ease;
+}
+
+/* ---------- Hoteles: cabecera con flechas ---------- */
+.hotels__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 56px;
+}
+
+.hotels__arrows {
+  display: flex;
+  gap: 24px;
+}
+
+.hotels__arrows button {
+  display: inline-flex;
+  padding: 6px 0;
+  color: var(--c-navy);
+}
+
+.hotels__arrows button:disabled {
+  color: #cbd5e1;
+  cursor: default;
+}
+
+.hotels__arrows button:not(:disabled):hover {
+  color: var(--c-blue-bright);
 }
 
 /* Carrusel: 3 tarjetas por vista en escritorio, desplazamiento con snap */
 .hotels__track {
   --per-view: 3;
-  --gap: 22px;
+  --gap: 19px;
   list-style: none;
-  margin: 56px 0 0;
-  padding: 0;
+  margin: 20px 0 0;
+  /* Aire para que la tarjeta pueda elevarse sin cortarse */
+  padding: 8px 0 14px;
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: calc((100% - var(--gap) * (var(--per-view) - 1)) / var(--per-view));
@@ -26,7 +230,6 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  border-radius: 10px;
 }
 
 .hotels__track::-webkit-scrollbar {
@@ -39,85 +242,64 @@
 
 .hotel {
   scroll-snap-align: start;
-  overflow: hidden;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  background: var(--c-white);
-}
-
-.hotel__photo {
-  display: block;
-  width: 100%;
-  height: 219px;
-  object-fit: cover;
+  display: flex;
+  flex-direction: column;
 }
 
 .hotel__body {
-  padding: 24px 23px 22px;
-}
-
-.hotel__location {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #475569;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .hotel__name {
-  margin-top: 6px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 20px;
-  color: #0b4a8b;
+  margin-top: 24px;
 }
 
-.hotel__meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 6px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid #e2e8f0;
-  font-size: 13px;
-  color: #64748b;
-}
-
-.hotel__stars {
-  display: inline-flex;
-  gap: 1px;
-  color: #f59e0b;
-}
-
-.hotel__facts {
-  margin: 14px 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  font-size: 13px;
-}
-
-.hotel__facts div {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.hotel__facts dt {
+/* Botón "Conoce más" */
+.hotel__cta {
+  align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: #64748b;
+  height: 40px;
+  margin-top: 20px;
+  padding: 0 18px;
+  border-radius: 3px;
+  background: var(--c-blue-bright);
+  color: var(--c-white);
+  font-size: 15px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.hotel__facts dt svg {
-  color: #64748b;
+.venue .hotel__cta {
+  margin-top: 6px;
 }
 
-.hotel__facts dd {
-  margin: 0;
-  font-weight: 600;
-  color: #0f172a;
-  text-align: right;
+.venue:is(:hover, :focus-within) .hotel__cta,
+.hotel:is(:hover, :focus-within) .hotel__cta {
+  background: var(--c-white);
+  color: var(--c-navy-nav);
+}
+
+.venue .hotel__cta:hover,
+.hotel .hotel__cta:hover {
+  background: #dbe7f5;
+}
+
+.hotel__cta:focus-visible {
+  outline: 2px solid var(--c-white);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .venue,
+  .hotel {
+    transition: none;
+  }
+  .venue:hover,
+  .hotel:hover {
+    transform: none;
+  }
 }
 
 .hotels__dots {
@@ -163,6 +345,24 @@
 @media (max-width: 900px) {
   .hotels {
     padding: 64px 0 48px;
+  }
+  .venue {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 14px 14px 18px;
+  }
+  .venue__media {
+    min-height: 0;
+    aspect-ratio: 393 / 311;
+  }
+  .venue__body {
+    padding: 24px 0 0;
+  }
+  .venue__name {
+    font-size: 22px;
+  }
+  .hotels__group {
+    font-size: 22px;
   }
   .hotels__title {
     line-height: 1.1;

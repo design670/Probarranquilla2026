@@ -26,7 +26,7 @@ export function Footer({ variant = 'default' }: { variant?: 'default' | 'wide' }
         <ul className="footer__social">
           {footer.social.map((s) => (
             <li key={s.network}>
-              <a href={s.href} aria-label={s.label}>
+              <a href={s.href} aria-label={s.label} {...(s.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
                 <SocialIcon network={s.network} />
               </a>
             </li>

@@ -260,3 +260,8 @@
     flex: 1;
   }
 }
+
+/* Con un número impar de campos, el último ocupa todo el ancho */
+.dl-form__grid--odd > :last-child {
+  grid-column: 1 / -1;
+}

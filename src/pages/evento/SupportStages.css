@@ -1,7 +1,7 @@
-/* Continúa el azul de "Ventajas" y se oscurece hacia abajo */
+/* Va justo después del hero: aire arriba igual al de las demás secciones */
 .support {
   scroll-margin-top: 24px;
-  padding: 0 0 111px;
+  padding: 82px 0 111px;
   background: linear-gradient(180deg, var(--c-navy-deep) 0%, #0c1733 45%, #071029 100%);
   color: var(--c-white);
 }
@@ -29,11 +29,11 @@
   margin-top: 78px;
 }
 
+/* Mismo espacio entre las cinco etapas, a todo el ancho del contenedor */
 .support__steps {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(5, 210px);
-  justify-content: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* Línea fina que une los círculos, a todo el ancho del contenedor */
@@ -85,6 +85,7 @@
 
 .support__label span {
   display: block;
+  white-space: nowrap; /* cada etapa en sus 2 líneas, también activa (en negrita) */
 }
 
 .support__step:hover .support__num {
@@ -191,15 +192,10 @@
   }
 }
 
-@media (max-width: 1240px) {
-  .support__steps {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-}
 
 @media (max-width: 900px) {
   .support {
-    padding-bottom: 64px;
+    padding: 56px 0 64px;
   }
   .support__title {
     font-size: 34px;
@@ -222,6 +218,7 @@
     padding-bottom: 8px;
   }
   .support__steps {
+    display: grid;
     grid-template-columns: repeat(5, 170px);
     justify-content: start;
     width: max-content;
@@ -261,4 +258,14 @@
     font-size: 16px;
     line-height: 1.6;
   }
+}
+
+/* Reserva el ancho de la negrita para que las etapas no se muevan al activarse */
+.support__label span::after {
+  content: attr(data-text);
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  font-weight: 600;
 }

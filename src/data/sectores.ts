@@ -155,10 +155,3 @@ export const otherSectors = {
   ] as Pill[],
 };
 
-export const sectorsCta = {
-  image: A('cta-ventana-al-mundo.jpg', 'Vista aérea de la Ventana al Mundo y su entorno urbano', '70% 50%'),
-  title: ['Encuentra el sector', 'ideal para tu inversión'],
-  text: ['Conoce las capacidades de Barranquilla y el', 'Atlántico y descubre cómo ProBarranquilla puede', 'acompañar el desarrollo de tu proyecto.'],
-  primary: { label: 'Hablar con nuestro equipo', href: routes.contacto },
-  secondary: { label: 'Conocer nuestros servicios', href: `${routes.sobre}#acompanamiento-inversion` },
-};

@@ -1,8 +1,6 @@
 import { SiteShell } from '../../components/SiteShell';
 import { PageHero } from '../../components/PageHero';
-import { SmartImage } from '../../components/SmartImage';
-import { ArrowLabel } from '../../components/ArrowLabel';
-import { sectorsCta, sectorsHero, sectorsIntro } from '../../data/sectores';
+import { sectorsHero, sectorsIntro } from '../../data/sectores';
 import { SectorIndex } from './SectorIndex';
 import { SectorBlocks } from './SectorBlocks';
 import './SectorsPage.css';
@@ -33,31 +31,6 @@ export function SectorsPage() {
           <SectorBlocks />
         </div>
       </div>
-
-      <section className="sectors-cta" aria-labelledby="sectors-cta-title">
-        <SmartImage {...sectorsCta.image} className="sectors-cta__img" />
-        <div className="sectors-cta__shade" aria-hidden="true" />
-        <div className="container sectors-cta__content">
-          <h2 id="sectors-cta-title" className="sectors-cta__title">
-            {sectorsCta.title.map((l) => (
-              <span key={l}>{l}</span>
-            ))}
-          </h2>
-          <p className="sectors-cta__text">
-            {sectorsCta.text.map((l) => (
-              <span key={l}>{l}</span>
-            ))}
-          </p>
-          <div className="sectors-cta__actions">
-            <a href={sectorsCta.primary.href} className="sectors-cta__btn sectors-cta__btn--primary">
-              <ArrowLabel size={13}>{sectorsCta.primary.label}</ArrowLabel>
-            </a>
-            <a href={sectorsCta.secondary.href} className="sectors-cta__btn sectors-cta__btn--secondary">
-              <ArrowLabel size={13}>{sectorsCta.secondary.label}</ArrowLabel>
-            </a>
-          </div>
-        </div>
-      </section>
     </SiteShell>
   );
 }

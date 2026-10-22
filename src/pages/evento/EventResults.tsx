@@ -30,6 +30,7 @@ export function EventResults() {
             </li>
           ))}
         </ul>
+        <p className="ev-results__note">{eventResults.note}</p>
       </div>
     </section>
   );

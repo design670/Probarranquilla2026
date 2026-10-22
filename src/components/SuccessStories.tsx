@@ -1,12 +1,16 @@
 import { useState } from 'react';
-import { successStories } from '../data/content';
+import { successStories as defaultStories, type SuccessStoriesData } from '../data/content';
 import { SmartImage } from './SmartImage';
 import { ArrowLabel } from './ArrowLabel';
 import { ArrowBig } from './Icons';
 import './SuccessStories.css';
 
-/** `cases--compact` reduce el aire superior/inferior (páginas internas). */
-export function SuccessStories({ className = '' }: { className?: string }) {
+/**
+ * `cases--compact` reduce el aire superior/inferior (páginas internas).
+ * `data` permite otra lista de casos (p. ej. los eventos de Turismo de reuniones).
+ */
+export function SuccessStories({ className = '', data = defaultStories }: { className?: string; data?: SuccessStoriesData }) {
+  const successStories = data;
   const { cases } = successStories;
   const [index, setIndex] = useState(0);
   const current = cases[index];
@@ -26,7 +30,12 @@ export function SuccessStories({ className = '' }: { className?: string }) {
           </div>
           <div className="cases__side">
             <article className="cases__card" aria-live="polite">
-              <SmartImage key={current.logo} src={current.logo} alt={current.company} kind="logo" width={176} height={52} className="cases__logo on-dark" />
+              {current.logo ? (
+                <SmartImage key={current.logo} src={current.logo} alt={current.company} kind="logo" width={176} height={52} className="cases__logo on-dark" />
+              ) : (
+                <h3 className="cases__name">{current.company}</h3>
+              )}
+              {current.meta && <p className="cases__meta">{current.meta}</p>}
               {(current.lead || current.body) && (
                 <p className="cases__text">
                   <strong>{current.lead}</strong>

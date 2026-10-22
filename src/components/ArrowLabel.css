@@ -38,3 +38,9 @@
   opacity: 0;
   transform: translateX(calc(var(--arrow-shift) + 6px));
 }
+
+/* Flecha hacia abajo: misma animación, el ícono rota 90° (propiedad rotate, no pisa transform) */
+.arrow-swap--down .arrow-swap__lead,
+.arrow-swap--down .arrow-swap__trail {
+  rotate: 90deg;
+}

@@ -6,6 +6,7 @@
  * `null` = recurso o dato pendiente: la interfaz no lo muestra como definitivo.
  */
 import type { ImageAsset } from '../components/SmartImage';
+import { routes, type SuccessStoriesData } from './content';
 
 const A = (src: string, alt: string, position = '50% 50%'): ImageAsset => ({ src: `/assets/evento/${src}`, alt, fit: 'cover', position });
 
@@ -13,46 +14,84 @@ const A = (src: string, alt: string, position = '50% 50%'): ImageAsset => ({ src
 export const eventAnchors = { apoyo: 'como-te-apoyamos', formulario: 'postula-tu-evento' };
 
 export const eventHero = {
-  title: ['Trae tu evento', 'a Barranquilla'],
-  subtitle: ['Barranquilla, el punto de encuentro del', 'Caribe para los grandes eventos.'],
-  text: ['Barranquilla: donde los eventos crean oportunidades', 'de largo plazo, impulsan industrias estratégicas y dejan', 'legado social y científico en el territorio.'],
-  primary: { label: 'Postula tu evento', anchor: eventAnchors.formulario },
-  secondary: { label: 'Conoce cómo te apoyamos', anchor: eventAnchors.apoyo },
+  title: 'Barranquilla, el punto de encuentro del Caribe para los grandes eventos.',
 };
 
 /* ---------- Ventajas estratégicas: conectividad aérea ---------- */
 
-export type Route = { city: string; duration: string; weekly: number; color: string };
+/** Etiqueta de una ciudad en el mapa: desplazamiento y lado del texto respecto al punto */
+export type MapLabel = { dx: number; dy: number; anchor: 'start' | 'middle' | 'end' };
+export type Destination = { id: string; name: string; label: MapLabel };
+export type Airline = { name: string; logo: string };
+export type AirView = {
+  id: 'internacional' | 'nacional';
+  tab: string;
+  /** Frase clave del mapa */
+  phrase: string;
+  destinations: Destination[];
+  airlines: Airline[];
+  mapLabel: string;
+};
+
+/** Logos de aerolíneas: de internet (Wikimedia Commons y sitios oficiales) hasta recibir los de audiovisuales */
+const logo = (slug: string, name: string): Airline => ({ name, logo: `/assets/evento/aerolineas/${slug}.png` });
 
 export const connectivity = {
   title: 'Ventajas Estratégicas del Destino',
-  subtitle: 'Rutas y Frecuencias Semanales hacia Barranquilla',
-  cardTitle: 'Conectividad Aérea',
-  intro: 'Red de rutas aéreas y frecuencias directas hacia el Aeropuerto Internacional Ernesto Cortissoz (BAQ).',
-  tableTitle: 'Internacional → Barranquilla',
-  columns: ['Destino Origen', 'Frecuencias Semanales'],
-  routes: [
-    { city: 'Miami', duration: '2h 45m', weekly: 10, color: '#1e293b' },
-    { city: 'Panamá', duration: '1h 30m', weekly: 12, color: '#f97316' },
-    { city: 'Fort Lauderdale', duration: '2h 50m', weekly: 7, color: '#0ea5e9' },
-    { city: 'Curazao', duration: '1h 45m', weekly: 2, color: '#f59e0b' },
-    { city: 'Aruba', duration: '1h 40m', weekly: 2, color: '#8b5cf6' },
-  ] satisfies Route[],
-  totalLabel: 'Total Frecuencias Semanales:',
-  /** Total tal como aparece en la referencia */
-  total: '33 vuelos/sem',
-  airlinesLabel: 'Aerolíneas que operan la ruta:',
-  // La referencia muestra los nombres como etiquetas de texto con el color de cada marca.
-  airlines: [
-    { name: 'avianca', color: '#e30613' },
-    { name: 'American', color: '#0078d2' },
-    { name: 'CopaAirlines', color: '#0f2a5f' },
-    { name: 'spirit', color: '#d4a106' },
-    { name: 'wingo', color: '#7b2fd0' },
-    { name: 'EZAir', color: '#e8590c' },
-  ],
-  /** Mapa con las rutas (pendiente: archivo original). */
-  map: A('mapa-rutas-aereas.png', 'Mapa del Caribe con las rutas aéreas directas desde Miami, Fort Lauderdale, Panamá y Curazao hacia Barranquilla'),
+  subtitle: 'Rutas aéreas hacia Barranquilla',
+  cardTitle: 'Conectividad aérea',
+  intro: 'Red de rutas aéreas directas hacia el Aeropuerto Internacional Ernesto Cortissoz (BAQ).',
+  hub: { id: 'baq', name: 'Barranquilla' },
+  destinationsLabel: 'Destinos directos',
+  airlinesLabel: 'Aerolíneas que operan las rutas',
+  views: [
+    {
+      id: 'internacional',
+      tab: 'Internacional',
+      phrase: 'Conexiones vía Panamá y Miami que amplían nuestro alcance hacia más de 150 destinos internacionales en las Américas y Europa.',
+      mapLabel: 'Mapa de rutas internacionales directas desde Barranquilla hacia Madrid, Miami, Fort Lauderdale, Ciudad de Panamá, Aruba y Curazao',
+      destinations: [
+        { id: 'madrid', name: 'Madrid', label: { dx: -10, dy: -12, anchor: 'end' } },
+        { id: 'miami', name: 'Miami', label: { dx: -10, dy: 16, anchor: 'end' } },
+        { id: 'fll', name: 'Fort Lauderdale', label: { dx: 10, dy: -6, anchor: 'start' } },
+        { id: 'panama', name: 'Ciudad de Panamá', label: { dx: 0, dy: 24, anchor: 'middle' } },
+        { id: 'aruba', name: 'Aruba', label: { dx: -8, dy: -12, anchor: 'end' } },
+        { id: 'curazao', name: 'Curazao', label: { dx: 8, dy: -12, anchor: 'start' } },
+      ],
+      airlines: [
+        logo('avianca', 'Avianca'),
+        logo('air-europa', 'Air Europa'),
+        logo('american-airlines', 'American Airlines'),
+        logo('jetblue', 'JetBlue'),
+        logo('wingo', 'Wingo'),
+        logo('ez-air', 'EZ Air'),
+        logo('copa-airlines', 'Copa Airlines'),
+      ],
+    },
+    {
+      id: 'nacional',
+      tab: 'Nacional',
+      phrase: 'Vuelos hacia las principales ciudades del país y conexión con Bogotá, uno de los grandes hubs aéreos de América Latina.',
+      mapLabel: 'Mapa de rutas nacionales directas desde Barranquilla hacia Bogotá, Medellín, Cali, Bucaramanga, San Andrés, Cúcuta, Riohacha y Montería',
+      destinations: [
+        { id: 'bogota', name: 'Bogotá', label: { dx: 10, dy: 6, anchor: 'start' } },
+        { id: 'medellin', name: 'Medellín', label: { dx: -10, dy: 5, anchor: 'end' } },
+        { id: 'cali', name: 'Cali', label: { dx: -10, dy: 5, anchor: 'end' } },
+        { id: 'bucaramanga', name: 'Bucaramanga', label: { dx: 10, dy: 8, anchor: 'start' } },
+        { id: 'sanandres', name: 'San Andrés', label: { dx: 10, dy: 5, anchor: 'start' } },
+        { id: 'cucuta', name: 'Cúcuta', label: { dx: 10, dy: 0, anchor: 'start' } },
+        { id: 'riohacha', name: 'Riohacha', label: { dx: 10, dy: -4, anchor: 'start' } },
+        { id: 'monteria', name: 'Montería', label: { dx: -10, dy: 5, anchor: 'end' } },
+      ],
+      airlines: [
+        logo('avianca', 'Avianca'),
+        logo('wingo', 'Wingo'),
+        logo('latam', 'LATAM'),
+        logo('jetsmart', 'JetSMART'),
+        logo('satena', 'Satena'),
+      ],
+    },
+  ] satisfies AirView[],
 };
 
 /* ---------- ¿Cómo te apoyamos? ---------- */
@@ -69,52 +108,49 @@ export type SupportStage = {
 
 export const support = {
   title: '¿Cómo te apoyamos?',
-  subtitle: ['Acompañamiento técnico, logístico y de postulación gratuito para', 'organizadores nacionales e internacionales.'],
+  subtitle: ['Somos tu aliado para hacer realidad tu evento en', 'Barranquilla y el Atlántico:'],
   stages: [
-    {
-      id: 'atraccion',
-      label: ['Atracción de', 'eventos'],
-      title: 'Atracción de eventos',
-      description: 'Identificamos oportunidades de alto impacto y lideramos estrategias para atraer congresos, convenciones y eventos que posicionen a Barranquilla a nivel global.',
-      highlight: {
-        label: 'Asesoría de valor técnico',
-        text: 'Elaboramos estudios de viabilidad técnica y coordinamos agendas comerciales para captar eventos de gran escala.',
-      },
-      photo: A('etapa-atraccion-de-eventos.jpg', 'Auditorio con luces azules durante un evento, con el público frente a la tarima'),
-    },
-    {
-      id: 'cadena',
-      label: ['Articulación de la', 'cadena de valor'],
-      title: 'Articulación de la cadena de valor',
-      description: null,
-      highlight: null,
-      photo: A('etapa-articulacion-cadena-de-valor.jpg', 'Articulación de la cadena de valor'),
-    },
     {
       id: 'candidaturas',
       label: ['Apoyo a', 'candidaturas'],
       title: 'Apoyo a candidaturas',
-      description: null,
+      description: 'Te acompañamos en la postulación, preparación de propuesta y candidatura, presentaciones del destino y demás gestiones para lograr ser la sede de tu evento.',
       highlight: null,
       photo: A('etapa-apoyo-a-candidaturas.jpg', 'Apoyo a candidaturas'),
     },
     {
-      id: 'organizador',
-      label: ['Acompañamiento', 'al organizador'],
-      title: 'Acompañamiento al organizador',
-      description: null,
+      id: 'aliados',
+      label: ['Conexión con aliados', 'estratégicos'],
+      title: 'Conexión con aliados estratégicos',
+      description: 'Articulamos entidades públicas, empresas, universidades y gremios para sumar apoyos y oportunidades a tu evento.',
       highlight: null,
-      photo: A('etapa-acompanamiento-al-organizador.jpg', 'Acompañamiento al organizador'),
+      photo: A('etapa-conexion-con-aliados.jpg', 'Conexión con aliados estratégicos'),
     },
     {
-      id: 'promocion',
-      label: ['Promoción del', 'destino'],
-      title: 'Promoción del destino',
-      description: null,
+      id: 'proveedores',
+      label: ['Acceso a proveedores', 'locales'],
+      title: 'Acceso a proveedores locales',
+      description: 'Te conectamos con hoteles, recintos, operadores y proveedores especializados según las necesidades de tu evento.',
       highlight: null,
-      photo: A('etapa-promocion-del-destino.jpg', 'Promoción del destino'),
+      photo: A('etapa-acceso-a-proveedores.jpg', 'Acceso a proveedores locales'),
     },
-  ] satisfies SupportStage[],
+    {
+      id: 'inspeccion',
+      label: ['Visitas de inspección', 'y asesoría'],
+      title: 'Visitas de inspección y asesoría',
+      description: 'Coordinamos recorridos y te brindamos información del destino para facilitar la elección de espacios y la planeación.',
+      highlight: null,
+      photo: A('etapa-visitas-de-inspeccion.jpg', 'Visitas de inspección y asesoría'),
+    },
+    {
+      id: 'experiencias',
+      label: ['Experiencias de', 'destino'],
+      title: 'Experiencias de destino',
+      description: 'Facilitamos la integración de experiencias culturales, gastronómicas y turísticas para enriquecer la visita de tus asistentes.',
+      highlight: null,
+      photo: A('etapa-experiencias-de-destino.jpg', 'Experiencias de destino'),
+    },
+  ] as SupportStage[],
 };
 
 /* ---------- Resultados e impacto ---------- */
@@ -123,22 +159,86 @@ export const eventResults = {
   title: 'Resultados e impacto',
   text: ['Cada evento que llega a Barranquilla impulsa el desarrollo económico,', 'fortalece los sectores estratégicos y posiciona a la ciudad como un destino', 'competitivo para el Turismo de Reuniones.'],
   stats: [
-    { tone: 'navy', value: '+57', unit: '', label: ['CAPTADOS 2021-2025', '(Últimos 5 años)'], align: 'start' },
-    { tone: 'orange', value: '+$74M', unit: 'USD', label: ['DERRAMA', 'ECONÓMICA'], align: 'center' },
-    { tone: 'teal', value: '+81.564', unit: '', label: ['NÚMERO DE', 'ASISTENTES'], align: 'start' },
+    { tone: 'navy', value: '+57', unit: '', label: ['EVENTOS', 'CAPTADOS'], align: 'start' },
+    { tone: 'orange', value: '+USD 74', unit: '', label: ['MILLONES EN', 'DERRAMA', 'ECONÓMICA'], align: 'center' },
+    { tone: 'teal', value: '+80', unit: '', label: ['MIL ASISTENTES', 'DE TODO EL MUNDO'], align: 'start' },
   ] as { tone: 'navy' | 'orange' | 'teal'; value: string; unit: string; label: string[]; align: 'start' | 'center' }[],
+  note: '*Periodo: últimos 5 años',
+};
+
+/* ---------- Casos de éxito (solo esta página) ---------- */
+
+/**
+ * Eventos realizados en Barranquilla. Fotos tomadas de probarranquilla.org (OCDE) y de la prensa
+ * que cubrió cada evento. Pendientes: Fedetranscarga, ExpoACCCSA y Cirugía Plástica.
+ */
+export const eventCases: SuccessStoriesData = {
+  title: 'Casos de éxito',
+  subtitle: 'Conoce algunos de los eventos que han elegido Barranquilla como su sede',
+  moreHref: routes.casosDeExito,
+  cases: [
+    { company: 'IRONMAN 70.3', meta: '2026 — 5.000 asistentes', image: '/assets/evento/casos/ironman-70-3.jpg', alt: 'Triatleta con la bandera de Argentina celebra en la meta del IRONMAN 70.3 Barranquilla', lead: '', body: 'Competencia internacional de triatlón que reúne atletas profesionales y aficionados en pruebas de natación, ciclismo y carrera.' },
+    { company: 'Fedepalma', meta: '2026 — 1.500 asistentes', image: '/assets/evento/casos/fedepalma.jpg', alt: 'Racimos de fruto de palma de aceite recién cosechados', lead: '', body: 'Encuentro del sector palmero colombiano que reúne empresarios, productores y actores de la cadena alrededor de los principales temas de la agroindustria de la palma de aceite.' },
+    { company: 'Encuentro de Empresarios de Transporte de Carga y Logística de Fedetranscarga', meta: '2026 — 3.000 asistentes', image: '/assets/evento/casos/fedetranscarga.jpg', alt: 'Encuentro de Empresarios de Transporte de Carga y Logística de Fedetranscarga', lead: '', body: 'Evento empresarial del sector de transporte de carga y logística que reúne compañías, líderes y actores de esta industria para abordar tendencias y desafíos del sector.' },
+    { company: 'Latam Fintech', meta: '2026 — 1.800 asistentes', image: '/assets/evento/casos/latam-fintech.jpg', alt: 'Conferencista en el escenario del Latam Fintech Market en Barranquilla', lead: '', body: 'Encuentro de la industria fintech que conecta empresas, líderes y actores del ecosistema financiero y tecnológico de América Latina.' },
+    { company: 'Giro de Rigo', meta: '2025 — 10.000 asistentes', image: '/assets/evento/casos/giro-de-rigo.jpg', alt: 'Ciclista junto a la escultura de la Puerta de Oro en Barranquilla', lead: '', body: 'Evento de ciclismo liderado por Rigoberto Urán que reúne a miles de ciclistas aficionados alrededor de una experiencia deportiva de gran formato.' },
+    { company: 'ExpoACCCSA', meta: '2025 — 700 asistentes', image: '/assets/evento/casos/expoacccsa.jpg', alt: 'ExpoACCCSA', lead: '', body: 'Encuentro especializado de la industria de cartón corrugado que reúne empresas, proveedores y profesionales del sector.' },
+    { company: 'Curso Internacional de Cirugía Plástica', meta: '2025 — 1.200 asistentes', image: '/assets/evento/casos/curso-cirugia-plastica.jpg', alt: 'Curso Internacional de Cirugía Plástica', lead: '', body: 'Encuentro académico y científico que reúne especialistas nacionales e internacionales para actualizar conocimientos y compartir avances en cirugía plástica.' },
+    { company: 'Foro de Desarrollo Local de la OCDE', meta: '2025 — 500 asistentes', image: '/assets/evento/casos/foro-ocde.jpg', alt: 'Asistentes en una sesión del Foro de Desarrollo Local de la OCDE', lead: '', body: 'Encuentro internacional de la OCDE que reúne representantes de gobiernos, sector privado, academia y organizaciones para intercambiar experiencias sobre desarrollo local.' },
+    { company: 'Congreso Panamericano de Reumatología', meta: '2024 — 1.800 asistentes', image: '/assets/evento/casos/congreso-reumatologia.jpg', alt: 'Panel de especialistas en el escenario del Congreso Panamericano de Reumatología', lead: '', body: 'Congreso científico internacional que reúne especialistas de las Américas para compartir avances, investigación y conocimiento en reumatología.' },
+  ],
 };
 
 /* ---------- Biblioteca de recursos ---------- */
 
+export type CityResource = {
+  id: string;
+  title: string;
+  description: string;
+  /** Tipo visible en la tarjeta */
+  kind: string;
+  cta: string;
+  href: string;
+  /** `download`: pasa por el formulario; `link`: abre el sitio en otra pestaña */
+  action: 'download' | 'link';
+  cover: ImageAsset;
+};
+
 export const cityLibrary = {
-  title: 'Biblioteca de recursos de ciudad',
-  text: ['Encuentra las herramientas, guías y recursos que te ayudarán a planificar,', 'promover y hacer realidad tu evento en Barranquilla.'],
-  // `href: null` = documento pendiente: el botón se muestra deshabilitado.
-  guides: [
-    { number: '01', title: ['Guía', 'de Ciudad'], cta: 'Ver Guía', href: null as string | null },
-    { number: '02', title: ['Guía', 'gastronómica'], cta: 'Ver Guía', href: null as string | null },
-  ],
+  title: 'Kit de promoción de ciudad',
+  text: 'Guías y recursos para planear y promocionar tu evento en Barranquilla.',
+  resources: [
+    {
+      id: 'guia-de-ciudad',
+      title: 'Guía de Ciudad',
+      description: 'Lo esencial de Barranquilla para tus asistentes.',
+      kind: 'PDF',
+      cta: 'Descargar guía',
+      href: 'https://probarranquilla.org/wp-content/uploads/2025/08/GUIA-DE-CIUDAD.pdf',
+      action: 'download',
+      cover: A('recursos/guia-de-ciudad.jpg', 'Portada de la Guía de Ciudad de Barranquilla', '50% 16%'),
+    },
+    {
+      id: 'guia-gastronomica',
+      title: 'Guía Gastronómica',
+      description: 'Restaurantes y sabores de la ciudad.',
+      kind: 'PDF',
+      cta: 'Descargar guía',
+      href: 'https://probarranquilla.org/wp-content/uploads/2025/08/GUIA-GASTRONOMICO-JULIO-2025.pdf',
+      action: 'download',
+      cover: A('recursos/guia-gastronomica.jpg', 'Portada de la Guía Gastronómica de Barranquilla', '50% 16%'),
+    },
+    {
+      id: 'descubre-barranquilla',
+      title: 'Descubre Barranquilla',
+      description: 'Portal oficial de turismo de la ciudad.',
+      kind: 'Sitio web',
+      cta: 'Visitar sitio',
+      href: 'https://baq.com.co/es/inicio/',
+      action: 'link',
+      cover: A('recursos/descubre-barranquilla.jpg', 'Collage del portal de turismo de Barranquilla: Carnaval, estatua de Shakira y edificio emblemático'),
+    },
+  ] satisfies CityResource[],
 };
 
 /* ---------- Bloque audiovisual ---------- */
@@ -156,48 +256,96 @@ export const eventVideo = {
 export type Hotel = {
   id: string;
   name: string;
-  location: string;
-  stars: number;
-  descriptor: string;
+  /** Habitaciones */
   rooms: string;
-  venues: string;
+  /** Salones y capacidad; null si el cliente no lo indicó */
+  venues: string | null;
+  address: string;
+  href: string;
   photo: ImageAsset;
 };
 
+/** Fotos de hoteles y venues: pendientes (las envía el cliente) */
+const H = (slug: string, alt: string) => A(`hoteles/${slug}.jpg`, alt);
+
 export const memberHotels = {
-  title: ['Conoce Barranquilla desde', 'nuestros hoteles miembro'],
-  capacityLabel: 'Capacidad:',
-  venuesLabel: 'Salones:',
+  title: 'Infraestructura para eventos',
+  venuesHeading: 'Venues',
+  hotelsHeading: 'Hoteles',
+  cta: 'Conoce más',
+  labels: { rooms: 'Habitaciones', venues: 'Salones', address: 'Dirección', capacity: 'Capacidad' },
+  venue: {
+    id: 'puerta-de-oro',
+    name: 'Centro de Eventos Puerta de Oro',
+    capacity: 'Hasta 10.000 personas en formato cóctel y 7.000 en auditorio.',
+    href: 'https://corferias.com/es/ciudad-barranquilla/2024',
+    photo: H('puerta-de-oro', 'Centro de Eventos Puerta de Oro en Barranquilla'),
+  },
+  // Orden indicado por el cliente
   hotels: [
     {
-      id: 'dann-carlton',
-      name: 'Hotel Dann Carlton',
-      location: 'Barranquilla',
-      stars: 5,
-      descriptor: 'Premium Business',
-      rooms: '178 habitaciones',
-      venues: '8 salones modernos',
-      photo: A('hotel-dann-carlton.jpg', 'Vista aérea del Hotel Dann Carlton en Barranquilla'),
+      id: 'marriott',
+      name: 'Hotel Marriott',
+      rooms: '191',
+      venues: '8 salones, capacidad máxima 700 personas en auditorio.',
+      address: 'Calle 1A #25-40 Lote D7 Portal del Genovés, Barranquilla, Colombia',
+      href: 'https://www.marriott.com/es/hotels/baqmc-barranquilla-marriott-hotel/overview/',
+      photo: H('marriott', 'Hotel Marriott Barranquilla'),
+    },
+    {
+      id: 'ghl',
+      name: 'Hotel GHL Barranquilla',
+      rooms: '126',
+      venues: null,
+      address: 'Calle 107 No. 50-69, Barranquilla, Atlántico',
+      href: 'https://www.ghlhoteles.com/hoteles/colombia/barranquilla/ghl-collection-barranquilla/',
+      photo: H('ghl', 'Hotel GHL Barranquilla'),
     },
     {
       id: 'el-prado',
       name: 'Hotel El Prado',
-      location: 'Barranquilla (Alto Prado)',
-      stars: 5,
-      descriptor: 'Alto Prado',
-      rooms: '213 habitaciones',
-      venues: '6 salones corporativos',
-      photo: A('hotel-el-prado.jpg', 'Entrada del Hotel El Prado con palmeras y banderas'),
+      rooms: '213',
+      venues: '13 salones, capacidad máxima 600 personas en auditorio.',
+      address: 'Carrera 54 #70-10, Barranquilla, Atlántico',
+      href: 'https://www.hotelelpradobarranquilla.com/',
+      photo: H('el-prado', 'Hotel El Prado en Barranquilla'),
     },
     {
       id: 'estelar',
-      name: 'Hotel Estelar',
-      location: 'Barranquilla',
-      stars: 5,
-      descriptor: 'Centro Empresarial',
-      rooms: '191 habitaciones',
-      venues: 'Centro de convenciones',
-      photo: A('hotel-estelar.jpg', 'Fachada iluminada del Hotel Estelar al anochecer'),
+      name: 'Hotel Estelar Alto Prado',
+      rooms: '180',
+      venues: '3 salones, capacidad máxima 150 personas en auditorio.',
+      address: 'Cl. 76 No. 56-29, Barranquilla, Atlántico',
+      href: 'https://www.hotelesestelar.com/destinos-estelar/colombia/barranquilla/',
+      photo: H('estelar-alto-prado', 'Hotel Estelar Alto Prado en Barranquilla'),
+    },
+    {
+      id: 'hilton-garden-inn',
+      name: 'Hotel Hilton Garden Inn',
+      rooms: '123',
+      venues: '+10 salones, capacidad máxima 900 personas en auditorio.',
+      address: 'Carrera 53, Calle 100-86, Barranquilla, Atlántico',
+      href: 'https://www.hilton.com/es/hotels/baqacgi-hilton-garden-inn-barranquilla/events/',
+      photo: H('hilton-garden-inn', 'Hotel Hilton Garden Inn Barranquilla'),
+    },
+    {
+      id: 'dann-carlton',
+      name: 'Hotel Dann Carlton',
+      rooms: '178',
+      venues: '+15 salones, capacidad máxima 1.300 personas en auditorio.',
+      address: 'Cl. 98 #52B-10, Barranquilla, Atlántico',
+      href: 'https://www.danncarltonbaq.co/',
+      photo: H('dann-carlton', 'Hotel Dann Carlton Barranquilla'),
+    },
+    {
+      id: 'dorado-plaza',
+      name: 'Hotel Dorado Plaza',
+      rooms: '144',
+      venues: '7 salones, capacidad máxima 300 personas en auditorio.',
+      // Pendiente: es la misma dirección del Hilton Garden Inn (ver PENDIENTES.md)
+      address: 'Carrera 53, Calle 100-86, Barranquilla, Atlántico',
+      href: 'https://doradoplaza.com/hoteles/hotel-dorado-plaza-alto-prado',
+      photo: H('dorado-plaza', 'Hotel Dorado Plaza Alto Prado'),
     },
   ] satisfies Hotel[],
 };

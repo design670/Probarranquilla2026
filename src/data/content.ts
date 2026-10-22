@@ -129,15 +129,14 @@ export const mainNav: MegaPanel[] = [
   },
   {
     id: 'evento',
-    label: 'Haz tu evento en Barranquilla',
-    title: ['Haz tu evento', 'en Barranquilla'],
+    label: 'Trae tu evento a Barranquilla',
+    title: ['Trae tu evento', 'a Barranquilla'],
     layout: 'split',
     linksOffset: 423,
     // Mismos textos que "Instálate"; llevan a la página de Turismo de reuniones.
     columns: [
       {
         links: [
-          L('¿Por qué Barranquilla?', routes.evento),
           L('¿Cómo te apoyamos?', `${routes.evento}#como-te-apoyamos`),
           L('Resultados e impacto', `${routes.evento}#resultados-eventos`),
           L('Guías y recursos de ciudad', `${routes.evento}#biblioteca-de-recursos`),
@@ -164,11 +163,12 @@ export const mainNav: MegaPanel[] = [
 
 export const hero = {
   title: ['Barranquilla, tu', 'próximo paso', 'empresarial'],
-  slides: [
-    { image: '/assets/hero/hero-1.jpg', alt: 'Vista aérea del Malecón de Barranquilla al atardecer con la rueda panorámica iluminada' },
-    { image: '/assets/hero/hero-2.jpg', alt: 'Slide 2 del hero (pendiente)' },
-    { image: '/assets/hero/hero-3.jpg', alt: 'Slide 3 del hero (pendiente)' },
-  ],
+  // Video "Hero Banner Home" (src/Img/Home), convertido a H.264 sin audio para que lo reproduzcan todos los navegadores
+  video: {
+    src: '/assets/hero/hero-banner-home.mp4',
+    poster: '/assets/hero/hero-banner-home-poster.jpg',
+    label: 'Video de Barranquilla y el Atlántico: puerto, zonas francas, industria y ciudad',
+  },
 };
 
 export type Reason = {
@@ -225,45 +225,74 @@ export const impact = {
   ],
 };
 
-export type SuccessCase = { company: string; logo: string; image: string; alt: string; lead: string; body: string };
+export type SuccessCase = {
+  company: string;
+  /** Sin logo se muestra el nombre como título (casos de eventos) */
+  logo?: string;
+  /** Dato bajo el nombre, p. ej. "2026 — 5.000 asistentes" */
+  meta?: string;
+  image: string;
+  alt: string;
+  lead: string;
+  body: string;
+};
+
+export type SuccessStoriesData = { title: string; subtitle: string; moreHref: string; cases: SuccessCase[] };
 
 export const successStories = {
   title: 'Casos de éxito',
   subtitle: 'Conoce algunos de los eventos que han elegido Barranquilla como su sede',
   moreHref: routes.casosDeExito,
+  // Textos: "Casos de exito info - Pág web 2026.pdf" (primera oración en negrita)
   cases: [
     {
       company: 'Bavaria',
       logo: '/assets/casos/logo-bavaria.svg',
-      image: '/assets/casos/bavaria.jpg',
-      alt: 'Edificio corporativo de Bavaria',
-      lead: 'La Cervecería del Atlántico representa la mayor inversión de la compañía en Colombia en más de dos décadas.',
-      body: ' Es referente nacional en eficiencia energética, innovación y sostenibilidad industrial.',
+      image: '/assets/casos/bavaria-equipo.jpg',
+      alt: 'Equipo de Bavaria con cascos y chalecos de seguridad frente a las instalaciones de la Cervecería del Atlántico',
+      lead: 'Bavaria es una cervecera colombiana fundada en Bogotá y parte de AB InBev.',
+      body: ' Produce y comercializa cervezas y bebidas de malta mediante marcas de alta penetración y una amplia red industrial y de distribución. Estratégicamente, articula agricultura, envases, logística y consumo masivo a gran escala.',
     },
-    // `lead` va en negrita, como la primera parte del texto de Bavaria
     {
-      company: 'Adama',
+      company: 'ADAMA',
       logo: '/assets/casos/logo-adama.png',
       image: '/assets/casos/adama.jpg',
       alt: 'Logo de Adama sobre un cultivo de maíz al atardecer',
-      lead: 'Reubicó una línea de producción desde China hacia Barranquilla',
-      body: ' para aprovechar el acceso preferencial al mercado brasileño y mejorar su eficiencia logística.',
+      lead: 'ADAMA es una compañía de origen israelí especializada en protección de cultivos y parte de Syngenta Group.',
+      body: ' Desarrolla, formula y comercializa herbicidas, insecticidas, fungicidas y otras soluciones agrícolas en mercados globales. Estratégicamente, su modelo integra manufactura, registros y distribución para atender cultivos diversos con portafolios amplios.',
+    },
+    // Logos: Hada de Empresas Miembros; Bimbo y Coca-Cola de Wikimedia; Fruselva de fruselva.com
+    {
+      company: 'Grupo Bimbo',
+      logo: '/assets/casos/logo-bimbo.png',
+      image: '/assets/casos/bimbo.jpg',
+      alt: 'Equipo de Bimbo frente a un mural en sus instalaciones',
+      lead: 'Grupo Bimbo es una multinacional mexicana y una de las mayores compañías de panificación del mundo.',
+      body: ' Produce y distribuye panes, bollería, tortillas, galletas y snacks mediante una extensa red de plantas, marcas y rutas comerciales. Estratégicamente, su escala convierte la manufactura local en una plataforma de abastecimiento de alta frecuencia para mercados nacionales y de exportación.',
     },
     {
-      company: 'BCCY Colombia',
-      logo: '/assets/casos/logo-bccy.svg',
-      image: '/assets/casos/bccy.jpg',
-      alt: 'Contenedores verdes y equipos de una planta de BCCY Colombia en construcción',
-      lead: 'Primera planta en Barranquilla que genera energía a partir de biogás,',
-      body: ' capturando emisiones de metano provenientes del relleno sanitario.',
+      company: 'Coca-Cola FEMSA',
+      logo: '/assets/casos/logo-coca-cola.png',
+      image: '/assets/casos/coca-cola.jpg',
+      alt: 'Equipo frente al letrero de Coca-Cola en sus instalaciones',
+      lead: 'Coca-Cola FEMSA es una embotelladora mexicana con sede en Ciudad de México y uno de los principales socios del Sistema Coca-Cola.',
+      body: ' Produce, embotella, comercializa y distribuye bebidas gaseosas, aguas, jugos y otras categorías en mercados latinoamericanos. Estratégicamente, su fortaleza está en la ejecución comercial, la cadena de frío y una red capilar de distribución.',
     },
     {
-      company: 'Enel',
-      logo: '/assets/casos/logo-enel.svg',
-      image: '/assets/casos/enel.jpg', // Pendiente: foto
-      alt: 'Proyecto de Enel en el Atlántico',
-      lead: 'Construyó en el Atlántico el parque solar más grande de Colombia,',
-      body: ' fortaleciendo la transición energética y la sostenibilidad del territorio.',
+      company: 'Fruselva',
+      logo: '/assets/casos/logo-fruselva.png',
+      image: '/assets/casos/fruselva.jpg',
+      alt: 'Vista aérea de la planta de Fruselva y su parqueadero',
+      lead: 'Fruselva es una compañía española de cofabricación para marcas de alimentación infantil, con plantas en España, Chile y Colombia.',
+      body: ' Desarrolla y produce purés, snacks y fórmulas a base de frutas, verduras, lácteos y proteínas en distintos formatos. Estratégicamente, su modelo de marca privada permite conectar capacidad agroindustrial local con clientes internacionales y cadenas de exportación.',
+    },
+    {
+      company: 'Hada International',
+      logo: '/assets/casos/logo-hada.png',
+      image: '/assets/casos/hada.jpg',
+      alt: 'Vista aérea de la planta de Hada con sus bodegas y vías internas',
+      lead: 'Hada International es una empresa colombiana especializada en manufactura para terceros de cuidado personal y del hogar.',
+      body: ' Su principal fortaleza es la producción de jabones en barra, complementada con formulación, empaque y desarrollo de marcas privadas. Estratégicamente, ofrece una plataforma exportadora de manufactura por contrato con escala, especialización y capacidad de adaptación a clientes globales.',
     },
   ] satisfies SuccessCase[],
 };
@@ -383,11 +412,11 @@ export type Social = { network: 'facebook' | 'instagram' | 'x' | 'linkedin' | 'y
 export const footer = {
   address: { city: 'Barranquilla, Colombia', building: 'Centro Empresarial Green Towers', street: 'Cl. 77b #57-103 - Oficina 509' },
   social: [
-    { network: 'facebook', label: 'Facebook', href: PENDING_HREF },
-    { network: 'instagram', label: 'Instagram', href: PENDING_HREF },
-    { network: 'x', label: 'X', href: PENDING_HREF },
-    { network: 'linkedin', label: 'LinkedIn', href: PENDING_HREF },
-    { network: 'youtube', label: 'YouTube', href: PENDING_HREF },
+    { network: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/ProBarranquilla/' },
+    { network: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/probarranquilla/' },
+    { network: 'x', label: 'X', href: 'https://x.com/ProBaq' },
+    { network: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/company/probarranquilla/' },
+    { network: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/@probarranquilla1' },
   ] satisfies Social[],
   copyright: 'Todos los derechos reservados ProBarranquilla 2026',
   privacy: { label: 'Politica de privacidad', href: PENDING_HREF },

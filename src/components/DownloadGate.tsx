@@ -5,7 +5,16 @@ import './DownloadGate.css';
 
 /* ---------- API: cualquier botón de descarga del sitio pide el formulario ---------- */
 
-export type DownloadRequest = { title: string; url: string };
+export type DownloadField = 'name' | 'email' | 'organization' | 'city';
+
+export type DownloadRequest = {
+  title: string;
+  url: string;
+  /** Campos a pedir; por defecto, todos (nombre, correo, organización y ciudad) */
+  fields?: DownloadField[];
+  /** Texto del enlace a la política, si esta descarga usa otro */
+  policyLabel?: string;
+};
 
 const EVENT = 'pb:download-request';
 
@@ -21,6 +30,8 @@ export function requestDownload(req: DownloadRequest) {
 export function DownloadLink({
   title,
   url,
+  fields,
+  policyLabel,
   className,
   ariaLabel,
   children,
@@ -28,7 +39,7 @@ export function DownloadLink({
   const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
     e.preventDefault();
-    requestDownload({ title, url });
+    requestDownload({ title, url, fields, policyLabel });
   };
   return (
     <a href={url} className={className} aria-label={ariaLabel} aria-haspopup="dialog" onClick={onClick} target="_blank" rel="noopener noreferrer">
@@ -46,13 +57,18 @@ type Errors = Partial<Record<keyof Values, string>>;
 const empty: Values = { name: '', email: '', organization: '', city: '', policy: '' };
 const STORAGE = 'pb-download-contact';
 
-function validate(v: Values): Errors {
+const ALL_FIELDS: Key[] = ['name', 'email', 'organization', 'city'];
+
+function validate(v: Values, keys: Key[]): Errors {
   const e: Errors = {};
-  if (!v.name.trim()) e.name = 'Escribe tu nombre.';
-  if (!v.email.trim()) e.email = 'Escribe tu correo electrónico.';
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) e.email = 'Revisa el formato del correo (ejemplo: nombre@empresa.com).';
-  if (!v.organization.trim()) e.organization = 'Indica tu organización.';
-  if (!v.city.trim()) e.city = 'Indica tu ciudad.';
+  const ask = (k: Key) => keys.includes(k);
+  if (ask('name') && !v.name.trim()) e.name = 'Escribe tu nombre.';
+  if (ask('email')) {
+    if (!v.email.trim()) e.email = 'Escribe tu correo electrónico.';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim())) e.email = 'Revisa el formato del correo (ejemplo: nombre@empresa.com).';
+  }
+  if (ask('organization') && !v.organization.trim()) e.organization = 'Indica tu organización.';
+  if (ask('city') && !v.city.trim()) e.city = 'Indica tu ciudad.';
   if (!v.policy) e.policy = 'Selecciona Sí o No.';
   else if (v.policy === 'no') e.policy = 'Para descargar el documento debes aceptar la política de tratamiento de datos.';
   return e;
@@ -81,6 +97,7 @@ export function DownloadGate() {
   const dialog = useRef<HTMLDialogElement>(null);
   const returnFocus = useRef<HTMLElement | null>(null);
   const f = downloadForm.fields;
+  const keys: Key[] = request?.fields ?? ALL_FIELDS;
 
   useEffect(() => {
     const onRequest = (e: Event) => {
@@ -116,7 +133,7 @@ export function DownloadGate() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!request) return;
-    const found = validate(values);
+    const found = validate(values, keys);
     setErrors(found);
     const first = Object.keys(found)[0];
     if (first) {
@@ -124,9 +141,11 @@ export function DownloadGate() {
       return;
     }
 
-    const { policy, ...contact } = values;
+    const { policy, ...all } = values;
+    // Solo se envían los campos que se pidieron en esta descarga
+    const contact = Object.fromEntries(keys.map((k) => [k, all[k]]));
     try {
-      sessionStorage.setItem(STORAGE, JSON.stringify(contact));
+      sessionStorage.setItem(STORAGE, JSON.stringify({ ...loadSaved(), ...contact, policy: undefined }));
     } catch {
       /* sin almacenamiento: se pedirán de nuevo */
     }
@@ -201,7 +220,7 @@ export function DownloadGate() {
             {request.title}
           </p>
 
-          <div className="dl-form__grid">{(Object.keys(f) as Key[]).map(field)}</div>
+          <div className={`dl-form__grid${keys.length % 2 ? ' dl-form__grid--odd' : ''}`}>{keys.map(field)}</div>
 
           <fieldset
             className="dl-form__policy"
@@ -210,7 +229,7 @@ export function DownloadGate() {
           >
             <legend>
               <a href={downloadForm.policy.href} target="_blank" rel="noopener noreferrer">
-                {downloadForm.policy.label}
+                {request.policyLabel ?? downloadForm.policy.label}
               </a>
               <span className="dl-form__question">
                 {downloadForm.policy.question} <span aria-hidden="true">*</span>

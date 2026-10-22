@@ -2,16 +2,16 @@ import type { CSSProperties, ReactNode } from 'react';
 import { ArrowRight } from './Icons';
 import './ArrowLabel.css';
 
-type Props = { children: ReactNode; size?: number; gap?: number };
+type Props = { children: ReactNode; size?: number; gap?: number; /** `down` = flecha hacia abajo (filtros) */ direction?: "right" | "down" };
 
 /**
  * Texto + flecha de los CTA. En reposo la flecha va al final; con hover o
  * foco del enlace/botón que lo contiene, pasa al inicio y el texto se corre.
  */
-export function ArrowLabel({ children, size = 14, gap = 8 }: Props) {
+export function ArrowLabel({ children, size = 14, gap = 8, direction = "right" }: Props) {
   const style = { '--arrow-size': `${size}px`, '--arrow-gap': `${gap}px` } as CSSProperties;
   return (
-    <span className="arrow-swap" style={style}>
+    <span className={`arrow-swap${direction === "down" ? " arrow-swap--down" : ""}`} style={style}>
       <ArrowRight className="arrow-swap__lead" width={size} height={size} />
       <span className="arrow-swap__text">{children}</span>
       <ArrowRight className="arrow-swap__trail" width={size} height={size} />

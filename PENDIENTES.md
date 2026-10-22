@@ -40,7 +40,7 @@ Todos los enlaces usan `href: '#'` hasta que se definan:
   - Haz tu evento: los 5 enlaces. Repiten los textos de "Instálate", pero deben llevar a rutas de eventos.
   - Sobre: Quienes somos, Servicios, Equipo, Comunidad de miembros, Informes de labores.
 - Tarjetas del mosaico, "Ver más casos", noticias, "Ver todos", "Contáctanos".
-- Redes sociales del footer, Política de privacidad, ¿Tienes preguntas?
+- Política de privacidad, ¿Tienes preguntas?
 - **Botón flotante "Hablemos"** (reemplazó al de WhatsApp en todo el sitio): enlaza a `routes.contacto`, el mismo destino de "Contact PB", que aún no está definido. La silueta del caimán (`CAIMAN_PATH` en `src/components/HablemosTab.tsx`) se trazó a partir de la referencia; si existe el vector oficial, reemplaza ese path.
 - **Categorías de las noticias:** se asignaron de forma provisional (las 3 en Inversiones; la tercera también en Turismo de reuniones). ExpoProBarranquilla no tiene noticias. Hay que confirmar las categorías.
 - **Casos de éxito:** ya están las fotos, logos y textos de Bavaria, Adama, BCCY y Enel. Falta solo la foto de Enel (`assets/casos/enel.jpg`).
@@ -191,16 +191,12 @@ El menú "Haz tu evento" ya enlaza a la página y a sus secciones (apoyo, result
 
 | Ruta | Uso |
 |---|---|
-| `assets/evento/mapa-rutas-aereas.png` | Mapa de rutas (Miami, Fort Lauderdale, Panamá, Curazao → Barranquilla). No se dibujó una geografía aproximada |
-| `assets/evento/etapa-atraccion-de-eventos.jpg` | Foto del auditorio (etapa 1) |
-| `assets/evento/etapa-*.jpg` (4 más) | Fotos de las etapas 2 a 5 |
-| `assets/evento/hotel-dann-carlton.jpg`, `hotel-el-prado.jpg`, `hotel-estelar.jpg` | Fotos de los hoteles |
+| `assets/evento/etapa-*.jpg` (5) | Fotos de las 5 etapas de "¿Cómo te apoyamos?" (apoyo a candidaturas, conexión con aliados, acceso a proveedores, visitas de inspección, experiencias de destino) |
 | `assets/equipo/fiorella-rivera.jpg`, `angelica-bolivar.jpg` | Retratos de contacto (los mismos del equipo en Sobre ProBarranquilla) |
 
 **Contenido y configuración pendientes**
-- Etapas 2 a 5 de "¿Cómo te apoyamos?": la referencia solo desarrolla "Atracción de eventos"; las demás muestran solo su título (`support.stages`).
-- Video: falta la URL (`eventVideo.url`, acepta YouTube, Vimeo o .mp4). Mientras tanto el botón queda deshabilitado.
-- Guías "Guía de Ciudad" y "Guía gastronómica": faltan los documentos (`cityLibrary.guides[].href`); el botón queda deshabilitado. La referencia trae "Agregar Descripcion" como texto de relleno: no se publicó.
+- Sección de video "Barranquilla, un destino que se vive": quitada de la página por pedido del cliente (el componente `VideoBlock` queda en el código sin usar).
+- Kit de promoción de ciudad: Guía de Ciudad y Guía Gastronómica enlazan a los PDF oficiales de probarranquilla.org (agosto 2025), portadas renderizadas del PDF. Su popup pide Nombre, Organización, Ciudad y la política (sin correo). "Descubre Barranquilla" abre baq.com.co; su imagen es un recorte de la imagen para compartir de ese sitio.
 - Formulario: falta el endpoint (`eventForm.endpoint`). Valida los campos, pero sin endpoint muestra un error y no simula el envío. Faltan las opciones de "Tipo de evento" y "Asistentes estimados" (`eventForm.eventTypes`, `attendeeRanges`).
 - Aerolíneas: se reprodujeron como etiquetas de texto con su color, igual que en la referencia. Si se prefieren los logos oficiales, hacen falta los archivos.
 - Hoteles: los indicadores aparecen solo cuando hay más de una página (en escritorio caben los 3 hoteles, así que no se muestran; la referencia dibuja 4 puntos).
@@ -272,3 +268,17 @@ Plantilla compartida: `src/components/ResourcePage.tsx` + `ResourceCard.tsx` (Bo
 - [ ] Etiquetas de botón propuestas (no venían en el contenido): "Ir al simulador" y "Explorar" en las secciones de ProData.
 - [ ] "Explora ProData" apunta a https://probarranquilla.org/prodata/ (la página oficial actual, como se indicó). Confirmar si debe ir a la plataforma (https://prodata.probarranquilla.org/) cuando este sitio reemplace al actual.
 - [ ] Las secciones de ProData llevan al inicio de sesión de la plataforma (así está en la web oficial).
+
+
+## Haz tu evento — Casos de éxito
+- Fotos de 3 eventos en `public/assets/evento/casos/`: fedetranscarga.jpg, expoacccsa.jpg y curso-cirugia-plastica.jpg. No se encontraron fotos del evento en Barranquilla (de ExpoACCCSA solo hay un banner de un expositor). Mientras tanto se ve el marcador de imagen.
+- Las otras 6 fotos vienen de probarranquilla.org (OCDE) y de la prensa: Blu Radio (IRONMAN), El Universal (Fedepalma, foto genérica de fruto de palma, no del evento), La Nota Económica (Latam Fintech), El Heraldo (Giro de Rigo y PANLAR). Confirmar derechos de uso o reemplazar por fotos propias de ProBarranquilla.
+
+## Haz tu evento — Conectividad aérea
+- Logos de aerolíneas tomados de Wikimedia Commons (Avianca, Air Europa, American, JetBlue, Wingo, Copa, LATAM, JetSMART), de satena.com (Satena) y de flyzair.com (EZ Air, que hoy opera como Z Air). Reemplazar por los oficiales de la carpeta de audiovisuales cuando lleguen: `public/assets/evento/aerolineas/<nombre>.png`.
+- Mapas dibujados en SVG con geografía real (Natural Earth, `src/data/airMaps.ts`). Madrid queda fuera del encuadre del Caribe: su ruta sale por el borde con una flecha.
+
+## Haz tu evento — Infraestructura para eventos
+- Fotos (las envía el cliente) en `public/assets/evento/hoteles/`: puerta-de-oro, marriott, ghl, el-prado, estelar-alto-prado, hilton-garden-inn, dann-carlton, dorado-plaza (.jpg).
+- Hotel Dorado Plaza: la dirección enviada (Carrera 53, Calle 100-86) es la misma del Hilton Garden Inn. Confirmar la correcta.
+- Hotel GHL Barranquilla: el cliente no indicó salones; la tarjeta solo muestra habitaciones y dirección.

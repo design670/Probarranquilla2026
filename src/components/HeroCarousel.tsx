@@ -1,25 +1,45 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { hero } from '../data/content';
-import { SmartImage } from './SmartImage';
 import './HeroCarousel.css';
 
+/**
+ * Hero del Home con el video "Hero Banner Home" de fondo: sin sonido, en bucle
+ * y con botón de pausa. Si el usuario prefiere menos movimiento, no arranca solo
+ * y queda la imagen fija (poster).
+ */
 export function HeroCarousel() {
-  const [active, setActive] = useState(0);
+  const video = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const v = video.current;
+    if (!v) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    v.play().catch(() => setPlaying(false));
+  }, []);
+
+  const toggle = () => {
+    const v = video.current;
+    if (!v) return;
+    if (v.paused) v.play().catch(() => undefined);
+    else v.pause();
+  };
 
   return (
-    <section className="hero" aria-roledescription="carrusel" aria-label="Destacados">
-      {hero.slides.map((s, i) => (
-        <div
-          key={s.image}
-          className={`hero__slide ${i === active ? 'is-active' : ''}`}
-          aria-hidden={i !== active}
-          role="group"
-          aria-roledescription="diapositiva"
-          aria-label={`${i + 1} de ${hero.slides.length}`}
-        >
-          <SmartImage src={s.image} alt={s.alt} className="hero__img" loading={i === 0 ? 'eager' : 'lazy'} />
-        </div>
-      ))}
+    <section className="hero" aria-label="Destacado">
+      <video
+        ref={video}
+        className="hero__video"
+        src={hero.video.src}
+        poster={hero.video.poster}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-label={hero.video.label}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+      />
       <div className="hero__shade" aria-hidden="true" />
 
       <div className="container hero__content">
@@ -30,20 +50,18 @@ export function HeroCarousel() {
         </h1>
       </div>
 
-      {hero.slides.length > 1 && (
-        <div className="hero__dots">
-          {hero.slides.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              className={`hero__dot ${i === active ? 'is-active' : ''}`}
-              aria-label={`Ir a la diapositiva ${i + 1}`}
-              aria-current={i === active ? 'true' : undefined}
-              onClick={() => setActive(i)}
-            />
-          ))}
-        </div>
-      )}
+      <button type="button" className="hero__toggle" onClick={toggle} aria-label={playing ? 'Pausar video' : 'Reproducir video'}>
+        {playing ? (
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+            <rect x="3" y="2" width="3" height="10" rx="0.8" fill="currentColor" />
+            <rect x="8" y="2" width="3" height="10" rx="0.8" fill="currentColor" />
+          </svg>
+        ) : (
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false">
+            <path d="M4 2.2v9.6a.6.6 0 0 0 .9.5l7.6-4.8a.6.6 0 0 0 0-1L4.9 1.7a.6.6 0 0 0-.9.5Z" fill="currentColor" />
+          </svg>
+        )}
+      </button>
     </section>
   );
 }

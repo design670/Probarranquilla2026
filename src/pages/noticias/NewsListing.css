@@ -3,10 +3,105 @@
   padding: 74px 0 121px;
 }
 
+/* Categorías a la izquierda, año a la derecha */
+.news-list__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
 .news-list__filters {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+}
+
+/* ---------- Filtro por año (lista propia con el estilo del sitio) ---------- */
+.year-filter {
+  position: relative;
+}
+
+.year-filter__btn {
+  gap: 14px;
+  min-width: 190px;
+  justify-content: space-between;
+  background: transparent;
+  cursor: pointer;
+}
+
+.year-filter__btn:hover {
+  background: rgba(1, 84, 164, 0.06);
+}
+
+.year-filter__btn.is-active {
+  background: var(--c-blue-bright);
+  color: var(--c-white);
+}
+
+.year-filter__btn:focus-visible {
+  outline: 2px solid var(--c-blue-bright);
+  outline-offset: 2px;
+}
+
+.year-filter__chevron {
+  flex: none;
+  transition: rotate 0.2s ease;
+}
+
+.year-filter.is-open .year-filter__chevron {
+  rotate: 180deg;
+}
+
+.year-filter__list {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 20;
+  min-width: 100%;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border: 1px solid var(--c-blue-bright);
+  border-radius: 6px;
+  background: var(--c-white);
+  box-shadow: 0 12px 28px rgba(0, 30, 58, 0.16);
+  animation: year-filter-in 0.16s ease-out;
+}
+
+.year-filter__list:focus {
+  outline: none;
+}
+
+@keyframes year-filter-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .year-filter__list {
+    animation: none;
+  }
+}
+
+.year-filter__option {
+  padding: 9px 12px;
+  border-radius: 4px;
+  font-size: 18px;
+  color: var(--c-blue-title);
+  cursor: pointer;
+}
+
+.year-filter__option.is-active {
+  background: rgba(1, 84, 164, 0.08);
+}
+
+.year-filter__option.is-selected {
+  background: var(--c-blue-bright);
+  color: var(--c-white);
 }
 
 .news-list__grid {
@@ -74,6 +169,15 @@
   }
   .news-list__filters {
     gap: 8px;
+  }
+  .news-list__toolbar {
+    gap: 8px;
+  }
+  .year-filter__btn {
+    min-width: 0;
+  }
+  .year-filter__option {
+    font-size: 16px;
   }
   .news-list__grid {
     grid-template-columns: 1fr;

@@ -27,23 +27,9 @@ export const aboutHero = {
 
 /* ---------- Presentación y cifras ---------- */
 
-export type AboutStat = {
-  value: string[];
-  label: string;
-  tone: 'navy' | 'orange' | 'teal' | 'yellow';
-  /** Las tarjetas 2 y 4 son más altas; todas comparten la línea inferior. */
-  tall?: boolean;
-};
-
 export const aboutIntro = {
   title: ['Somos la Agencia de Promoción y Atracción de', 'Inversión y Turismo de Reuniones de', 'Barranquilla, el Atlántico y su área de influencia.'],
-  stats: [
-    { value: ['USD', '469M'], label: 'En inversión', tone: 'navy' },
-    { value: ['3581'], label: 'Empleos directos', tone: 'orange', tall: true },
-    { value: ['+180'], label: 'Oportunidades de inversión', tone: 'teal' },
-    { value: ['+20'], label: 'Proyectos, el 78% de estos proyectos fueron de vocación exportadora', tone: 'yellow', tall: true },
-  ] satisfies AboutStat[],
-  note: 'Cifras de inversiones del año 2025*',
+  // Las cifras ahora son las del Home (impact en content.ts)
 };
 
 /* ---------- ¿Qué hace? ---------- */

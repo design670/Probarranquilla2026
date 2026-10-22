@@ -56,10 +56,31 @@
   width: auto;
 }
 
+/* Casos sin logo (eventos): nombre como título y dato debajo */
+.cases__name {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.cases__meta {
+  margin-top: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--c-teal);
+}
+
+.cases__meta + .cases__text {
+  margin-top: 24px;
+}
+
+/* Textos largos del PDF de casos (≈450 caracteres): tamaño ajustado para que quepan en la tarjeta */
 .cases__text {
-  margin-top: 46px;
-  font-size: 23px;
-  line-height: 1.36;
+  margin-top: 32px;
+  font-size: 18px;
+  line-height: 1.45;
 }
 
 .cases__text strong {

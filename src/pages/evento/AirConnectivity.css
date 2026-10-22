@@ -42,127 +42,125 @@
   color: #64748b;
 }
 
-.air__table-wrap {
-  margin-top: 24px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-}
-
-.air__table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-
-.air__caption {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 44px;
-  padding: 0 16px;
-  background: #0f172a;
-  color: var(--c-white);
-  font-size: 20px;
-}
-
-.air__caption svg {
-  color: #2dd4bf;
-}
-
-.air__table th,
-.air__table td {
-  padding: 0 16px;
-  text-align: left;
-  font-weight: 400;
-}
-
-.air__table td {
-  text-align: right;
-}
-
-.air__table thead th {
-  height: 29px;
-  font-size: 13px;
-  color: #64748b;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.air__table thead th + th {
-  text-align: right;
-}
-
-.air__table tbody tr {
-  height: 47px;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.air__table tbody strong {
-  font-weight: 600;
-}
-
-.air__swatch {
-  display: inline-block;
-  width: 14px;
-  height: 3px;
-  margin-right: 8px;
-  border-radius: 2px;
-  vertical-align: middle;
-}
-
-.air__duration {
-  font-size: 12px;
-  color: #64748b;
-}
-
-.air__pill {
+/* Selector Internacional / Nacional */
+.air__tabs {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 36px;
-  height: 22px;
-  padding: 0 8px;
-  border-radius: 6px;
+  margin-top: 24px;
+  padding: 4px;
+  border-radius: 999px;
   background: #f1f5f9;
-  font-size: 13px;
-  font-weight: 600;
 }
 
-.air__table tfoot tr {
-  height: 46px;
-  background: #f8fafc;
-  font-size: 13px;
-}
-
-.air__total {
-  color: #14b8a6;
-}
-
-.air__airlines-label {
-  margin-top: 26px;
-  font-size: 10px;
-  text-transform: uppercase;
+.air__tab {
+  height: 40px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
   color: #334155;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.air__airlines {
+.air__tab:hover {
+  color: var(--c-navy-deep);
+}
+
+.air__tab.is-active {
+  background: var(--c-navy-deep);
+  color: var(--c-white);
+}
+
+.air__tab:focus-visible {
+  outline: 2px solid #14b8a6;
+  outline-offset: 2px;
+}
+
+.air__panel {
+  animation: air-fade 0.3s ease;
+}
+
+@keyframes air-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* Frase clave de cada mapa */
+.air__phrase {
+  margin-top: 24px;
+  padding-left: 16px;
+  border-left: 3px solid #14b8a6;
+  font-size: 19px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.air__label-small {
+  margin-top: 26px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.air__destinations {
   list-style: none;
-  margin: 6px 0 0;
+  margin: 10px 0 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
+.air__destinations li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.air__destinations li::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #14b8a6;
+}
+
+.air__airlines {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .air__airlines li {
   display: inline-flex;
   align-items: center;
-  height: 26px;
-  padding: 0 11px;
+  justify-content: center;
+  height: 46px;
+  padding: 0 14px;
   border: 1px solid #e2e8f0;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: 600;
+  border-radius: 8px;
+  background: var(--c-white);
+}
+
+.air__logo {
+  max-width: 120px;
+  object-fit: contain;
 }
 
 .air__map {
@@ -172,10 +170,92 @@
   background: #1e2a46;
 }
 
-.air__map-img {
+/* Mapa dibujado en SVG (geografía real, Natural Earth) */
+.air__svg {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+}
+
+.air__land {
+  fill: #2a3a5f;
+  stroke: #3b4e78;
+  stroke-width: 0.6;
+}
+
+.air__focus {
+  fill: #3a5288;
+  stroke: #5873b0;
+  stroke-width: 0.8;
+}
+
+.air__line {
+  fill: none;
+  stroke: #2dd4bf;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: air-draw 0.9s ease forwards;
+  animation-delay: inherit;
+}
+
+@keyframes air-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.air__route {
+  animation: air-fade 0.4s ease both;
+}
+
+.air__dot {
+  fill: #2dd4bf;
+  stroke: #0f1b36;
+  stroke-width: 2;
+}
+
+.air__arrow {
+  fill: none;
+  stroke: #2dd4bf;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.air__hub {
+  fill: #ff5b20;
+  stroke: var(--c-white);
+  stroke-width: 2;
+}
+
+.air__hub-halo {
+  fill: rgba(255, 91, 32, 0.25);
+}
+
+.air__label {
+  fill: var(--c-white);
+  font-size: 15px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: #1e2a46;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.air__label--hub {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .air__line,
+  .air__route,
+  .air__panel {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
 }
 
 @media (max-width: 1100px) {
@@ -214,14 +294,15 @@
   .air__card-title {
     font-size: 24px;
   }
-  .air__caption {
-    font-size: 17px;
+}
+
+/* En celular el mapa se reduce: etiquetas más grandes para que se lean */
+@media (max-width: 640px) {
+  .air__label {
+    font-size: 22px;
+    stroke-width: 5px;
   }
-  .air__table th,
-  .air__table td {
-    padding: 0 10px;
-  }
-  .air__table thead th {
-    font-size: 12px;
+  .air__label--hub {
+    font-size: 24px;
   }
 }

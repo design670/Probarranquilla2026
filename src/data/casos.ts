@@ -3,9 +3,8 @@
  * content.ts), uno por vista con foto de ancho completo. Textos y logos se
  * toman del Home; aquí solo se define la foto ancha de cada caso.
  *
- * Bavaria usa la foto del equipo en la planta. Adama y BCCY usan la foto del
- * Home sin las esquinas redondeadas; si llega una versión más grande,
- * reemplaza el archivo. Enel aún no tiene foto (queda el placeholder).
+ * Las fotos vienen de src/Img/Home/Home/Casos de éxito. Adama usa una versión
+ * ancha de la foto del Home; los demás casos usan la misma foto en ambos lugares.
  */
 import type { ImageAsset } from '../components/SmartImage';
 import { successStories } from './content';
@@ -22,14 +21,12 @@ export type CaseStudy = {
 };
 
 const widePhotos: Record<string, Partial<ImageAsset>> = {
-  Bavaria: {
-    src: '/assets/casos/bavaria-equipo.jpg',
-    alt: 'Equipo de Bavaria con cascos y chalecos de seguridad frente a las instalaciones de la Cervecería del Atlántico',
-    // Anclada abajo: el grupo se ve completo, de los cascos a los zapatos
-    position: '50% 85%',
-  },
-  Adama: { src: '/assets/casos/adama-ancho.jpg', position: '50% 45%' },
-  'BCCY Colombia': { src: '/assets/casos/bccy-ancho.jpg', position: '50% 60%' },
+  // Anclada abajo: el grupo se ve completo, de los cascos a los zapatos
+  Bavaria: { position: '50% 85%' },
+  ADAMA: { src: '/assets/casos/adama-ancho.jpg', position: '50% 45%' },
+  // Fotos de grupo: se prioriza que se vean las personas completas
+  'Grupo Bimbo': { position: '50% 60%' },
+  'Coca-Cola FEMSA': { position: '50% 55%' },
 };
 
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');

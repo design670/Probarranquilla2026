@@ -12,75 +12,164 @@
 }
 
 .library__text {
-  margin-top: 36px;
+  margin-top: 24px;
   text-align: center;
   font-size: 22px;
-  line-height: 27px;
-}
-
-.library__text span {
-  display: block;
+  line-height: 1.35;
 }
 
 .library__grid {
   list-style: none;
-  margin: 60px 0 0;
+  margin: 52px auto 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1080px;
 }
 
-/* Tarjetas editoriales: fondo cercano al de la sección y contorno tenue */
+/* Tarjeta llamativa: portada grande, toda la tarjeta es clicable */
 .library__card {
   display: flex;
-  flex-direction: column;
-  width: 280px;
-  min-height: 332px;
-  padding: 34px 23px 26px 22px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 10px;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01));
-  box-shadow: 0 10px 24px rgba(0, 20, 50, 0.18);
 }
 
-.library__number {
-  font-size: 18px;
+.library__link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--c-white);
+  color: var(--c-navy-nav);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.library__link:hover,
+.library__link:focus-visible {
+  transform: translateY(-8px);
+}
+
+/* Cubre el hueco que deja al subir, para que el cursor no la "pierda" */
+.library__link:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 8px;
+}
+
+.library__link:focus-visible {
+  outline: 3px solid #2dd4bf;
+  outline-offset: 3px;
+}
+
+.library__cover {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #e2e8f0;
+}
+
+.library__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.library__link:hover .library__img {
+  transform: scale(1.05);
+}
+
+/* Etiqueta del tipo de recurso (PDF / Sitio web) */
+.library__kind {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #ff5b20;
+  color: var(--c-white);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.library__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 24px 26px;
+  transition: background-color 0.3s ease;
 }
 
 .library__card-title {
-  margin-top: 16px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 24px;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--c-navy-nav);
+  transition: color 0.3s ease;
 }
 
-.library__card-title span {
-  display: block;
+.library__desc {
+  margin-top: 8px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #475569;
+  transition: color 0.3s ease;
 }
 
 .library__btn {
-  align-self: flex-end;
   display: inline-flex;
   align-items: center;
-  height: 48px;
+  gap: 10px;
+  height: 46px;
   margin-top: auto;
-  padding: 0 23px;
+  padding: 0 20px;
   border-radius: 3px;
   background: var(--c-blue-bright);
   color: var(--c-white);
-  font-size: 20px;
-  transition: background-color 0.2s ease;
+  font-size: 17px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-a.library__btn:hover {
-  background: #0a63b8;
+.library__desc + .library__btn {
+  margin-top: 22px;
 }
 
-.library__btn--pending {
-  cursor: not-allowed;
-  opacity: 0.85;
+/* Hover: parte inferior en azul oscuro y botón invertido (como el resto del sitio) */
+.library__link:is(:hover, :focus-visible) .library__body {
+  background: var(--c-navy-nav);
+}
+
+.library__link:is(:hover, :focus-visible) .library__card-title,
+.library__link:is(:hover, :focus-visible) .library__desc {
+  color: var(--c-white);
+}
+
+.library__link:is(:hover, :focus-visible) .library__btn {
+  background: var(--c-white);
+  color: var(--c-navy-nav);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .library__link,
+  .library__img {
+    transition: none;
+  }
+  .library__link:hover,
+  .library__link:focus-visible {
+    transform: none;
+  }
+  .library__link:hover .library__img {
+    transform: none;
+  }
 }
 
 @media (max-width: 900px) {
@@ -92,13 +181,9 @@ a.library__btn:hover {
   }
   .library__text {
     font-size: 18px;
-    line-height: 1.4;
   }
-  .library__text span {
-    display: inline;
-  }
-  .library__text span + span::before {
-    content: ' ';
+  .library__grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -107,12 +192,8 @@ a.library__btn:hover {
     font-size: 28px;
   }
   .library__grid {
-    flex-direction: column;
-    align-items: center;
-  }
-  .library__card {
-    width: 100%;
-    max-width: 340px;
-    min-height: 260px;
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-top: 36px;
   }
 }

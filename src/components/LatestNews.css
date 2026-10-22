@@ -14,6 +14,10 @@
   justify-content: space-between;
   gap: 16px;
   margin-top: 37px;
+  /* "Ver todos" alineado con el borde derecho de la tercera tarjeta:
+     3 × 421 + 2 × 19 = 1301 px, 117 px más que el contenedor.
+     En pantallas más angostas se queda dentro del margen de la página. */
+  margin-right: calc(-1 * min(117px, max(0px, (100vw - var(--container)) / 2 - var(--gutter))));
 }
 
 .news__filters {
@@ -60,6 +64,7 @@
   .news__toolbar {
     flex-direction: column;
     align-items: flex-start;
+    margin-right: 0;
   }
   .news__track .news__card {
     flex-basis: 340px;

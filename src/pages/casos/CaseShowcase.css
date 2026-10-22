@@ -60,9 +60,9 @@
 }
 
 .showcase__text {
-  margin-top: 48px;
-  font-size: 26px;
-  line-height: 31px;
+  margin-top: 36px;
+  font-size: 20px;
+  line-height: 1.45;
 }
 
 .showcase__text strong {

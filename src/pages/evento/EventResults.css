@@ -29,17 +29,41 @@
 }
 
 .ev-stat {
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   min-height: 328px;
   padding: 50px 34px 52px;
   border-radius: 24px;
   font-family: var(--font-heading);
   font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+/* Hover igual al de las estadísticas del Home: la card se eleva */
+.ev-stat:hover {
+  transform: translateY(-60px);
+}
+
+/* Cubre el hueco que deja la card al subir, para que el cursor no la "pierda" */
+.ev-stat:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 60px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ev-stat {
+    transition: none;
+  }
 }
 
 .ev-stat__value {
-  font-size: 72px;
+  font-size: clamp(56px, 5.3vw, 72px); /* "+USD 74" siempre cabe en su card */
   line-height: 1;
   letter-spacing: -0.05em;
   white-space: nowrap;
@@ -55,25 +79,14 @@
   display: block;
 }
 
-/* Azul: cifra arriba y descripción abajo */
 .ev-stat--navy {
-  justify-content: space-between;
   background: var(--c-navy-deep);
   color: var(--c-white);
 }
 
-/* Naranja: todo centrado; la cifra se reduce para que quepa "USD" */
 .ev-stat--orange {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   background: #ff5b20;
   color: var(--c-white);
-}
-
-.ev-stat--orange .ev-stat__value {
-  margin-top: 30px;
-  font-size: 58px;
 }
 
 .ev-stat__unit {
@@ -81,24 +94,13 @@
   letter-spacing: -0.02em;
 }
 
-.ev-stat--orange .ev-stat__label {
-  margin-top: 14px;
-  line-height: 29px;
-}
 
-/* Turquesa: cifra y descripción juntas, arriba */
 .ev-stat--teal {
   background: #2ed3bf;
   color: var(--c-blue-title);
 }
 
-.ev-stat--teal .ev-stat__value {
-  margin-top: 14px;
-}
 
-.ev-stat--teal .ev-stat__label {
-  margin-top: 46px;
-}
 
 @media (max-width: 1100px) {
   .ev-stat {
@@ -106,9 +108,6 @@
   }
   .ev-stat__value {
     font-size: 56px;
-  }
-  .ev-stat--orange .ev-stat__value {
-    font-size: 44px;
   }
   .ev-stat__unit {
     font-size: 34px;
@@ -141,4 +140,13 @@
   .ev-stat {
     min-height: 220px;
   }
+}
+
+/* Nota bajo las cards */
+.ev-results__note {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--c-blue-title);
 }

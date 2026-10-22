@@ -23,6 +23,7 @@
 }
 
 .event-hero__title {
+  max-width: 760px;
   font-size: 68px;
   line-height: 67px;
   letter-spacing: -0.035em;
@@ -35,9 +36,9 @@
 }
 
 .event-hero__subtitle {
-  margin-top: 22px;
   font-size: 26px;
   line-height: 27px;
+  font-weight: 700;
 }
 
 .event-hero__text {

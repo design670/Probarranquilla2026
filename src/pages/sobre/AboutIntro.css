@@ -1,5 +1,5 @@
 .about-intro {
-  padding: 80px 0 16px;
+  padding: 80px 0 56px;
 }
 
 .about-intro__title {
@@ -14,110 +14,48 @@
   display: block;
 }
 
-/* Las cuatro tarjetas comparten la línea inferior; la 2 y la 4 son más altas */
-.about-stats {
-  list-style: none;
-  margin: 68px 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: end;
-  gap: 23px;
+/* Estadísticas del Home sobre fondo blanco: textos y pestañas en azul */
+.impact.impact--about {
+  padding-top: 0;
+  background: var(--c-white);
 }
 
-.about-stat {
-  height: 265px;
-  padding: 90px 22px 18px 25px;
-  border-radius: 16px;
-  font-family: var(--font-heading);
-  font-weight: 700;
+.impact--about .impact__intro {
+  color: var(--c-blue-title);
 }
 
-/* Al pasar el cursor la card se eleva, igual que en el Home; las vecinas no se mueven */
-.about-stat {
-  position: relative;
-  transition: transform 0.3s ease;
+.impact--about .impact__tabs {
+  border-color: var(--c-blue-bright);
 }
 
-.about-stat:hover {
-  transform: translateY(-60px);
+.impact--about .impact__tab {
+  color: var(--c-blue-bright);
 }
 
-/* Cubre el hueco que deja al subir, para que el cursor no la pierda */
-.about-stat:hover::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  height: 60px;
-}
-
-.about-stat--tall {
-  height: 305px;
-  padding-top: 130px;
-}
-
-.about-stat__value {
-  font-size: 58px;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-}
-
-.about-stat__value span {
-  display: block;
-}
-
-.about-stat__label {
-  margin-top: 16px;
-  font-size: 21px;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.about-stat--navy {
-  background: var(--c-navy-deep);
+.impact--about .impact__tab[aria-selected='true'] {
+  background: var(--c-blue-bright);
   color: var(--c-white);
 }
 
-.about-stat--orange {
-  background: var(--c-orange);
-  color: var(--c-white);
+.impact--about .impact__tab[aria-selected='false']:hover {
+  background: rgba(1, 84, 164, 0.06);
 }
 
-.about-stat--teal {
-  background: var(--c-teal-bright);
-  color: var(--c-blue-title);
+.impact--about .impact__tab:focus-visible {
+  outline-color: var(--c-blue-bright);
 }
 
-.about-stat--yellow {
-  background: var(--c-yellow);
-  color: var(--c-blue-title);
-}
-
-.about-intro__note {
-  margin-top: 17px;
-  text-align: center;
-  font-size: 19px;
-  letter-spacing: -0.02em;
-  color: var(--c-blue-title);
-}
 
 @media (max-width: 1100px) {
   .about-intro__title {
     font-size: 36px;
-  }
-  .about-stat__value {
-    font-size: 48px;
-  }
-  .about-stat__label {
-    font-size: 18px;
   }
 }
 
 @media (max-width: 900px) {
   .about-intro {
     padding-top: 56px;
+    padding-bottom: 40px;
   }
   .about-intro__title span {
     display: inline;
@@ -125,45 +63,11 @@
   .about-intro__title span + span::before {
     content: ' ';
   }
-  /* Dos columnas: las alturas alternadas se conservan por fila */
-  .about-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-top: 40px;
-  }
-  .about-stat {
-    height: auto;
-    min-height: 200px;
-    padding: 64px 18px 18px;
-  }
-  .about-stat--tall {
-    min-height: 230px;
-    padding-top: 94px;
-  }
 }
 
 @media (max-width: 640px) {
   .about-intro__title {
     font-size: 26px;
     line-height: 1.1;
-  }
-  .about-stat {
-    min-height: 168px;
-    padding: 40px 14px 14px;
-  }
-  .about-stat--tall {
-    min-height: 192px;
-    padding-top: 64px;
-  }
-  .about-stat__value {
-    font-size: 34px;
-  }
-  .about-stat__label {
-    margin-top: 10px;
-    font-size: 15px;
-    line-height: 1.05;
-  }
-  .about-intro__note {
-    font-size: 16px;
   }
 }

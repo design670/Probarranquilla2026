@@ -64,7 +64,9 @@ export function SupportStages() {
                 </span>
                 <span className="support__label">
                   {s.label.map((l) => (
-                    <span key={l}>{l}</span>
+                    <span key={l} data-text={l}>
+                      {l}
+                    </span>
                   ))}
                 </span>
               </button>

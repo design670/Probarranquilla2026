@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import { loadNews, newsPage, type NewsListItem, type NewsCategory } from '../../data/noticias';
+import { loadNews, newsPage, newsYears, type NewsListItem, type NewsCategory } from '../../data/noticias';
 import { NewsCard } from '../../components/NewsCard';
 import { ArrowLabel } from '../../components/ArrowLabel';
+import { YearFilter } from './YearFilter';
 import '../../components/NewsCard.css';
 import './NewsListing.css';
 
 export function NewsListing() {
   const [filter, setFilter] = useState<NewsCategory | null>(null);
+  const [year, setYear] = useState<string | null>(null);
   const [items, setItems] = useState<NewsListItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState('');
@@ -16,7 +18,7 @@ export function NewsListing() {
     let alive = true;
     setLoading(true);
     setStatus('');
-    loadNews({ category: filter, offset: 0, limit: newsPage.pageSize }).then((res) => {
+    loadNews({ category: filter, year, offset: 0, limit: newsPage.pageSize }).then((res) => {
       if (!alive) return;
       setItems(res.items);
       setLoading(false);
@@ -24,14 +26,14 @@ export function NewsListing() {
     return () => {
       alive = false;
     };
-  }, [filter]);
+  }, [filter, year]);
 
   const exhausted = status !== '';
 
   // Pide el siguiente grupo a la fuente; si no hay más, lo anuncia y oculta el botón
   const loadMore = async () => {
     setLoading(true);
-    const res = await loadNews({ category: filter, offset: items.length, limit: newsPage.pageSize });
+    const res = await loadNews({ category: filter, year, offset: items.length, limit: newsPage.pageSize });
     if (res.items.length === 0) {
       setStatus('No hay más noticias por ahora.');
     } else {
@@ -44,6 +46,7 @@ export function NewsListing() {
   return (
     <section className="news-list" aria-label="Noticias">
       <div className="container">
+        <div className="news-list__toolbar">
         <div className="news-list__filters" role="group" aria-label="Filtrar noticias por categoría">
           {newsPage.filters.map((f) => (
             <button
@@ -53,9 +56,15 @@ export function NewsListing() {
               aria-pressed={filter === f}
               onClick={() => setFilter((cur) => (cur === f ? null : f))}
             >
-              {f}
+              <ArrowLabel size={12} direction="down">
+                {f}
+              </ArrowLabel>
             </button>
           ))}
+        </div>
+
+        {/* Filtro por año, a la derecha; se combina con la categoría */}
+        <YearFilter years={newsYears} value={year} onChange={setYear} />
         </div>
 
         <div aria-live="polite" aria-busy={loading}>
@@ -77,7 +86,7 @@ export function NewsListing() {
               ))}
             </ul>
           ) : (
-            !loading && <p className="news-list__empty">No hay noticias publicadas en esta categoría.</p>
+            !loading && <p className="news-list__empty">No hay noticias publicadas con estos filtros.</p>
           )}
         </div>
 
