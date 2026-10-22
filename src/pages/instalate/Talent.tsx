@@ -7,7 +7,7 @@ import { CountUp } from '../../components/CountUp';
 export function Talent() {
   const [first, second] = talent.facts;
   return (
-    <section className="talent" aria-labelledby="talent-title">
+    <section id="talento" className="talent" aria-labelledby="talent-title">
       <div className="container">
         <h2 id="talent-title" className="talent__title">
           {talent.title}

@@ -5,7 +5,7 @@ import './AssistanceSection.css';
 
 export function AssistanceSection() {
   return (
-    <section className="assist" aria-labelledby="assist-title">
+    <section id="como-te-apoyamos" className="assist" aria-labelledby="assist-title">
       <div className="container">
         <div className="assist__head">
           <h2 id="assist-title" className="assist__title">

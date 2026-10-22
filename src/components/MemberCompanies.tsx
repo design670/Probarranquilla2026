@@ -10,7 +10,7 @@ import './MemberCompanies.css';
  */
 export function MemberCompanies() {
   return (
-    <section className="members" aria-labelledby="members-title">
+    <section id="comunidad-de-miembros" className="members" aria-labelledby="members-title">
       <div className="container">
         <h2 id="members-title" className="section-title members__title">
           {members.title}

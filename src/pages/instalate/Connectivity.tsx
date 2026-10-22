@@ -28,7 +28,7 @@ export function Connectivity() {
   };
 
   return (
-    <section className="connect" aria-labelledby={`${id}-title`}>
+    <section id="conectividad" className="connect" aria-labelledby={`${id}-title`}>
       <div className="container">
         <h2 id={`${id}-title`} className="connect__section-title">
           {connectivity.title}

@@ -57,7 +57,7 @@ export function Training() {
 /** J. Banner de visión compartida */
 export function VisionBanner() {
   return (
-    <section className="vision" aria-labelledby="vision-title">
+    <section id="colaboracion-publico-privada" className="vision" aria-labelledby="vision-title">
       <div className="container">
         <div className="vision__banner">
           <SmartImage {...vision.background} className="vision__img" />

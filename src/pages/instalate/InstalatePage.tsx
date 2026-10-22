@@ -21,7 +21,7 @@ export function InstalatePage() {
         />
       }
     >
-      <ImpactStatistics title={instalateImpactTitle} intro={instalateImpactIntro} />
+      <ImpactStatistics id="resultados" title={instalateImpactTitle} intro={instalateImpactIntro} />
       <Connectivity />
       <Infrastructure />
       <FreeZonesOffer />

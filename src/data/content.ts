@@ -77,17 +77,17 @@ export const mainNav: MegaPanel[] = [
   {
     id: 'invierte',
     label: 'Instálate en Barranquilla',
-    title: ['Por qué', 'Barranquilla'],
+    title: ['Instálate en', 'Barranquilla'],
     layout: 'split',
     linksOffset: 527,
     columns: [
       {
         links: [
-          L('¿Por qué Barranquilla?', routes.instalate),
-          L('¿Cómo te apoyamos?'),
-          L('Resultados e impacto', routes.resultados),
-          L('Guías y recursos de ciudad'),
-          L('Casos de éxito', routes.casosDeExito),
+          L('Ubicación estratégica y conectividad', `${routes.instalate}#conectividad`),
+          L('Infraestructura con estándares internacionales', `${routes.instalate}#infraestructura`),
+          L('Entorno competitivo para la inversión', `${routes.instalate}#resultados`),
+          L('Talento Joven y Productivo', `${routes.instalate}#talento`),
+          L('Colaboración público-privada', `${routes.instalate}#colaboracion-publico-privada`),
         ],
       },
     ],
@@ -140,7 +140,7 @@ export const mainNav: MegaPanel[] = [
           L('¿Cómo te apoyamos?', `${routes.evento}#como-te-apoyamos`),
           L('Resultados e impacto', `${routes.evento}#resultados-eventos`),
           L('Guías y recursos de ciudad', `${routes.evento}#biblioteca-de-recursos`),
-          L('Casos de éxito', routes.casosDeExito),
+          L('Casos de éxito', `${routes.evento}#casos-de-exito`),
         ],
       },
     ],
@@ -154,7 +154,7 @@ export const mainNav: MegaPanel[] = [
       {
         accent: 'ProBarranquilla',
         description: ['Tu agencia de promoción', 'de inversión y turismo en', 'Barranquilla y el Atlántico.'],
-        links: [L('Quienes somos', routes.sobre), L('Servicios'), L('Equipo', routes.equipo), L('Comunidad de miembros')],
+        links: [L('Quienes somos', `${routes.sobre}#quienes-somos`), L('Servicios', `${routes.sobre}#que-hace`), L('Equipo', routes.equipo), L('Comunidad de miembros', `${routes.sobre}#comunidad-de-miembros`)],
       },
       { heading: ['Publicaciones y', 'Comunicados de Prensa'], links: [L('Noticias', routes.noticias), L('Informes de labores')] },
     ],

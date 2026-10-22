@@ -24,8 +24,9 @@
 }
 
 /* Aliados pegado al consejo directivo y miembros más compacto, como en la referencia */
+/* Aire entre la franja azul de Junta Directiva y el recuadro de aliados */
 .about-tail .partners {
-  padding-top: 0;
+  padding-top: 64px;
 }
 
 .about-tail .members {
@@ -40,7 +41,7 @@
     bottom: 80px;
   }
   .about-tail .partners {
-    padding-top: 0;
+    padding-top: 40px;
   }
 }
 

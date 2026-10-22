@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import { UtilityBar } from './UtilityBar';
 import { MainNavigation } from './MainNavigation';
 import { Footer } from './Footer';
@@ -19,6 +19,21 @@ export function SiteShell({
   children: ReactNode;
   footerVariant?: 'default' | 'wide';
 }) {
+  // Enlaces del menú a una sección de otra página (p. ej. /sobre-probarranquilla/#equipo):
+  // React pinta la página después de cargar, así que se baja a la sección al montarla.
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    const go = () => document.getElementById(id)?.scrollIntoView({ block: 'start' });
+    const raf = requestAnimationFrame(go);
+    // Segundo ajuste: las fotos que cargan después pueden mover la sección
+    const late = window.setTimeout(go, 700);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(late);
+    };
+  }, []);
+
   return (
     <>
       <header className="site-header">

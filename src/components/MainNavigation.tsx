@@ -184,7 +184,20 @@ export function MainNavigation() {
   };
 
   return (
-    <nav ref={navRef} className={`main-nav${fixed ? ' is-fixed' : ''}`} aria-label="Principal" onPointerEnter={cancelClose} onPointerLeave={onNavLeave}>
+    <nav
+      ref={navRef}
+      className={`main-nav${fixed ? ' is-fixed' : ''}`}
+      aria-label="Principal"
+      onPointerEnter={cancelClose}
+      onPointerLeave={onNavLeave}
+      onClick={(e) => {
+        // Al elegir una sección de esta misma página, el menú se cierra para dejarla a la vista
+        if ((e.target as HTMLElement).closest('a[href*="#"]')) {
+          setOpenId(null);
+          setMobileOpen(false);
+        }
+      }}
+    >
       <div className={`main-nav__bar ${openId ? 'has-open' : ''}`}>
         <a href="/" className="main-nav__logo" aria-label={`${brand.name}, inicio`}>
           <SmartImage src={brand.logoWhite} alt={brand.name} kind="logo" width={78} height={38} loading="eager" className="on-dark" />

@@ -10,7 +10,7 @@ import './AboutIntro.css';
 export function AboutIntro() {
   return (
     <>
-      <section className="about-intro" aria-labelledby="about-intro-title">
+      <section id="quienes-somos" className="about-intro" aria-labelledby="about-intro-title">
         <div className="container">
           <h2 id="about-intro-title" className="about-intro__title">
             {aboutIntro.title.map((l) => (

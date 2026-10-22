@@ -7,7 +7,7 @@ import './Infrastructure.css';
 export function Infrastructure() {
   const z = infrastructure.zones;
   return (
-    <section className="infra" aria-labelledby="infra-title">
+    <section id="infraestructura" className="infra" aria-labelledby="infra-title">
       <div className="container">
         <header className="infra__head">
           <Eyebrow>{infrastructure.eyebrow}</Eyebrow>
