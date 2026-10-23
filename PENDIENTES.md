@@ -191,7 +191,6 @@ El menú "Haz tu evento" ya enlaza a la página y a sus secciones (apoyo, result
 
 | Ruta | Uso |
 |---|---|
-| `assets/evento/etapa-*.jpg` (5) | Fotos de las 5 etapas de "¿Cómo te apoyamos?" (apoyo a candidaturas, conexión con aliados, acceso a proveedores, visitas de inspección, experiencias de destino) |
 | `assets/equipo/fiorella-rivera.jpg`, `angelica-bolivar.jpg` | Retratos de contacto (los mismos del equipo en Sobre ProBarranquilla) |
 
 **Contenido y configuración pendientes**
@@ -279,7 +278,7 @@ Plantilla compartida: `src/components/ResourcePage.tsx` + `ResourceCard.tsx` (Bo
 - Mapas dibujados en SVG con geografía real (Natural Earth, `src/data/airMaps.ts`). Madrid queda fuera del encuadre del Caribe: su ruta sale por el borde con una flecha.
 
 ## Haz tu evento — Infraestructura para eventos
-- Hoteles: fotos de exterior e interior tomadas de `src/pages/Hoteles` (Marriott exterior convertida desde el RAW .DNG: solo trae 960 px). Faltan fotos de Hotel Dorado Plaza y del Centro de Eventos Puerta de Oro (`public/assets/evento/hoteles/dorado-plaza.jpg`, `puerta-de-oro.jpg`).
+- Hoteles: fotos de exterior e interior tomadas de `src/pages/Hoteles` (Marriott exterior convertida desde el RAW .DNG: solo trae 960 px). Faltan fotos de Hotel Dorado Plaza (`public/assets/evento/hoteles/dorado-plaza.jpg`). Puerta de Oro: foto oficial de probarranquilla.org.
 - Hotel Dorado Plaza: la dirección enviada (Carrera 53, Calle 100-86) es la misma del Hilton Garden Inn. Confirmar la correcta.
 - Hotel GHL Barranquilla: el cliente no indicó salones; la tarjeta solo muestra habitaciones y dirección.
 
@@ -293,3 +292,5 @@ Plantilla compartida: `src/components/ResourcePage.tsx` + `ResourceCard.tsx` (Bo
 - Instálate, Casos de éxito: textos de Garsite, Steelforce y Foundever redactados con información pública (Valora Analitik, El Heraldo, sitios oficiales); confirmar con el cliente. Fotos y logos de internet (Foundever usa una imagen genérica de su sitio). Subtítulo adaptado a "empresas".
 
 - Instálate, "Un territorio que hace que las cosas pasen": faltan los 3 testimonios (foto `public/assets/instalate/testimonio-1.jpg`, `-2`, `-3`; cita, nombre, cargo y empresa en `vision.testimonials` de `src/data/instalate.ts`). Mientras tanto se ven espacios de muestra.
+
+- Haz tu evento, ¿Cómo te apoyamos?: fotos de las 5 etapas tomadas de probarranquilla.org (feria FIEXPO, PANLAR, Convención de Puertos, Puerta de Oro y Carnaval). Las de Puerta de Oro (570 px) y Carnaval (400 px) son pequeñas; reemplazar si hay mejores.

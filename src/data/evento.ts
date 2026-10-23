@@ -116,7 +116,7 @@ export const support = {
       title: 'Apoyo a candidaturas',
       description: 'Te acompañamos en la postulación, preparación de propuesta y candidatura, presentaciones del destino y demás gestiones para lograr ser la sede de tu evento.',
       highlight: null,
-      photo: A('etapa-apoyo-a-candidaturas.jpg', 'Apoyo a candidaturas'),
+      photo: A('etapa-apoyo-a-candidaturas.jpg', 'Equipo de Turismo de Reuniones de ProBarranquilla en una feria internacional'),
     },
     {
       id: 'aliados',
@@ -124,7 +124,7 @@ export const support = {
       title: 'Conexión con aliados estratégicos',
       description: 'Articulamos entidades públicas, empresas, universidades y gremios para sumar apoyos y oportunidades a tu evento.',
       highlight: null,
-      photo: A('etapa-conexion-con-aliados.jpg', 'Conexión con aliados estratégicos'),
+      photo: A('etapa-conexion-con-aliados.jpg', 'Auditorio lleno durante el Congreso Panamericano de Reumatología en Barranquilla'),
     },
     {
       id: 'proveedores',
@@ -132,7 +132,7 @@ export const support = {
       title: 'Acceso a proveedores locales',
       description: 'Te conectamos con hoteles, recintos, operadores y proveedores especializados según las necesidades de tu evento.',
       highlight: null,
-      photo: A('etapa-acceso-a-proveedores.jpg', 'Acceso a proveedores locales'),
+      photo: A('etapa-acceso-a-proveedores.jpg', 'Danzas del Carnaval en el escenario de la Convención Latinoamericana de Puertos'),
     },
     {
       id: 'inspeccion',
@@ -140,7 +140,7 @@ export const support = {
       title: 'Visitas de inspección y asesoría',
       description: 'Coordinamos recorridos y te brindamos información del destino para facilitar la elección de espacios y la planeación.',
       highlight: null,
-      photo: A('etapa-visitas-de-inspeccion.jpg', 'Visitas de inspección y asesoría'),
+      photo: A('etapa-visitas-de-inspeccion.jpg', 'Vista aérea del Centro de Eventos Puerta de Oro'),
     },
     {
       id: 'experiencias',
@@ -148,7 +148,7 @@ export const support = {
       title: 'Experiencias de destino',
       description: 'Facilitamos la integración de experiencias culturales, gastronómicas y turísticas para enriquecer la visita de tus asistentes.',
       highlight: null,
-      photo: A('etapa-experiencias-de-destino.jpg', 'Experiencias de destino'),
+      photo: A('etapa-experiencias-de-destino.jpg', 'Disfraces del Carnaval de Barranquilla'),
     },
   ] as SupportStage[],
 };
@@ -281,7 +281,7 @@ export const memberHotels = {
     name: 'Centro de Eventos Puerta de Oro',
     capacity: 'Hasta 10.000 personas en formato cóctel y 7.000 en auditorio.',
     href: 'https://corferias.com/es/ciudad-barranquilla/2024',
-    photo: H('puerta-de-oro', 'Centro de Eventos Puerta de Oro en Barranquilla'),
+    photo: H('puerta-de-oro', 'Fachada del Centro de Eventos Puerta de Oro con su plaza y árboles'),
   },
   // Orden indicado por el cliente
   hotels: [
