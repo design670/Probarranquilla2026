@@ -7,6 +7,8 @@
  * El layout no depende de las dimensiones del archivo.
  */
 import type { ImageAsset } from '../components/SmartImage';
+import type { ImpactResults } from '../components/ImpactStatistics';
+import { successStories, type SuccessStoriesData } from './content';
 import { PENDING_HREF, type Link } from './content';
 
 const A = (src: string, alt: string, extra: Partial<ImageAsset> = {}): ImageAsset => ({
@@ -23,7 +25,7 @@ export const instalateAssets = {
   mapaConectividad: A('mapa-conectividad-aerea.png', 'Mapa de rutas aéreas desde Barranquilla hacia Panamá, Miami, Fort Lauderdale y Curazao', { position: '100% 50%' }),
   mapaTerminales: A('mapa-terminales-portuarias.png', 'Mapa del río Magdalena con las terminales portuarias de Barranquilla'),
   zonasFrancas: {
-    barranquilla: A('zf-barranquilla.jpg', 'Vista aérea de la Zona Franca de Barranquilla junto al río'),
+    barranquilla: A('zf-barranquilla.jpg', 'Vista aérea de las bodegas de la Zona Franca de Barranquilla'),
     zofia: A('zf-zofia.jpg', 'Portería de ZOFIA Zona Franca Internacional del Atlántico'),
     palermo: A('zf-palermo.jpg', 'Vista aérea de las instalaciones de Palermo Sociedad Portuaria'),
     cayena: A('zf-la-cayena.jpg', 'Vista aérea de la entrada y bodegas de la Zona Franca La Cayena'),
@@ -38,11 +40,11 @@ export const instalateAssets = {
   },
   retrato: A('profesional.png', 'Profesional sonriente con camisa azul, celular y tableta', { fit: 'contain', position: '50% 100%' }),
   formacion: {
-    servicios: A('sena-servicios.jpg', 'Oficina con puestos de trabajo y pantallas'),
-    madera: A('sena-madera-muebles.jpg', 'Taller de carpintería con bancos de trabajo'),
-    metalurgia: A('sena-metalurgia.jpg', 'Planta metalúrgica con brazos robóticos de soldadura'),
-    logistica: A('sena-logistica.jpg', 'Terminal portuaria con contenedores y grúas'),
-    agro: A('sena-agro.jpg', 'Planta de procesamiento de alimentos'),
+    servicios: A('sena-servicios.jpg', 'Edificio de una sede del SENA en Barranquilla'),
+    madera: A('sena-madera-muebles.jpg', 'Sede del SENA en Galapa para madera y muebles'),
+    metalurgia: A('sena-metalurgia.jpg', 'Inauguración de la sede del SENA en Malambo'),
+    logistica: A('sena-logistica.jpg', 'Inicio de obras de la sede del SENA de logística en Caribe Verde'),
+    agro: A('sena-agro.jpg', 'Productos lácteos del Centro de Valor Agregado del SENA en Sabanalarga'),
   },
   bannerVision: A('banner-vision.jpg', 'Puente Pumarejo sobre el río Magdalena', { position: '50% 60%' }),
 };
@@ -57,6 +59,17 @@ export const instalateHero = {
 /* ---------- B. Impacto ---------- */
 /** Frase principal sobre la sección verde (antes estaba en el hero) */
 export const instalateImpactTitle = ['Barranquilla y el Atlántico: Una ubicación estratégica,', 'la principal economía del Caribe colombiano', 'y un territorio que conecta talento,', 'negocios y oportunidades.'];
+
+/** Cifras de Instálate (últimos 5 años) */
+export const instalateResults = {
+  heading: 'Una propuesta de valor respaldada por resultados',
+  period: 'Últimos 5 años',
+  stats: [
+    { tone: 'navy', value: ['USD +2.000'], label: ['Millones en', 'inversión'] },
+    { tone: 'orange', value: ['+14.000'], label: ['Empleos', 'directos'] },
+    { tone: 'blue', value: ['80%'], label: ['De proyectos con', 'vocación exportadora'] },
+  ],
+} satisfies ImpactResults;
 
 export const instalateImpactIntro =
   'Su ubicación estratégica, conectividad internacional, infraestructura portuaria y logística, talento humano y sólida base empresarial permiten a las compañías acercar sus operaciones a mercados clave, fortalecer sus cadenas de suministro y encontrar en el territorio las capacidades necesarias para crecer y expandirse desde Colombia.';
@@ -296,14 +309,12 @@ export const talent = {
   intro:
     'Las empresas que llegan al territorio encuentran una base de talento en crecimiento, con una oferta de formación que responde progresivamente a las necesidades de sectores productivos y de servicios. La presencia de instituciones educativas, programas de formación técnica y profesional y el desarrollo de capacidades bilingües y digitales fortalecen la competitividad del departamento y generan condiciones para que nuevas operaciones puedan instalarse, crecer y desarrollar actividades de mayor valor agregado.',
   facts: [
-    { value: '38%', title: ['De los graduados del Caribe', 'colombiano'], text: ['se concentran en las instituciones de', 'educación superior del departamento.'] },
     { value: '+270.000', title: ['Graduados en el Atlántico'], text: ['durante los últimos 10 años, en todos', 'los niveles de educación superior.'] },
   ],
   population: '28% de la población es menor de 28 años',
   portrait: instalateAssets.retrato,
   cards: [
     { tone: 'teal', icon: 'cap', value: '7.738', title: 'graduados bilingües', text: 'posicionan a Barranquilla como la 3.ª ciudad con mayor proporción de dominio del inglés en el país.' },
-    { tone: 'navy', icon: 'flask', value: '313', title: 'grupos de investigación', text: 'están registrados en Colciencias, de los cuales 67 están clasificados como A1, la categoría más alta del país.' },
   ] as { tone: 'teal' | 'navy'; icon: IconName; value: string; title: string; text: string }[],
   programs: {
     total: { value: '1.344', label: 'Programas' },
@@ -324,8 +335,18 @@ export type TrainingCard = { tone: 'navy' | 'blue' | 'orange' | 'teal' | 'yellow
 const f = instalateAssets.formacion;
 
 export const training = {
-  eyebrow: 'PRESENCIA REGIONAL MULTIDECIMAS',
-  title: ['El Atlántico es el departamento con', 'mayor cobertura en los municipios de', 'centros educativos SENA en el país'],
+  title: 'Talento que se forma para las necesidades de tu empresa',
+  paragraphs: [
+    'El Servicio Nacional de Aprendizaje (SENA) es una entidad pública colombiana que ofrece formación técnica, tecnológica y complementaria gratuita, orientada a desarrollar las competencias que necesita el sector empresarial.',
+    'En Barranquilla y el Atlántico, el SENA cuenta con centros de formación y programas que contribuyen a preparar talento para diferentes actividades productivas.',
+  ],
+  offerTitle: '¿Qué ofrece a las empresas?',
+  offers: [
+    { icon: 'cap', label: 'Formación gratuita', text: 'Programas técnicos, tecnológicos y de actualización de competencias.' },
+    { icon: 'gear', label: 'Formación a la medida', text: 'Posibilidad de desarrollar procesos de capacitación según las necesidades empresariales, sujetos a requisitos y disponibilidad.' },
+    { icon: 'archive', label: 'Certificación de competencias', text: 'Reconocimiento de habilidades y conocimientos adquiridos mediante la experiencia laboral.' },
+  ] as { icon: IconName; label: string; text: string }[],
+  subtitle: 'Barranquilla y el Atlántico son el territorio con mayores centros de formación SENA en el país.',
   cards: [
     { tone: 'navy', icon: 'gear', name: 'Servicios', photo: f.servicios, items: ['2 nodos en Barranquilla', '36 laboratorios especializados para contabilidad, finanzas, administración, comercio y mercadeo.'] },
     { tone: 'blue', icon: 'chair', name: 'Madera y Muebles', photo: f.madera, items: ['1 Nodo en Galapa', '11 laboratorios avanzados para tapicería, ensamble, carpintería y diseño de mobiliario.'] },
@@ -336,9 +357,69 @@ export const training = {
 };
 
 /* ---------- J. Banner ---------- */
+export type Testimonial = { photo: ImageAsset; quote: string | null; name: string | null; role: string | null; company: string | null };
+
 export const vision = {
-  eyebrow: 'Crecimiento sostenido y confianza inversionista',
-  title: ['Una visión compartida', 'que genera oportunidades'],
+  title: ['Un territorio que hace', 'que las cosas pasen'],
   text: 'El desarrollo de Barranquilla y el Atlántico se ha construido sobre una visión compartida entre el sector público, privado y académico. Esta articulación permite identificar necesidades, coordinar respuestas y trabajar sobre factores que inciden directamente en el entorno de negocios, desde la facilitación de la inversión hasta el fortalecimiento de capacidades y la generación de nuevas oportunidades. Para ProBarranquilla, esta forma de trabajar ha sido fundamental para consolidar un territorio competitivo y confiable, donde los diferentes actores suman capacidades alrededor de objetivos comunes.',
   background: instalateAssets.bannerVision,
+  // Pendiente: el cliente envía foto, cita, nombre, cargo y empresa de cada empresario
+  testimonials: [1, 2, 3].map((n) => ({
+    photo: A(`testimonio-${n}.jpg`, 'Retrato del empresario', { position: '50% 25%' }),
+    quote: null,
+    name: null,
+    role: null,
+    company: null,
+  })) as Testimonial[],
+};
+
+/* ---------- K. Casos de éxito (solo esta página) ---------- */
+const homeCase = (company: string) => successStories.cases.find((x) => x.company === company)!;
+
+/**
+ * Casos de Instálate en el orden del cliente. Hada, ADAMA y Fruselva reutilizan los del Home.
+ * Garsite, Steelforce y Foundever: textos redactados con información pública (prensa y sitios
+ * oficiales) y fotos/logos de internet; pendientes de confirmar (ver PENDIENTES.md).
+ */
+export const instalateCases: SuccessStoriesData = {
+  ...successStories,
+  // El subtítulo general habla de eventos; aquí son empresas
+  subtitle: 'Conoce algunas de las empresas que han elegido Barranquilla y el Atlántico como su sede',
+  cases: [
+    {
+      company: 'Garsite',
+      logo: '/assets/casos/logo-garsite.png',
+      image: '/assets/casos/garsite.jpg',
+      alt: 'Directivo de Garsite frente a la planta y a camiones cisterna de reabastecimiento de aviones',
+      lead: 'Garsite fabrica en Barranquilla equipos de reabastecimiento de combustible para aviación.',
+      body: ' Opera desde 2016 en la Zona Franca La Cayena y desde allí atiende aeropuertos y operadores de distintos países, como el nuevo aeropuerto de Lima.',
+    },
+    {
+      company: 'Steelforce',
+      logo: '/assets/casos/logo-steelforce.png',
+      image: '/assets/casos/steelforce.jpg',
+      alt: 'Planta de Steelforce con bobinas de acero y líneas de producción',
+      lead: 'Steelforce, uno de los principales comercializadores de acero del mundo, abrió en el Atlántico su primera operación industrial.',
+      body: ' Desde la Zona Franca ZOFIA produce empaques de acero para alimentos y bebidas con destino a los mercados de América Latina.',
+    },
+    {
+      company: 'Enel',
+      logo: '/assets/casos/logo-enel.png',
+      image: '/assets/casos/enel.jpg',
+      alt: 'Parque solar de Enel en el Atlántico al atardecer',
+      lead: 'Construyó en el Atlántico el parque solar más grande de Colombia,',
+      body: ' fortaleciendo la transición energética y la sostenibilidad del territorio.',
+    },
+    homeCase('Hada International'),
+    homeCase('ADAMA'),
+    homeCase('Fruselva'),
+    {
+      company: 'Foundever',
+      logo: '/assets/casos/logo-foundever.png',
+      image: '/assets/casos/foundever.jpg',
+      alt: 'Persona sonriente usando su celular',
+      lead: 'Foundever, multinacional de experiencia del cliente, opera en Barranquilla.',
+      body: ' Desde la ciudad presta servicios de atención al cliente y soporte para marcas de distintos mercados.',
+    },
+  ],
 };

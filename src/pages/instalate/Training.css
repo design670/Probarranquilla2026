@@ -1,43 +1,119 @@
 /* Deja espacio para la franja de estadísticas que baja desde Talento (65 px) */
 .training {
   background: var(--c-white);
-  padding: 180px 0 0;
+  padding: 90px 0 0; /* ya no hay franja de programas encima */
 }
 
-.training__head {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Continuación de Talento: los títulos son menores que el de esa sección (44 px) */
+.training__intro {
+  max-width: 980px;
+  margin: 0 auto;
   text-align: center;
 }
 
 .training__title {
-  margin-top: 26px;
-  line-height: 0.96;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--c-blue-title);
 }
 
-.training__title span {
-  display: block;
+.training__text {
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #334155;
 }
 
-.training__row {
+.training__offer-title {
+  margin-top: 48px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  color: var(--c-blue-title);
+}
+
+.training__offers {
   list-style: none;
-  margin: 0;
+  margin: 22px 0 0;
   padding: 0;
   display: grid;
-}
-
-.training__row--3 {
-  margin-top: 64px;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 18px;
 }
 
-.training__row--2 {
-  margin-top: 21px;
-  padding: 0 4px;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+.training__offers li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 26px 24px;
+  border: 1px solid #e0e4e7;
+  border-radius: var(--radius-lg);
+  background: var(--c-gray-news);
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.training__offers li:hover {
+  background: var(--c-navy-nav);
+  transform: translateY(-6px);
+}
+
+.training__offer-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  background: var(--c-blue-bright);
+  color: var(--c-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.training__offer-label {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  color: var(--c-blue-title);
+  transition: color 0.25s ease;
+}
+
+.training__offer-text {
+  font-size: 15px;
+  line-height: 1.45;
+  color: #475569;
+  transition: color 0.25s ease;
+}
+
+.training__offers li:hover .training__offer-label,
+.training__offers li:hover .training__offer-text {
+  color: var(--c-white);
+}
+
+.training__offers li:hover .training__offer-icon {
+  background: var(--c-white);
+  color: var(--c-navy-nav);
+}
+
+.training__subtitle {
+  max-width: 900px;
+  margin: 64px auto 0;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.25;
+  color: var(--c-blue-title);
+}
+
+/* Especialidades SENA: 5 tarjetas del mismo tamaño, solo con el título */
+.training__grid {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
 }
 
 .training-card {
@@ -45,11 +121,16 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--c-white);
-  box-shadow: 0 6px 20px rgba(0, 30, 58, 0.06);
+  transition: transform 0.25s ease;
+}
+
+.training-card:hover {
+  transform: translateY(-6px);
 }
 
 .training-card__photo {
-  height: 220px;
+  height: 200px;
+  overflow: hidden;
 }
 
 .training-card__img {
@@ -61,10 +142,12 @@
 .training-card__band {
   display: flex;
   align-items: center;
-  gap: 12px;
-  height: 53px;
-  padding: 0 22px;
-  font-size: 18px;
+  gap: 10px;
+  min-height: 56px;
+  margin: 0;
+  padding: 10px 18px;
+  font-size: 17px;
+  line-height: 1.2;
   color: var(--c-white);
 }
 
@@ -74,21 +157,15 @@
 .band-teal { background: var(--c-teal-bright); }
 .band-yellow { background: var(--c-yellow); }
 
-.training-card__list {
-  margin: 0;
-  padding: 26px 24px 24px 40px;
-  font-size: 15px;
-  line-height: 1.45;
-  color: #3c4a5c;
-}
-
-.training-card__list li + li {
-  margin-top: 12px;
-}
-
-.training-card__list li::marker {
-  color: var(--c-blue-title);
-  font-size: 0.8em;
+@media (prefers-reduced-motion: reduce) {
+  .training__offers li,
+  .training-card {
+    transition: none;
+  }
+  .training__offers li:hover,
+  .training-card:hover {
+    transform: none;
+  }
 }
 
 /* ---------- Banner ---------- */
@@ -144,8 +221,8 @@
 }
 
 @media (max-width: 1100px) {
-  .training__row--3 {
-    grid-template-columns: repeat(2, 1fr);
+  .training__grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -157,19 +234,17 @@
 
 @media (max-width: 640px) {
   .training {
-    padding-top: 140px;
+    padding-top: 56px;
   }
-  .training__row--3,
-  .training__row--2 {
+  .training__grid,
+  .training__offers {
     grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 0;
   }
-  .training__row--3 {
-    margin-top: 40px;
+  .training__title {
+    font-size: 24px;
   }
-  .training__row--2 {
-    margin-top: 16px;
+  .training__subtitle {
+    font-size: 20px;
   }
   .vision {
     padding: 72px 0 40px;
@@ -182,5 +257,237 @@
   }
   .vision__text {
     font-size: 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  .training__offers {
+    grid-template-columns: 1fr;
+  }
+  .training__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .training__title {
+    font-size: 28px;
+  }
+  .training__subtitle {
+    font-size: 22px;
+  }
+}
+
+/* ---------- ¿Qué ofrece a las empresas?: tarjetas de colores e íconos de vidrio ---------- */
+.training__offers li {
+  border: 0;
+}
+
+.training__offers li:nth-child(1),
+.training__offers li:nth-child(1):hover { background: var(--c-orange); }
+.training__offers li:nth-child(2),
+.training__offers li:nth-child(2):hover { background: var(--c-yellow); }
+.training__offers li:nth-child(3),
+.training__offers li:nth-child(3):hover { background: var(--c-blue-bright); }
+
+.training__offers .training__offer-label,
+.training__offers .training__offer-text,
+.training__offers li:hover .training__offer-label,
+.training__offers li:hover .training__offer-text {
+  color: var(--c-white);
+}
+
+.training__offers .training__offer-text {
+  opacity: 0.92;
+}
+
+/* Sobre amarillo, texto azul oscuro para que se lea bien */
+.training__offers li:nth-child(2) .training__offer-label,
+.training__offers li:nth-child(2) .training__offer-text {
+  color: var(--c-navy-deep);
+}
+
+.training__offers .training__offer-icon,
+.training__offers li:hover .training__offer-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.08));
+  color: var(--c-white);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.55), 0 8px 18px rgba(0, 0, 0, 0.16);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.training__offers li:nth-child(2) .training__offer-icon {
+  color: var(--c-navy-deep);
+}
+
+/* Especialidades en carrusel (3 a la vista, como zonas francas) */
+.training__track {
+  margin-top: 16px;
+}
+
+.training__track .training-card__photo {
+  height: 240px;
+}
+
+/* ---------- Testimonios: mismo diseño que las tarjetas de noticias ---------- */
+.testimonials {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 19px;
+}
+
+.testimonial {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 14px 18px;
+  border-radius: 8px;
+  background: var(--c-gray-news);
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.testimonial:hover {
+  background: var(--c-navy-nav);
+  transform: translateY(-8px);
+}
+
+.testimonial:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 8px;
+}
+
+.testimonial__media {
+  aspect-ratio: 393 / 311;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.testimonial__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonial__quote {
+  flex: 1;
+  margin: 22px 0 0;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--c-navy-nav);
+  transition: color 0.25s ease;
+}
+
+/* Espacio de la cita mientras llega el texto */
+.testimonial__quote--pending {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.testimonial__quote--pending span {
+  display: block;
+  height: 12px;
+  border-radius: 6px;
+  background: rgba(0, 30, 58, 0.12);
+}
+
+.testimonial__quote--pending span:last-child {
+  width: 60%;
+}
+
+.testimonial__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  color: var(--c-navy-nav);
+  transition: color 0.25s ease;
+}
+
+.testimonial__meta-icon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--c-meta-icon);
+  color: var(--c-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.testimonial__name {
+  display: block;
+  font-size: 15px;
+}
+
+.testimonial__role {
+  display: block;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.testimonial:hover .testimonial__quote,
+.testimonial:hover .testimonial__meta {
+  color: var(--c-white);
+}
+
+.testimonial:hover .testimonial__meta-icon {
+  background: var(--c-white);
+  color: var(--c-navy-nav);
+}
+
+.testimonial:hover .testimonial__quote--pending span {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial {
+    transition: none;
+  }
+  .testimonial:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .testimonials {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin-inline: auto;
+  }
+}
+
+/* Banner a todo el ancho, sin bordes redondeados, con el texto centrado */
+.vision__banner--full {
+  border-radius: 0;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+}
+
+.vision__banner--full .vision__content {
+  width: 100%;
+  text-align: center;
+  padding: 80px var(--gutter);
+}
+
+.vision__banner--full .vision__text {
+  margin-inline: auto;
+}
+
+@media (max-width: 900px) {
+  .vision__banner--full .vision__content {
+    padding: 56px var(--gutter);
   }
 }

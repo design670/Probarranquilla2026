@@ -256,3 +256,61 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------- Cifras propias de una página (Instálate): título, periodo visible y 3 tarjetas ---------- */
+.impact__results {
+  margin-top: 48px;
+}
+
+.impact__results-title {
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--c-white);
+}
+
+/* Periodo: nota pequeña debajo de las tarjetas */
+.impact__period {
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--c-white);
+  opacity: 0.9;
+}
+
+.impact__grid--three {
+  margin-top: 32px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Cifras un poco más pequeñas que las del Home */
+.impact__grid--three .impact__card {
+  min-height: 230px;
+}
+
+.impact__grid--three .impact__value {
+  font-size: 46px;
+}
+
+.impact__grid--three .impact__label {
+  font-size: 22px;
+}
+
+@media (max-width: 900px) {
+  .impact__results-title {
+    font-size: 24px;
+  }
+  .impact__grid--three {
+    grid-template-columns: 1fr;
+  }
+  .impact__grid--three .impact__card {
+    min-height: 0;
+    gap: 14px;
+    padding: 24px 22px;
+  }
+  .impact__grid--three .impact__value {
+    font-size: 34px;
+  }
+  .impact__grid--three .impact__label {
+    font-size: 18px;
+  }
+}

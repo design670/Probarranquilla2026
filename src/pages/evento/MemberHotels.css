@@ -375,3 +375,26 @@
     margin-top: 36px;
   }
 }
+
+/* Foto del interior encima del exterior: aparece al pasar el cursor por la tarjeta */
+.hotel__media {
+  position: relative;
+}
+
+.hotel__photo--hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.hotel:hover .hotel__photo--hover,
+.hotel:focus-within .hotel__photo--hover {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hotel__photo--hover {
+    transition: none;
+  }
+}

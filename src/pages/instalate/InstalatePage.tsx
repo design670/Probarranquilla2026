@@ -2,7 +2,7 @@ import { SiteShell } from '../../components/SiteShell';
 import { PageHero } from '../../components/PageHero';
 import { ImpactStatistics } from '../../components/ImpactStatistics';
 import { SuccessStories } from '../../components/SuccessStories';
-import { instalateAssets, instalateHero, instalateImpactIntro, instalateImpactTitle } from '../../data/instalate';
+import { instalateAssets, instalateHero, instalateImpactIntro, instalateImpactTitle, instalateResults, instalateCases } from '../../data/instalate';
 import { Connectivity } from './Connectivity';
 import { Infrastructure } from './Infrastructure';
 import { FreeZonesOffer } from './FreeZones';
@@ -21,14 +21,14 @@ export function InstalatePage() {
         />
       }
     >
-      <ImpactStatistics id="resultados" title={instalateImpactTitle} intro={instalateImpactIntro} />
+      <ImpactStatistics id="resultados" title={instalateImpactTitle} intro={instalateImpactIntro} results={instalateResults} />
       <Connectivity />
       <Infrastructure />
       <FreeZonesOffer />
       <Talent />
       <Training />
       <VisionBanner />
-      <SuccessStories className="cases--compact" />
+      <SuccessStories className="cases--compact" data={instalateCases} />
     </SiteShell>
   );
 }

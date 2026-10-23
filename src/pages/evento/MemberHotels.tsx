@@ -117,6 +117,8 @@ export function MemberHotels() {
             <li key={h.id} className="hotel">
               <div className="hotel__media">
                 <SmartImage {...h.photo} className="hotel__photo" />
+                {/* Exterior primero; al pasar el cursor aparece el interior */}
+                {h.photoHover && <SmartImage {...h.photoHover} className="hotel__photo hotel__photo--hover" />}
               </div>
               <div className="hotel__body">
                 <h4 className="hotel__name">{h.name}</h4>

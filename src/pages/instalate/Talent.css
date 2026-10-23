@@ -347,3 +347,88 @@
     font-size: 18px;
   }
 }
+
+/* Bloque reorganizado: cifra, franja del 28% y tarjeta bilingüe a la izquierda; persona a la derecha */
+.talent .talent__main {
+  margin-top: 64px;
+}
+
+.talent .talent__facts {
+  margin-bottom: 40px;
+}
+
+.talent__card--inline {
+  min-height: 0;
+  margin-top: 24px;
+  padding: 32px 36px 30px;
+}
+
+@media (max-width: 900px) {
+  .talent .talent__main {
+    margin-top: 40px;
+  }
+  .talent__card--inline {
+    padding: 26px 24px;
+  }
+}
+
+/* Imagen como banner a todo el ancho y la información debajo */
+.talent__banner {
+  margin-top: 48px;
+  height: 460px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  /* Mismo azul del fondo de la foto: la persona se funde con el banner */
+  background: #002549;
+}
+
+.talent__banner-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.talent__banner .smart-placeholder--photo {
+  background-color: #1b3a5e;
+  background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0 12px, transparent 12px 24px);
+}
+
+/* Debajo: cifra y franja a la izquierda, tarjeta bilingüe a la derecha */
+.talent .talent__main--below {
+  margin-top: 40px;
+  grid-template-columns: 1fr;
+}
+
+.talent__main--below .talent__facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 32px;
+  align-items: start;
+  margin-bottom: 48px;
+}
+
+.talent__main--below .talent__population {
+  grid-column: 1;
+}
+
+.talent__main--below .talent__card--inline {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .talent__banner {
+    height: 240px;
+    margin-top: 32px;
+  }
+  .talent__main--below .talent__facts {
+    grid-template-columns: 1fr;
+  }
+  .talent__main--below .talent__card--inline {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 24px;
+  }
+}

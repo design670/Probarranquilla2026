@@ -263,6 +263,8 @@ export type Hotel = {
   address: string;
   href: string;
   photo: ImageAsset;
+  /** Foto del interior: aparece al pasar el cursor */
+  photoHover?: ImageAsset;
 };
 
 /** Fotos de hoteles y venues: pendientes (las envía el cliente) */
@@ -291,6 +293,7 @@ export const memberHotels = {
       address: 'Calle 1A #25-40 Lote D7 Portal del Genovés, Barranquilla, Colombia',
       href: 'https://www.marriott.com/es/hotels/baqmc-barranquilla-marriott-hotel/overview/',
       photo: H('marriott', 'Hotel Marriott Barranquilla'),
+      photoHover: H('marriott-interior', 'Interior del restaurante del Hotel Marriott'),
     },
     {
       id: 'ghl',
@@ -300,6 +303,7 @@ export const memberHotels = {
       address: 'Calle 107 No. 50-69, Barranquilla, Atlántico',
       href: 'https://www.ghlgrandbarranquilla.com/',
       photo: H('ghl', 'Hotel GHL Barranquilla'),
+      photoHover: H('ghl-interior', 'Lobby del Hotel GHL Barranquilla'),
     },
     {
       id: 'el-prado',
@@ -309,6 +313,7 @@ export const memberHotels = {
       address: 'Carrera 54 #70-10, Barranquilla, Atlántico',
       href: 'https://hotelelpradobarranquilla.com/',
       photo: H('el-prado', 'Hotel El Prado en Barranquilla'),
+      photoHover: H('el-prado-interior', 'Piscina y jardines del Hotel El Prado'),
     },
     {
       id: 'estelar',
@@ -318,6 +323,7 @@ export const memberHotels = {
       address: 'Cl. 76 No. 56-29, Barranquilla, Atlántico',
       href: 'https://www.estelarenaltoprado.com/es/',
       photo: H('estelar-alto-prado', 'Hotel Estelar Alto Prado en Barranquilla'),
+      photoHover: H('estelar-alto-prado-interior', 'Lobby del Hotel Estelar Alto Prado'),
     },
     {
       id: 'hilton-garden-inn',
@@ -327,6 +333,7 @@ export const memberHotels = {
       address: 'Carrera 53, Calle 100-86, Barranquilla, Atlántico',
       href: 'https://www.hilton.com/es/locations/colombia/barranquilla/hilton-garden-inn/',
       photo: H('hilton-garden-inn', 'Hotel Hilton Garden Inn Barranquilla'),
+      photoHover: H('hilton-garden-inn-interior', 'Fachada del Hotel Hilton Garden Inn'),
     },
     {
       id: 'dann-carlton',
@@ -336,6 +343,7 @@ export const memberHotels = {
       address: 'Cl. 98 #52B-10, Barranquilla, Atlántico',
       href: 'https://www.danncarltonbaq.co/',
       photo: H('dann-carlton', 'Hotel Dann Carlton Barranquilla'),
+      photoHover: H('dann-carlton-interior', 'Lobby del Hotel Dann Carlton'),
     },
     {
       id: 'dorado-plaza',

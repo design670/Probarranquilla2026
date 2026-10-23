@@ -48,7 +48,8 @@ export function CountUp({ value }: { value: string }) {
     const run = () => {
       const start = performance.now();
       const tick = (now: number) => {
-        const t = Math.min(1, (now - start) / DURATION);
+        // Nunca por debajo de 0: el primer cuadro puede llegar con una marca de tiempo anterior al inicio
+        const t = Math.min(1, Math.max(0, (now - start) / DURATION));
         setCurrent(parsed.target * easeOut(t));
         if (t < 1) frame = requestAnimationFrame(tick);
         else setDone(true);

@@ -233,3 +233,42 @@
     font-size: 16px;
   }
 }
+
+/* ---------- Beneficios en colores (como las estadísticas) con íconos de vidrio ---------- */
+.infra__benefits li {
+  border: 0;
+  color: var(--c-white);
+}
+
+.infra__benefits li:nth-child(1) { background: var(--c-navy-deep); }
+.infra__benefits li:nth-child(2) { background: var(--c-orange); }
+.infra__benefits li:nth-child(3) { background: var(--c-blue-bright); }
+
+.infra__benefits .infra__benefit-title,
+.infra__benefits .infra__benefit-text,
+.infra__benefits li:hover .infra__benefit-title,
+.infra__benefits li:hover .infra__benefit-text {
+  color: var(--c-white);
+}
+
+.infra__benefits .infra__benefit-text {
+  opacity: 0.9;
+}
+
+/* Al pasar el cursor solo sube: conserva su color */
+.infra__benefits li:nth-child(1):hover { background: var(--c-navy-deep); }
+.infra__benefits li:nth-child(2):hover { background: var(--c-orange); }
+.infra__benefits li:nth-child(3):hover { background: var(--c-blue-bright); }
+
+/* Ícono con efecto de vidrio */
+.infra__benefits .infra__icon,
+.infra__benefits li:hover .infra__icon {
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.08));
+  color: var(--c-white);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.55), 0 8px 18px rgba(0, 0, 0, 0.18);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}

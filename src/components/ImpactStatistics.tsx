@@ -11,10 +11,18 @@ type Props = {
   intro: string;
   ariaLabel?: string;
   className?: string;
+  /** Cifras propias de la página (sin pestañas), con título y periodo visibles */
+  results?: ImpactResults;
+};
+
+export type ImpactResults = {
+  heading: string;
+  period: string;
+  stats: { tone: 'navy' | 'orange' | 'yellow' | 'blue'; value: string[]; label: string[] }[];
 };
 
 /** Pestañas + tarjetas de cifras. Las cifras vienen de `impact.tabs`. */
-export function ImpactStatistics({ id, title, intro, ariaLabel = 'Impacto y resultados', className = '' }: Props) {
+export function ImpactStatistics({ id, title, intro, ariaLabel = 'Impacto y resultados', className = '', results }: Props) {
   const [tabId, setTabId] = useState(impact.tabs[0].id);
   const tab = impact.tabs.find((t) => t.id === tabId)!;
 
@@ -35,6 +43,31 @@ export function ImpactStatistics({ id, title, intro, ariaLabel = 'Impacto y resu
         )}
         <p className="impact__intro">{intro}</p>
 
+        {results ? (
+          <div className="impact__results">
+            <h3 className="impact__results-title">{results.heading}</h3>
+            <ul className="impact__grid impact__grid--three">
+              {results.stats.map((s) => (
+                <li key={s.value.join(' ')} className={`impact__card tone-${s.tone}`}>
+                  <p className="impact__value">
+                    {s.value.map((v) => (
+                      <span key={v}>
+                        <CountUp value={v} />
+                      </span>
+                    ))}
+                  </p>
+                  <p className="impact__label">
+                    {s.label.map((l) => (
+                      <span key={l}>{l}</span>
+                    ))}
+                  </p>
+                </li>
+              ))}
+            </ul>
+            <p className="impact__period">*{results.period}</p>
+          </div>
+        ) : (
+        <>
         <div className="impact__tabs" role="tablist" aria-label="Tipo de estadística">
           {impact.tabs.map((t) => (
             <button
@@ -74,6 +107,8 @@ export function ImpactStatistics({ id, title, intro, ariaLabel = 'Impacto y resu
             <p className="impact__empty">Las cifras de {tab.label.toLowerCase()} aún no están disponibles.</p>
           )}
         </div>
+        </>
+        )}
       </div>
     </section>
   );

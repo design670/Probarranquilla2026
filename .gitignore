@@ -5,6 +5,7 @@ dist
 # Material fuente del cliente (logos, manuales de marca; hasta 190 MB por archivo).
 # El sitio usa las versiones procesadas en public/assets.
 src/Img/
+src/pages/Hoteles/
 
 .DS_Store
 Thumbs.db
