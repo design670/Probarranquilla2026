@@ -58,7 +58,7 @@ export const whatWeDo = {
         { strong: 'Facilitamos cada etapa del proceso:', text: 'evaluación inicial, instalación y re-inversión.' },
       ],
       tone: 'navy',
-      image: A('que-hace-acompanamiento.jpg', 'Presentación de tendencias de inversión ante un grupo de empresarios', { position: '70% 40%' }),
+      image: A('que-hace-acompanamiento.jpg?v=2', 'Presentación de tendencias de inversión ante un grupo de empresarios', { position: '70% 40%' }),
       textWidth: 400,
     },
     {
@@ -71,7 +71,7 @@ export const whatWeDo = {
         },
       ],
       tone: 'gold',
-      image: A('que-hace-posicionamiento.jpg', 'Vista aérea de la Ventana al Mundo en Barranquilla', { position: '60% 50%' }),
+      image: A('que-hace-posicionamiento.jpg?v=2', 'Vista aérea de la Ventana al Mundo en Barranquilla', { position: '60% 50%' }),
       textWidth: 520,
     },
     {
@@ -83,7 +83,7 @@ export const whatWeDo = {
         { text: 'Fomentamos el diálogo entre el sector público, privado y la academia para fortalecer el clima de inversión.' },
       ],
       tone: 'orange',
-      image: A('que-hace-seguimiento.jpg', 'Hombre con gorra frente a un mural de grafiti en Barranquilla', { position: '80% 30%' }),
+      image: A('que-hace-seguimiento.jpg?v=2', 'Hombre con gorra frente a un mural de grafiti en Barranquilla', { position: '80% 30%' }),
       textWidth: 360,
     },
   ] as AboutBanner[],
