@@ -63,6 +63,8 @@ export type MegaColumn = {
 export type MegaPanel = {
   id: string;
   label: string;
+  /** Página interna a la que lleva el clic en el nombre (la flecha despliega el panel) */
+  href?: string;
   title: string[];
   /** `split` = 2 columnas (título + enlaces); `three` = 3 columnas; `about` = 3 columnas con la alineación de "Sobre". */
   layout: 'split' | 'three' | 'about';
@@ -77,6 +79,7 @@ export const mainNav: MegaPanel[] = [
   {
     id: 'invierte',
     label: 'Instálate en Barranquilla',
+    href: '/instalate-en-barranquilla/',
     title: ['Instálate en', 'Barranquilla'],
     layout: 'split',
     linksOffset: 527,
@@ -95,6 +98,7 @@ export const mainNav: MegaPanel[] = [
   {
     id: 'sectores',
     label: 'Sectores',
+    href: '/sectores/',
     title: ['Principales', 'sectores de', 'inversión'],
     layout: 'three',
     columns: [
@@ -130,6 +134,7 @@ export const mainNav: MegaPanel[] = [
   {
     id: 'evento',
     label: 'Trae tu evento a Barranquilla',
+    href: '/haz-tu-evento-en-barranquilla/',
     title: ['Trae tu evento', 'a Barranquilla'],
     layout: 'split',
     linksOffset: 423,
@@ -148,6 +153,7 @@ export const mainNav: MegaPanel[] = [
   {
     id: 'sobre',
     label: 'Sobre ProBarranquilla',
+    href: '/sobre-probarranquilla/',
     title: ['Sobre', 'ProBarranquilla'],
     layout: 'about',
     columns: [

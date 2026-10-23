@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { utilityBar } from '../data/content';
 import { ArrowUp } from './Icons';
 import { ArrowLabel } from './ArrowLabel';
-import { useDisclosure } from './useDisclosure';
+import { currentLang, loadTranslator, setLang } from './translate';
 import './UtilityBar.css';
 
 function useClock(timeZone: string) {
@@ -32,9 +32,27 @@ const FlagUS = () => (
   </svg>
 );
 
+const FlagES = () => (
+  <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" className="utility-bar__flag">
+    <clipPath id="flag-clip-es">
+      <circle cx="10" cy="10" r="10" />
+    </clipPath>
+    <g clipPath="url(#flag-clip-es)">
+      <rect width="20" height="20" fill="#c60b1e" />
+      <rect y="5" width="20" height="10" fill="#ffc400" />
+    </g>
+  </svg>
+);
+
 export function UtilityBar() {
   const time = useClock(utilityBar.timeZone);
-  const lang = useDisclosure<HTMLDivElement>();
+  const lang = currentLang();
+  // Con la página en inglés, el widget se carga y traduce al entrar
+  useEffect(() => {
+    if (lang === 'en') loadTranslator();
+  }, [lang]);
+  // El botón muestra el idioma al que se cambia
+  const next = lang === 'en' ? 'es' : 'en';
 
   return (
     <div className="utility-bar">
@@ -51,23 +69,18 @@ export function UtilityBar() {
             </li>
           ))}
         </ul>
-        <div className="utility-bar__lang" ref={lang.ref}>
-          <button type="button" className="utility-bar__lang-btn" aria-haspopup="true" aria-expanded={lang.open} onClick={lang.toggle} aria-label={`Idioma: ${utilityBar.currentLanguage}`}>
-            <FlagUS />
-            {utilityBar.currentLanguage}
+        <div className="utility-bar__lang notranslate" translate="no">
+          <button
+            type="button"
+            className="utility-bar__lang-btn"
+            lang={next}
+            aria-label={next === 'en' ? 'View this page in English' : 'Ver esta página en español'}
+            onClick={() => setLang(next)}
+          >
+            {next === 'en' ? <FlagUS /> : <FlagES />}
+            {next.toUpperCase()}
             <ArrowUp width={13} height={13} />
           </button>
-          {lang.open && (
-            <ul className="utility-bar__lang-menu">
-              {utilityBar.languages.map((l) => (
-                <li key={l.code}>
-                  <a href={l.href} lang={l.code.toLowerCase()} aria-current={l.code === utilityBar.currentLanguage ? 'true' : undefined}>
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
       </div>
     </div>

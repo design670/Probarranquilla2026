@@ -162,6 +162,8 @@ export function MainNavigation() {
     };
   }, []);
 
+  const isCurrent = (href: string) => window.location.pathname.replace(/\/?$/, '/') === href;
+
   const isMouse = (e: ReactPointerEvent) => e.pointerType === 'mouse' && isDesktop();
 
   const onTriggerEnter = (id: string) => (e: ReactPointerEvent) => {
@@ -216,19 +218,25 @@ export function MainNavigation() {
           {mainNav.map((panel) => {
             const open = openId === panel.id;
             return (
-              <li key={panel.id} className="main-nav__item">
+              <li key={panel.id} className="main-nav__item" onPointerEnter={onTriggerEnter(panel.id)}>
+                {/* Con página propia: el nombre es un enlace y la flecha despliega el panel */}
+                {panel.href && (
+                  <a href={panel.href} className="main-nav__trigger main-nav__link" aria-current={isCurrent(panel.href) ? 'page' : undefined}>
+                    {panel.label}
+                  </a>
+                )}
                 <button
                   ref={(el) => {
                     triggerRefs.current[panel.id] = el;
                   }}
                   type="button"
-                  className="main-nav__trigger"
+                  className={`main-nav__trigger${panel.href ? ' main-nav__caret' : ''}`}
                   aria-expanded={open}
                   aria-controls={`mega-${panel.id}`}
-                  onPointerEnter={onTriggerEnter(panel.id)}
+                  aria-label={panel.href ? `Ver opciones de ${panel.label}` : undefined}
                   onClick={onTriggerClick(panel.id)}
                 >
-                  {panel.label}
+                  {!panel.href && panel.label}
                   <Chevron className="main-nav__chevron" />
                 </button>
                 <Panel panel={panel} open={open} />

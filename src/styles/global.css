@@ -124,3 +124,23 @@ button {
 .count-up {
   font-variant-numeric: tabular-nums;
 }
+
+/* Traducción al inglés (Google Translate): sin barra superior ni globos sobre el texto */
+.skiptranslate iframe,
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-yAWNEb-L7lbkb {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+font[style*='vertical-align'] {
+  background: none !important;
+  box-shadow: none !important;
+}
