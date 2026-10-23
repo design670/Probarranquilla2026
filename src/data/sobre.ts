@@ -281,12 +281,41 @@ export const team = {
 
 /* ---------- Consejo directivo ---------- */
 
-export type BoardMember = { name: string; role: string; company?: string };
+export type BoardMember = { name: string; role: string; company: string; photo: ImageAsset; logo?: string };
+
+/** Foto pendiente: se espera en public/assets/sobre/consejo/<nombre>.jpg */
+const B = (name: string, role: string, company: string, logo?: string): BoardMember => ({
+  name,
+  role,
+  company,
+  /** Logo de la empresa (probarranquilla.org): public/assets/sobre/consejo/logos/ */
+  logo: logo && `/assets/sobre/consejo/logos/${logo}.png`,
+  photo: A(`consejo/${name.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}.jpg`, `Retrato de ${name}`, { position: '50% 25%' }),
+});
 
 export const board = {
   title: ['Empresarios expertos', 'aportando al Departamento.'],
   text: ['Contamos con el apoyo de empresarios expertos en sus sectores, con el', 'interés de aportar al crecimiento del Departamento.'],
   accordionLabel: 'Consejo directivo',
-  /** Pendiente: miembros y cargos oficiales del consejo directivo. */
-  members: [] as BoardMember[],
+  /** Miembros, cargos y empresas tomados de probarranquilla.org/nosotros */
+  members: [
+    B('Ernesto Herrera', 'Presidente', 'Combarranquilla', 'combarranquilla'),
+    B('Manuel Fernández', 'Presidente Ejecutivo', 'Cámara de Comercio de Barranquilla', 'camara-de-comercio'),
+    B('Luis Miguel Fernández', 'Presidente', 'Tebsa', 'tebsa'),
+    B('Sergio Barake', 'Director Financiero', 'Invercosur'),
+    B('Felipe González', 'Presidente', 'Acesco', 'acesco'),
+    B('Herman Castellanos', 'Gerente regional caribe', 'Alianza Team', 'alianza-team'),
+    B('Charles Chapman', 'Socio', 'Chapman Wilches', 'chapman-wilches'),
+    B('Piero Celia', 'Presidente', 'Banco Serfinanza', 'serfinanza'),
+    B('Manuel Buitrago', 'Presidente', 'Puerto de Barranquilla', 'puerto-de-barranquilla'),
+    B('José Francisco Aguirre', 'Director', 'Fundación Santo Domingo', 'fundacion-santo-domingo'),
+    B('José Consuegra', 'Rector', 'Universidad Simón Bolívar', 'universidad-simon-bolivar'),
+    B('Claudia Fuentes', 'Miembro de junta directiva', 'Solmex', 'solmex'),
+    B('Manuel Herrera', 'Gerente', 'Zona Franca La Cayena', 'zona-franca-la-cayena'),
+  ],
+  honoraryLabel: 'Miembros honorarios',
+  honorary: [
+    B('Guillermo Heins', 'Representante Legal', 'TM del Caribe'),
+    B('Rodrigo Plata', 'Presidente', 'Esacar LTDA', 'ensacar'),
+  ],
 };

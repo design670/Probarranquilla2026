@@ -116,7 +116,7 @@ export const support = {
       title: 'Apoyo a candidaturas',
       description: 'Te acompañamos en la postulación, preparación de propuesta y candidatura, presentaciones del destino y demás gestiones para lograr ser la sede de tu evento.',
       highlight: null,
-      photo: A('etapa-apoyo-a-candidaturas.jpg', 'Equipo de Turismo de Reuniones de ProBarranquilla en una feria internacional'),
+      photo: A('etapa-apoyo-a-candidaturas.jpg', 'Equipo de ProBarranquilla en la Rueda de Negocios Workshop Argentina, Paraguay y Uruguay 2026'),
     },
     {
       id: 'aliados',
@@ -124,7 +124,7 @@ export const support = {
       title: 'Conexión con aliados estratégicos',
       description: 'Articulamos entidades públicas, empresas, universidades y gremios para sumar apoyos y oportunidades a tu evento.',
       highlight: null,
-      photo: A('etapa-conexion-con-aliados.jpg', 'Auditorio lleno durante el Congreso Panamericano de Reumatología en Barranquilla'),
+      photo: A('etapa-conexion-con-aliados.jpg', 'Salón de eventos iluminado con escenario y pantallas'),
     },
     {
       id: 'proveedores',
@@ -132,7 +132,7 @@ export const support = {
       title: 'Acceso a proveedores locales',
       description: 'Te conectamos con hoteles, recintos, operadores y proveedores especializados según las necesidades de tu evento.',
       highlight: null,
-      photo: A('etapa-acceso-a-proveedores.jpg', 'Danzas del Carnaval en el escenario de la Convención Latinoamericana de Puertos'),
+      photo: A('etapa-acceso-a-proveedores.jpg', 'Equipo de ProBarranquilla en la Rueda de Negocios Workshop Argentina, Paraguay y Uruguay 2026'),
     },
     {
       id: 'inspeccion',
@@ -140,7 +140,7 @@ export const support = {
       title: 'Visitas de inspección y asesoría',
       description: 'Coordinamos recorridos y te brindamos información del destino para facilitar la elección de espacios y la planeación.',
       highlight: null,
-      photo: A('etapa-visitas-de-inspeccion.jpg', 'Vista aérea del Centro de Eventos Puerta de Oro'),
+      photo: A('etapa-visitas-de-inspeccion.jpg', 'Presentación de Barranquilla a un grupo durante una visita al destino'),
     },
     {
       id: 'experiencias',
@@ -148,7 +148,7 @@ export const support = {
       title: 'Experiencias de destino',
       description: 'Facilitamos la integración de experiencias culturales, gastronómicas y turísticas para enriquecer la visita de tus asistentes.',
       highlight: null,
-      photo: A('etapa-experiencias-de-destino.jpg', 'Disfraces del Carnaval de Barranquilla'),
+      photo: A('etapa-experiencias-de-destino.jpg', 'Grupo de visitantes en un muelle frente al mar'),
     },
   ] as SupportStage[],
 };
@@ -177,15 +177,15 @@ export const eventCases: SuccessStoriesData = {
   subtitle: 'Conoce algunos de los eventos que han elegido Barranquilla como su sede',
   moreHref: routes.casosDeExito,
   cases: [
-    { company: 'IRONMAN 70.3', meta: '2026 — 5.000 asistentes', image: '/assets/evento/casos/ironman-70-3.jpg', alt: 'Triatleta con la bandera de Argentina celebra en la meta del IRONMAN 70.3 Barranquilla', lead: '', body: 'Competencia internacional de triatlón que reúne atletas profesionales y aficionados en pruebas de natación, ciclismo y carrera.' },
-    { company: 'Fedepalma', meta: '2026 — 1.500 asistentes', image: '/assets/evento/casos/fedepalma.jpg', alt: 'Racimos de fruto de palma de aceite recién cosechados', lead: '', body: 'Encuentro del sector palmero colombiano que reúne empresarios, productores y actores de la cadena alrededor de los principales temas de la agroindustria de la palma de aceite.' },
-    { company: 'Encuentro de Empresarios de Transporte de Carga y Logística de Fedetranscarga', meta: '2026 — 3.000 asistentes', image: '/assets/evento/casos/fedetranscarga.jpg', alt: 'Encuentro de Empresarios de Transporte de Carga y Logística de Fedetranscarga', lead: '', body: 'Evento empresarial del sector de transporte de carga y logística que reúne compañías, líderes y actores de esta industria para abordar tendencias y desafíos del sector.' },
-    { company: 'Latam Fintech', meta: '2026 — 1.800 asistentes', image: '/assets/evento/casos/latam-fintech.jpg', alt: 'Conferencista en el escenario del Latam Fintech Market en Barranquilla', lead: '', body: 'Encuentro de la industria fintech que conecta empresas, líderes y actores del ecosistema financiero y tecnológico de América Latina.' },
-    { company: 'Giro de Rigo', meta: '2025 — 10.000 asistentes', image: '/assets/evento/casos/giro-de-rigo.jpg', alt: 'Ciclista junto a la escultura de la Puerta de Oro en Barranquilla', lead: '', body: 'Evento de ciclismo liderado por Rigoberto Urán que reúne a miles de ciclistas aficionados alrededor de una experiencia deportiva de gran formato.' },
+    { company: 'IRONMAN 70.3', meta: '2026 — 5.000 asistentes', image: '/assets/evento/casos/ironman-70-3.jpg', alt: 'Triatletas del IRONMAN 70.3 en la ruta junto a la rueda de Barranquilla', lead: '', body: 'Competencia internacional de triatlón que reúne atletas profesionales y aficionados en pruebas de natación, ciclismo y carrera.' },
+    { company: 'Fedepalma', meta: '2026 — 1.500 asistentes', image: '/assets/evento/casos/fedepalma.jpg', alt: 'Instalación del 54.º Congreso Nacional de Cultivadores de Palma de Aceite', lead: '', body: 'Encuentro del sector palmero colombiano que reúne empresarios, productores y actores de la cadena alrededor de los principales temas de la agroindustria de la palma de aceite.' },
+    { company: 'Encuentro de Empresarios de Transporte de Carga y Logística de Fedetranscarga', meta: '2026 — 3.000 asistentes', image: '/assets/evento/casos/fedetranscarga.jpg', alt: 'Encuentro de Empresarios de Transporte de Carga de Fedetranscarga', lead: '', body: 'Evento empresarial del sector de transporte de carga y logística que reúne compañías, líderes y actores de esta industria para abordar tendencias y desafíos del sector.' },
+    { company: 'Latam Fintech', meta: '2026 — 1.800 asistentes', image: '/assets/evento/casos/latam-fintech.jpg', alt: 'Auditorio del Latam Fintech Market con su pantalla principal', lead: '', body: 'Encuentro de la industria fintech que conecta empresas, líderes y actores del ecosistema financiero y tecnológico de América Latina.' },
+    { company: 'Giro de Rigo', meta: '2025 — 10.000 asistentes', image: '/assets/evento/casos/giro-de-rigo.jpg', alt: 'Ciclistas del Giro de Rigo en carretera', lead: '', body: 'Evento de ciclismo liderado por Rigoberto Urán que reúne a miles de ciclistas aficionados alrededor de una experiencia deportiva de gran formato.' },
     { company: 'ExpoACCCSA', meta: '2025 — 700 asistentes', image: '/assets/evento/casos/expoacccsa.jpg', alt: 'ExpoACCCSA', lead: '', body: 'Encuentro especializado de la industria de cartón corrugado que reúne empresas, proveedores y profesionales del sector.' },
-    { company: 'Curso Internacional de Cirugía Plástica', meta: '2025 — 1.200 asistentes', image: '/assets/evento/casos/curso-cirugia-plastica.jpg', alt: 'Curso Internacional de Cirugía Plástica', lead: '', body: 'Encuentro académico y científico que reúne especialistas nacionales e internacionales para actualizar conocimientos y compartir avances en cirugía plástica.' },
-    { company: 'Foro de Desarrollo Local de la OCDE', meta: '2025 — 500 asistentes', image: '/assets/evento/casos/foro-ocde.jpg', alt: 'Asistentes en una sesión del Foro de Desarrollo Local de la OCDE', lead: '', body: 'Encuentro internacional de la OCDE que reúne representantes de gobiernos, sector privado, academia y organizaciones para intercambiar experiencias sobre desarrollo local.' },
-    { company: 'Congreso Panamericano de Reumatología', meta: '2024 — 1.800 asistentes', image: '/assets/evento/casos/congreso-reumatologia.jpg', alt: 'Panel de especialistas en el escenario del Congreso Panamericano de Reumatología', lead: '', body: 'Congreso científico internacional que reúne especialistas de las Américas para compartir avances, investigación y conocimiento en reumatología.' },
+    { company: 'Curso Internacional de Cirugía Plástica', meta: '2025 — 1.200 asistentes', image: '/assets/evento/casos/curso-cirugia-plastica.jpg', alt: 'Auditorio durante el Curso Internacional de Cirugía Plástica', lead: '', body: 'Encuentro académico y científico que reúne especialistas nacionales e internacionales para actualizar conocimientos y compartir avances en cirugía plástica.' },
+    { company: 'Foro de Desarrollo Local de la OCDE', meta: '2025 — 500 asistentes', image: '/assets/evento/casos/foro-ocde.jpg', alt: 'Panelistas del Foro de Desarrollo Local de la OCDE 2025 en Barranquilla', lead: '', body: 'Encuentro internacional de la OCDE que reúne representantes de gobiernos, sector privado, academia y organizaciones para intercambiar experiencias sobre desarrollo local.' },
+    { company: 'Congreso Panamericano de Reumatología', meta: '2024 — 1.800 asistentes', image: '/assets/evento/casos/congreso-reumatologia.jpg', alt: 'Auditorio del Congreso Panamericano de Reumatología PANLAR 2024', lead: '', body: 'Congreso científico internacional que reúne especialistas de las Américas para compartir avances, investigación y conocimiento en reumatología.' },
   ],
 };
 

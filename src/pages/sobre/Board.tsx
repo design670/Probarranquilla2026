@@ -1,8 +1,25 @@
 import { useState } from 'react';
-import { board } from '../../data/sobre';
+import { board, type BoardMember } from '../../data/sobre';
+import { SmartImage } from '../../components/SmartImage';
 import './Board.css';
 
-/** Consejo directivo: acordeón único; solo muestra miembros oficiales cargados en los datos. */
+/** Tarjeta de consejero: retrato con la empresa en un círculo, nombre y cargo */
+function BoardCard({ member }: { member: BoardMember }) {
+  return (
+    <li className="board-card">
+      <div className="board-card__media">
+        <SmartImage {...member.photo} className="board-card__photo" />
+        <span className="board-card__company">
+          {member.logo ? <img src={member.logo} alt={member.company} loading="lazy" /> : member.company}
+        </span>
+      </div>
+      <p className="board-card__name">{member.name}</p>
+      <p className="board-card__role">{member.role}</p>
+    </li>
+  );
+}
+
+/** Consejo directivo: acordeón único con los miembros de probarranquilla.org/nosotros. */
 export function Board() {
   const [open, setOpen] = useState(false);
 
@@ -36,18 +53,17 @@ export function Board() {
             </button>
           </h3>
           <div id="board-panel" className="board__panel" role="region" aria-labelledby="board-trigger" hidden={!open}>
-            {board.members.length > 0 ? (
-              <ul className="board__members">
-                {board.members.map((m) => (
-                  <li key={m.name}>
-                    <p className="board__member-name">{m.name}</p>
-                    <p className="board__member-role">{[m.role, m.company].filter(Boolean).join(' · ')}</p>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              import.meta.env.DEV && <p className="board__pending">Pendiente: miembros oficiales del consejo directivo (ver PENDIENTES.md).</p>
-            )}
+            <ul className="board__members">
+              {board.members.map((m) => (
+                <BoardCard key={m.name} member={m} />
+              ))}
+            </ul>
+            <h4 className="board__group">{board.honoraryLabel}</h4>
+            <ul className="board__members">
+              {board.honorary.map((m) => (
+                <BoardCard key={m.name} member={m} />
+              ))}
+            </ul>
           </div>
         </div>
       </div>

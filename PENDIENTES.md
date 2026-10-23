@@ -155,7 +155,7 @@ Todos los textos visibles se transcribieron de la referencia; no se inventó nin
 
 **Contenido pendiente**
 - Historia: solo 1988 tiene título legible ("Promotora de Desarrollo Urbano"). Faltan título y descripción de 1992, 2002, 2008, 2015, 2016, 2021 y Hoy (`history.milestones`); mientras tanto el panel muestra el año y la foto. 1988 tampoco tiene descripción.
-- Consejo directivo: faltan los miembros y cargos oficiales (`board.members`). El acordeón abre vacío en producción (en desarrollo muestra un aviso).
+- Consejo directivo: miembros, cargos y empresas tomados de probarranquilla.org/nosotros (13 + 2 honorarios). El diseño de Figma muestra otros nombres (Juan Pablo Ospina, Aquiles Mercado, Niella Sabatino, José Manuel Carbonell, Jorge Puche, Eduardo Crissien): confirmar qué lista es la vigente. Fotos: 7 recortadas del pantallazo del diseño (baja resolución: Ernesto Herrera, Manuel Fernández, Luis Miguel Fernández, Sergio Barake, Felipe González, Claudia Fuentes, Manuel Herrera); faltan las de los otros 8 (public/assets/sobre/consejo/<nombre>.jpg). Logos de empresa tomados de probarranquilla.org; sin logo: Invercosur y TM del Caribe (muestra el nombre). Para "Esacar LTDA" se usó el logo de Ensacar S.A.: confirmar.
 - Menú "Sobre ProBarranquilla": "Quienes somos" y "Equipo" ya enlazan a esta página (`/sobre-probarranquilla/` y `#equipo`). "Servicios" y "Comunidad de miembros" siguen sin destino definido.
 
 **Diferencias entre el prompt y la referencia (se siguió la imagen)**
@@ -293,4 +293,6 @@ Plantilla compartida: `src/components/ResourcePage.tsx` + `ResourceCard.tsx` (Bo
 
 - Instálate, "Un territorio que hace que las cosas pasen": faltan los 3 testimonios (foto `public/assets/instalate/testimonio-1.jpg`, `-2`, `-3`; cita, nombre, cargo y empresa en `vision.testimonials` de `src/data/instalate.ts`). Mientras tanto se ven espacios de muestra.
 
-- Haz tu evento, ¿Cómo te apoyamos?: fotos de las 5 etapas tomadas de probarranquilla.org (feria FIEXPO, PANLAR, Convención de Puertos, Puerta de Oro y Carnaval). Las de Puerta de Oro (570 px) y Carnaval (400 px) son pequeñas; reemplazar si hay mejores.
+- Haz tu evento, ¿Cómo te apoyamos?: fotos de `src/pages/Como te apoyamos`. "Apoyo a candidaturas" y "Acceso a proveedores" usan la misma foto (confirmado por el cliente).
+
+- Haz tu evento, Casos de éxito: fotos de `src/pages/Casos de exito` (8 eventos). Falta la de ExpoACCCSA (`public/assets/evento/casos/expoacccsa.jpg`). IRONMAN (679 px) y Cirugía Plástica (640 px) son pequeñas.

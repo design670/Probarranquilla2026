@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { freeZones, freeZonesIntro } from '../../data/instalate';
 import { SmartImage } from '../../components/SmartImage';
 import { ArrowBig } from '../../components/Icons';
-import { Eyebrow, TitleRule } from '../../components/Eyebrow';
+import { Eyebrow } from '../../components/Eyebrow';
 import './Infrastructure.css'; // estilos de .page-intro
 import './FreeZones.css';
 
@@ -56,7 +56,6 @@ export function FreeZonesOffer() {
         <h2 id="zones-title" className="section-title zones__title">
           {freeZones.title}
         </h2>
-        <TitleRule />
 
         {pages > 1 && (
           <div className="zones__arrows">

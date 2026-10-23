@@ -6,6 +6,8 @@ dist
 # El sitio usa las versiones procesadas en public/assets.
 src/Img/
 src/pages/Hoteles/
+src/pages/Como te apoyamos/
+src/pages/Casos de exito/
 
 .DS_Store
 Thumbs.db
