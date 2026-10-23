@@ -290,7 +290,7 @@ const B = (name: string, role: string, company: string, logo?: string): BoardMem
   company,
   /** Logo de la empresa (probarranquilla.org): public/assets/sobre/consejo/logos/ */
   logo: logo && `/assets/sobre/consejo/logos/${logo}.png`,
-  photo: A(`consejo/${name.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}.jpg?v=2`, `Retrato de ${name}`, { position: '50% 25%' }),
+  photo: A(`consejo/${name.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-')}.jpg?v=3`, `Retrato de ${name}`, { position: '50% 25%' }),
 });
 
 export const board = {
