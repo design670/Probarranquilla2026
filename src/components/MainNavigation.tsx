@@ -16,6 +16,15 @@ const UserIcon = () => (
   </svg>
 );
 
+/** Hamburguesa animable: misma geometría que MenuIcon; el CSS la lleva a X cuando el menú está abierto. */
+const BurgerIcon = () => (
+  <svg className="main-nav__burger" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+    <path className="main-nav__burger-line main-nav__burger-line--top" d="M4 7h16" />
+    <path className="main-nav__burger-line main-nav__burger-line--mid" d="M4 12h16" />
+    <path className="main-nav__burger-line main-nav__burger-line--bottom" d="M4 17h16" />
+  </svg>
+);
+
 /** Enlace con la flecha que pasa del final al inicio en hover/foco. */
 function MegaLink({ link }: { link: Link }) {
   return (
@@ -212,13 +221,22 @@ export function MainNavigation() {
           aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
           onClick={() => setMobileOpen((o) => !o)}
         >
-          {mobileOpen ? <CloseIcon /> : <MenuIcon />}
+          <span className="main-nav__toggle-icon">{mobileOpen ? <CloseIcon /> : <MenuIcon />}</span>
+          {/* Teléfono: las tres líneas se transforman en la X */}
+          <BurgerIcon />
         </button>
+        {/* Envoltura para animar la altura en teléfono; en tablet y desktop no participa del layout */}
+        <div className={`main-nav__drawer ${mobileOpen ? 'is-open' : ''}`}>
         <ul id="main-nav-list" className={`main-nav__list ${mobileOpen ? 'is-open' : ''}`}>
-          {mainNav.map((panel) => {
+          {mainNav.map((panel, i) => {
             const open = openId === panel.id;
             return (
-              <li key={panel.id} className="main-nav__item" onPointerEnter={onTriggerEnter(panel.id)}>
+              <li
+                key={panel.id}
+                className="main-nav__item"
+                style={{ '--i': i } as CSSProperties}
+                onPointerEnter={onTriggerEnter(panel.id)}
+              >
                 {/* Con página propia: el nombre es un enlace y la flecha despliega el panel */}
                 {panel.href && (
                   <a href={panel.href} className="main-nav__trigger main-nav__link" aria-current={isCurrent(panel.href) ? 'page' : undefined}>
@@ -244,6 +262,7 @@ export function MainNavigation() {
             );
           })}
         </ul>
+        </div>
       </div>
     </nav>
   );

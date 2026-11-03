@@ -445,3 +445,70 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Telecomunicaciones: el mapa continental es vertical, necesita más alto en pantallas angostas */
+@media (max-width: 900px) {
+  .connect__panel--telecom .connect__map {
+    height: 520px;
+  }
+}
+
+@media (max-width: 640px) {
+  .connect__panel--telecom .connect__map {
+    height: 460px;
+  }
+}
+
+/* ---------- Botón sobre el mapa: alterna vuelos internacionales / nacionales ---------- */
+
+.connect__map-toggle {
+  position: absolute;
+  bottom: 26px;
+  right: 26px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 4px;
+  background: var(--c-white);
+  color: var(--c-blue-bright);
+  font-size: 15px;
+  box-shadow: 0 6px 18px rgba(0, 10, 30, 0.35);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.connect__map-toggle:hover {
+  background: #dbe7f5;
+}
+
+.connect__map-toggle[aria-pressed='true'] {
+  background: var(--c-teal);
+  color: var(--c-white);
+}
+
+.connect__map-toggle:focus-visible {
+  outline: 2px solid var(--c-white);
+  outline-offset: 3px;
+}
+
+/* En pantallas angostas el mapa va debajo del cuadro: el botón queda justo debajo del mapa */
+@media (max-width: 900px) {
+  .connect__map-toggle {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    grid-column: 1;
+    grid-row: 4;
+    justify-self: center;
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .connect__map-toggle {
+    font-size: 14px;
+    min-height: 40px;
+    padding: 0 14px;
+  }
+}

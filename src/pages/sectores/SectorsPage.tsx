@@ -1,8 +1,7 @@
 import { SiteShell } from '../../components/SiteShell';
 import { PageHero } from '../../components/PageHero';
 import { sectorsHero, sectorsIntro } from '../../data/sectores';
-import { SectorIndex } from './SectorIndex';
-import { SectorBlocks } from './SectorBlocks';
+import { SectorExplorer } from './SectorExplorer';
 import './SectorsPage.css';
 
 /** "Principales sectores de inversión" */
@@ -23,13 +22,7 @@ export function SectorsPage() {
           </p>
         </section>
 
-        {/* Índice fijo a la izquierda (se detiene al final de esta grilla) + contenido */}
-        <div className="container sectors__layout">
-          <aside className="sectors__aside">
-            <SectorIndex />
-          </aside>
-          <SectorBlocks />
-        </div>
+        <SectorExplorer />
       </div>
     </SiteShell>
   );

@@ -13,12 +13,7 @@ export function InstalatePage() {
   return (
     <SiteShell
       hero={
-        <PageHero
-          image={instalateAssets.hero}
-          title={instalateHero.title}
-          primary={instalateHero.primary}
-          secondary={instalateHero.secondary}
-        />
+        <PageHero image={instalateAssets.hero} title={instalateHero.title} />
       }
     >
       <ImpactStatistics id="resultados" title={instalateImpactTitle} intro={instalateImpactIntro} results={instalateResults} />

@@ -9,7 +9,6 @@
 import type { ImageAsset } from '../components/SmartImage';
 import type { ImpactResults } from '../components/ImpactStatistics';
 import { successStories, type SuccessStoriesData } from './content';
-import { PENDING_HREF, type Link } from './content';
 
 const A = (src: string, alt: string, extra: Partial<ImageAsset> = {}): ImageAsset => ({
   src: `/assets/instalate/${src}`,
@@ -51,9 +50,7 @@ export const instalateAssets = {
 
 /* ---------- A. Hero ---------- */
 export const instalateHero = {
-  title: ['Instálate en Barranquilla'],
-  primary: { label: 'Explora las ventajas', href: PENDING_HREF } satisfies Link,
-  secondary: { label: 'Solicita acompañamiento', href: PENDING_HREF } satisfies Link,
+  title: ['Instálate en', 'Barranquilla'],
 };
 
 /* ---------- B. Impacto ---------- */
@@ -103,11 +100,18 @@ type L = { dx: number; dy: number; anchor: 'start' | 'middle' | 'end' };
 const lbl = (dx: number, dy: number, anchor: L['anchor']): L => ({ dx, dy, anchor });
 
 export type ConnectivityMap = {
-  geo: 'internacional' | 'nacional';
+  /** `continental` = Florida a Tierra del Fuego (cables submarinos) */
+  geo: 'internacional' | 'nacional' | 'continental';
   kind: 'air' | 'sea' | 'road';
   hubLabel: L;
   stops: { id: string; name: string; label: L }[];
   ariaLabel: string;
+  /** Muestra los cables submarinos que llegan al Atlántico (telecomunicaciones). */
+  cables?: boolean;
+  /** Fuente de los datos del mapa. */
+  source?: string;
+  /** Segundo mapa que se alterna con un botón sobre el mapa (aérea: vuelos nacionales). */
+  alt?: { label: string; backLabel: string; map: ConnectivityMap };
 };
 
 export type ConnectivityContent = {
@@ -174,6 +178,27 @@ export const connectivity = {
             { id: 'curazao', name: 'Curazao', label: lbl(8, -12, 'start') },
           ],
           ariaLabel: 'Mapa de vuelos directos desde Barranquilla a Madrid, Miami, Fort Lauderdale, Ciudad de Panamá, Aruba y Curazao',
+          // Mismos destinos nacionales del texto "Vuelos directos nacionales"
+          alt: {
+            label: 'Ver vuelos nacionales',
+            backLabel: 'Ver vuelos internacionales',
+            map: {
+              geo: 'nacional',
+              kind: 'air',
+              hubLabel: lbl(-14, 4, 'end'),
+              stops: [
+                { id: 'bogota', name: 'Bogotá', label: lbl(10, 6, 'start') },
+                { id: 'cali', name: 'Cali', label: lbl(-10, 5, 'end') },
+                { id: 'medellin', name: 'Medellín', label: lbl(-10, 5, 'end') },
+                { id: 'bucaramanga', name: 'Bucaramanga', label: lbl(10, 5, 'start') },
+                { id: 'cucuta', name: 'Cúcuta', label: lbl(10, 5, 'start') },
+                { id: 'riohacha', name: 'Riohacha', label: lbl(10, 5, 'start') },
+                { id: 'sanandres', name: 'San Andrés', label: lbl(0, 20, 'middle') },
+                { id: 'monteria', name: 'Montería', label: lbl(-10, 6, 'end') },
+              ],
+              ariaLabel: 'Mapa de vuelos directos desde Barranquilla a Bogotá, Cali, Medellín, Bucaramanga, Cúcuta, Riohacha, San Andrés y Montería',
+            },
+          },
         },
         highlight: {
           title: 'CONEXIÓN RÁPIDA A BOGOTÁ',
@@ -239,11 +264,13 @@ export const connectivity = {
           { icon: 'compass', text: 'El territorio tiene baja exposición a desastres naturales, que favorecen la conectividad y continuidad de las operaciones empresariales.' },
         ],
         map: {
-          geo: 'internacional',
+          geo: 'continental',
           kind: 'air',
           hubLabel: lbl(0, 28, 'middle'),
           stops: [],
-          ariaLabel: 'Mapa del Caribe con Barranquilla',
+          cables: true,
+          source: 'Fuente: Submarine Cable Map (2025).',
+          ariaLabel: 'Mapa de América con los cables submarinos de fibra óptica que llegan a Barranquilla y el Atlántico',
         },
       },
     },

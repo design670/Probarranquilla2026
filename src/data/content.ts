@@ -24,6 +24,7 @@ export const routes = {
   sobre: '/sobre-probarranquilla/',
   equipo: '/sobre-probarranquilla/#equipo',
   noticias: '/noticias/',
+  informes: '/informes-de-labores/',
   // Anclas a secciones del Home (absolutas para que funcionen desde cualquier página)
   resultados: '/#resultados',
   casosDeExito: '/casos-de-exito/',
@@ -162,7 +163,7 @@ export const mainNav: MegaPanel[] = [
         description: ['Tu agencia de promoción', 'de inversión y turismo en', 'Barranquilla y el Atlántico.'],
         links: [L('Quienes somos', `${routes.sobre}#quienes-somos`), L('Servicios', `${routes.sobre}#que-hace`), L('Equipo', routes.equipo), L('Comunidad de miembros', `${routes.sobre}#comunidad-de-miembros`)],
       },
-      { heading: ['Publicaciones y', 'Comunicados de Prensa'], links: [L('Noticias', routes.noticias), L('Informes de labores')] },
+      { heading: ['Publicaciones y', 'Comunicados de Prensa'], links: [L('Noticias', routes.noticias), L('Informes de labores', routes.informes)] },
     ],
   },
 ];
@@ -327,7 +328,6 @@ export const assistance = {
   services: [
     'Información estratégica para invertir y hacer negocios en Barranquilla y la región Caribe.',
     'Conexión con aliados clave y redes empresariales.',
-    'Conocimiento del mercado local y oportunidades sectoriales.',
     'Acompañamiento especializado para expandir operaciones y fortalecer capacidades.',
   ],
 };

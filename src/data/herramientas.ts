@@ -89,7 +89,7 @@ const PRODATA_LOGIN = 'https://prodata.probarranquilla.org/auth/login';
 export const prodataPage: ResourcePageContent = {
   hero: {
     image: { src: '/assets/hero/prodata.jpg', alt: 'Barranquilla' },
-    title: ['ProData: la inteligencia territorial', 'que transforma datos en decisiones.'],
+    title: ['ProData: la inteligencia territorial', 'que transforma datos en decisiones'],
     text: 'Accede en un solo lugar a información estratégica de Barranquilla y el Atlántico. Explora indicadores, mapas interactivos, boletines, estudios sectoriales y herramientas especializadas para conocer el territorio, evaluar su entorno y tomar decisiones con información confiable.',
     cta: { label: 'Explora ProData', href: 'https://probarranquilla.org/prodata/' },
   },

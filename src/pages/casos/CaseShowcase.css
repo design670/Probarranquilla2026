@@ -200,3 +200,13 @@
     transform: translateX(-50%);
   }
 }
+
+/* Teléfono: la foto llena el primer pantallazo y la tarjeta queda debajo */
+@media (max-width: 640px) {
+  .showcase__photo {
+    height: var(--hero-mobile-h);
+  }
+  .showcase__dots {
+    top: calc(var(--hero-mobile-h) - 40px);
+  }
+}

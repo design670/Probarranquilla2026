@@ -1,0 +1,568 @@
+/* ---------- Selector de sectores ---------- */
+
+.sx {
+  --sx-blue: var(--c-blue-bright);
+  --sx-orange: var(--c-orange); /* naranja de la marca */
+  margin-top: 64px;
+}
+
+/* Dos grupos lado a lado; cada uno con su encabezado y tres tarjetas */
+.sx-picker {
+  position: relative; /* referencia para centrar la tarjeta activa en móvil */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.sx-group {
+  --accent: var(--sx-blue);
+  display: flex;
+  flex-direction: column;
+}
+
+.sx-group--servicios {
+  --accent: var(--sx-orange);
+}
+
+.sx-group__head {
+  scroll-margin-top: calc(var(--header-h) + 24px);
+  padding-left: 14px;
+  border-left: 3px solid var(--accent);
+}
+
+.sx-group__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.1;
+  color: var(--c-blue-title);
+}
+
+.sx-group__text {
+  margin-top: 6px;
+  max-width: 520px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--c-text-muted);
+}
+
+.sx-group__tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+  flex: 1;
+}
+
+.sx-tab {
+  position: relative;
+  scroll-margin-top: calc(var(--header-h) + 24px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 118px;
+  padding: 16px 16px 18px;
+  border: 1px solid #dbe2ec;
+  border-radius: 12px;
+  background: var(--c-white);
+  color: var(--c-navy);
+  text-align: left;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sx-tab:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0, 30, 58, 0.08);
+}
+
+.sx-tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.sx-tab__num {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  transition: color 0.25s ease;
+}
+
+.sx-tab__label {
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+/* Activa: color del grupo y un pico que apunta al panel */
+.sx-tab[aria-selected='true'] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--c-white);
+  box-shadow: 0 12px 26px rgba(0, 30, 58, 0.16);
+}
+
+.sx-tab[aria-selected='true'] .sx-tab__num {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.sx-tab[aria-selected='true']::after {
+  content: '';
+  position: absolute;
+  left: 24px;
+  bottom: -8px;
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
+  transform: rotate(45deg);
+  border-radius: 0 0 3px 0;
+}
+
+/* ---------- Panel del sector ---------- */
+
+/* El recuadro toma el color de la tarjeta activa (azul o naranja) y el texto va en blanco */
+.sx-panel {
+  --accent: var(--sx-blue);
+  margin-top: 28px;
+  padding: 28px;
+  border-radius: var(--radius-xl);
+  background: var(--accent);
+  color: var(--c-white);
+  box-shadow: 0 18px 44px rgba(0, 30, 58, 0.16);
+  transition: background-color 0.35s ease;
+}
+
+.sx-panel--servicios {
+  --accent: var(--sx-orange);
+}
+
+.sx-panel__inner {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: 44px;
+  align-items: start;
+  animation: sx-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes sx-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.sx-panel__media {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+}
+
+.sx-panel__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: 560px;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.sx-panel__tag {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(0, 30, 58, 0.78);
+  color: var(--c-white);
+  font-size: 13px;
+}
+
+.sx-panel__body {
+  padding: 12px 8px 8px 0;
+}
+
+.sx-panel__title {
+  font-size: 40px;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--c-white);
+}
+
+.sx-panel__tagline {
+  margin-top: 14px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.sx-panel__text {
+  margin-top: 20px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+/* ---------- Contenido propio de cada sector ---------- */
+
+.sx-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  margin-top: 28px;
+  padding: 0 22px;
+  border-radius: 4px;
+  background: var(--c-white);
+  color: var(--accent);
+  font-size: 16px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+a.sx-btn:hover {
+  background: var(--c-navy-nav);
+  color: var(--c-white);
+}
+
+.sx-btn--pending {
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: not-allowed;
+}
+
+/* Pasos de la cadena productiva */
+.sx-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 26px;
+  padding: 0;
+  list-style: none;
+}
+
+.sx-step {
+  --dot: var(--c-white);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px 14px 34px;
+  position: relative;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 14px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.sx-step::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 20px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--dot);
+}
+
+.sx-step strong {
+  font-size: 15px;
+  color: var(--c-white);
+}
+
+.sx-step--orange {
+  --dot: var(--c-orange);
+}
+
+.sx-step--teal {
+  --dot: var(--c-teal);
+}
+
+.sx-step--yellow {
+  --dot: var(--c-yellow);
+}
+
+.sx-note {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: var(--c-navy-nav);
+  color: #cfdbea;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.sx-note strong {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  color: var(--c-white);
+}
+
+/* Energía: dos fuentes con ícono */
+.sx-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 26px;
+  padding: 0;
+  list-style: none;
+}
+
+.sx-features li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 14px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.sx-features li > span:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sx-features strong {
+  font-size: 15px;
+  color: var(--c-white);
+}
+
+.sx-features__icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  color: var(--c-white);
+}
+
+.sx-features__icon--green {
+  background: var(--c-teal);
+}
+
+.sx-features__icon--slate {
+  background: var(--c-navy-nav);
+}
+
+/* BPO: pregunta + botón */
+.sx-callout {
+  margin-top: 26px;
+  padding: 22px 22px 24px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.sx-callout__question {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--c-white);
+}
+
+.sx-callout__text {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.sx-callout .sx-btn {
+  margin-top: 18px;
+}
+
+/* ---------- Otros sectores ---------- */
+
+.sx-others {
+  scroll-margin-top: calc(var(--header-h) + 24px);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 32px;
+  margin-top: 28px;
+  padding: 32px 36px;
+  border-radius: var(--radius-xl);
+  background: var(--c-navy-nav);
+  color: var(--c-white);
+}
+
+.sx-others__title {
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.sx-others__text {
+  margin-top: 10px;
+  max-width: 560px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #cfdbea;
+}
+
+.sx-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  max-width: 420px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sx-pills li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sx-panel__inner {
+    animation: none;
+  }
+  .sx-tab,
+  .sx-tab:hover {
+    transform: none;
+  }
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 1100px) {
+  .sx-picker {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .sx-panel__title {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 900px) {
+  .sx {
+    margin-top: 40px;
+  }
+  .sx-panel {
+    padding: 20px;
+  }
+  .sx-panel__inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .sx-panel__media {
+    position: relative;
+    top: auto;
+  }
+  .sx-panel__img {
+    aspect-ratio: 16 / 9;
+  }
+  .sx-panel__body {
+    padding: 0;
+  }
+  .sx-others {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 28px 24px;
+  }
+  .sx-pills {
+    justify-content: flex-start;
+    max-width: none;
+  }
+}
+
+/* ---------- Teléfono: las seis tarjetas en una franja que se desliza ---------- */
+
+@media (max-width: 640px) {
+  .sx-picker {
+    display: flex;
+    gap: 16px;
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 0 var(--gutter) 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .sx-picker::-webkit-scrollbar {
+    display: none;
+  }
+  .sx-group {
+    flex: none;
+  }
+  .sx-group__text {
+    display: none;
+  }
+  .sx-group__title {
+    font-size: 18px;
+  }
+  .sx-group__tabs {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .sx-tab {
+    width: 150px;
+    min-height: 104px;
+    scroll-snap-align: center;
+  }
+  .sx-tab:hover {
+    transform: none;
+  }
+  .sx-tab__label {
+    font-size: 15px;
+  }
+  .sx-panel {
+    margin-top: 16px;
+    padding: 14px;
+  }
+  .sx-panel__title {
+    font-size: 26px;
+  }
+  .sx-panel__tagline {
+    font-size: 17px;
+  }
+  .sx-panel__text {
+    font-size: 16px;
+  }
+  .sx-steps,
+  .sx-features {
+    grid-template-columns: 1fr;
+  }
+  .sx-others__title {
+    font-size: 24px;
+  }
+}
+
+/* ---------- Naranja (Servicios): texto en blanco sólido sobre el naranja de marca ---------- */
+
+.sx-panel--servicios .sx-panel__tagline,
+.sx-panel--servicios .sx-panel__text,
+.sx-panel--servicios .sx-step,
+.sx-panel--servicios .sx-features li,
+.sx-panel--servicios .sx-callout__text {
+  color: var(--c-white);
+}
+
+.sx-panel--servicios .sx-features li,
+.sx-panel--servicios .sx-callout {
+  background: rgba(255, 255, 255, 0.16);
+}

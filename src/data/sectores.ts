@@ -94,6 +94,8 @@ export const manufacturing = {
       // Igual al anterior en la referencia (posible errata, ver PENDIENTES.md)
       { tone: 'yellow', title: ['Transporte &', 'Exportación'], text: ['Tecnología de', 'empaque sostenible'], tall: true },
     ] as MiniCard[],
+    // Pendiente: la referencia no traía foto para este sector
+    image: A('alimentos-bebidas.jpg', 'Alimentos y bebidas en Barranquilla'),
     highlight: {
       title: 'Procesamiento de Alto Valor en el Atlántico',
       text: 'Barranquilla cuenta con un tejido empresarial sólido en confitería, procesamiento de granos, aceites, bebidas y productos listos para el consumo.',
@@ -133,6 +135,8 @@ export const services = {
     question: ['¿Buscas instalar tu centro de servicios', 'o software en Barranquilla?'],
     support: 'Contamos con convenios académicos y programas de formación en inglés en el Atlántico.',
     cta: { label: 'Consultar sobre BPO & IT', href: routes.contacto },
+    // Pendiente: la referencia no traía foto para este sector
+    image: A('bpo-it.jpg', 'Centro de servicios BPO e IT en Barranquilla'),
   },
   mro: {
     title: ['Servicios Aeronáuticos y', 'Mantenimiento de Aeronaves (MRO)'],

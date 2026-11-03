@@ -149,8 +149,8 @@
 }
 
 @media (max-width: 640px) {
-  .page-hero--size-article {
-    min-height: 520px;
+  .page-hero.page-hero--size-article {
+    min-height: var(--hero-mobile-h);
   }
   .page-hero--size-article .page-hero__content {
     padding-top: 130px;
@@ -175,7 +175,7 @@
 
 @media (max-width: 640px) {
   .page-hero {
-    height: 600px;
+    height: var(--hero-mobile-h);
   }
   .page-hero__title {
     font-size: 32px;

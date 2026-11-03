@@ -142,14 +142,14 @@
 
 @media (max-width: 640px) {
   .page-hero.page-hero--resource {
-    height: 440px;
+    height: var(--hero-mobile-h);
   }
   .page-hero--resource .page-hero__content {
     bottom: 40px;
   }
   .page-hero.page-hero--resource-rich {
     height: auto;
-    min-height: 440px;
+    min-height: var(--hero-mobile-h);
   }
   .page-hero--resource-rich .page-hero__content {
     bottom: auto;
@@ -181,5 +181,101 @@
   .resources__grid {
     --cols: 1;
     row-gap: 24px;
+  }
+}
+
+/* ---------- Listado en bloques (Informes de labores) ---------- */
+
+.resources--grouped {
+  padding: 96px 0 86px;
+}
+
+.resources__group + .resources__group {
+  margin-top: 96px;
+}
+
+.resources__group-title {
+  margin-bottom: 36px;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--c-blue-title);
+}
+
+.resources--grouped .resources__grid {
+  justify-content: flex-start;
+  padding: 0;
+}
+
+/* Portadas 5:4 recortadas a todo el ancho de la card */
+.resources--fill .rcard__cover {
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .resources--grouped {
+    padding: 72px 0 72px;
+  }
+  .resources__group + .resources__group {
+    margin-top: 72px;
+  }
+  .resources__group-title {
+    margin-bottom: 28px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 900px) {
+  .resources--grouped {
+    padding: 48px 0 56px;
+  }
+  .resources__group + .resources__group {
+    margin-top: 56px;
+  }
+  .resources__group-title {
+    margin-bottom: 24px;
+    font-size: 26px;
+  }
+}
+
+/* ---------- Barra de filtro por categoría (Boletines) ---------- */
+
+.resources--filtered {
+  padding-top: 96px;
+}
+
+.resources__toolbar {
+  margin-bottom: 56px;
+}
+
+.resources__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+@media (max-width: 1024px) {
+  .resources--filtered {
+    padding-top: 72px;
+  }
+  .resources__toolbar {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .resources--filtered {
+    padding-top: 48px;
+  }
+  .resources__toolbar {
+    margin-bottom: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .resources__filters {
+    gap: 8px;
   }
 }

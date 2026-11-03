@@ -104,6 +104,16 @@
   justify-content: center;
 }
 
+/* Envoltura del menú y hamburguesa animada: solo actúan en teléfono (ver al final) */
+.main-nav__drawer,
+.main-nav__toggle-icon {
+  display: contents;
+}
+
+.main-nav__burger {
+  display: none;
+}
+
 /* ---------- Mega menú ---------- */
 
 .mega {
@@ -359,5 +369,142 @@
     width: 100%;
     max-width: 324px;
     height: 44px;
+  }
+}
+
+/* ---------- Teléfono: menú animado ---------- */
+
+@media (max-width: 640px) {
+  .main-nav__bar {
+    --menu-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* La X sale de las mismas tres líneas */
+  .main-nav__toggle-icon {
+    display: none;
+  }
+  .main-nav__burger {
+    display: block;
+  }
+  .main-nav__burger-line {
+    transform-box: view-box;
+    transform-origin: 12px 12px;
+    transition: transform 0.4s var(--menu-ease), opacity 0.2s ease;
+  }
+  .main-nav__toggle[aria-expanded='true'] .main-nav__burger-line--top {
+    transform: rotate(45deg) translateY(5px);
+  }
+  .main-nav__toggle[aria-expanded='true'] .main-nav__burger-line--mid {
+    opacity: 0;
+    transform: scaleX(0.2);
+  }
+  .main-nav__toggle[aria-expanded='true'] .main-nav__burger-line--bottom {
+    transform: rotate(-45deg) translateY(-5px);
+  }
+
+  /* El panel crece desde la barra (0fr → 1fr) en vez de aparecer de golpe */
+  .main-nav__drawer {
+    display: grid;
+    grid-template-rows: 0fr;
+    flex-basis: 100%;
+    margin-top: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transition: grid-template-rows 0.45s var(--menu-ease), margin-top 0.45s var(--menu-ease), visibility 0s linear 0.45s;
+  }
+  .main-nav__drawer.is-open {
+    grid-template-rows: 1fr;
+    margin-top: 8px;
+    visibility: visible;
+    transition: grid-template-rows 0.45s var(--menu-ease), margin-top 0.45s var(--menu-ease), visibility 0s;
+  }
+  .main-nav__list,
+  .main-nav__list.is-open {
+    display: flex;
+    min-height: 0;
+    margin-top: 0;
+    max-height: calc(100svh - var(--util-h) - 76px);
+    padding: 0;
+    border-top: 0;
+    overscroll-behavior: contain;
+    /* Sigue desplazándose con el dedo, pero sin barra visible (también durante la animación) */
+    scrollbar-width: none;
+  }
+  .main-nav__list::-webkit-scrollbar {
+    display: none;
+  }
+  /* Línea y aire como contenido (no padding/borde) para que el panel cierre en 0 */
+  .main-nav__list::before {
+    content: "";
+    flex: none;
+    height: 1px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.14);
+  }
+  .main-nav__item:last-child {
+    margin-bottom: 12px;
+  }
+
+  /* Las opciones entran en cascada */
+  .main-nav__item {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .main-nav__drawer.is-open .main-nav__item {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.35s ease, transform 0.45s var(--menu-ease);
+    transition-delay: calc(0.08s + var(--i, 0) * 0.045s);
+  }
+
+  /* La flecha de Herramientas (sin enlace) alineada con las demás */
+  .main-nav__trigger:not(.main-nav__link):not(.main-nav__caret) {
+    padding-right: 18px;
+  }
+
+  /* Submenús: se despliegan y repliegan con la misma curva */
+  .mega,
+  .mega[hidden],
+  .mega--about {
+    display: grid;
+    grid-template-rows: 1fr;
+    padding: 4px 0 20px;
+    visibility: visible;
+    transition: grid-template-rows 0.4s var(--menu-ease), padding 0.4s var(--menu-ease), visibility 0s;
+  }
+  .mega[hidden] {
+    grid-template-rows: 0fr;
+    padding: 0;
+    visibility: hidden;
+    transition: grid-template-rows 0.35s var(--menu-ease), padding 0.35s var(--menu-ease), visibility 0s linear 0.35s;
+  }
+  .mega__grid,
+  .mega--three .mega__grid,
+  .mega--about .mega__grid {
+    min-height: 0;
+    overflow: hidden;
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.3s ease 0.08s, transform 0.4s var(--menu-ease) 0.05s;
+  }
+  .mega[hidden] .mega__grid {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.15s ease, transform 0.35s var(--menu-ease);
+  }
+}
+
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+  .main-nav__burger-line,
+  .main-nav__drawer,
+  .main-nav__drawer.is-open,
+  .main-nav__item,
+  .main-nav__drawer.is-open .main-nav__item,
+  .mega,
+  .mega[hidden],
+  .mega__grid,
+  .mega[hidden] .mega__grid {
+    transition: none;
   }
 }

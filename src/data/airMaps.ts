@@ -2,7 +2,13 @@
  * Geografía de los mapas de conectividad aérea, generada desde Natural Earth (world-atlas)
  * con proyección Mercator. No editar a mano: trazos ya proyectados a un lienzo de 560×520.
  */
-export type AirMapGeo = { land: string; focus: string; pts: Record<string, [number, number]> };
+export type AirMapGeo = {
+  land: string;
+  focus: string;
+  pts: Record<string, [number, number]>;
+  /** Lienzo propio (mapa continental); por defecto, airMapSize. */
+  size?: { width: number; height: number };
+};
 
 export const airMapSize = { width: 560, height: 520 };
 

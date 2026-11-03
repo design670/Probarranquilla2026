@@ -9,11 +9,16 @@ export type ResourceAction =
 export type Resource = {
   id: string;
   title: string;
+  /** Categoría para la barra de filtro de la página (opcional). */
+  category?: string;
   /** Texto corto bajo el título (opcional). */
   text?: string;
   /** Nombre del documento que se muestra en el formulario de descarga (por defecto, el título). */
   documentName?: string;
-  image: { src: string; alt: string };
+  /** Portada. Sin portada oficial, la card muestra una tipográfica con `coverText`. */
+  image?: { src: string; alt: string };
+  /** Líneas de la portada tipográfica (p. ej. ['Estados financieros', '2024']). */
+  coverText?: [string, string];
   action: ResourceAction;
 };
 
@@ -38,12 +43,19 @@ function ArrowIcon() {
  * portada, título, texto opcional y una acción alineada abajo.
  */
 export function ResourceCard({ resource, eager = false }: { resource: Resource; eager?: boolean }) {
-  const { id, title, text, image, action, documentName } = resource;
+  const { id, title, text, image, coverText, action, documentName } = resource;
   const titleId = `resource-${id}`;
 
   return (
     <article className={`rcard${text ? ' rcard--with-text' : ''}`} aria-labelledby={titleId}>
-      <img className="rcard__cover" src={image.src} alt={image.alt} width={800} height={440} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+      {image ? (
+        <img className="rcard__cover" src={image.src} alt={image.alt} width={800} height={440} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+      ) : (
+        <div className="rcard__cover rcard__cover--type" aria-hidden="true">
+          <span>{coverText?.[0] ?? title}</span>
+          {coverText?.[1] && <strong>{coverText[1]}</strong>}
+        </div>
+      )}
       <h3 id={titleId} className="rcard__title">
         {title}
       </h3>

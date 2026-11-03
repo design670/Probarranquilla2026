@@ -14,7 +14,7 @@ const A = (src: string, alt: string, position = '50% 50%'): ImageAsset => ({ src
 export const eventAnchors = { apoyo: 'como-te-apoyamos', formulario: 'postula-tu-evento' };
 
 export const eventHero = {
-  title: 'Barranquilla, el punto de encuentro del Caribe para los grandes eventos.',
+  title: 'Barranquilla, el punto de encuentro del Caribe para los grandes eventos',
 };
 
 /* ---------- Ventajas estratégicas: conectividad aérea ---------- */

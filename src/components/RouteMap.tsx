@@ -12,13 +12,18 @@ type Props = {
   ariaLabel: string;
   /** `air` línea continua; `sea` y `road` punteadas */
   kind?: 'air' | 'sea' | 'road';
+  /** Cables submarinos ya proyectados: cada uno con su color y sus tramos. */
+  cables?: { id: string; color: string; paths: [number, number][][] }[];
+  /** Puntos de llegada de los cables. */
+  landings?: [number, number][];
+  /** Fuente de los datos, abajo a la izquierda. */
+  source?: string;
 };
 
-const { width: W, height: H } = airMapSize;
 const EDGE = 14;
 
 /** Lleva un destino fuera del encuadre (p. ej. Madrid) al borde del mapa, en su misma dirección. */
-function clampToEdge([x0, y0]: [number, number], [x, y]: [number, number]): [number, number] {
+function clampToEdge([x0, y0]: [number, number], [x, y]: [number, number], W: number, H: number): [number, number] {
   if (x >= EDGE && x <= W - EDGE && y >= EDGE && y <= H - EDGE) return [x, y];
   const dx = x - x0;
   const dy = y - y0;
@@ -34,7 +39,8 @@ function arc([x1, y1]: [number, number], [x2, y2]: [number, number], k: number) 
 }
 
 /** Mapa SVG con geografía real (Natural Earth) y rutas desde Barranquilla. */
-export function RouteMap({ geo, hub, stops, ariaLabel, kind = 'air' }: Props) {
+export function RouteMap({ geo, hub, stops, ariaLabel, kind = 'air', cables, landings, source }: Props) {
+  const { width: W, height: H } = geo.size ?? airMapSize;
   const h = geo.pts[hub.id];
   const k = kind === 'road' ? 0.08 : 0.18;
   const uid = useId().replace(/:/g, '');
@@ -58,10 +64,21 @@ export function RouteMap({ geo, hub, stops, ariaLabel, kind = 'air' }: Props) {
       <g mask={`url(#${uid}-mask)`}>
         <path className="rmap__land" d={geo.land} />
         <path className="rmap__focus" d={geo.focus} />
+        {/* Cables dentro de la máscara: se desvanecen al salir del encuadre */}
+        {cables?.map((c, i) => (
+          <g key={c.id} className="rmap__cable" style={{ stroke: c.color, animationDelay: `${i * 120}ms` }}>
+            {c.paths.map((p, j) => (
+              <path key={j} className="rmap__cable-line" d={`M${p.map(([x, y]) => `${x} ${y}`).join('L')}`} pathLength={1} />
+            ))}
+          </g>
+        ))}
       </g>
+      {landings?.map(([x, y]) => (
+        <circle key={`${x}-${y}`} className="rmap__landing" cx={x} cy={y} r={3.6} />
+      ))}
       {stops.map((s, i) => {
         const p = geo.pts[s.id];
-        const end = clampToEdge(h, p);
+        const end = clampToEdge(h, p, W, H);
         const outside = end[0] !== p[0] || end[1] !== p[1];
         return (
           <g key={s.id} className="rmap__route" style={{ animationDelay: `${i * 80}ms` }}>
@@ -90,6 +107,11 @@ export function RouteMap({ geo, hub, stops, ariaLabel, kind = 'air' }: Props) {
       <text className="rmap__label rmap__label--hub" x={h[0] + hub.label.dx} y={h[1] + hub.label.dy} textAnchor={hub.label.anchor}>
         {hub.name}
       </text>
+      {source && (
+        <text className="rmap__source" x={16} y={H - 16}>
+          {source}
+        </text>
+      )}
     </svg>
   );
 }

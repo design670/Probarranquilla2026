@@ -153,3 +153,43 @@
     inset: -2px;
   }
 }
+
+/* Portada tipográfica para documentos sin portada oficial (estados financieros) */
+.rcard__cover--type {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 24px;
+  background:
+    linear-gradient(135deg, rgba(1, 84, 164, 0.55) 0%, rgba(0, 30, 58, 0) 60%),
+    var(--c-navy-nav);
+  color: var(--c-white);
+  transition: box-shadow 0.3s ease;
+}
+
+.rcard__cover--type span {
+  font-size: 18px;
+  line-height: 1.2;
+  color: #cfe0f2;
+}
+
+.rcard__cover--type strong {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+/* Sobre la card azul del hover, la portada se separa con un borde suave */
+.rcard:hover .rcard__cover--type,
+.rcard:focus-within .rcard__cover--type {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+@media (max-width: 640px) {
+  .rcard__cover--type strong {
+    font-size: 48px;
+  }
+}

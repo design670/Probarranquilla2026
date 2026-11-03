@@ -83,13 +83,25 @@ export const bulletins: Bulletin[] = [
   b('socioeconomico-enero-diciembre-2021', 'Boletín de indicadores socioeconómicos Enero/Diciembre 2021', 2021, '2022/10/Newsletter-PB-2022-Version-anterior-Primer-reporte-1.pdf'),
 ];
 
+/** Categorías de la barra de filtro, en el orden en que se muestran. */
+export const bulletinCategories = ['Indicadores socioeconómicos', 'Tendencias de inversión', 'Turismo'] as const;
+
+/** La categoría sale del nombre de cada boletín (todos los títulos la dicen). */
+const categoryOf = (title: string): (typeof bulletinCategories)[number] => {
+  if (/tendencias/i.test(title)) return 'Tendencias de inversión';
+  if (/turismo/i.test(title)) return 'Turismo';
+  return 'Indicadores socioeconómicos';
+};
+
 /** Contenido de la página con la plantilla común de Herramientas. */
 export const bulletinsPage: ResourcePageContent = {
   hero: bulletinsHero,
   listLabel: 'Boletines publicados',
+  filters: { label: 'Filtrar boletines por categoría', categories: [...bulletinCategories] },
   items: bulletins.map((b) => ({
     id: b.id,
     title: b.title,
+    category: categoryOf(b.title),
     image: { src: b.thumbnail, alt: b.thumbnailAlt },
     action: { kind: 'download', url: b.pdfUrl },
   })),

@@ -87,11 +87,9 @@ Todos los textos se pudieron transcribir de la referencia a resolución completa
 El caso de éxito reutiliza los recursos del Home (`assets/casos/…`).
 
 **Destinos y contenido pendientes**
-- Botones del hero: "Explora las ventajas" y "Solicita acompañamiento".
 - Pestañas "Conectividad terrestre" y "Conectividad en telecomunicaciones": sin contenido. Se ven como en el diseño, pero no se activan hasta que se cargue su `content` en `connectivity.tabs`.
 
 **Diferencias con el brief (se siguió la imagen)**
-- Botón del hero: "Explora las ventajas" (el brief dice "Explora la ciudad").
 - La tercera pestaña es "Conectividad en telecomunicaciones" (el brief dice "marítima").
 - La etiqueta de la sección SENA dice "PRESENCIA REGIONAL MULTIDECIMAS": parece una errata, hay que validarla.
 - La cifra "+1.5 toneladas" (carga general) no dice "millones", a diferencia de las demás: hay que validarla.
@@ -210,7 +208,9 @@ El menú "Haz tu evento" ya enlaza a la página y a sus secciones (apoyo, result
 Referencia: `Sectores.png` (1366 px). Datos en `src/data/sectores.ts`. El menú "Sectores" enlaza a cada sección (Químicos, Alimentos, Materiales, Energía, BPO & IT, MRO, Otros).
 - El hero usa la foto del Home (`assets/hero/hero-1.jpg`): es la misma panorámica de la rueda.
 
-**Recursos gráficos** (en `public/assets/sectores/`): `quimicos-ciencias-de-la-vida.jpg`, `materiales-construccion.jpg`, `energia-transicion.jpg` (los tres son grises en la referencia), `mro-hangar.jpg` (foto del hangar) y `cta-ventana-al-mundo.jpg` (foto del CTA final).
+**Rediseño (noviembre 2026):** el cliente pidió cambiar la página. Ahora es un selector: seis tarjetas en dos grupos (Manufactura y Servicios) y, debajo, el sector elegido con foto y texto; al final, la franja "Otros sectores con potencial". Se quitaron el índice lateral y los bloques de colores. Los textos son los mismos. Componente: `src/pages/sectores/SectorExplorer.tsx`.
+
+**Recursos gráficos** (en `public/assets/sectores/`, una foto vertical por sector): `quimicos-ciencias-de-la-vida.jpg`, `alimentos-bebidas.jpg`, `materiales-construccion.jpg`, `energia-transicion.jpg`, `bpo-it.jpg` y `mro-hangar.jpg`. Mientras no existan se ve el placeholder rayado.
 
 **Destinos pendientes**
 - "Conocer el sector" (Químicos): no existe la ficha del sector; el botón queda deshabilitado (`chemicals.cta.href`).
@@ -296,3 +296,20 @@ Plantilla compartida: `src/components/ResourcePage.tsx` + `ResourceCard.tsx` (Bo
 - Haz tu evento, ¿Cómo te apoyamos?: fotos de `src/pages/Como te apoyamos`. "Apoyo a candidaturas" y "Acceso a proveedores" usan la misma foto (confirmado por el cliente).
 
 - Haz tu evento, Casos de éxito: fotos de `src/pages/Casos de exito` (8 eventos). Falta la de ExpoACCCSA (`public/assets/evento/casos/expoacccsa.jpg`). IRONMAN (679 px) y Cirugía Plástica (640 px) son pequeñas.
+
+## Informes de labores (`/informes-de-labores/`)
+
+Contenido tomado de https://probarranquilla.org/nuestra-gestion/ (datos en `src/data/informes.ts`). Las 10 portadas se revisaron una por una contra su año.
+
+- **Foto del hero:** falta `public/assets/hero/informes-de-labores.jpg` (hoy se ve el placeholder rayado).
+- **Bajada del hero:** "Conoce la gestión y los resultados de ProBarranquilla año a año" es una propuesta; la página oficial no trae texto. Confirmar o reemplazar.
+- **PDF del Informe de labores 2025:** en la web oficial, el botón de 2025 abre los estados financieros 2025. Queda como "PDF no disponible" hasta recibir el informe correcto.
+- **PDF del Informe de labores 2020:** en la web oficial, el botón de 2020 abre el informe de 2022. Queda como "PDF no disponible" hasta recibir el correcto.
+- **Estados financieros 2025:** se agregó con el PDF que la web oficial enlaza por error en la tarjeta de 2025 (`EEFF_PB_2025_ESAL_DIAN`). Confirmar que debe publicarse.
+- Los estados financieros no tienen portada oficial: se muestran con una portada tipográfica (texto + año).
+
+## Instálate: mapa de telecomunicaciones
+
+- Los cables submarinos del mapa (pestaña "Conectividad en telecomunicaciones") se trazaron a partir de la imagen de referencia enviada por el cliente (fuente: Submarine Cable Map, 2025). Son rutas ilustrativas dentro del encuadre del Caribe, no el tendido exacto: validar contra submarinecablemap.com si se necesita precisión. Datos en `src/data/submarineCables.ts`.
+- El mapa de telecomunicaciones es continental (Florida a Tierra del Fuego), generado desde Natural Earth 1:50m en `src/data/continentalMap.ts`.
+- Pestaña aérea: el botón "Ver vuelos nacionales" cambia al mapa de Colombia con los 8 destinos del texto (Bogotá, Cali, Medellín, Bucaramanga, Cúcuta, Riohacha, San Andrés y Montería).

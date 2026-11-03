@@ -108,3 +108,39 @@
   stroke: #0f1b36;
   stroke-width: 0.8;
 }
+
+/* ---------- Cables submarinos (telecomunicaciones) ---------- */
+
+.rmap__cable {
+  animation: rmap-fade 0.4s ease both;
+}
+
+.rmap__cable-line {
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: rmap-draw 1.4s ease forwards;
+  animation-delay: inherit;
+}
+
+.rmap__landing {
+  fill: var(--c-white);
+  stroke: #0f1b36;
+  stroke-width: 1.4;
+}
+
+.rmap__source {
+  font-family: var(--font-body);
+  font-size: 11px;
+  fill: rgba(255, 255, 255, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rmap__cable-line {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+}

@@ -1,22 +1,32 @@
 import { useId, useRef, useState, type KeyboardEvent } from 'react';
 import { connectivity } from '../../data/instalate';
 import { internationalGeo, nationalGeo } from '../../data/airMaps';
+import { continentalGeo } from '../../data/continentalMap';
+import { projectCables } from '../../data/submarineCables';
 import { LineIcon } from '../../components/LineIcon';
 import { RouteMap } from '../../components/RouteMap';
 import { ArrowLabel } from '../../components/ArrowLabel';
 import './Connectivity.css';
 
-const GEO = { internacional: internationalGeo, nacional: nationalGeo };
+const GEO = { internacional: internationalGeo, nacional: nationalGeo, continental: continentalGeo };
 const HUB = 'Barranquilla';
+const CABLES = projectCables(continentalGeo.pts.baq);
 
 /** Conectividad estratégica: portuaria, aérea, terrestre y telecomunicaciones (pestañas). */
 export function Connectivity() {
   const { tabs } = connectivity;
-  const [active, setActive] = useState(0);
+  const [active, setActiveTab] = useState(0);
+  // Mapa alterno (vuelos nacionales); vuelve al principal al cambiar de pestaña
+  const [showAlt, setShowAlt] = useState(false);
+  const setActive = (i: number) => {
+    setActiveTab(i);
+    setShowAlt(false);
+  };
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
   const id = useId();
   const tab = tabs[active];
   const c = tab.content;
+  const map = showAlt && c.map.alt ? c.map.alt.map : c.map;
 
   const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     const moves: Record<string, number> = { ArrowRight: active + 1, ArrowLeft: active - 1, Home: 0, End: tabs.length - 1 };
@@ -60,15 +70,24 @@ export function Connectivity() {
 
         <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${tab.id}`} className={`connect__panel connect__panel--${tab.id}${c.highlight?.text ? " connect__panel--strip" : ""}`}>
           {/* key: el mapa se vuelve a dibujar (con su animación) al cambiar de pestaña */}
-          <div className="connect__map" key={tab.id}>
+          <div className="connect__map" key={`${tab.id}-${showAlt}`}>
             <RouteMap
-              geo={GEO[c.map.geo]}
-              hub={{ id: 'baq', name: HUB, label: c.map.hubLabel }}
-              stops={c.map.stops}
-              ariaLabel={c.map.ariaLabel}
-              kind={c.map.kind}
+              geo={GEO[map.geo]}
+              hub={{ id: 'baq', name: HUB, label: map.hubLabel }}
+              stops={map.stops}
+              ariaLabel={map.ariaLabel}
+              kind={map.kind}
+              cables={map.cables ? CABLES.cables : undefined}
+              landings={map.cables ? CABLES.landings : undefined}
+              source={map.source}
             />
           </div>
+
+          {c.map.alt && (
+            <button type="button" className="connect__map-toggle" aria-pressed={showAlt} onClick={() => setShowAlt((v) => !v)}>
+              <ArrowLabel size={12}>{showAlt ? c.map.alt.backLabel : c.map.alt.label}</ArrowLabel>
+            </button>
+          )}
 
           <h3 className="connect__title">{c.title}</h3>
 

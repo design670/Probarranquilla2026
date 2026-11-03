@@ -47,7 +47,7 @@
 
 @media (max-width: 640px) {
   .page-hero--about {
-    height: 560px;
+    height: var(--hero-mobile-h);
   }
   .page-hero--about .page-hero__img {
     object-position: 72% 50%;

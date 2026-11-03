@@ -104,5 +104,15 @@
 @media (max-width: 640px) {
   :root {
     --gutter: 16px;
+    /* Móvil: los heros llenan el primer pantallazo (debajo de la barra blanca) */
+    --hero-mobile-h: calc(100vh - var(--util-h));
+  }
+}
+
+@supports (height: 100svh) {
+  @media (max-width: 640px) {
+    :root {
+      --hero-mobile-h: calc(100svh - var(--util-h));
+    }
   }
 }

@@ -99,6 +99,9 @@
 }
 
 @media (max-width: 640px) {
+  .event-hero {
+    min-height: var(--hero-mobile-h);
+  }
   .event-hero .event-hero__content {
     padding-left: var(--gutter);
   }

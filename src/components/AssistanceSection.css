@@ -3,13 +3,6 @@
   padding: 85px 0 0;
 }
 
-.assist__head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 24px;
-}
-
 .assist__title {
   font-size: 34px;
   line-height: 0.98;
@@ -22,12 +15,12 @@
 }
 
 .assist__cta {
-  flex: none;
+  align-self: flex-start;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   height: 44px;
-  margin-top: 11px;
+  margin-top: 32px;
   padding: 0 24px;
   background: var(--c-navy-nav);
   color: var(--c-white);
@@ -41,7 +34,6 @@
 
 .assist__stage {
   position: relative;
-  margin-top: 31px;
 }
 
 .assist__media {
@@ -57,20 +49,23 @@
   object-position: 30% 50%;
 }
 
+/* Cuadro blanco centrado en la altura de la foto */
 .assist__panel {
   position: absolute;
-  top: 115px;
+  top: 50%;
   right: 43px;
+  transform: translateY(-50%);
   width: 500px;
-  min-height: 333px;
-  padding: 38px 44px 36px 44px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 44px;
   background: var(--c-white);
   border-radius: var(--radius-lg);
   color: var(--c-blue-title);
 }
 
 .assist__panel ul {
-  margin: 0;
+  margin: 28px 0 0;
   padding-left: 17px;
   display: flex;
   flex-direction: column;
@@ -88,10 +83,20 @@
     height: 480px;
   }
   .assist__panel {
-    top: 70px;
     right: 28px;
     width: 440px;
-    min-height: 0;
+    padding: 34px 36px;
+  }
+  .assist__title {
+    font-size: 30px;
+  }
+  .assist__panel ul {
+    margin-top: 22px;
+    gap: 16px;
+    font-size: 17px;
+  }
+  .assist__cta {
+    margin-top: 26px;
   }
 }
 
@@ -106,7 +111,7 @@
     font-size: 16px;
     height: 40px;
     padding: 0 16px;
-    margin-top: 2px;
+    margin-top: 24px;
   }
   .assist__media {
     height: 340px;
@@ -115,22 +120,20 @@
     position: relative;
     top: auto;
     right: auto;
+    transform: none;
     width: auto;
     margin: -60px 20px 0;
     padding: 28px 28px 28px 30px;
     box-shadow: 0 6px 24px rgba(0, 30, 58, 0.1);
   }
   .assist__panel ul {
+    margin-top: 20px;
     font-size: 16px;
     gap: 16px;
   }
 }
 
 @media (max-width: 560px) {
-  .assist__head {
-    flex-direction: column;
-    gap: 16px;
-  }
   .assist__title {
     font-size: 24px;
   }
@@ -139,6 +142,12 @@
   }
   .assist__panel {
     margin: -40px 10px 0;
-    padding: 22px 20px 22px 24px;
+    padding: 24px 20px 24px 22px;
+  }
+  .assist__panel ul {
+    margin-top: 18px;
+  }
+  .assist__cta {
+    margin-top: 22px;
   }
 }

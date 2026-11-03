@@ -23,11 +23,11 @@
   line-height: 25px;
 }
 
-/* ---------- Intro + grilla ---------- */
+/* ---------- Intro + selector ---------- */
 
 .sectors {
   padding: 70px 0 129px;
-  background: #f8fafc;
+  background: var(--c-gray-news);
 }
 
 .sectors__intro {
@@ -50,27 +50,6 @@
   color: var(--c-blue-title);
 }
 
-/* Índice ~30 % + contenido ~70 % */
-.sectors__layout {
-  display: grid;
-  grid-template-columns: 352fr 806fr;
-  gap: 27px;
-  align-items: start;
-  margin-top: 58px;
-}
-
-/* Sticky: acompaña el recorrido y se detiene al terminar la grilla */
-.sectors__aside {
-  position: sticky;
-  top: calc(var(--header-h) + 24px);
-}
-
-@media (max-width: 1100px) {
-  .sectors__layout {
-    grid-template-columns: 280px 1fr;
-  }
-}
-
 @media (max-width: 900px) {
   .page-hero--sectors .page-hero__content {
     bottom: 64px;
@@ -91,15 +70,6 @@
   }
   .sectors__intro-text span + span::before {
     content: ' ';
-  }
-  /* El índice pasa arriba como desplegable y deja de ser sticky */
-  .sectors__layout {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    margin-top: 36px;
-  }
-  .sectors__aside {
-    position: static;
   }
 }
 

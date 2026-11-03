@@ -58,7 +58,7 @@ export const newsPage = {
       fit: 'cover',
       position: '70% 30%',
     } satisfies ImageAsset,
-    title: ['Segmento', 'informativo con', 'énfasis en la', 'Fundación', 'ProBarranquilla.'],
+    title: ['Segmento', 'informativo con', 'énfasis en la', 'Fundación', 'ProBarranquilla'],
     description: DESCRIPTION,
   },
   filters: ['Turismo de reuniones', 'Expo ProBarranquilla', 'Inversiones'] as NewsCategory[],

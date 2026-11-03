@@ -82,7 +82,7 @@
 
 @media (max-width: 640px) {
   .hero {
-    height: 520px;
+    height: var(--hero-mobile-h);
   }
   .hero__title {
     font-size: 36px;
