@@ -122,6 +122,25 @@
   border-radius: 0 0 3px 0;
 }
 
+/* Escritorio (grupos lado a lado): los dos grupos comparten filas, así las seis tarjetas
+   arrancan a la misma altura aunque las bajadas de los grupos tengan distinto largo */
+@media (min-width: 1101px) {
+  .sx-picker {
+    grid-template-rows: auto auto;
+    row-gap: 0;
+  }
+  .sx-group {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 2;
+  }
+}
+
+/* Título justo debajo del número: los nombres de las seis tarjetas quedan en la misma línea */
+.sx-tab {
+  justify-content: flex-start;
+}
+
 /* ---------- Panel del sector ---------- */
 
 /* El recuadro toma el color de la tarjeta activa (azul o naranja) y el texto va en blanco */
