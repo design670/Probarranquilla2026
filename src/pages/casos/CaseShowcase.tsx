@@ -10,18 +10,21 @@ const AUTOPLAY_MS = 6000;
 /**
  * Caso de éxito a pantalla completa: foto de fondo y tarjeta azul a la derecha.
  * Avanza solo cada 6 s (en bucle); los puntos permiten saltar a un caso.
- * El avance se pausa con el cursor encima o con el foco dentro, y no corre si
- * el usuario prefiere reducir el movimiento.
+ * No se pausa con el cursor (el caso ocupa toda la pantalla y nunca avanzaría):
+ * se pausa con el botón junto a los puntos o mientras el teclado navega dentro.
+ * Con movimiento reducido sigue avanzando, pero sin fundido.
  */
 export function CaseShowcase() {
   const [index, setIndex] = useState(0);
   const [shown, setShown] = useState(0);
   const [fading, setFading] = useState(false);
   const [paused, setPaused] = useState(false);
+  /** Pausa elegida con el botón */
+  const [stopped, setStopped] = useState(false);
   const [reduceMotion] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const current = caseStudies[shown];
   const total = caseStudies.length;
-  const autoplay = total > 1 && !reduceMotion;
+  const autoplay = total > 1 && !stopped;
 
   // Avance automático; se reinicia cada vez que cambia el caso (también al elegir un punto)
   useEffect(() => {
@@ -50,9 +53,7 @@ export function CaseShowcase() {
       className="showcase"
       aria-roledescription="carrusel"
       aria-label="Casos de éxito"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
+      onFocus={(e) => setPaused((e.target as HTMLElement).matches(':focus-visible'))}
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) setPaused(false);
       }}
@@ -72,6 +73,23 @@ export function CaseShowcase() {
 
         {total > 1 && (
           <div className="showcase__dots">
+            <button
+              type="button"
+              className="showcase__toggle"
+              aria-label={stopped ? 'Reanudar el paso automático de los casos' : 'Pausar el paso automático de los casos'}
+              onClick={() => setStopped((v) => !v)}
+            >
+              {stopped ? (
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true">
+                  <path d="M4.5 2.8v10.4L13 8 4.5 2.8Z" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true">
+                  <rect x="4" y="3" width="2.6" height="10" rx="0.6" />
+                  <rect x="9.4" y="3" width="2.6" height="10" rx="0.6" />
+                </svg>
+              )}
+            </button>
             {caseStudies.map((c, i) => (
               <button
                 key={c.id}

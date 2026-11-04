@@ -210,3 +210,26 @@
     top: calc(var(--hero-mobile-h) - 40px);
   }
 }
+
+/* Pausa / reproducir el paso automático, al inicio de los puntos */
+.showcase__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--c-blue-bright);
+  color: var(--c-white);
+  transition: background-color 0.2s ease;
+}
+
+.showcase__toggle:hover {
+  background: var(--c-navy-nav);
+}
+
+.showcase__toggle:focus-visible {
+  outline: 2px solid var(--c-white);
+  outline-offset: 2px;
+}
