@@ -37,7 +37,8 @@ export const instalateAssets = {
     cayena: A('logo-la-cayena.png', 'Zona Franca La Cayena', { fit: 'contain' }),
     zoma: A('logo-zoma.png', 'ZOMA Zona Franca Malambo', { fit: 'contain' }),
   },
-  retrato: A('profesional.png', 'Profesional sonriente con camisa azul, celular y tableta', { fit: 'contain', position: '50% 100%' }),
+  // Retrato recortado sin fondo (foto enviada por el cliente, noviembre 2026)
+  retrato: A('talento-persona.webp', 'Joven profesional con gafas y camisa clara, de brazos cruzados', { fit: 'contain', position: '50% 100%' }),
   formacion: {
     servicios: A('sena-servicios.jpg', 'Edificio de una sede del SENA en Barranquilla'),
     madera: A('sena-madera-muebles.jpg', 'Sede del SENA en Galapa para madera y muebles'),
@@ -60,9 +61,10 @@ export const instalateImpactTitle = ['Barranquilla y el Atlántico: Una ubicaci�
 /** Cifras de Instálate (últimos 5 años) */
 export const instalateResults = {
   heading: 'Una propuesta de valor respaldada por resultados',
-  period: 'Últimos 5 años',
+  // Mismas cifras de Inversiones que Home y Sobre ProBarranquilla (impact en content.ts)
+  period: 'Cifras de los últimos 5 años',
   stats: [
-    { tone: 'navy', value: ['USD +2.000'], label: ['Millones en', 'inversión'] },
+    { tone: 'navy', value: ['+USD 2.000'], label: ['Millones en', 'inversión'] },
     { tone: 'orange', value: ['+14.000'], label: ['Empleos', 'directos'] },
     { tone: 'blue', value: ['80%'], label: ['De proyectos con', 'vocación exportadora'] },
   ],

@@ -314,3 +314,48 @@
     font-size: 18px;
   }
 }
+
+/* Nota del periodo bajo las tarjetas de cada pestaña (Home y Sobre) */
+.impact__period--tab {
+  margin: 22px 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.impact--about .impact__period--tab {
+  color: var(--c-blue-title);
+  opacity: 1;
+}
+
+/* Pestañas: las tres cifras arrancan a la misma altura y la etiqueta va debajo */
+.impact__grid--tabs .impact__card {
+  justify-content: flex-start;
+  gap: 26px;
+  padding-top: 40px;
+}
+
+.impact__grid--tabs .impact__label {
+  max-width: 300px;
+}
+
+.impact__grid--tabs .impact__label span {
+  display: block;
+}
+
+/* Cifras de las pestañas más grandes, siempre en una línea: así todas quedan a la misma altura */
+.impact__grid--tabs .impact__value {
+  font-size: clamp(44px, 4.6vw, 66px);
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .impact__grid--tabs .impact__value {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 560px) {
+  .impact__grid--tabs .impact__value {
+    font-size: 42px;
+  }
+}

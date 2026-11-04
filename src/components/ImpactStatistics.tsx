@@ -87,7 +87,7 @@ export function ImpactStatistics({ id, title, intro, ariaLabel = 'Impacto y resu
 
         <div id="impact-panel" role="tabpanel" aria-labelledby={`tab-${tabId}`}>
           {tab.stats.length > 0 ? (
-            <ul className={`impact__grid impact__grid--${tab.align}`}>
+            <ul className="impact__grid impact__grid--three impact__grid--tabs">
               {tab.stats.map((s) => (
                 <li key={s.value.join(' ')} className={`impact__card tone-${s.tone} ${s.variant === 'long' ? 'is-long' : ''}`}>
                   <p className="impact__value">
@@ -106,6 +106,7 @@ export function ImpactStatistics({ id, title, intro, ariaLabel = 'Impacto y resu
           ) : (
             <p className="impact__empty">Las cifras de {tab.label.toLowerCase()} aún no están disponibles.</p>
           )}
+          {tab.period && <p className="impact__period impact__period--tab">*{tab.period}</p>}
         </div>
         </>
         )}

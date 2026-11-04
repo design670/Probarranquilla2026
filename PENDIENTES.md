@@ -147,12 +147,12 @@ Todos los textos visibles se transcribieron de la referencia; no se inventó nin
 |---|---|
 | `assets/sobre/hero-ventana-al-mundo.jpg` | Hero. En la referencia es una escultura en el Malecón (no la Ventana al Mundo, como decía el prompt); la ruta se puede cambiar en `aboutHero.image` |
 | `assets/sobre/que-hace-acompanamiento.jpg`, `que-hace-posicionamiento.jpg`, `que-hace-seguimiento.jpg` | Fotos de los 3 banners de "¿Qué hace?" |
-| `assets/sobre/historia-1988.jpg` … `historia-2021.jpg`, `historia-hoy.jpg` | Foto de cada hito (8) |
+| `assets/sobre/historia-<año>.jpg` (16: 1988, 1990, 1992, 1993, `1994-1997`, 2002, 2008, 2011, 2015, 2016, 2017, `2018-2019`, `2021-2023`, 2024, 2025, 2026) | Foto de cada hito; los periodos usan guion |
 | Fondo geográfico de "Nuestra historia" | Sin archivo: asignar `history.background` en `sobre.ts` cuando llegue (se pinta al 50 % de opacidad) |
 | `assets/equipo/<nombre>.jpg` | 19 retratos. Nombre = nombre de la persona sin tildes, en minúsculas y con guiones (p. ej. `vicky-osorio.jpg`, `maria-t-urueta.jpg`). El placeholder en desarrollo muestra la ruta exacta |
 
 **Contenido pendiente**
-- Historia: solo 1988 tiene título legible ("Promotora de Desarrollo Urbano"). Faltan título y descripción de 1992, 2002, 2008, 2015, 2016, 2021 y Hoy (`history.milestones`); mientras tanto el panel muestra el año y la foto. 1988 tampoco tiene descripción.
+- Historia: los 16 hitos tienen el texto enviado por el cliente (noviembre 2026); 2024 y 2026 muestran sus logros en viñetas. Solo faltan las fotos.
 - Consejo directivo: miembros, cargos y empresas tomados de probarranquilla.org/nosotros (13 + 2 honorarios). El diseño de Figma muestra otros nombres (Juan Pablo Ospina, Aquiles Mercado, Niella Sabatino, José Manuel Carbonell, Jorge Puche, Eduardo Crissien): confirmar qué lista es la vigente. Fotos: 13 entregadas por el cliente (src/pages/Consejo Directo); faltan Guillermo Heins y Rodrigo Plata (public/assets/sobre/consejo/<nombre>.jpg). Logos de empresa tomados de probarranquilla.org; sin logo: Invercosur y TM del Caribe (muestra el nombre). Para "Esacar LTDA" se usó el logo de Ensacar S.A.: confirmar.
 - Menú "Sobre ProBarranquilla": "Quienes somos" y "Equipo" ya enlazan a esta página (`/sobre-probarranquilla/` y `#equipo`). "Servicios" y "Comunidad de miembros" siguen sin destino definido.
 
@@ -313,3 +313,8 @@ Contenido tomado de https://probarranquilla.org/nuestra-gestion/ (datos en `src/
 - Los cables submarinos del mapa (pestaña "Conectividad en telecomunicaciones") se trazaron a partir de la imagen de referencia enviada por el cliente (fuente: Submarine Cable Map, 2025). Son rutas ilustrativas dentro del encuadre del Caribe, no el tendido exacto: validar contra submarinecablemap.com si se necesita precisión. Datos en `src/data/submarineCables.ts`.
 - El mapa de telecomunicaciones es continental (Florida a Tierra del Fuego), generado desde Natural Earth 1:50m en `src/data/continentalMap.ts`.
 - Pestaña aérea: el botón "Ver vuelos nacionales" cambia al mapa de Colombia con los 8 destinos del texto (Bogotá, Cali, Medellín, Bucaramanga, Cúcuta, Riohacha, San Andrés y Montería).
+
+## Página "Equipo" (`/equipo/`)
+
+- El menú "Sobre ProBarranquilla → Equipo" lleva ahora a esta página propia (antes bajaba a `/sobre-probarranquilla/#equipo`). El bloque del equipo sigue también dentro de Sobre ProBarranquilla.
+- El hero reutiliza la foto de "Atracción de inversiones" (`assets/sobre/que-hace-acompanamiento.jpg`). Si hay una foto del equipo, reemplazar `teamHero.image` en `src/data/sobre.ts`.

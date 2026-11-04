@@ -27,7 +27,7 @@ export function AboutPage() {
       <WhatWeDo />
       <InvestmentStages />
       <History />
-      <Team />
+      <Team leadership />
       <Board />
       <div className="about-tail">
         <Partners />

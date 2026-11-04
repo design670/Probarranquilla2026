@@ -21,6 +21,9 @@
 }
 
 .impact--about .impact__intro {
+  /* Mismo ancho de lectura que en el Home */
+  max-width: 930px;
+  margin-inline: auto;
   color: var(--c-blue-title);
 }
 

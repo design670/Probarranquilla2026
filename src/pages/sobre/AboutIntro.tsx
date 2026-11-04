@@ -1,5 +1,4 @@
 import { aboutIntro } from '../../data/sobre';
-import { impact } from '../../data/content';
 import { ImpactStatistics } from '../../components/ImpactStatistics';
 import './AboutIntro.css';
 
@@ -19,7 +18,7 @@ export function AboutIntro() {
           </h2>
         </div>
       </section>
-      <ImpactStatistics intro={impact.intro} ariaLabel="Impacto y resultados de ProBarranquilla" className="impact--about" />
+      <ImpactStatistics intro={aboutIntro.intro} ariaLabel="Impacto y resultados de ProBarranquilla" className="impact--about" />
     </>
   );
 }

@@ -22,7 +22,7 @@ export const routes = {
   home: '/',
   instalate: '/instalate-en-barranquilla/',
   sobre: '/sobre-probarranquilla/',
-  equipo: '/sobre-probarranquilla/#equipo',
+  equipo: '/equipo/',
   noticias: '/noticias/',
   informes: '/informes-de-labores/',
   // Anclas a secciones del Home (absolutas para que funcionen desde cualquier página)
@@ -205,28 +205,26 @@ export const impact = {
   title: ['Por qué las empresa globales', 'escogen Barranquilla'],
   intro:
     'Nuestra labor técnica y de posicionamiento impulsa el crecimiento socioeconómico sostenible del departamento del Atlántico. Interactúa con las estadísticas y sectores para conocer el impacto real.',
+  // Cifras finales del cliente (noviembre 2026). Cada pestaña aclara su periodo bajo las tarjetas.
   tabs: [
     {
       id: 'inversiones',
       label: 'INVERSIONES',
-      align: 'end',
+      period: 'Cifras de los últimos 5 años',
       stats: [
-        { tone: 'navy', value: ['469', 'USD'], label: ['Millones en', 'inversión'] },
-        { tone: 'orange', value: ['3.581'], label: ['Empleos', 'directo'] },
-        { tone: 'yellow', value: ['+180'], label: ['Oportunidades', 'de inversión'] },
-        { tone: 'blue', value: ['+20', 'Proyectos'], label: 'El 78% de los proyectos fueron orientados a la exportación.', variant: 'long' },
+        { tone: 'navy', value: ['+USD 2.000'], label: ['Millones en', 'inversión'] },
+        { tone: 'orange', value: ['+14.000'], label: ['Empleos', 'directos'] },
+        { tone: 'blue', value: ['80%'], label: ['De proyectos con', 'vocación exportadora'] },
       ] as Stat[],
     },
     {
       id: 'turismo',
       label: 'TURISMO DE REUNIONES',
-      // Cifras alineadas por la última línea del valor (la de "+USD 23M" ocupa dos)
-      align: 'value-bottom',
+      period: 'Cifras de los últimos 5 años',
       stats: [
-        { tone: 'blue', value: ['+18'], label: 'Eventos de turismo de reuniones apoyados' },
-        { tone: 'amber', value: ['+15'], label: 'Eventos de turismo de reuniones captados' },
-        { tone: 'navy', value: ['+31.000'], label: 'Asistentes' },
-        { tone: 'red', value: ['+USD', '23M'], label: 'En derrama económica' },
+        { tone: 'blue', value: ['+130'], label: ['Eventos de turismo', 'de reuniones apoyados'] },
+        { tone: 'amber', value: ['+130.000'], label: ['Asistentes'] },
+        { tone: 'red', value: ['+USD 120'], label: ['Millones en derrama', 'económica'] },
       ] as Stat[],
     },
   ],

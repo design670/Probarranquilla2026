@@ -8,7 +8,7 @@
 }
 
 .what__list {
-  margin-top: 226px;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
 }
@@ -30,7 +30,7 @@
   position: sticky;
   top: calc(var(--header-h) + 24px + var(--i) * 96px);
   box-shadow: 0 -6px 18px rgba(0, 20, 50, 0.1);
-  min-height: 414px;
+  min-height: 470px; /* las tres cards con la misma altura al apilarse */
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -93,6 +93,10 @@
   font-weight: 600;
 }
 
+.what-banner__body p + p {
+  margin-top: 14px;
+}
+
 .what-banner--navy {
   --banner-color: #001d39;
   --banner-line: #6b92ff;
@@ -102,8 +106,8 @@
   --banner-shade: linear-gradient(
     90deg,
     #001d39 0%,
-    #001d39 42%,
-    rgba(0, 29, 57, 0.72) 52%,
+    #001d39 46%,
+    rgba(0, 29, 57, 0.72) 56%,
     rgba(0, 40, 90, 0.42) 70%,
     rgba(0, 40, 90, 0.3) 100%
   );
@@ -118,10 +122,10 @@
   --banner-shade: linear-gradient(
     90deg,
     #f6a61c 0%,
-    #f6a61c 37%,
-    rgba(246, 166, 28, 0.55) 48%,
-    rgba(246, 166, 28, 0.12) 62%,
-    rgba(246, 166, 28, 0) 75%
+    #f6a61c 46%,
+    rgba(246, 166, 28, 0.55) 56%,
+    rgba(246, 166, 28, 0.12) 68%,
+    rgba(246, 166, 28, 0) 80%
   );
 }
 
@@ -134,9 +138,9 @@
   --banner-shade: linear-gradient(
     90deg,
     #f17023 0%,
-    rgba(241, 112, 35, 0.9) 22%,
-    rgba(241, 112, 35, 0.55) 42%,
-    rgba(241, 112, 35, 0.18) 66%,
+    #f17023 46%,
+    rgba(241, 112, 35, 0.55) 56%,
+    rgba(241, 112, 35, 0.18) 70%,
     rgba(241, 112, 35, 0.1) 100%
   );
 }

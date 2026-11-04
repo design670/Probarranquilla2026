@@ -372,63 +372,65 @@
   }
 }
 
-/* Imagen como banner a todo el ancho y la información debajo */
-.talent__banner {
-  margin-top: 48px;
-  height: 460px;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  /* Mismo azul del fondo de la foto: la persona se funde con el banner */
-  background: #002549;
+/* Información a la izquierda, persona recortada a la derecha (apoyada en el borde inferior de la sección) */
+.talent .talent__main--split {
+  grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+  column-gap: 24px;
+  align-items: end;
+  margin-top: 56px;
 }
 
-.talent__banner-img {
+.talent__main--split .talent__facts {
+  margin-bottom: 64px;
+}
+
+.talent__person {
+  align-self: end;
+  display: flex;
+  justify-content: center;
+}
+
+.talent__person-img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 700px;
+  height: auto;
+  aspect-ratio: 1389 / 1100;
+  object-fit: contain;
+  object-position: 50% 100%;
 }
 
-.talent__banner .smart-placeholder--photo {
-  background-color: #1b3a5e;
-  background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0 12px, transparent 12px 24px);
-}
-
-/* Debajo: cifra y franja a la izquierda, tarjeta bilingüe a la derecha */
-.talent .talent__main--below {
-  margin-top: 40px;
-  grid-template-columns: 1fr;
-}
-
-.talent__main--below .talent__facts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 32px;
-  align-items: start;
-  margin-bottom: 48px;
-}
-
-.talent__main--below .talent__population {
-  grid-column: 1;
-}
-
-.talent__main--below .talent__card--inline {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  margin-top: 0;
+@media (max-width: 1240px) {
+  .talent .talent__main--split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 900px) {
-  .talent__banner {
-    height: 240px;
+  .talent .talent__main--split {
+    grid-template-columns: 1fr;
     margin-top: 32px;
   }
-  .talent__main--below .talent__facts {
-    grid-template-columns: 1fr;
+  .talent__main--split .talent__facts {
+    margin-bottom: 24px;
   }
-  .talent__main--below .talent__card--inline {
-    grid-column: 1;
-    grid-row: auto;
-    margin-top: 24px;
+  .talent__person-img {
+    max-width: 440px;
+  }
+}
+
+/* Persona más grande en escritorio: alta como el bloque de información; lo que sobra a los lados se recorta */
+@media (min-width: 901px) {
+  .talent {
+    overflow-x: clip;
+  }
+  /* Arranca en su columna (no pisa la información); lo que sobra sale por la derecha */
+  .talent__person {
+    justify-content: flex-start;
+  }
+  .talent__person-img {
+    width: auto;
+    max-width: none;
+    height: clamp(480px, 46vw, 640px);
   }
 }

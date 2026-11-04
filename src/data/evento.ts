@@ -158,12 +158,13 @@ export const support = {
 export const eventResults = {
   title: 'Resultados e impacto',
   text: ['Cada evento que llega a Barranquilla impulsa el desarrollo económico,', 'fortalece los sectores estratégicos y posiciona a la ciudad como un destino', 'competitivo para el Turismo de Reuniones.'],
+  // Mismas cifras de Turismo de reuniones que Home y Sobre ProBarranquilla (impact en content.ts)
   stats: [
-    { tone: 'navy', value: '+57', unit: '', label: ['EVENTOS', 'CAPTADOS'], align: 'start' },
-    { tone: 'orange', value: '+USD 74', unit: '', label: ['MILLONES EN', 'DERRAMA', 'ECONÓMICA'], align: 'center' },
-    { tone: 'teal', value: '+80', unit: '', label: ['MIL ASISTENTES', 'DE TODO EL MUNDO'], align: 'start' },
+    { tone: 'navy', value: '+130', unit: '', label: ['EVENTOS DE TURISMO', 'DE REUNIONES APOYADOS'], align: 'start' },
+    { tone: 'orange', value: '+130.000', unit: '', label: ['ASISTENTES'], align: 'start' },
+    { tone: 'teal', value: '+USD 120', unit: '', label: ['MILLONES EN', 'DERRAMA ECONÓMICA'], align: 'start' },
   ] as { tone: 'navy' | 'orange' | 'teal'; value: string; unit: string; label: string[]; align: 'start' | 'center' }[],
-  note: '*Periodo: últimos 5 años',
+  note: '*Cifras de los últimos 5 años',
 };
 
 /* ---------- Casos de éxito (solo esta página) ---------- */

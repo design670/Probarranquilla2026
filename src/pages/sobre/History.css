@@ -1,6 +1,6 @@
 .history {
   position: relative;
-  margin-top: 20px;
+  margin-top: 0; /* pegada a la sección azul anterior, sin franja blanca */
   padding: 46px 0 159px;
   overflow: hidden;
   background: #0f1a37;
@@ -37,22 +37,38 @@
 
 /* ---------- Línea de tiempo ---------- */
 
+/* Franja que se desliza (16 hitos no caben a la vista); se centra sola en el año activo */
 .history__timeline {
-  margin-top: 76px;
+  --col: 132px;
+  --pad: 40px;
+  margin-top: 40px;
+  /* Aire abajo: el círculo activo (más grande en los periodos) sobresale de su columna */
+  padding: 40px 0 56px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* Bordes difuminados: indican que hay más años a los lados */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
+}
+
+.history__timeline::-webkit-scrollbar {
+  display: none;
 }
 
 .history__track {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(8, 140px);
-  padding-left: 34px;
+  grid-template-columns: repeat(var(--n, 8), var(--col));
+  width: max-content;
+  padding-inline: var(--pad);
 }
 
+/* Línea del primer al último año */
 .history__line {
   position: absolute;
   top: 18px;
-  left: calc(34px + 70px + 45px);
-  width: calc(140px * 7 - 45px + 14px);
+  left: calc(var(--pad) + var(--col) / 2);
+  right: calc(var(--pad) + var(--col) / 2 - 14px);
   height: 1px;
   background: #14354a;
   pointer-events: none;
@@ -81,7 +97,13 @@
   font-size: 22px;
   font-weight: 600;
   line-height: 22px;
+  white-space: nowrap;
   transition: color 0.2s ease;
+}
+
+/* Periodos ("1994 – 1997"): un poco más pequeños para caber en su columna */
+.history__year-label--range {
+  font-size: 17px;
 }
 
 .history__dot {
@@ -116,6 +138,17 @@
   color: var(--c-white);
   font-size: 30px;
   line-height: 1;
+}
+
+/* En el círculo, el periodo se parte en dos líneas */
+.history__year.is-active .history__year-label--range {
+  width: 104px;
+  height: 104px;
+  padding: 0 12px;
+  font-size: 18px;
+  line-height: 1.15;
+  white-space: normal;
+  text-align: center;
 }
 
 .history__year.is-active .history__dot {
@@ -160,35 +193,61 @@
   object-fit: cover;
 }
 
+/* Texto centrado en la altura de la foto */
 .history__copy {
-  padding-top: 108px;
-}
-
-.history__big-year {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 72px;
-  line-height: 1;
-  letter-spacing: -0.02em;
+  align-self: center;
 }
 
 .history__rule {
   display: block;
   width: 80px;
   height: 3px;
-  margin-top: 27px;
+  margin-top: 28px;
   background: #2dd4bf;
 }
 
+/* Sin título (2026): la línea abre el panel */
+.history__copy > .visually-hidden + .history__rule {
+  margin-top: 0;
+}
+
 .history__milestone {
-  margin-top: 26px;
-  font-size: 32px;
-  line-height: 38px;
-  letter-spacing: -0.01em;
+  font-size: 46px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
 }
 
 .history__milestone span {
   display: block;
+}
+
+/* Logros del año (2024, 2026) */
+.history__items {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0 0;
+  padding: 0;
+  max-width: 520px;
+  list-style: none;
+}
+
+.history__items li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 17px;
+  line-height: 1.4;
+  color: #c3cad8;
+}
+
+.history__items li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2dd4bf;
 }
 
 .history__description {
@@ -238,22 +297,7 @@
   }
 }
 
-/* La línea de tiempo se desplaza dentro de su propio contenedor */
 @media (max-width: 1180px) {
-  .history__timeline {
-    overflow-x: auto;
-    padding: 36px 0 24px;
-    margin-top: 40px;
-    scrollbar-width: thin;
-  }
-  .history__track {
-    width: max-content;
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-  .history__line {
-    left: calc(30px + 69.75px + 45px);
-  }
   .history__stage {
     margin-top: 24px;
   }
@@ -273,15 +317,12 @@
   }
   .history__copy {
     padding-top: 32px;
-    /* Reserva espacio para un título de 2-3 líneas: el panel no salta al cambiar de año */
-    min-height: 330px;
-  }
-  .history__big-year {
-    font-size: 56px;
+    /* Reserva espacio para un título de varias líneas: el panel no salta al cambiar de año */
+    min-height: 300px;
   }
   .history__milestone {
-    font-size: 26px;
-    line-height: 1.2;
+    font-size: 32px;
+    line-height: 1.12;
   }
   .history__next {
     position: static;
@@ -295,11 +336,17 @@
   .history__subtitle {
     font-size: 17px;
   }
-  .history__track {
-    grid-template-columns: repeat(8, 100px);
+  /* Extremos con aire: el primer y el último círculo no quedan bajo el difuminado */
+  .history__timeline {
+    --col: 104px;
+    --pad: 56px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
   }
-  .history__line {
-    left: calc(30px + 50px + 45px);
-    width: calc(100px * 7 - 45px + 14px);
+  .history__milestone {
+    font-size: 28px;
+  }
+  .history__items li {
+    font-size: 16px;
   }
 }

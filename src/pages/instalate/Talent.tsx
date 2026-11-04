@@ -16,11 +16,8 @@ export function Talent() {
 
         <p className="talent__intro">{talent.intro}</p>
 
-        {/* Cuadro con la persona: graduados, población joven y graduados bilingües */}
-        <div className="talent__banner">
-          <SmartImage {...talent.portrait} className="talent__banner-img" />
-        </div>
-        <div className="talent__main talent__main--below">
+        {/* Información a la izquierda; la persona (sin fondo) a la derecha, apoyada en el borde inferior */}
+        <div className="talent__main talent__main--split">
           <div className="talent__facts">
             <div className="talent__fact">
               <p className="talent__fact-value">
@@ -57,6 +54,9 @@ export function Talent() {
                 <p className="talent__card-text">{card.text}</p>
               </div>
             ))}
+          </div>
+          <div className="talent__person">
+            <SmartImage {...talent.portrait} className="talent__person-img" />
           </div>
         </div>
 
