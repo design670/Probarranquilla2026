@@ -170,11 +170,11 @@ export const mainNav: MegaPanel[] = [
 
 export const hero = {
   title: ['Barranquilla, tu', 'próximo paso', 'empresarial'],
-  // Video "Hero Banner Home" (src/Img/Home), convertido a H.264 sin audio para que lo reproduzcan todos los navegadores
+  // Video "IMG_4286 - Video Home Oficial" (src/Img), convertido a H.264 sin audio para que lo reproduzcan todos los navegadores
   video: {
-    src: '/assets/hero/hero-banner-home.mp4',
-    poster: '/assets/hero/hero-banner-home-poster.jpg',
-    label: 'Video de Barranquilla y el Atlántico: puerto, zonas francas, industria y ciudad',
+    src: '/assets/hero/hero-home-oficial.mp4',
+    poster: '/assets/hero/hero-home-oficial-poster.jpg',
+    label: 'Video aéreo de Barranquilla',
   },
 };
 
