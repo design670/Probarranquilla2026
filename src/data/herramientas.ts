@@ -22,10 +22,12 @@ export const investorGuidePage: ResourcePageContent = {
   },
   layout: 'featured',
   listLabel: 'Guías del inversionista',
-  // Textos de las cards según Guia-del-inversionista.png; PDF de la web oficial (mayo 2026)
+  // Textos de las cards según Guia-del-inversionista.png; PDF de la web oficial (mayo 2026).
+  // En español se ve solo la guía en español; con el sitio en inglés, solo la Investment Guide.
   items: [
     {
       id: 'guia-del-inversionista-2026',
+      lang: 'es',
       title: '¡Descubre nuestra Guía del inversionista!',
       text: 'Barranquilla y el Atlántico, un destino ideal para invertir y hacer negocios.',
       documentName: 'Guía del Inversionista 2026 · Barranquilla y el Atlántico',
@@ -34,6 +36,7 @@ export const investorGuidePage: ResourcePageContent = {
     },
     {
       id: 'investment-guide-2026',
+      lang: 'en',
       title: "Discover our Investor's Guide!",
       text: 'Barranquilla and the Atlántico, an ideal destination to invest and do business.',
       documentName: 'Investment Guide 2026 · Barranquilla and the Atlántico Department',

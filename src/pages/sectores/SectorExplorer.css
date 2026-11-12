@@ -228,30 +228,6 @@
 
 /* ---------- Contenido propio de cada sector ---------- */
 
-.sx-btn {
-  display: inline-flex;
-  align-items: center;
-  height: 44px;
-  margin-top: 28px;
-  padding: 0 22px;
-  border-radius: 4px;
-  background: var(--c-white);
-  color: var(--accent);
-  font-size: 16px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-a.sx-btn:hover {
-  background: var(--c-navy-nav);
-  color: var(--c-white);
-}
-
-.sx-btn--pending {
-  background: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.8);
-  cursor: not-allowed;
-}
-
 /* Pasos de la cadena productiva */
 .sx-steps {
   display: grid;
@@ -399,62 +375,6 @@ a.sx-btn:hover {
   color: rgba(255, 255, 255, 0.85);
 }
 
-.sx-callout .sx-btn {
-  margin-top: 18px;
-}
-
-/* ---------- Otros sectores ---------- */
-
-.sx-others {
-  scroll-margin-top: calc(var(--header-h) + 24px);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 32px;
-  margin-top: 28px;
-  padding: 32px 36px;
-  border-radius: var(--radius-xl);
-  background: var(--c-navy-nav);
-  color: var(--c-white);
-}
-
-.sx-others__title {
-  font-size: 28px;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.sx-others__text {
-  margin-top: 10px;
-  max-width: 560px;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #cfdbea;
-}
-
-.sx-pills {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 10px;
-  max-width: 420px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.sx-pills li {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 38px;
-  padding: 0 14px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 999px;
-  font-size: 14px;
-  white-space: nowrap;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .sx-panel__inner {
     animation: none;
@@ -497,15 +417,6 @@ a.sx-btn:hover {
   }
   .sx-panel__body {
     padding: 0;
-  }
-  .sx-others {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 28px 24px;
-  }
-  .sx-pills {
-    justify-content: flex-start;
-    max-width: none;
   }
 }
 
@@ -565,9 +476,6 @@ a.sx-btn:hover {
   .sx-steps,
   .sx-features {
     grid-template-columns: 1fr;
-  }
-  .sx-others__title {
-    font-size: 24px;
   }
 }
 

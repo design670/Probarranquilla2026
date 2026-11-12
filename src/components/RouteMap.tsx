@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { airMapSize, type AirMapGeo } from '../data/airMaps';
 import './RouteMap.css';
 
@@ -18,6 +18,8 @@ type Props = {
   landings?: [number, number][];
   /** Fuente de los datos, abajo a la izquierda. */
   source?: string;
+  /** Solo el país en foco (Colombia), sin los países vecinos: mapas nacional y terrestre. */
+  soloFocus?: boolean;
 };
 
 const EDGE = 14;
@@ -39,11 +41,10 @@ function arc([x1, y1]: [number, number], [x2, y2]: [number, number], k: number) 
 }
 
 /** Mapa SVG con geografía real (Natural Earth) y rutas desde Barranquilla. */
-export function RouteMap({ geo, hub, stops, ariaLabel, kind = 'air', cables, landings, source }: Props) {
+export function RouteMap({ geo, hub, stops, ariaLabel, kind = 'air', cables, landings, source, soloFocus = false }: Props) {
   const { width: W, height: H } = geo.size ?? airMapSize;
   const h = geo.pts[hub.id];
   const k = kind === 'road' ? 0.08 : 0.18;
-  const uid = useId().replace(/:/g, '');
   // Aviones animados sobre las rutas aéreas (se omiten con movimiento reducido)
   const [planes, setPlanes] = useState(false);
   useEffect(() => {
@@ -51,20 +52,11 @@ export function RouteMap({ geo, hub, stops, ariaLabel, kind = 'air', cables, lan
   }, [kind]);
   return (
     <svg className={`rmap rmap--${kind}`} viewBox={`0 0 ${W} ${H}`} role="img" aria-label={ariaLabel} preserveAspectRatio="xMidYMid meet">
-      {/* Los bordes de la geografía se funden con el fondo: todos los mapas se ven iguales */}
-      <defs>
-        <radialGradient id={`${uid}-fade`} cx="50%" cy="50%" r="62%">
-          <stop offset="70%" stopColor="#fff" />
-          <stop offset="100%" stopColor="#000" />
-        </radialGradient>
-        <mask id={`${uid}-mask`}>
-          <rect width={W} height={H} fill={`url(#${uid}-fade)`} />
-        </mask>
-      </defs>
-      <g mask={`url(#${uid}-mask)`}>
-        <path className="rmap__land" d={geo.land} />
+      {/* Sin difuminado: mapa azul claro sobre el fondo azul oscuro de la sección.
+          En los mapas de Colombia (soloFocus) no se dibujan los países vecinos. */}
+      <g>
+        {!soloFocus && <path className="rmap__land" d={geo.land} />}
         <path className="rmap__focus" d={geo.focus} />
-        {/* Cables dentro de la máscara: se desvanecen al salir del encuadre */}
         {cables?.map((c, i) => (
           <g key={c.id} className="rmap__cable" style={{ stroke: c.color, animationDelay: `${i * 120}ms` }}>
             {c.paths.map((p, j) => (

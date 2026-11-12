@@ -270,9 +270,11 @@
 }
 
 /* Periodo: nota pequeña debajo de las tarjetas */
+/* "*Cifras de los últimos 5 años": siempre en negrita */
 .impact__period {
   margin-top: 16px;
   font-size: 14px;
+  font-weight: 700;
   color: var(--c-white);
   opacity: 0.9;
 }
@@ -319,7 +321,6 @@
 .impact__period--tab {
   margin: 22px 4px 0;
   font-size: 18px;
-  font-weight: 600;
 }
 
 .impact--about .impact__period--tab {

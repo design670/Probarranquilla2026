@@ -1,27 +1,10 @@
 import { useEffect, useId, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
-import { manufacturing, otherSectors, sectorIds, services, type MiniCard, type Pill } from '../../data/sectores';
+import { manufacturing, sectorIds, services, type MiniCard } from '../../data/sectores';
 import { SmartImage, type ImageAsset } from '../../components/SmartImage';
-import { ArrowLabel } from '../../components/ArrowLabel';
 import { ArrowRight } from '../../components/Icons';
 import './SectorExplorer.css';
 
 const svg = { viewBox: '0 0 16 16', width: 14, height: 14, fill: 'none', stroke: 'currentColor', strokeWidth: 1.4, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true } as const;
-
-const pillIcons = {
-  bolt: <svg {...svg}><path d="M9 1.5 3.5 9H8l-1 5.5L12.5 7H8l1-5.5Z" /></svg>,
-  briefcase: (
-    <svg {...svg}>
-      <rect x="2" y="4.5" width="12" height="8.5" rx="1.5" />
-      <path d="M5.5 4.5V3h5v1.5M2 8.5h12" />
-    </svg>
-  ),
-  gear: (
-    <svg {...svg}>
-      <circle cx="8" cy="8" r="2.2" />
-      <path d="M8 1.8v1.6M8 12.6v1.6M1.8 8h1.6M12.6 8h1.6M3.6 3.6l1.1 1.1M11.3 11.3l1.1 1.1M3.6 12.4l1.1-1.1M11.3 4.7l1.1-1.1" />
-    </svg>
-  ),
-};
 
 const Sun = () => (
   <svg {...svg} width={16} height={16}>
@@ -60,19 +43,6 @@ function Steps({ items }: { items: MiniCard[] }) {
   );
 }
 
-function Pills({ items }: { items: Pill[] }) {
-  return (
-    <ul className="sx-pills">
-      {items.map((p) => (
-        <li key={p.label}>
-          {pillIcons[p.icon]}
-          {p.label}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 const { chemicals, food, materials } = manufacturing;
 const { energy, bpo, mro } = services;
 
@@ -85,15 +55,6 @@ const SECTORS: Sector[] = [
     tagline: chemicals.tagline,
     text: chemicals.text,
     image: chemicals.image,
-    extra: chemicals.cta.href ? (
-      <a href={chemicals.cta.href} className="sx-btn">
-        <ArrowLabel size={13}>{chemicals.cta.label}</ArrowLabel>
-      </a>
-    ) : (
-      <span className="sx-btn sx-btn--pending" aria-disabled="true" title={import.meta.env.DEV ? 'Ficha del sector pendiente (ver PENDIENTES.md)' : undefined}>
-        {chemicals.cta.label} →
-      </span>
-    ),
   },
   {
     id: sectorIds.alimentos,
@@ -158,9 +119,6 @@ const SECTORS: Sector[] = [
       <div className="sx-callout">
         <p className="sx-callout__question">{bpo.question.join(' ')}</p>
         <p className="sx-callout__text">{bpo.support}</p>
-        <a href={bpo.cta.href} className="sx-btn">
-          <ArrowLabel size={13}>{bpo.cta.label}</ArrowLabel>
-        </a>
       </div>
     ),
   },
@@ -279,14 +237,6 @@ export function SectorExplorer() {
               {sector.extra}
             </div>
           </div>
-        </div>
-
-        <div id={sectorIds.otros} className="sx-others">
-          <div>
-            <h2 className="sx-others__title">{otherSectors.title}</h2>
-            <p className="sx-others__text">{otherSectors.text}</p>
-          </div>
-          <Pills items={otherSectors.pills} />
         </div>
       </div>
     </section>

@@ -7,7 +7,6 @@ import { AboutIntro } from './AboutIntro';
 import { WhatWeDo } from './WhatWeDo';
 import { InvestmentStages } from './InvestmentStages';
 import { History } from './History';
-import { Team } from './Team';
 import { Board } from './Board';
 import './AboutPage.css';
 
@@ -27,7 +26,6 @@ export function AboutPage() {
       <WhatWeDo />
       <InvestmentStages />
       <History />
-      <Team leadership />
       <Board />
       <div className="about-tail">
         <Partners />

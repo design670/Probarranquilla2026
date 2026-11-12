@@ -16,7 +16,7 @@ const CABLES = projectCables(continentalGeo.pts.baq);
 export function Connectivity() {
   const { tabs } = connectivity;
   const [active, setActiveTab] = useState(0);
-  // Mapa alterno (vuelos nacionales); vuelve al principal al cambiar de pestaña
+  // Mapa alterno (vuelos nacionales); vuelve al internacional al cambiar de pestaña
   const [showAlt, setShowAlt] = useState(false);
   const setActive = (i: number) => {
     setActiveTab(i);
@@ -68,7 +68,7 @@ export function Connectivity() {
           ))}
         </div>
 
-        <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${tab.id}`} className={`connect__panel connect__panel--${tab.id}${c.highlight?.text ? " connect__panel--strip" : ""}`}>
+        <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${tab.id}`} className={`connect__panel connect__panel--${tab.id}${c.highlight?.text ? ' connect__panel--strip' : ''}${c.map.alt ? ' connect__panel--switch' : ''}`}>
           {/* key: el mapa se vuelve a dibujar (con su animación) al cambiar de pestaña */}
           <div className="connect__map" key={`${tab.id}-${showAlt}`}>
             <RouteMap
@@ -80,13 +80,25 @@ export function Connectivity() {
               cables={map.cables ? CABLES.cables : undefined}
               landings={map.cables ? CABLES.landings : undefined}
               source={map.source}
+              soloFocus={map.geo === 'nacional'}
             />
           </div>
 
+          {/* Título y selector sobre el mapa: nacional / internacional */}
           {c.map.alt && (
-            <button type="button" className="connect__map-toggle" aria-pressed={showAlt} onClick={() => setShowAlt((v) => !v)}>
-              <ArrowLabel size={12}>{showAlt ? c.map.alt.backLabel : c.map.alt.label}</ArrowLabel>
-            </button>
+            <div className="connect__switch">
+              <p className="connect__switch-title">{c.map.alt.title}</p>
+              <div className="connect__switch-group" role="group" aria-label={c.map.alt.title}>
+                {[
+                  { alt: true, label: c.map.alt.label },
+                  { alt: false, label: c.map.alt.backLabel },
+                ].map((b) => (
+                  <button key={b.label} type="button" className="connect__switch-btn" aria-pressed={showAlt === b.alt} onClick={() => setShowAlt(b.alt)}>
+                    {b.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           )}
 
           <h3 className="connect__title">{c.title}</h3>

@@ -112,8 +112,11 @@ export type ConnectivityMap = {
   cables?: boolean;
   /** Fuente de los datos del mapa. */
   source?: string;
-  /** Segundo mapa que se alterna con un botón sobre el mapa (aérea: vuelos nacionales). */
-  alt?: { label: string; backLabel: string; map: ConnectivityMap };
+  /**
+   * Segundo mapa (aérea: vuelos nacionales). Sobre el mapa van un título y dos botones:
+   * `label` muestra este mapa y `backLabel` vuelve al principal.
+   */
+  alt?: { title: string; label: string; backLabel: string; map: ConnectivityMap };
 };
 
 export type ConnectivityContent = {
@@ -164,7 +167,7 @@ export const connectivity = {
         heading: 'CONECTIVIDAD AÉREA',
         subheading: 'Acceso eficiente a mercados internacionales',
         items: [
-          { icon: 'plane', title: 'Vuelos directos internacionales', text: 'a Madrid, Panamá, Miami, Fort Lauderdale, Aruba y Curazao.' },
+          { icon: 'plane', title: 'Vuelos directos internacionales', text: 'a Nueva York, Madrid, Panamá, Miami, Fort Lauderdale, Aruba y Curazao.' },
           { icon: 'pin', title: 'Vuelos directos nacionales', text: 'a Bogotá, Cali, Medellín, Bucaramanga, Cúcuta, Riohacha, San Andrés y Montería.' },
         ],
         map: {
@@ -172,6 +175,7 @@ export const connectivity = {
           kind: 'air',
           hubLabel: lbl(0, 28, 'middle'),
           stops: [
+            { id: 'nuevayork', name: 'Nueva York', label: lbl(12, 20, 'start') },
             { id: 'madrid', name: 'Madrid', label: lbl(-10, -12, 'end') },
             { id: 'miami', name: 'Miami', label: lbl(-10, 16, 'end') },
             { id: 'fll', name: 'Fort Lauderdale', label: lbl(10, -6, 'start') },
@@ -179,11 +183,12 @@ export const connectivity = {
             { id: 'aruba', name: 'Aruba', label: lbl(-8, -12, 'end') },
             { id: 'curazao', name: 'Curazao', label: lbl(8, -12, 'start') },
           ],
-          ariaLabel: 'Mapa de vuelos directos desde Barranquilla a Madrid, Miami, Fort Lauderdale, Ciudad de Panamá, Aruba y Curazao',
+          ariaLabel: 'Mapa de vuelos directos desde Barranquilla a Nueva York, Madrid, Miami, Fort Lauderdale, Ciudad de Panamá, Aruba y Curazao',
           // Mismos destinos nacionales del texto "Vuelos directos nacionales"
           alt: {
-            label: 'Ver vuelos nacionales',
-            backLabel: 'Ver vuelos internacionales',
+            title: 'Nacionales e internacionales',
+            label: 'Ver mapa nacional',
+            backLabel: 'Ver mapa internacional',
             map: {
               geo: 'nacional',
               kind: 'air',

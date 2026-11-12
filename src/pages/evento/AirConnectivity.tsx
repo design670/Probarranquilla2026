@@ -33,7 +33,8 @@ function RouteMap({ view }: { view: AirView }) {
   const hub = geo.pts[connectivity.hub.id];
   return (
     <svg className="air__svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={view.mapLabel} preserveAspectRatio="xMidYMid slice">
-      <path className="air__land" d={geo.land} />
+      {/* Igual que RouteMap: sin difuminado; en el mapa nacional solo Colombia, sin países vecinos */}
+      {view.id !== 'nacional' && <path className="air__land" d={geo.land} />}
       <path className="air__focus" d={geo.focus} />
       {view.destinations.map((d, i) => {
         const end = clampToEdge(hub, geo.pts[d.id]);

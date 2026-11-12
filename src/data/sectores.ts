@@ -5,7 +5,6 @@
  * `href: null` = destino pendiente: el botón se muestra deshabilitado.
  */
 import type { ImageAsset } from '../components/SmartImage';
-import { routes } from './content';
 
 const A = (src: string, alt: string, position = '50% 50%'): ImageAsset => ({ src: `/assets/sectores/${src}`, alt, fit: 'cover', position });
 
@@ -31,7 +30,6 @@ export const sectorIds = {
   energia: 'energia',
   bpo: 'bpo-kpo-it',
   mro: 'mro',
-  otros: 'otros-sectores',
 };
 
 export const sectorIndex = [
@@ -52,11 +50,6 @@ export const sectorIndex = [
       { label: 'BPO/KPO & IT', id: sectorIds.bpo },
       { label: 'Servicios aeronáuticos', id: sectorIds.mro },
     ],
-  },
-  {
-    label: 'OTROS',
-    id: sectorIds.otros,
-    links: [{ label: 'Otros sectores con potencial', id: sectorIds.otros }],
   },
 ];
 
@@ -80,7 +73,6 @@ export const manufacturing = {
     title: ['Químicos y', 'Ciencias de la Vida'],
     tagline: 'Industria especializada, oportunidades de alto valor.',
     text: 'Desde la fabricación de productos químicos y farmacéuticos hasta la investigación y el desarrollo de soluciones para la salud, esta cadena reúne actividades de alto valor agregado. En el Atlántico, más de 1.500 empresas participan en su ecosistema empresarial, incluyendo 343 dedicadas a la manufactura química y farmacéutica y 176 vinculadas a actividades de investigación en salud. Esta diversidad empresarial, junto con la infraestructura industrial y portuaria del departamento, ofrece oportunidades para establecer operaciones especializadas, ampliar capacidades productivas y fortalecer cadenas de suministro.',
-    cta: { label: 'Conocer el sector', href: null as string | null },
     image: A('quimicos-ciencias-de-la-vida.jpg', 'Químicos y ciencias de la vida en Barranquilla'),
   },
   food: {
@@ -134,7 +126,6 @@ export const services = {
     text: 'Desde la atención al cliente y la gestión de procesos empresariales hasta el desarrollo de software, el soporte tecnológico y las soluciones digitales, los servicios BPO & IT permiten a las compañías gestionar y ampliar sus operaciones. Barranquilla cuenta con experiencia en servicios empresariales y presencia de operadores internacionales, respaldada por una oferta de talento y programas orientados al fortalecimiento del bilingüismo y las competencias tecnológicas. Estas condiciones ofrecen oportunidades para establecer centros de atención, operaciones de tercerización de procesos, servicios digitales y centros de servicios compartidos.',
     question: ['¿Buscas instalar tu centro de servicios', 'o software en Barranquilla?'],
     support: 'Contamos con convenios académicos y programas de formación en inglés en el Atlántico.',
-    cta: { label: 'Consultar sobre BPO & IT', href: routes.contacto },
     // Pendiente: la referencia no traía foto para este sector
     image: A('bpo-it.jpg', 'Centro de servicios BPO e IT en Barranquilla'),
   },
@@ -145,17 +136,3 @@ export const services = {
     image: A('mro-hangar.jpg', 'Técnicos haciendo mantenimiento al motor de un avión en un hangar', '50% 50%'),
   },
 };
-
-export type OtherIcon = 'bolt' | 'briefcase' | 'gear';
-
-export const otherSectors = {
-  title: 'Otros sectores con potencial',
-  text: 'El territorio también ofrece oportunidades para empresas pertenecientes a otras industrias que pueden aprovechar su infraestructura, conectividad, talento y entorno favorable para los negocios.',
-  pills: [
-    { icon: 'bolt', label: 'Logística Portuaria' },
-    { icon: 'briefcase', label: 'Turismo MICE' },
-    { icon: 'gear', label: 'Agroindustria' },
-    { icon: 'gear', label: 'Moda & Creatividad' },
-  ] as Pill[],
-};
-

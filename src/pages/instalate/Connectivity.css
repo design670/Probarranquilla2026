@@ -459,56 +459,93 @@
   }
 }
 
-/* ---------- Botón sobre el mapa: alterna vuelos internacionales / nacionales ---------- */
+/* ---------- Título y selector sobre el mapa aéreo: nacional / internacional ---------- */
 
-.connect__map-toggle {
+/* Debajo del título del cuadro ("Conexiones que acercan a mercados"), que ocupa todo el ancho */
+.connect__switch {
   position: absolute;
-  bottom: 26px;
-  right: 26px;
+  top: 92px;
+  left: 560px;
+  right: 0;
   z-index: 2;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  min-height: 40px;
-  padding: 0 16px;
-  border-radius: 4px;
-  background: var(--c-white);
-  color: var(--c-blue-bright);
-  font-size: 15px;
-  box-shadow: 0 6px 18px rgba(0, 10, 30, 0.35);
-  transition: background-color 0.2s ease, color 0.2s ease;
+  gap: 12px;
+  text-align: center;
 }
 
-.connect__map-toggle:hover {
-  background: #dbe7f5;
-}
-
-.connect__map-toggle[aria-pressed='true'] {
-  background: var(--c-teal);
+.connect__switch-title {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.1;
   color: var(--c-white);
 }
 
-.connect__map-toggle:focus-visible {
-  outline: 2px solid var(--c-white);
-  outline-offset: 3px;
+.connect__switch-group {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(0, 10, 30, 0.55);
 }
 
-/* En pantallas angostas el mapa va debajo del cuadro: el botón queda justo debajo del mapa */
-@media (max-width: 900px) {
-  .connect__map-toggle {
+.connect__switch-btn {
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 17px;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.connect__switch-btn:hover {
+  color: var(--c-white);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.connect__switch-btn[aria-pressed='true'] {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--c-white);
+}
+
+.connect__switch-btn:focus-visible {
+  outline: 2px solid var(--c-white);
+  outline-offset: 2px;
+}
+
+/* El mapa baja para dejar libre el título y el selector */
+.connect__panel--switch .connect__map {
+  top: 190px;
+}
+
+/* Pantallas angostas: título y selector entre el cuadro y el mapa */
+@media (max-width: 1100px) {
+  .connect__switch {
     position: relative;
-    bottom: auto;
+    top: auto;
+    left: auto;
     right: auto;
     grid-column: 1;
+    grid-row: 3;
+    margin-top: 28px;
+  }
+  .connect__panel--switch .connect__map {
+    top: auto;
     grid-row: 4;
-    justify-self: center;
-    margin-top: 16px;
+    margin-top: 12px;
   }
 }
 
 @media (max-width: 640px) {
-  .connect__map-toggle {
+  .connect__switch-title {
+    font-size: 24px;
+  }
+  .connect__switch-btn {
+    padding: 0 12px;
     font-size: 14px;
-    min-height: 40px;
-    padding: 0 14px;
   }
 }

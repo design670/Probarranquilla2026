@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { SiteShell } from './SiteShell';
 import { ArrowLabel } from './ArrowLabel';
 import { PageHero } from './PageHero';
+import { currentLang } from './translate';
 import { ResourceCard, type Resource } from './ResourceCard';
 import type { ImageAsset } from './SmartImage';
 import './NewsCard.css'; // chips de filtro, los mismos de Noticias
@@ -43,7 +44,10 @@ export type ResourcePageContent = {
  * hero con título, descripción y botón opcional + fondo gris con las cards.
  */
 export function ResourcePage({ content }: { content: ResourcePageContent }) {
-  const { hero, listLabel, items, layout = 'library', groups, covers = 'contain', filters } = content;
+  const { hero, listLabel, layout = 'library', groups, covers = 'contain', filters } = content;
+  // Documentos con idioma propio (p. ej. Guía del Inversionista / Investment Guide) solo en su idioma
+  const lang = currentLang();
+  const items = content.items.filter((item) => !item.lang || item.lang === lang);
   const [category, setCategory] = useState<string | null>(null);
   const shown = category ? items.filter((item) => item.category === category) : items;
   const sectionClass = `resources resources--${layout}${covers === 'fill' ? ' resources--fill' : ''}${filters ? ' resources--filtered' : ''}`;

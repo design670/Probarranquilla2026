@@ -190,11 +190,11 @@ export type Reason = {
 export const reasons = {
   title: ['¿Por qué las empresa globales', 'escogen Barranquilla?'],
   items: [
-    { area: 'a', overlay: 'blue', title: 'Crecimiento sostenido y confianza inversionista', image: '/assets/razones/crecimiento.png', alt: 'Edificios residenciales y corporativos de Barranquilla', href: PENDING_HREF },
-    { area: 'b', overlay: 'cyan', title: 'Plataforma logística competitiva', image: '/assets/razones/logistica.png', alt: 'Bodega logística con estructura metálica', href: PENDING_HREF },
-    { area: 'c', overlay: 'navy', title: 'Talento joven y productivo', image: '/assets/razones/talento.png', alt: 'Operario trabajando en una línea de producción', href: PENDING_HREF },
-    { area: 'd', overlay: 'steel', title: 'Entorno pro-empresa', image: '/assets/razones/entorno.png', alt: 'Vista aérea de un parque empresarial', href: PENDING_HREF },
-    { area: 'e', overlay: 'orange', title: 'Infraestructura con estandares internacionales', image: '/assets/razones/infraestructura.png', alt: 'Vista aérea del puerto y el río Magdalena', href: PENDING_HREF },
+    { area: 'a', overlay: 'blue', title: 'Colaboración público-privada', image: '/assets/razones/crecimiento.png', alt: 'Edificios residenciales y corporativos de Barranquilla', href: PENDING_HREF },
+    { area: 'b', overlay: 'cyan', title: 'Ubicación estratégica y conectividad', image: '/assets/razones/logistica.png', alt: 'Bodega logística con estructura metálica', href: PENDING_HREF },
+    { area: 'c', overlay: 'navy', title: 'Talento Joven y Productivo', image: '/assets/razones/talento.png', alt: 'Operario trabajando en una línea de producción', href: PENDING_HREF },
+    { area: 'd', overlay: 'steel', title: 'Entorno competitivo para la inversión', image: '/assets/razones/entorno.png', alt: 'Vista aérea de un parque empresarial', href: PENDING_HREF },
+    { area: 'e', overlay: 'orange', title: 'Infraestructura con estándares internacionales', image: '/assets/razones/infraestructura.png', alt: 'Vista aérea del puerto y el río Magdalena', href: PENDING_HREF },
   ] satisfies Reason[],
 };
 

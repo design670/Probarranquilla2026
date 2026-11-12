@@ -20,6 +20,22 @@
   margin-right: calc(-1 * min(117px, max(0px, (100vw - var(--container)) / 2 - var(--gutter))));
 }
 
+/* Sin botones de categoría (home): título y "Ver todos" en una sola línea,
+   el botón centrado con el título y alineado al borde derecho del contenedor */
+.news__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.news__toolbar--solo {
+  flex: none;
+  justify-content: flex-end;
+  margin-top: 0;
+  margin-right: 0;
+}
+
 .news__filters {
   display: flex;
   flex-wrap: wrap;
@@ -65,6 +81,9 @@
     flex-direction: column;
     align-items: flex-start;
     margin-right: 0;
+  }
+  .news__toolbar--solo {
+    flex-direction: row;
   }
   .news__track .news__card {
     flex-basis: 340px;

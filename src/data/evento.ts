@@ -49,8 +49,9 @@ export const connectivity = {
       id: 'internacional',
       tab: 'Internacional',
       phrase: 'Conexiones vía Panamá y Miami que amplían nuestro alcance hacia más de 150 destinos internacionales en las Américas y Europa.',
-      mapLabel: 'Mapa de rutas internacionales directas desde Barranquilla hacia Madrid, Miami, Fort Lauderdale, Ciudad de Panamá, Aruba y Curazao',
+      mapLabel: 'Mapa de rutas internacionales directas desde Barranquilla hacia Nueva York, Madrid, Miami, Fort Lauderdale, Ciudad de Panamá, Aruba y Curazao',
       destinations: [
+        { id: 'nuevayork', name: 'Nueva York', label: { dx: 12, dy: 20, anchor: 'start' } },
         { id: 'madrid', name: 'Madrid', label: { dx: -10, dy: -12, anchor: 'end' } },
         { id: 'miami', name: 'Miami', label: { dx: -10, dy: 16, anchor: 'end' } },
         { id: 'fll', name: 'Fort Lauderdale', label: { dx: 10, dy: -6, anchor: 'start' } },
@@ -98,12 +99,8 @@ export const connectivity = {
 
 export type SupportStage = {
   id: string;
-  label: string[];
   title: string;
-  /** Pendiente cuando la referencia no desarrolla la etapa */
-  description: string | null;
-  highlight: { label: string; text: string } | null;
-  photo: ImageAsset;
+  description: string;
 };
 
 export const support = {
@@ -112,43 +109,28 @@ export const support = {
   stages: [
     {
       id: 'candidaturas',
-      label: ['Apoyo a', 'candidaturas'],
       title: 'Apoyo a candidaturas',
       description: 'Te acompañamos en la postulación, preparación de propuesta y candidatura, presentaciones del destino y demás gestiones para lograr ser la sede de tu evento.',
-      highlight: null,
-      photo: A('etapa-apoyo-a-candidaturas.jpg', 'Equipo de ProBarranquilla en la Rueda de Negocios Workshop Argentina, Paraguay y Uruguay 2026'),
     },
     {
       id: 'aliados',
-      label: ['Conexión con aliados', 'estratégicos'],
       title: 'Conexión con aliados estratégicos',
       description: 'Articulamos entidades públicas, empresas, universidades y gremios para sumar apoyos y oportunidades a tu evento.',
-      highlight: null,
-      photo: A('etapa-conexion-con-aliados.jpg', 'Salón de eventos iluminado con escenario y pantallas'),
     },
     {
       id: 'proveedores',
-      label: ['Acceso a proveedores', 'locales'],
       title: 'Acceso a proveedores locales',
       description: 'Te conectamos con hoteles, recintos, operadores y proveedores especializados según las necesidades de tu evento.',
-      highlight: null,
-      photo: A('etapa-acceso-a-proveedores.jpg', 'Equipo de ProBarranquilla en la Rueda de Negocios Workshop Argentina, Paraguay y Uruguay 2026'),
     },
     {
       id: 'inspeccion',
-      label: ['Visitas de inspección', 'y asesoría'],
       title: 'Visitas de inspección y asesoría',
       description: 'Coordinamos recorridos y te brindamos información del destino para facilitar la elección de espacios y la planeación.',
-      highlight: null,
-      photo: A('etapa-visitas-de-inspeccion.jpg', 'Presentación de Barranquilla a un grupo durante una visita al destino'),
     },
     {
       id: 'experiencias',
-      label: ['Experiencias de', 'destino'],
       title: 'Experiencias de destino',
       description: 'Facilitamos la integración de experiencias culturales, gastronómicas y turísticas para enriquecer la visita de tus asistentes.',
-      highlight: null,
-      photo: A('etapa-experiencias-de-destino.jpg', 'Grupo de visitantes en un muelle frente al mar'),
     },
   ] as SupportStage[],
 };

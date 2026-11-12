@@ -14,7 +14,8 @@ export default function App() {
     <SiteShell hero={<HeroCarousel />}>
       <InvestmentReasons />
       <ImpactStatistics id="resultados" title={impact.title} intro={impact.intro} />
-      <LatestNews />
+      {/* En el home van sin los botones de categoría */}
+      <LatestNews filters={[]} />
       <SuccessStories />
       <AssistanceSection />
       <Partners />

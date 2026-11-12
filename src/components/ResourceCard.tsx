@@ -9,6 +9,8 @@ export type ResourceAction =
 export type Resource = {
   id: string;
   title: string;
+  /** Idioma del documento: solo se muestra con el sitio en ese idioma (sin valor, siempre). */
+  lang?: 'es' | 'en';
   /** Categoría para la barra de filtro de la página (opcional). */
   category?: string;
   /** Texto corto bajo el título (opcional). */

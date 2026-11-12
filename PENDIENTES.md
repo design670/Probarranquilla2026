@@ -213,8 +213,7 @@ Referencia: `Sectores.png` (1366 px). Datos en `src/data/sectores.ts`. El menú 
 **Recursos gráficos** (en `public/assets/sectores/`, una foto vertical por sector): `quimicos-ciencias-de-la-vida.jpg`, `alimentos-bebidas.jpg`, `materiales-construccion.jpg`, `energia-transicion.jpg`, `bpo-it.jpg` y `mro-hangar.jpg`. Mientras no existan se ve el placeholder rayado.
 
 **Destinos pendientes**
-- "Conocer el sector" (Químicos): no existe la ficha del sector; el botón queda deshabilitado (`chemicals.cta.href`).
-- "Consultar sobre BPO & IT" y "Hablar con nuestro equipo" usan `routes.contacto`, el mismo destino de "Contact PB", que sigue sin definir.
+- "Hablar con nuestro equipo" usa `routes.contacto`, el mismo destino de "Contact PB", que sigue sin definir.
 - "Conocer nuestros servicios" lleva a "Sobre ProBarranquilla", sección de acompañamiento a la inversión.
 
 **Diferencias con el prompt (se siguió la imagen)**

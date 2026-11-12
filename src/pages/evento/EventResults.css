@@ -148,5 +148,6 @@
   margin-top: 20px;
   font-size: 14px;
   line-height: 1.4;
+  font-weight: 700; /* "*Cifras de los últimos 5 años": siempre en negrita */
   color: var(--c-blue-title);
 }

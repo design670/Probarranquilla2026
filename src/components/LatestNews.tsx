@@ -24,27 +24,32 @@ export function LatestNews({ filters = news.filters.map((f) => ({ label: f, cate
   return (
     <section id="noticias" className="news" aria-labelledby="news-title">
       <div className="container">
-        <h2 id="news-title" className="section-title news__title">
-          {news.title}
-        </h2>
-        <div className="news__toolbar">
-          <div className="news__filters" role="group" aria-label="Filtrar noticias">
-            {filters.map(({ label, category }) => (
-              <button
-                key={label}
-                type="button"
-                className="news__chip"
-                aria-pressed={category ? filter === category : false}
-                aria-disabled={!category}
-                onClick={() => category && setFilter((cur) => (cur === category ? null : category))}
-              >
-                {label}
-              </button>
-            ))}
+        {/* Sin botones de categoría (home), "Ver todos" va en la misma línea del título */}
+        <div className={filters.length ? undefined : 'news__head'}>
+          <h2 id="news-title" className="section-title news__title">
+            {news.title}
+          </h2>
+          <div className={filters.length ? 'news__toolbar' : 'news__toolbar news__toolbar--solo'}>
+            {filters.length > 0 && (
+              <div className="news__filters" role="group" aria-label="Filtrar noticias">
+                {filters.map(({ label, category }) => (
+                  <button
+                    key={label}
+                    type="button"
+                    className="news__chip"
+                    aria-pressed={category ? filter === category : false}
+                    aria-disabled={!category}
+                    onClick={() => category && setFilter((cur) => (cur === category ? null : category))}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            )}
+            <a href={news.allHref} className="news__chip news__all">
+              <ArrowLabel size={12}>Ver todos</ArrowLabel>
+            </a>
           </div>
-          <a href={news.allHref} className="news__chip news__all">
-            <ArrowLabel size={12}>Ver todos</ArrowLabel>
-          </a>
         </div>
       </div>
 

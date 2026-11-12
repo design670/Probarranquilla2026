@@ -8,6 +8,8 @@ import { Infrastructure } from './Infrastructure';
 import { FreeZonesOffer } from './FreeZones';
 import { Talent } from './Talent';
 import { Training, VisionBanner } from './Training';
+// Mismo bloque de contacto y formulario de «Haz tu evento»
+import { EventContact } from '../evento/EventContact';
 
 export function InstalatePage() {
   return (
@@ -24,6 +26,7 @@ export function InstalatePage() {
       <Training />
       <VisionBanner />
       <SuccessStories className="cases--compact" data={instalateCases} />
+      <EventContact />
     </SiteShell>
   );
 }
