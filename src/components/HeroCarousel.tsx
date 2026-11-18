@@ -68,7 +68,6 @@ export function HeroCarousel() {
           <>
           <p className="hero__meta">
             <span className="hero__tag">{slide.categories[0]}</span>
-            <span>{slide.date}</span>
           </p>
           <h2 className="hero__news-title">
             <a href={slide.href}>{slide.title}</a>
