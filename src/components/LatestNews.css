@@ -107,3 +107,10 @@
     gap: 8px;
   }
 }
+
+/* "Ver todas" siempre pegado a la derecha, también cuando los filtros pasan arriba */
+@media (max-width: 900px) {
+  .news__toolbar .news__all {
+    align-self: flex-end;
+  }
+}

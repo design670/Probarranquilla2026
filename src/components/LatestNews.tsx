@@ -26,7 +26,7 @@ export function LatestNews({ filters = news.filters.map((f) => ({ label: f, cate
   return (
     <section id="noticias" className="news" aria-labelledby="news-title">
       <div className="container">
-        {/* Sin botones de categoría (home), "Ver todos" va en la misma línea del título */}
+        {/* Sin botones de categoría (home), "Ver todas" va en la misma línea del título */}
         <div className={filters.length ? undefined : 'news__head'}>
           <h2 id="news-title" className="section-title news__title">
             {news.title}
@@ -49,7 +49,7 @@ export function LatestNews({ filters = news.filters.map((f) => ({ label: f, cate
               </div>
             )}
             <a href={news.allHref} className="news__chip news__all">
-              <ArrowLabel size={12}>Ver todos</ArrowLabel>
+              <ArrowLabel size={12}>Ver todas</ArrowLabel>
             </a>
           </div>
         </div>
