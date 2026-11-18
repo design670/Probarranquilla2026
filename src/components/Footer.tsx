@@ -36,7 +36,7 @@ export function Footer({ variant = 'default' }: { variant?: 'default' | 'wide' }
       <div className="footer__line footer__line--thin" aria-hidden="true" />
       <div className="container footer__bottom">
         <p>{footer.copyright}</p>
-        <a href={footer.privacy.href}>{footer.privacy.label}</a>
+        <a href={footer.privacy.href} target="_blank" rel="noopener noreferrer">{footer.privacy.label}</a>
         <a href={footer.faq.href} className="footer__faq">
           {footer.faq.label}
         </a>

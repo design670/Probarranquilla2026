@@ -423,6 +423,6 @@ export const footer = {
     { network: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/@probarranquilla1' },
   ] satisfies Social[],
   copyright: 'Todos los derechos reservados ProBarranquilla 2026',
-  privacy: { label: 'Politica de privacidad', href: PENDING_HREF },
+  privacy: { label: 'Politica de privacidad', href: 'https://probarranquilla.org/politicas-tratamiento/' },
   faq: { label: '¿Tienes preguntas?', href: PENDING_HREF },
 };
