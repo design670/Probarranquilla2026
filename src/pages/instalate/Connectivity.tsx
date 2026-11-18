@@ -40,9 +40,12 @@ export function Connectivity() {
   return (
     <section id="conectividad" className="connect" aria-labelledby={`${id}-title`}>
       <div className="container">
-        <h2 id={`${id}-title`} className="connect__section-title">
-          {connectivity.title}
+        <h2 id={`${id}-title`} className="connect__heading">
+          {connectivity.heading.map((l) => (
+            <span key={l}>{l}</span>
+          ))}
         </h2>
+        <h3 className="connect__section-title">{connectivity.title}</h3>
 
         <div className="connect__tabs" role="tablist" aria-label="Tipo de conectividad">
           {tabs.map((t, i) => (
@@ -85,9 +88,10 @@ export function Connectivity() {
           </div>
 
           {/* Título y selector sobre el mapa: nacional / internacional */}
+          {c.map.notice && <span className="connect__map-notice">{c.map.notice}</span>}
+
           {c.map.alt && (
             <div className="connect__switch">
-              <p className="connect__switch-title">{c.map.alt.title}</p>
               <div className="connect__switch-group" role="group" aria-label={c.map.alt.title}>
                 {[
                   { alt: true, label: c.map.alt.label },

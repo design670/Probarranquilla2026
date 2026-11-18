@@ -549,3 +549,40 @@
     font-size: 14px;
   }
 }
+
+/* Aviso en rojo a la derecha del mapa (Conectividad portuaria) */
+.connect__map-notice {
+  position: absolute;
+  right: 26px;
+  bottom: 26px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 4px;
+  background: #e23e30;
+  color: var(--c-white);
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(0, 10, 30, 0.35);
+}
+
+/* Título principal de la sección, sobre "Conectividad Estratégica" (que pasa a subtítulo) */
+.connect__heading {
+  text-align: center;
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--c-white);
+}
+
+.connect__section-title {
+  margin-top: 18px;
+  font-size: 28px;
+  color: #2dd4bf;
+}
+
+.connect__heading span {
+  display: block;
+}

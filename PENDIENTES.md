@@ -322,3 +322,7 @@ Contenido tomado de https://probarranquilla.org/nuestra-gestion/ (datos en `src/
 
 - **Foto del hero:** falta `public/assets/hero/politica-de-privacidad.jpg` (hoy se ve el placeholder rayado).
 - Texto tomado de https://probarranquilla.org/politicas-tratamiento/ (`src/data/privacidad.ts`).
+
+## Instálate: mosaico de indicadores
+
+- Las 4 tarjetas (2,9 millones, Cerca del 30 %, Norte de Colombia, Barranquilla) usan de forma provisional las fotos del mosaico del Home (`assets/razones/`). Reemplazar por fotos propias en `instalateResults.stats[].image` (`src/data/instalate.ts`).

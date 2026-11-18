@@ -51,27 +51,43 @@ export const instalateAssets = {
 
 /* ---------- A. Hero ---------- */
 export const instalateHero = {
-  title: ['Instálate en', 'Barranquilla'],
+  title: ['Instálate en Barranquilla'],
 };
 
 /* ---------- B. Impacto ---------- */
-/** Frase principal sobre la sección verde (antes estaba en el hero) */
-export const instalateImpactTitle = ['Barranquilla y el Atlántico: Una ubicación estratégica,', 'la principal economía del Caribe colombiano', 'y un territorio que conecta talento,', 'negocios y oportunidades.'];
+/** Título de la sección verde (texto del cliente, noviembre 2026) */
+export const instalateImpactTitle = ['Barranquilla, Atlántico, Colombia'];
 
-/** Cifras de Instálate (últimos 5 años) */
+/** Indicadores del territorio + cierre sobre nearshoring */
 export const instalateResults = {
-  heading: 'Una propuesta de valor respaldada por resultados',
-  // Mismas cifras de Inversiones que Home y Sobre ProBarranquilla (impact en content.ts)
-  period: 'Cifras de 2021 a 2025',
+  animate: false,
+  // Fotos provisionales tomadas del mosaico del Home (ver PENDIENTES.md)
   stats: [
-    { tone: 'navy', value: ['+USD 2.000'], label: ['Millones en', 'inversión directa'] },
-    { tone: 'orange', value: ['+14.000'], label: ['Empleos directos', 'generados'] },
-    { tone: 'blue', value: ['80%'], label: ['De proyectos con', 'vocación exportadora'] },
+    { tone: 'navy', value: ['2,9 millones'], label: ['Habitantes en el departamento', 'del Atlántico'], image: '/assets/razones/talento.png' },
+    { tone: 'orange', value: ['Cerca del 30 %'], label: ['Participación del Atlántico en', 'el PIB del Caribe colombiano'], image: '/assets/razones/entorno.png' },
+    { tone: 'yellow', value: ['Norte de Colombia'], label: ['Ubicación geográfica', 'del departamento'], image: '/assets/razones/logistica.png' },
+    { tone: 'blue', value: ['Barranquilla'], label: ['Capital del departamento', 'del Atlántico'], image: '/assets/razones/crecimiento.png' },
   ],
+  closing: {
+    title: 'Una plataforma para el nearshoring',
+    // Vista aérea del puerto y el río Magdalena (misma foto de Ubicación en el Home)
+    image: { src: '/assets/razones/infraestructura.png' },
+    text: 'La ubicación estratégica, la conectividad internacional y las capacidades industriales y logísticas de Barranquilla y el Atlántico ofrecen condiciones para que las empresas acerquen sus operaciones a mercados clave, fortalezcan sus cadenas de suministro y desarrollen nuevos proyectos desde Colombia.',
+  },
+  // Cifras de inversión que ya estaban en esta sección (mismas de Home y Sobre)
+  more: {
+    heading: 'Una propuesta de valor respaldada por resultados',
+    period: 'Cifras de 2021 a 2025',
+    stats: [
+      { tone: 'navy', value: ['+USD 2.000'], label: ['Millones en', 'inversión directa'] },
+      { tone: 'orange', value: ['+14.000'], label: ['Empleos directos', 'generados'] },
+      { tone: 'blue', value: ['80%'], label: ['De proyectos con', 'vocación exportadora'] },
+    ],
+  },
 } satisfies ImpactResults;
 
 export const instalateImpactIntro =
-  'Su ubicación estratégica, conectividad internacional, infraestructura portuaria y logística, talento humano y sólida base empresarial permiten a las compañías acercar sus operaciones a mercados clave, fortalecer sus cadenas de suministro y encontrar en el territorio las capacidades necesarias para crecer y expandirse desde Colombia.';
+  'Ubicados en el norte de Colombia, donde el río Magdalena se encuentra con el mar Caribe, Barranquilla y el Atlántico conforman la principal economía del Caribe colombiano y uno de los centros empresariales de la región.';
 
 /* ---------- C. Plataforma portuaria ---------- */
 export type IconName =
@@ -117,6 +133,8 @@ export type ConnectivityMap = {
    * `label` muestra este mapa y `backLabel` vuelve al principal.
    */
   alt?: { title: string; label: string; backLabel: string; map: ConnectivityMap };
+  /** Aviso en rojo a la derecha del mapa (portuaria: más rutas por anunciar) */
+  notice?: string;
 };
 
 export type ConnectivityContent = {
@@ -136,6 +154,7 @@ export type ConnectivityContent = {
 };
 
 export const connectivity = {
+  heading: ['¿Por qué instalar tu empresa en', 'Barranquilla y el Atlántico?'],
   title: 'Conectividad Estratégica',
   tabs: [
     {
@@ -155,6 +174,7 @@ export const connectivity = {
           kind: 'sea',
           hubLabel: lbl(0, 28, 'middle'),
           stops: [{ id: 'miami', name: 'Puerto de Miami', label: lbl(-10, 16, 'end') }],
+          notice: 'Pendiente a más rutas',
           ariaLabel: 'Mapa de la ruta marítima entre Barranquilla y el Puerto de Miami',
         },
       },

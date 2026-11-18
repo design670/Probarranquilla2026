@@ -173,3 +173,9 @@ p.footer__faq a {
 .footer__contact {
   text-align: center;
 }
+
+/* Más interlineado en la dirección y los contactos */
+.footer__address,
+.footer__contact {
+  line-height: 1.6;
+}

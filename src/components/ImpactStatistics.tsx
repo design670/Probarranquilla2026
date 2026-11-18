@@ -16,9 +16,16 @@ type Props = {
 };
 
 export type ImpactResults = {
-  heading: string;
-  period: string;
-  stats: { tone: 'navy' | 'orange' | 'yellow' | 'blue'; value: string[]; label: string[] }[];
+  heading?: string;
+  period?: string;
+  /** `image`: foto de fondo bajo el color (mosaico de Instálate) */
+  stats: { tone: 'navy' | 'orange' | 'yellow' | 'blue'; value: string[]; label: string[]; image?: string }[];
+  /** `false` = valores de texto ("Norte de Colombia", "2,9 millones"): sin contador animado */
+  animate?: boolean;
+  /** Bloque de cierre bajo las tarjetas (título + párrafo) */
+  closing?: { title: string; text: string; image?: { src: string } };
+  /** Segundo bloque de cifras bajo el mosaico (Instálate: las de inversión) */
+  more?: ImpactResults;
 };
 
 /** Pestañas + tarjetas de cifras. Las cifras vienen de `impact.tabs`. */
@@ -45,15 +52,30 @@ export function ImpactStatistics({ id, title, intro, ariaLabel = 'Impacto y resu
 
         {results ? (
           <div className="impact__results">
-            <h3 className="impact__results-title">{results.heading}</h3>
-            <ul className="impact__grid impact__grid--three">
+            {results.heading && <h3 className="impact__results-title">{results.heading}</h3>}
+            <ul className={`impact__grid ${results.closing ? 'impact__grid--mosaic' : results.stats.length === 4 ? 'impact__grid--four' : 'impact__grid--three'}`}>
+              {/* Mosaico (Instálate): el cierre va como tarjeta alta con foto en el centro */}
+              {results.closing && (
+                <li className="impact__feature">
+                  {results.closing.image && <img className="impact__feature-img" src={results.closing.image.src} alt="" loading="lazy" />}
+                  <span className="impact__feature-shade" aria-hidden="true" />
+                  <div className="impact__feature-body">
+                    <h3 className="impact__closing-title">{results.closing.title}</h3>
+                    <p className="impact__closing-text">{results.closing.text}</p>
+                  </div>
+                </li>
+              )}
               {results.stats.map((s) => (
-                <li key={s.value.join(' ')} className={`impact__card tone-${s.tone}`}>
+                <li key={s.value.join(' ')} className={`impact__card tone-${s.tone}${s.image ? ' has-photo' : ''}`}>
+                  {s.image && (
+                    <>
+                      <img className="impact__card-img" src={s.image} alt="" loading="lazy" />
+                      <span className="impact__card-shade" aria-hidden="true" />
+                    </>
+                  )}
                   <p className="impact__value">
                     {s.value.map((v) => (
-                      <span key={v}>
-                        <CountUp value={v} />
-                      </span>
+                      <span key={v}>{results.animate === false ? v : <CountUp value={v} />}</span>
                     ))}
                   </p>
                   <p className="impact__label">
@@ -64,7 +86,31 @@ export function ImpactStatistics({ id, title, intro, ariaLabel = 'Impacto y resu
                 </li>
               ))}
             </ul>
-            <p className="impact__period">*{results.period}</p>
+            {results.period && <p className="impact__period">*{results.period}</p>}
+            {results.more && (
+              <div className="impact__more">
+                {results.more.heading && <h3 className="impact__results-title">{results.more.heading}</h3>}
+                <ul className="impact__grid impact__grid--three">
+                  {results.more.stats.map((s) => (
+                    <li key={s.value.join(' ')} className={`impact__card tone-${s.tone}`}>
+                      <p className="impact__value">
+                        {s.value.map((v) => (
+                          <span key={v}>
+                            <CountUp value={v} />
+                          </span>
+                        ))}
+                      </p>
+                      <p className="impact__label">
+                        {s.label.map((l) => (
+                          <span key={l}>{l}</span>
+                        ))}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+                {results.more.period && <p className="impact__period">*{results.more.period}</p>}
+              </div>
+            )}
           </div>
         ) : (
         <>
