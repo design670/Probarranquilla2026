@@ -282,3 +282,23 @@
   line-height: 1.2;
   color: #17877a;
 }
+
+/* Cuatro beneficios: 4 columnas y un color más para la cuarta tarjeta */
+@media (min-width: 901px) {
+  .infra__benefits {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.infra__benefits li:nth-child(4),
+.infra__benefits li:nth-child(4):hover {
+  background: var(--c-teal);
+}
+
+/* Menos espacio entre Infraestructura y "Oferta de zonas francas" (mismo fondo gris) */
+.infra {
+  padding-bottom: 24px;
+}
+.infra + .zones {
+  padding-top: 16px;
+}

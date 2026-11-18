@@ -31,7 +31,7 @@ export function Infrastructure() {
                   <LineIcon name={b.icon} size={26} strokeWidth={1.1} />
                 </span>
                 <strong className="infra__benefit-title">{b.title}</strong>
-                <span className="infra__benefit-text">{b.text}</span>
+                {b.text && <span className="infra__benefit-text">{b.text}</span>}
               </li>
             ))}
           </ul>

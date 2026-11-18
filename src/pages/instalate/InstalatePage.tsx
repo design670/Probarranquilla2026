@@ -26,7 +26,7 @@ export function InstalatePage() {
       <Training />
       <VisionBanner />
       <SuccessStories className="cases--compact" data={instalateCases} />
-      <EventContact />
+      <EventContact showTeam={false} title={['Tu empresa tiene un lugar en Barranquilla']} />
     </SiteShell>
   );
 }

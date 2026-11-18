@@ -491,3 +491,87 @@
     padding: 56px var(--gutter);
   }
 }
+
+/* Centros de formación: título grande + frase SENA debajo, antes de "¿Qué ofrece a las empresas?" */
+.training__centers {
+  max-width: 900px;
+  margin: 64px auto 0;
+  text-align: center;
+}
+.training__centers-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--c-blue-title);
+}
+.training__centers-text {
+  margin-top: 14px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.3;
+  color: #17877a;
+}
+.training__centers + .zones__arrows {
+  margin-top: 40px;
+}
+@media (max-width: 900px) {
+  .training__centers-title { font-size: 32px; }
+  .training__centers-text { font-size: 19px; }
+}
+
+/* Frase SENA en grande, antes de "¿Qué ofrece a las empresas?" */
+.training__lead {
+  max-width: 980px;
+  margin: 64px auto 0;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--c-blue-title);
+}
+.training__lead + .training__offer-title {
+  margin-top: 32px;
+}
+@media (max-width: 900px) {
+  .training__lead { font-size: 26px; }
+}
+
+/* "Centros de formación" con el mismo tamaño que "¿Qué ofrece a las empresas?" */
+.training__centers-title {
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: normal;
+}
+@media (max-width: 900px) {
+  .training__centers-title { font-size: 24px; }
+}
+
+/* Visión + testimonios: una sola sección con fondo azul oscuro */
+.vision {
+  background: #13304f;
+  padding: 0 0 80px;
+  margin-top: 96px;
+}
+.vision__banner--full {
+  min-height: 0;
+}
+.vision__banner--full .vision__content {
+  padding: 88px var(--gutter) 24px;
+}
+.vision .testimonials {
+  margin-top: 16px;
+}
+
+/* Mismo azul plano en toda la sección: sin foto ni degradado en el banner */
+.vision .vision__banner--full {
+  background: transparent;
+}
+.vision .vision__banner--full .vision__img,
+.vision .vision__banner--full .vision__shade {
+  display: none;
+}

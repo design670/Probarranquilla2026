@@ -312,10 +312,12 @@ export const infrastructure = {
     text: 'Las zonas francas son áreas delimitadas del territorio colombiano que cuentan con un régimen especial tributario, aduanero y de comercio exterior, diseñado para facilitar la instalación y operación de empresas industriales, logísticas y de servicios.',
     benefitsTitle: '¿Qué beneficios ofrecen?',
     benefits: [
-      { icon: 'dollar', title: 'Beneficios tributarios', text: 'Tratamiento tributario especial, sujeto a requisitos.' },
-      { icon: 'box', title: 'Facilidades aduaneras', text: 'Ingreso de mercancías bajo condiciones especiales.' },
-      { icon: 'globe', title: 'Acceso a mercados', text: 'Operaciones para atender mercados nacionales e internacionales.' },
-    ] as { icon: IconName; title: string; text: string }[],
+      // Textos del cliente (noviembre 2026): 4 beneficios, solo título
+      { icon: 'dollar', title: 'Reducción y exención de impuesto' },
+      { icon: 'archive', title: 'Exenciones de IVA, aranceles y reducción del impuesto de renta' },
+      { icon: 'globe', title: 'Facilidad de exportación e importación' },
+      { icon: 'box', title: 'Procesos aduaneros optimizados' },
+    ] as { icon: IconName; title: string; text?: string }[],
     howTitle: '¿Cómo funcionan?',
     howText: 'Las empresas pueden establecerse en una zona franca, obtener la calificación correspondiente y desarrollar actividades autorizadas bajo este régimen, cumpliendo los requisitos establecidos por la normativa colombiana.',
   },
@@ -347,7 +349,7 @@ export const freeZones = {
     { location: 'CORDIALIDAD, GALAPA', name: 'ZOFIA Zona Franca Internacional del Atlántico', photo: zf.zofia, logo: zfLogo.zofia },
   ],
   others: [
-    { location: 'SITIONUEVO, MAGDALENA', name: 'PALERMO Sociedad Portuaria', photo: zf.palermo, logo: zfLogo.palermo },
+    { location: 'SITIONUEVO, MAGDALENA', name: 'Zona Franca PALERMO Sociedad Portuaria', photo: zf.palermo, logo: zfLogo.palermo },
     { location: 'JUAN MINA', name: 'Zona Franca LA CAYENA', photo: zf.cayena, logo: zfLogo.cayena },
     { location: 'SABANAGRANDE, MALAMBO', name: 'ZOMA (Zona Franca Malambo)', photo: zf.zoma, logo: zfLogo.zoma },
   ],
@@ -391,6 +393,7 @@ export const training = {
     'El Servicio Nacional de Aprendizaje (SENA) es una entidad pública colombiana que ofrece formación técnica, tecnológica y complementaria gratuita, orientada a desarrollar las competencias que necesita el sector empresarial.',
     'En Barranquilla y el Atlántico, el SENA cuenta con centros de formación y programas que contribuyen a preparar talento para diferentes actividades productivas.',
   ],
+  centersTitle: 'Centros de formación',
   offerTitle: '¿Qué ofrece a las empresas?',
   offers: [
     { icon: 'cap', label: 'Formación gratuita', text: 'Programas técnicos, tecnológicos y de actualización de competencias.' },

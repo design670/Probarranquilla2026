@@ -36,7 +36,8 @@ function validate(v: Values): Errors {
  * envía por POST al endpoint configurado. Sin endpoint, no simula el envío:
  * muestra el aviso de error con los correos de contacto.
  */
-export function EventContact() {
+/** `showTeam={false}`: sin las tarjetas de contacto; `title`: título propio (Instálate) */
+export function EventContact({ showTeam = true, title = eventForm.title }: { showTeam?: boolean; title?: string[] } = {}) {
   const [values, setValues] = useState<Values>(empty);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
@@ -104,14 +105,15 @@ export function EventContact() {
   );
 
   return (
-    <section id={eventAnchors.formulario} className="ev-contact" aria-labelledby="ev-form-title">
+    <section id={eventAnchors.formulario} className={`ev-contact${showTeam ? '' : ' ev-contact--no-team'}`} aria-labelledby="ev-form-title">
       <div className="ev-contact__box">
         {/* Título centrado sobre las dos columnas (contactos y formulario) */}
         <h2 id="ev-form-title" className="ev-contact__title ev-contact__title--center">
-          {eventForm.title.map((l) => (
+          {title.map((l) => (
             <span key={l}>{l}</span>
           ))}
         </h2>
+        {showTeam && (
         <div className="ev-contact__team">
           <ul className="ev-contact__people ev-contact__people--solo">
             {eventContact.people.map((p) => (
@@ -128,6 +130,7 @@ export function EventContact() {
             ))}
           </ul>
         </div>
+        )}
 
         <form className="ev-form" noValidate onSubmit={onSubmit} aria-labelledby="ev-form-title">
           <div className="ev-form__grid">

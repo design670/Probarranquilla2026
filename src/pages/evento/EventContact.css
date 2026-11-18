@@ -286,3 +286,59 @@
     font-size: 28px;
   }
 }
+
+/* Sin tarjetas de contacto (Instálate): formulario solo, centrado */
+.ev-contact--no-team .ev-contact__box {
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+.ev-contact--no-team .ev-form {
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+/* Instálate: fondo blanco alrededor del recuadro del formulario */
+.ev-contact--no-team {
+  background: var(--c-white);
+}
+
+/* Instálate: todo en blanco (venimos de varias secciones azules) */
+.ev-contact--no-team .ev-contact__box {
+  background: var(--c-white);
+  color: var(--c-blue-title);
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.ev-contact--no-team .ev-contact__title,
+.ev-contact--no-team .ev-contact__title span {
+  color: var(--c-blue-title);
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+.ev-contact--no-team .ev-form__field label {
+  color: #334155;
+}
+.ev-contact--no-team .ev-form input,
+.ev-contact--no-team .ev-form select,
+.ev-contact--no-team .ev-form textarea {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+.ev-contact--no-team .ev-form input:focus,
+.ev-contact--no-team .ev-form select:focus,
+.ev-contact--no-team .ev-form textarea:focus {
+  border-color: var(--c-blue-bright);
+}
+.ev-contact--no-team .ev-form__error,
+.ev-contact--no-team .ev-form__status--error {
+  color: #dc2626;
+}
+.ev-contact--no-team .ev-form__status--sent {
+  color: #17877a;
+}
+
+/* Instálate: formulario más ancho */
+.ev-contact--no-team .ev-form {
+  max-width: 980px;
+}

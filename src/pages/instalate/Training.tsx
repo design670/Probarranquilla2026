@@ -63,6 +63,8 @@ export function Training() {
           ))}
         </header>
 
+        <p className="training__lead">{training.subtitle}</p>
+
         <h4 className="training__offer-title">{training.offerTitle}</h4>
         <ul className="training__offers">
           {training.offers.map((o) => (
@@ -76,7 +78,9 @@ export function Training() {
           ))}
         </ul>
 
-        <p className="training__subtitle">{training.subtitle}</p>
+        <div className="training__centers">
+          <h3 className="training__centers-title">{training.centersTitle}</h3>
+        </div>
         {pages > 1 && (
           <div className="zones__arrows">
             <button type="button" aria-label="Especialidades anteriores" disabled={page === 0} onClick={() => goTo(page - 1)}>
