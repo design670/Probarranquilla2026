@@ -575,3 +575,16 @@
 .vision .vision__banner--full .vision__shade {
   display: none;
 }
+
+/* "Centros de formación" y flechas del carrusel en la misma línea */
+.training__centers--row {
+  max-width: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  text-align: left;
+}
+.training__centers--row .zones__arrows {
+  margin: 0;
+}

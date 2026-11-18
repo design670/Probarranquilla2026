@@ -78,9 +78,8 @@ export function Training() {
           ))}
         </ul>
 
-        <div className="training__centers">
+        <div className="training__centers training__centers--row">
           <h3 className="training__centers-title">{training.centersTitle}</h3>
-        </div>
         {pages > 1 && (
           <div className="zones__arrows">
             <button type="button" aria-label="Especialidades anteriores" disabled={page === 0} onClick={() => goTo(page - 1)}>
@@ -91,6 +90,7 @@ export function Training() {
             </button>
           </div>
         )}
+        </div>
         <ul ref={track} className="zones__track training__track" tabIndex={0} aria-label="Especialidades SENA" onScroll={measure}>
           {training.cards.map((c) => (
             <Card key={c.name} card={c} />
