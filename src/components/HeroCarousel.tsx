@@ -8,8 +8,8 @@ import './HeroCarousel.css';
 const AUTOPLAY_MS = 6000;
 
 /**
- * Hero del Home: foto fija de la rueda al atardecer y, encima, un carrusel con
- * las 3 noticias destacadas. Avanza solo cada 6 s (también con el cursor encima,
+ * Hero del Home en carrusel: primero la foto de la rueda al atardecer con el
+ * titular de la página y luego las 3 noticias destacadas, cada una con su foto. Avanza solo cada 6 s (también con el cursor encima,
  * porque ocupa toda la pantalla); se pausa con el botón o mientras el teclado
  * navega dentro. Con movimiento reducido avanza sin la animación de entrada.
  */
@@ -17,8 +17,10 @@ export function HeroCarousel() {
   const [index, setIndex] = useState(0);
   const [stopped, setStopped] = useState(false);
   const [keyboard, setKeyboard] = useState(false);
-  const total = heroSlides.length;
-  const slide = heroSlides[index];
+  // Diapositiva 0: portada (rueda + titular); 1..3: noticias
+  const total = heroSlides.length + 1;
+  const slide = index > 0 ? heroSlides[index - 1] : null;
+  const images = [{ src: heroImage.src, srcSet: `${heroImage.srcMobile} 900w, ${heroImage.src} 2000w`, alt: heroImage.alt }, ...heroSlides.map((n) => ({ src: n.image, srcSet: undefined, alt: n.alt }))];
   const running = !stopped && !keyboard && total > 1;
 
   useEffect(() => {
@@ -37,22 +39,33 @@ export function HeroCarousel() {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) setKeyboard(false);
       }}
     >
-      <img
-        className="hero__image"
-        src={heroImage.src}
-        srcSet={`${heroImage.srcMobile} 900w, ${heroImage.src} 2000w`}
-        sizes="100vw"
-        alt={heroImage.alt}
-        fetchPriority="high"
-      />
+      {/* Las fotos se apilan y la activa aparece con un fundido */}
+      {images.map((im, i) => (
+        <img
+          key={im.src}
+          className={`hero__image ${i === index ? 'is-active' : ''}`}
+          src={im.src}
+          srcSet={im.srcSet}
+          sizes="100vw"
+          alt={i === index ? im.alt : ''}
+          aria-hidden={i === index ? undefined : true}
+          fetchPriority={i === 0 ? 'high' : undefined}
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+      ))}
       <div className="hero__shade" aria-hidden="true" />
 
-      {/* El titular de la página se mantiene para buscadores y lectores de pantalla */}
-      <h1 className="visually-hidden">{hero.title.join(' ')}</h1>
-
       <div className="container hero__content">
-        {/* key: cada noticia entra con su animación */}
+        {/* key: cada diapositiva entra con su animación */}
         <div key={index} className="hero__slide" aria-live={running ? 'off' : 'polite'}>
+          {/* Portada: el titular de la página; en las noticias queda oculto pero presente */}
+          <h1 className={slide ? 'visually-hidden' : 'hero__title'}>
+            {hero.title.map((line) => (
+              <span key={line}>{line} </span>
+            ))}
+          </h1>
+          {slide && (
+          <>
           <p className="hero__meta">
             <span className="hero__tag">{slide.categories[0]}</span>
             <span>{slide.date}</span>
@@ -64,6 +77,8 @@ export function HeroCarousel() {
           <a href={slide.href} className="hero__cta" tabIndex={-1} aria-hidden="true">
             <ArrowLabel size={13}>Leer noticia</ArrowLabel>
           </a>
+          </>
+          )}
         </div>
       </div>
 
@@ -86,12 +101,12 @@ export function HeroCarousel() {
           )}
         </button>
         <div className="hero__dots">
-          {heroSlides.map((s, i) => (
+          {[hero.title.join(' '), ...heroSlides.map((s) => s.title)].map((label, i) => (
             <button
-              key={s.title}
+              key={label}
               type="button"
               className={`hero__dot ${i === index ? 'is-active' : ''}`}
-              aria-label={`Ver noticia ${i + 1}: ${s.title}`}
+              aria-label={i === 0 ? `Ver portada: ${label}` : `Ver noticia ${i}: ${label}`}
               aria-current={i === index ? 'true' : undefined}
               onClick={() => setIndex(i)}
             >

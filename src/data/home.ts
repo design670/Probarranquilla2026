@@ -15,6 +15,7 @@ export const heroImage = {
 /** Las 3 noticias que antes iban en "Últimas noticias" pasan al carrusel del hero. */
 const HERO_NEWS_IDS = ['n11', 'n13', 'n12'];
 
+/** Cada noticia lleva su propia foto de fondo (la de la noticia, en 1600 px). */
 export const heroSlides = news.items.map((n, i) => ({
   ...n,
   href: articleHrefById(HERO_NEWS_IDS[i]),

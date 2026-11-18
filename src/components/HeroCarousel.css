@@ -14,6 +14,23 @@
   height: 100%;
   object-fit: cover;
   object-position: 60% 50%;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.hero__image.is-active {
+  opacity: 1;
+}
+
+/* Titular de la portada (primera diapositiva) */
+.hero__title {
+  font-size: 66px;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+.hero__title span {
+  display: block;
 }
 
 /* Oscurece abajo y a la izquierda, donde va la noticia */
