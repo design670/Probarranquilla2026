@@ -1,16 +1,19 @@
-/* Va justo después del hero. Fondo azul y cards como "Fomentamos el desarrollo económico…" (Sobre) */
+/* Va justo después del hero: aire arriba igual al de las demás secciones */
 .support {
   scroll-margin-top: 24px;
-  padding: 82px 0 100px;
-  background: #003f7a;
-  color: var(--c-white);
+  padding: 82px 0 111px;
+  background: var(--c-white);
+  color: var(--c-navy);
+}
+
+.support__title {
+  color: var(--c-blue-title);
 }
 
 .support__title {
   text-align: center;
   font-size: 44px;
   letter-spacing: -0.025em;
-  color: var(--c-white);
 }
 
 .support__subtitle {
@@ -25,123 +28,178 @@
   content: ' ';
 }
 
-/* ---------- Cards ---------- */
+/* ---------- Selector de etapas ---------- */
 
-/* Escritorio: 3 arriba y 2 centradas abajo (cada card ocupa 2 de 6 columnas) */
-.support__list {
-  list-style: none;
-  margin: 64px 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 29px;
+.support__steps-scroll {
+  margin-top: 78px;
 }
 
-.support__card {
-  --tone: #00a99d;
-  grid-column: span 2;
+/* Mismo espacio entre las cinco etapas, a todo el ancho del contenedor */
+.support__steps {
   position: relative;
   display: flex;
-  flex-direction: column;
-  padding: 36px 34px 38px;
-  overflow: hidden;
-  background: #0d4981;
-  border: 1px solid #1a5a94;
-  border-radius: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  justify-content: space-between;
 }
 
-.support__card:nth-child(4) {
-  grid-column: 2 / span 2;
-}
-
-/* Franja de color arriba */
-.support__card::before {
+/* Línea fina que une los círculos, a todo el ancho del contenedor */
+.support__steps::before {
   content: '';
   position: absolute;
-  inset: 0 0 auto;
-  height: 5px;
-  background: var(--tone);
+  left: 9px;
+  right: 9px;
+  top: 30px;
+  height: 1px;
+  background: #d5dde8;
 }
 
-.support__card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 36px rgba(0, 15, 40, 0.35);
-}
-
-.support__card--orange {
-  --tone: #f37021;
-}
-
-.support__card--yellow {
-  --tone: var(--c-yellow);
-}
-
-.support__card--sky {
-  --tone: var(--c-sky);
-}
-
-.support__head {
+.support__step {
+  position: relative;
+  isolation: isolate; /* el halo queda detrás del círculo */
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
-  padding-bottom: 22px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  gap: 18px;
+  padding: 10px 6px 6px;
+  border-radius: 10px;
+  color: var(--c-navy);
 }
 
 .support__num {
-  flex: none;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 54px;
-  height: 54px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: var(--tone);
-  font-size: 19px;
-  font-weight: 600;
-  color: #0e1b2e;
+  background: var(--c-white);
+  border: 1px solid #c3cedc;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--c-navy);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.support__card-title {
-  font-size: 26px;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+.support__label {
+  font-size: 19px;
+  line-height: 20px;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.support__label span {
+  display: block;
+  white-space: nowrap; /* cada etapa en sus 2 líneas, también activa (en negrita) */
+}
+
+.support__step:hover .support__num {
+  border-color: var(--c-blue-bright);
+}
+
+/* Activa: turquesa con halo */
+.support__step.is-active .support__num {
+  background: var(--c-teal);
+  border-color: var(--c-teal);
+  color: var(--c-white);
+}
+
+.support__step.is-active .support__num::after {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1px solid rgba(35, 170, 153, 0.4);
+  background: rgba(35, 170, 153, 0.1);
+  z-index: -1;
+}
+
+/* Turquesa más oscuro en el texto para que se lea bien sobre blanco */
+.support__step.is-active .support__label {
+  color: #17877a;
+  font-weight: 600;
+}
+
+/* ---------- Panel ---------- */
+
+.support__panel {
+  margin-top: 54px;
+  padding: 47px 47px 47px 48px;
+  border: 1px solid #dfe5ee;
+  border-radius: 24px;
+  background: #f7f8fa;
+}
+
+.support__panel-inner {
+  display: grid;
+  grid-template-columns: 510fr 511fr;
+  gap: 49px;
+  min-height: 321px;
+  animation: support-fade 0.25s ease;
+}
+
+@keyframes support-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.support__panel-title {
+  margin-top: 12px;
+  font-size: 44px;
+  letter-spacing: -0.025em;
+  color: var(--c-blue-title);
 }
 
 .support__desc {
-  margin-top: 22px;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #c9d6e6;
+  margin-top: 30px;
+  font-size: 18px;
+  line-height: 29px;
+  color: var(--c-text-muted);
+}
+
+.support__box {
+  margin-top: 30px;
+  padding: 22px 24px 24px;
+  border: 1px solid #dfe5ee;
+  border-radius: 14px;
+  background: var(--c-white);
+}
+
+.support__box-label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #17877a;
+}
+
+.support__box-text {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--c-navy);
+}
+
+.support__photo {
+  width: 100%;
+  height: 100%;
+  min-height: 321px;
+  border-radius: 16px;
+  object-fit: cover;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .support__card,
-  .support__card:hover {
-    transform: none;
-    transition: none;
+  .support__panel-inner {
+    animation: none;
   }
 }
 
-@media (max-width: 1100px) {
-  .support__list {
-    gap: 18px;
-  }
-  .support__card {
-    padding: 30px 24px 32px;
-  }
-  .support__card-title {
-    font-size: 22px;
-  }
-  .support__num {
-    width: 46px;
-    height: 46px;
-    font-size: 17px;
-  }
-}
 
-/* Tablet: dos por fila; la quinta centrada */
 @media (max-width: 900px) {
   .support {
     padding: 56px 0 64px;
@@ -153,37 +211,136 @@
     font-size: 18px;
     line-height: 1.4;
   }
-  .support__list {
-    grid-template-columns: repeat(4, 1fr);
+  .support__subtitle span {
+    display: inline;
+  }
+  .support__subtitle span + span::before {
+    content: ' ';
+  }
+  /* Las cinco etapas se recorren deslizando dentro de su franja */
+  .support__steps-scroll {
     margin-top: 40px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    padding-bottom: 8px;
   }
-  .support__card,
-  .support__card:nth-child(4) {
-    grid-column: span 2;
+  .support__steps {
+    display: grid;
+    grid-template-columns: repeat(5, 170px);
+    justify-content: start;
+    width: max-content;
   }
-  .support__card:nth-child(5) {
-    grid-column: 2 / span 2;
+  .support__label {
+    font-size: 16px;
   }
-  .support__card:hover {
-    transform: none;
+  .support__panel {
+    margin-top: 32px;
+    padding: 28px;
+  }
+  .support__panel-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .support__panel-title {
+    margin-top: 0;
+    font-size: 32px;
+  }
+  .support__photo {
+    min-height: 0;
+    aspect-ratio: 511 / 321;
   }
 }
 
-/* Teléfono: una columna */
 @media (max-width: 640px) {
   .support__title {
     font-size: 28px;
   }
-  .support__list {
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .support__panel {
+    padding: 20px;
   }
-  .support__card,
-  .support__card:nth-child(4),
-  .support__card:nth-child(5) {
-    grid-column: auto;
+  .support__panel-title {
+    font-size: 26px;
   }
-  .support__card {
-    padding: 28px 20px 30px;
+  .support__desc {
+    font-size: 16px;
+    line-height: 1.6;
   }
+}
+
+/* Reserva el ancho de la negrita para que las etapas no se muevan al activarse */
+.support__label span::after {
+  content: attr(data-text);
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  font-weight: 600;
+}
+
+/* ---------- Fondo oscuro y un color por etapa ---------- */
+.support {
+  background: var(--c-navy-deep);
+  color: var(--c-white);
+}
+.support .support__title,
+.support .support__subtitle {
+  color: var(--c-white);
+}
+
+.support .tone-teal { --tone: #23aa99; }
+.support .tone-orange { --tone: #f37021; }
+.support .tone-yellow { --tone: #fbbf09; }
+.support .tone-sky { --tone: #00acf4; }
+.support .tone-magenta { --tone: #d5306c; }
+
+/* Línea que une los círculos, tenue sobre el fondo oscuro */
+.support__steps::before {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Círculo: borde del color de la etapa; lleno cuando está activa */
+.support .support__num {
+  background: var(--c-navy-deep);
+  border: 1px solid var(--tone);
+  color: var(--c-white);
+}
+.support .support__label {
+  color: #dbe4f0;
+}
+.support .support__step:hover .support__num {
+  border-color: var(--tone);
+  background: color-mix(in srgb, var(--tone) 25%, var(--c-navy-deep));
+}
+.support .support__step.is-active .support__num {
+  background: var(--tone);
+  border-color: var(--tone);
+  color: #0e1b2e;
+}
+.support .support__step.is-active .support__num::after {
+  border-color: color-mix(in srgb, var(--tone) 45%, transparent);
+  background: color-mix(in srgb, var(--tone) 14%, transparent);
+}
+.support .support__step.is-active .support__label {
+  color: var(--tone);
+}
+
+/* Panel: tarjeta oscura con franja del color de la etapa */
+.support .support__panel {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.support .support__panel::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: var(--tone);
+}
+.support .support__panel-title {
+  color: var(--c-white);
+}
+.support .support__desc {
+  color: #c9d6e6;
 }

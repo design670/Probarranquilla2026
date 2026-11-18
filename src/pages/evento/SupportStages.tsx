@@ -1,16 +1,37 @@
+import { useRef, useState, type KeyboardEvent } from 'react';
 import { eventAnchors, support } from '../../data/evento';
+import { SmartImage } from '../../components/SmartImage';
 import './SupportStages.css';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
-// Mismos colores de las cards de "Sobre ProBarranquilla" (InvestmentStages), en ciclo
-const TONES = ['teal', 'orange', 'yellow', 'sky', 'teal'] as const;
+// Cada etapa con su color (mismos tonos de la marca)
+const TONES = ['teal', 'orange', 'yellow', 'sky', 'magenta'] as const;
 
 /**
- * "¿Cómo te apoyamos?": las cinco etapas en cards sobre fondo azul,
- * con el mismo diseño de "Fomentamos el desarrollo económico…" (Sobre ProBarranquilla).
+ * "¿Cómo te apoyamos?": cinco etapas como pestañas (tablist/tab/tabpanel).
+ * Flechas, Inicio y Fin mueven la selección; el panel se funde al cambiar.
  */
 export function SupportStages() {
+  const { stages } = support;
+  const [active, setActive] = useState(0);
+  const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+  const stage = stages[active];
+
+  const select = (i: number) => {
+    const next = (i + stages.length) % stages.length;
+    setActive(next);
+    tabs.current[next]?.focus();
+  };
+
+  const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    const moves: Record<string, number> = { ArrowRight: active + 1, ArrowLeft: active - 1, Home: 0, End: stages.length - 1 };
+    if (e.key in moves) {
+      e.preventDefault();
+      select(moves[e.key]);
+    }
+  };
+
   return (
     <section id={eventAnchors.apoyo} className="support" aria-labelledby="support-title">
       <div className="container">
@@ -23,19 +44,48 @@ export function SupportStages() {
           ))}
         </p>
 
-        <ol className="support__list">
-          {support.stages.map((s, i) => (
-            <li key={s.id} className={`support__card support__card--${TONES[i % TONES.length]}`}>
-              <div className="support__head">
+        <div className="support__steps-scroll">
+          <div className="support__steps" role="tablist" aria-label="Etapas del acompañamiento">
+            {stages.map((s, i) => (
+              <button
+                key={s.id}
+                ref={(el) => {
+                  tabs.current[i] = el;
+                }}
+                type="button"
+                role="tab"
+                id={`stage-tab-${s.id}`}
+                aria-selected={i === active}
+                aria-controls="stage-panel"
+                tabIndex={i === active ? 0 : -1}
+                className={`support__step tone-${TONES[i % TONES.length]} ${i === active ? 'is-active' : ''}`}
+                onClick={() => setActive(i)}
+                onKeyDown={onKeyDown}
+              >
                 <span className="support__num" aria-hidden="true">
                   {pad(i + 1)}
                 </span>
-                <h3 className="support__card-title">{s.title}</h3>
-              </div>
-              <p className="support__desc">{s.description}</p>
-            </li>
-          ))}
-        </ol>
+                <span className="support__label">
+                  {s.label.map((l) => (
+                    <span key={l} data-text={l}>
+                      {l}
+                    </span>
+                  ))}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div id="stage-panel" className={`support__panel tone-${TONES[active % TONES.length]}`} role="tabpanel" aria-labelledby={`stage-tab-${stage.id}`} tabIndex={0}>
+          <div key={stage.id} className="support__panel-inner">
+            <div className="support__copy">
+              <h3 className="support__panel-title">{stage.title}</h3>
+              <p className="support__desc">{stage.description}</p>
+            </div>
+            <SmartImage {...stage.photo} className="support__photo" />
+          </div>
+        </div>
       </div>
     </section>
   );

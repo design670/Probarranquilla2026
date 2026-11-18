@@ -99,8 +99,11 @@ export const connectivity = {
 
 export type SupportStage = {
   id: string;
+  /** Texto del paso en la línea de tiempo, en dos líneas */
+  label: string[];
   title: string;
   description: string;
+  photo: ImageAsset;
 };
 
 export const support = {
@@ -109,28 +112,38 @@ export const support = {
   stages: [
     {
       id: 'candidaturas',
+      label: ['Apoyo a', 'candidaturas'],
       title: 'Apoyo a candidaturas',
       description: 'Te acompañamos en la postulación, preparación de propuesta y candidatura, presentaciones del destino y demás gestiones para lograr ser la sede de tu evento.',
+      photo: A('etapa-apoyo-a-candidaturas.jpg', 'Equipo de ProBarranquilla en la Rueda de Negocios Workshop Argentina, Paraguay y Uruguay 2026'),
     },
     {
       id: 'aliados',
+      label: ['Conexión con aliados', 'estratégicos'],
       title: 'Conexión con aliados estratégicos',
       description: 'Articulamos entidades públicas, empresas, universidades y gremios para sumar apoyos y oportunidades a tu evento.',
+      photo: A('etapa-conexion-con-aliados.jpg', 'Salón de eventos iluminado con escenario y pantallas'),
     },
     {
       id: 'proveedores',
+      label: ['Acceso a proveedores', 'locales'],
       title: 'Acceso a proveedores locales',
       description: 'Te conectamos con hoteles, recintos, operadores y proveedores especializados según las necesidades de tu evento.',
+      photo: A('etapa-acceso-a-proveedores.jpg', 'Equipo de ProBarranquilla en la Rueda de Negocios Workshop Argentina, Paraguay y Uruguay 2026'),
     },
     {
       id: 'inspeccion',
+      label: ['Visitas de inspección', 'y asesoría'],
       title: 'Visitas de inspección y asesoría',
       description: 'Coordinamos recorridos y te brindamos información del destino para facilitar la elección de espacios y la planeación.',
+      photo: A('etapa-visitas-de-inspeccion.jpg', 'Presentación de Barranquilla a un grupo durante una visita al destino'),
     },
     {
       id: 'experiencias',
+      label: ['Experiencias de', 'destino'],
       title: 'Experiencias de destino',
       description: 'Facilitamos la integración de experiencias culturales, gastronómicas y turísticas para enriquecer la visita de tus asistentes.',
+      photo: A('etapa-experiencias-de-destino.jpg', 'Grupo de visitantes en un muelle frente al mar'),
     },
   ] as SupportStage[],
 };
