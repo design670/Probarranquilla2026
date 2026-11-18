@@ -306,3 +306,23 @@
     font-size: 24px;
   }
 }
+
+/* Logos sueltos, sin recuadro gris */
+.air__airlines {
+  gap: 14px 28px;
+  align-items: center;
+}
+.air__airlines li {
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+/* American Airlines: logo oficial muy horizontal, se le da más ancho */
+.air__airlines li:has(img[src*='american-airlines']) .air__logo {
+  max-width: 170px;
+  height: auto;
+  width: 170px;
+}

@@ -34,7 +34,7 @@ export type AirView = {
 };
 
 /** Logos de aerolíneas: de internet (Wikimedia Commons y sitios oficiales) hasta recibir los de audiovisuales */
-const logo = (slug: string, name: string): Airline => ({ name, logo: `/assets/evento/aerolineas/${slug}.png` });
+const logo = (slug: string, name: string, ext = 'png'): Airline => ({ name, logo: `/assets/evento/aerolineas/${slug}.${ext}` });
 
 export const connectivity = {
   title: 'Ventajas Estratégicas del Destino',
@@ -62,7 +62,7 @@ export const connectivity = {
       airlines: [
         // Orden indicado por el cliente (noviembre 2026)
         logo('air-europa', 'Air Europa'),
-        logo('american-airlines', 'American Airlines'),
+        logo('american-airlines', 'American Airlines', 'svg'), // logo oficial (símbolo + nombre)
         logo('avianca', 'Avianca'),
         logo('copa-airlines', 'Copa Airlines'),
         logo('jetblue', 'JetBlue'),
