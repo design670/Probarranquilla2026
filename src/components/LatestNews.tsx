@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { news, type NewsCategory } from '../data/content';
+import { news, type NewsCategory, type NewsItem } from '../data/content';
 import { ArrowLabel } from './ArrowLabel';
 import { NewsCard } from './NewsCard';
 import './LatestNews.css';
@@ -14,11 +14,13 @@ type Props = {
   filters?: FilterOption[];
   /** URL o titular de la noticia que se está leyendo, para no repetirla. */
   exclude?: { href?: string; title?: string };
+  /** Noticias a mostrar (el Home pasa las suyas; por defecto, las de `news.items`). */
+  items?: NewsItem[];
 };
 
-export function LatestNews({ filters = news.filters.map((f) => ({ label: f, category: f })), exclude }: Props) {
+export function LatestNews({ filters = news.filters.map((f) => ({ label: f, category: f })), exclude, items: source = news.items }: Props) {
   const [filter, setFilter] = useState<NewsCategory | null>(null);
-  const pool = news.items.filter((n) => !(exclude && ((exclude.href && n.href === exclude.href) || (exclude.title && n.title === exclude.title))));
+  const pool = source.filter((n) => !(exclude && ((exclude.href && n.href === exclude.href) || (exclude.title && n.title === exclude.title))));
   const items = filter ? pool.filter((n) => n.categories.includes(filter)) : pool;
 
   return (

@@ -225,6 +225,11 @@ export function getArticleBySlug(slug: string): NewsArticle | undefined {
   return articles.find((a) => a.slug === slug && a.body);
 }
 
+/** Noticia por id (con o sin página de detalle). */
+export function getArticleById(id: string): NewsArticle | undefined {
+  return articles.find((a) => a.id === id);
+}
+
 /** URL de detalle de una noticia por id (para enlazar desde otras secciones). */
 export function articleHrefById(id: string) {
   const a = articles.find((x) => x.id === id);

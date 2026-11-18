@@ -8,6 +8,7 @@ import { AssistanceSection } from './components/AssistanceSection';
 import { Partners } from './components/Partners';
 import { MemberCompanies } from './components/MemberCompanies';
 import { impact } from './data/content';
+import { homeNews } from './data/home';
 
 export default function App() {
   return (
@@ -15,7 +16,7 @@ export default function App() {
       <InvestmentReasons />
       <ImpactStatistics id="resultados" title={impact.title} intro={impact.intro} />
       {/* En el home van sin los botones de categoría */}
-      <LatestNews filters={[]} />
+      <LatestNews filters={[]} items={homeNews} />
       <SuccessStories />
       <AssistanceSection />
       <Partners />

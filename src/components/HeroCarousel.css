@@ -6,20 +6,23 @@
   color: var(--c-white);
 }
 
-.hero__video {
+/* Foto fija: la rueda queda a la derecha, el texto se lee sobre la ciudad a la izquierda */
+.hero__image {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 50%;
+  object-position: 60% 50%;
 }
 
-/* Oscurecimiento suave detrás del titular, como en la referencia */
+/* Oscurece abajo y a la izquierda, donde va la noticia */
 .hero__shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(0, 10, 25, 0.35) 0%, rgba(0, 10, 25, 0.12) 45%, rgba(0, 10, 25, 0) 70%);
+  background:
+    linear-gradient(0deg, rgba(0, 12, 30, 0.82) 0%, rgba(0, 12, 30, 0.45) 38%, rgba(0, 12, 30, 0) 65%),
+    linear-gradient(90deg, rgba(0, 12, 30, 0.55) 0%, rgba(0, 12, 30, 0.15) 50%, rgba(0, 12, 30, 0) 75%);
   pointer-events: none;
 }
 
@@ -27,30 +30,96 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 168px;
+  bottom: 120px;
 }
 
-.hero__title {
-  padding-left: 12px;
-  font-size: 66px;
-  line-height: 1.02;
+.hero__slide {
+  max-width: 820px;
+  animation: hero-in 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero__tag {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--c-blue-bright);
+  color: var(--c-white);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hero__news-title {
+  margin-top: 18px;
+  font-size: 50px;
+  line-height: 1.06;
   letter-spacing: -0.025em;
 }
 
-.hero__title span {
-  display: block;
+.hero__news-title a {
+  color: inherit;
 }
 
-/* Pausa / reproducir (el video dura casi 2 minutos) */
-.hero__toggle {
+.hero__news-title a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+.hero__news-title a:focus-visible {
+  outline: 2px solid var(--c-white);
+  outline-offset: 4px;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  height: 46px;
+  margin-top: 28px;
+  padding: 0 24px;
+  border-radius: 3px;
+  background: var(--c-white);
+  color: var(--c-blue-bright);
+  font-size: 18px;
+  transition: background-color 0.2s ease;
+}
+
+.hero__cta:hover {
+  background: #dbe7f5;
+}
+
+/* Pausa + indicadores, abajo y alineados con el texto */
+.hero__controls {
   position: absolute;
-  right: max(var(--gutter), calc((100% - var(--container)) / 2));
-  bottom: 40px;
+  left: 0;
+  right: 0;
+  bottom: 44px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.hero__toggle {
+  flex: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 50%;
   background: rgba(0, 20, 45, 0.45);
@@ -62,9 +131,68 @@
   background: rgba(0, 20, 45, 0.75);
 }
 
-.hero__toggle:focus-visible {
+.hero__toggle:focus-visible,
+.hero__dot:focus-visible {
   outline: 2px solid var(--c-white);
   outline-offset: 3px;
+}
+
+.hero__dots {
+  display: flex;
+  gap: 10px;
+}
+
+/* Cada indicador es una barra; la activa se llena mientras dura la noticia */
+.hero__dot {
+  position: relative;
+  width: 56px;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background-color 0.2s ease;
+}
+
+/* Área táctil cómoda sin cambiar el tamaño de la barra */
+.hero__dot::after {
+  content: '';
+  position: absolute;
+  inset: -18px -4px;
+}
+
+.hero__dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.hero__dot.is-active {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.hero__dot.is-active:not(:has(.hero__dot-fill)) {
+  background: var(--c-white);
+}
+
+.hero__dot-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--c-white);
+  transform-origin: left center;
+  animation: hero-fill linear forwards;
+}
+
+@keyframes hero-fill {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__slide {
+    animation: none;
+  }
+  .hero__dot-fill {
+    animation: none;
+  }
 }
 
 @media (max-width: 900px) {
@@ -72,11 +200,13 @@
     height: 560px;
   }
   .hero__content {
-    bottom: 110px;
+    bottom: 96px;
   }
-  .hero__title {
-    padding-left: 0;
-    font-size: 48px;
+  .hero__news-title {
+    font-size: 36px;
+  }
+  .hero__controls {
+    bottom: 32px;
   }
 }
 
@@ -84,10 +214,29 @@
   .hero {
     height: var(--hero-mobile-h);
   }
-  .hero__title {
-    font-size: 36px;
+  /* En vertical la rueda queda en el centro de la foto */
+  .hero__image {
+    object-position: 72% 50%;
   }
-  .hero__toggle {
-    bottom: 24px;
+  .hero__content {
+    bottom: 92px;
+  }
+  .hero__news-title {
+    font-size: 28px;
+    line-height: 1.12;
+  }
+  .hero__meta {
+    font-size: 14px;
+  }
+  .hero__cta {
+    height: 42px;
+    margin-top: 22px;
+    font-size: 16px;
+  }
+  .hero__dot {
+    width: 44px;
+  }
+  .hero__controls {
+    bottom: 28px;
   }
 }
