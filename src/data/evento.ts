@@ -60,13 +60,14 @@ export const connectivity = {
         { id: 'curazao', name: 'Curazao', label: { dx: 8, dy: -12, anchor: 'start' } },
       ],
       airlines: [
-        logo('avianca', 'Avianca'),
+        // Orden indicado por el cliente (noviembre 2026)
         logo('air-europa', 'Air Europa'),
         logo('american-airlines', 'American Airlines'),
+        logo('avianca', 'Avianca'),
+        logo('copa-airlines', 'Copa Airlines'),
         logo('jetblue', 'JetBlue'),
         logo('wingo', 'Wingo'),
-        logo('ez-air', 'EZ Air'),
-        logo('copa-airlines', 'Copa Airlines'),
+        logo('ez-air', 'Z Air'),
       ],
     },
     {
@@ -85,11 +86,12 @@ export const connectivity = {
         { id: 'monteria', name: 'Montería', label: { dx: -10, dy: 5, anchor: 'end' } },
       ],
       airlines: [
+        // Orden indicado por el cliente (noviembre 2026)
         logo('avianca', 'Avianca'),
-        logo('wingo', 'Wingo'),
-        logo('latam', 'LATAM'),
         logo('jetsmart', 'JetSMART'),
-        logo('satena', 'Satena'),
+        logo('latam', 'LATAM'),
+        logo('satena', 'SATENA'),
+        logo('wingo', 'Wingo'),
       ],
     },
   ] satisfies AirView[],
