@@ -18,13 +18,12 @@
   padding: 0;
   margin: 52px 0 0;
   display: grid;
-  grid-template-columns: 370fr 400fr 370fr;
-  /* Izquierda: alta (280) + baja (205). Derecha: baja (205) + alta (280). */
-  grid-template-rows: 205px 52px 205px;
+  /* Ubicación alta en el centro; a los lados, Talento e Infraestructura arriba y Colaboración y Entorno abajo */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 242px 242px;
   grid-template-areas:
-    'a c d'
-    'a c e'
-    'b c e';
+    'c b e'
+    'a b d';
   gap: 23px 22px;
 }
 
@@ -109,7 +108,7 @@
 
 @media (max-width: 1100px) {
   .reasons__grid {
-    grid-template-rows: 170px 44px 170px;
+    grid-template-rows: 200px 200px;
   }
   .reasons__body,
   .reasons__card--c .reasons__body,
