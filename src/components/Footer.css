@@ -122,3 +122,54 @@
     padding-block: 28px;
   }
 }
+
+/* Línea ética: la frase en una línea y solo el correo subrayado */
+p.footer__faq {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+p.footer__faq a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Teléfonos y correo, entre la dirección y las redes */
+@media (min-width: 901px) {
+  .footer__top {
+    grid-template-columns: 1fr auto auto 1fr;
+    column-gap: 56px;
+  }
+}
+
+.footer__contact {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.footer__contact a {
+  color: inherit;
+}
+
+.footer__contact a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Los tres textos de la franja inferior repartidos con el mismo espacio entre sí */
+@media (min-width: 901px) {
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+  .footer__bottom > :nth-child(2) {
+    margin-left: 0;
+  }
+}
+
+.footer__contact {
+  text-align: center;
+}

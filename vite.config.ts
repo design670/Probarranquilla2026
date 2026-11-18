@@ -62,6 +62,7 @@ export default defineConfig({
         instalate: resolve(__dirname, 'instalate-en-barranquilla/index.html'),
         sobre: resolve(__dirname, 'sobre-probarranquilla/index.html'),
         equipo: resolve(__dirname, 'equipo/index.html'),
+        privacidad: resolve(__dirname, 'politica-de-privacidad/index.html'),
         casos: resolve(__dirname, 'casos-de-exito/index.html'),
         evento: resolve(__dirname, 'haz-tu-evento-en-barranquilla/index.html'),
         sectores: resolve(__dirname, 'sectores/index.html'),

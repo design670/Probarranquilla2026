@@ -23,6 +23,7 @@ export const routes = {
   instalate: '/instalate-en-barranquilla/',
   sobre: '/sobre-probarranquilla/',
   equipo: '/equipo/',
+  privacidad: '/politica-de-privacidad/',
   noticias: '/noticias/',
   informes: '/informes-de-labores/',
   // Anclas a secciones del Home (absolutas para que funcionen desde cualquier página)
@@ -415,6 +416,7 @@ export type Social = { network: 'facebook' | 'instagram' | 'x' | 'linkedin' | 'y
 
 export const footer = {
   address: { city: 'Barranquilla, Colombia', building: 'Centro Empresarial Green Towers', street: 'Cl. 77b #57-103 - Oficina 509' },
+  contact: { phones: ['(+57) 310 272 1297', '(+57) 318 350 3067'], email: 'info@probarranquilla.org' },
   social: [
     { network: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/ProBarranquilla/' },
     { network: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/probarranquilla/' },
@@ -423,6 +425,7 @@ export const footer = {
     { network: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/@probarranquilla1' },
   ] satisfies Social[],
   copyright: 'Todos los derechos reservados ProBarranquilla 2026',
-  privacy: { label: 'Politica de privacidad', href: 'https://probarranquilla.org/politicas-tratamiento/' },
-  faq: { label: '¿Tienes preguntas?', href: PENDING_HREF },
+  privacy: { label: 'Política de privacidad', href: routes.privacidad },
+  // Reemplaza a "¿Tienes preguntas?" (pedido del cliente, noviembre 2026)
+  ethics: { label: 'Línea ética y canal de denuncias:', email: 'transparencia@probarranquilla.org' },
 };
