@@ -146,7 +146,7 @@ export const eventResults = {
     { tone: 'orange', value: '+130.000', unit: '', label: ['ASISTENTES'], align: 'start' },
     { tone: 'teal', value: '+USD 120', unit: '', label: ['MILLONES EN', 'DERRAMA ECONÓMICA'], align: 'start' },
   ] as { tone: 'navy' | 'orange' | 'teal'; value: string; unit: string; label: string[]; align: 'start' | 'center' }[],
-  note: '*Cifras de los últimos 5 años',
+  note: '*Cifras de 2021 a 2025',
 };
 
 /* ---------- Casos de éxito (solo esta página) ---------- */

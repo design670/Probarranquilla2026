@@ -360,3 +360,44 @@
     font-size: 42px;
   }
 }
+
+/* Home: sin título, el párrafo conserva un ancho de lectura cómodo y centrado */
+.impact--home .impact__intro {
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+/* Pestañas (Home y Sobre): la card sube poco y con aire suficiente para no tocar las pestañas */
+.impact__grid--tabs {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 56px;
+}
+
+.impact__grid--tabs .impact__card:hover {
+  transform: translateY(-24px);
+}
+
+.impact__grid--tabs .impact__card:hover::after {
+  height: 24px;
+}
+
+/* La cifra más larga (+USD 2.000) debe caber en su card sin ensancharla */
+@media (min-width: 901px) {
+  .impact__grid--tabs .impact__value {
+    font-size: clamp(40px, 3.7vw, 56px);
+  }
+}
+
+/* "*Cifras de los últimos 5 años": mismo tamaño en todo el sitio (Home, Sobre, Instálate y Haz tu evento) */
+.impact__period,
+.impact__period.impact__period--tab {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .impact__period,
+  .impact__period.impact__period--tab {
+    font-size: 18px;
+  }
+}

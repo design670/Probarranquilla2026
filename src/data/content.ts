@@ -204,13 +204,13 @@ export type Stat = { value: string[]; label: string | string[]; tone: 'navy' | '
 export const impact = {
   title: ['Por qué las empresa globales', 'escogen Barranquilla'],
   intro:
-    'Nuestra labor técnica y de posicionamiento impulsa el crecimiento socioeconómico sostenible del departamento del Atlántico. Interactúa con las estadísticas y sectores para conocer el impacto real.',
+    'Trabajamos para atraer nuevas inversiones, facilitar la expansión de las empresas instaladas y captar eventos nacionales e internacionales, mediante la articulación con el sector público, privado y la academia, contribuyendo al fortalecimiento del entorno de negocios y la competitividad de Barranquilla y el Atlántico.',
   // Cifras finales del cliente (noviembre 2026). Cada pestaña aclara su periodo bajo las tarjetas.
   tabs: [
     {
       id: 'inversiones',
       label: 'INVERSIONES',
-      period: 'Cifras de los últimos 5 años',
+      period: 'Cifras de 2021 a 2025',
       stats: [
         { tone: 'navy', value: ['+USD 2.000'], label: ['Millones en', 'inversión'] },
         { tone: 'orange', value: ['+14.000'], label: ['Empleos', 'directos'] },
@@ -220,7 +220,7 @@ export const impact = {
     {
       id: 'turismo',
       label: 'TURISMO DE REUNIONES',
-      period: 'Cifras de los últimos 5 años',
+      period: 'Cifras de 2021 a 2025',
       stats: [
         { tone: 'blue', value: ['+130'], label: ['Eventos de turismo', 'de reuniones apoyados'] },
         { tone: 'amber', value: ['+130.000'], label: ['Asistentes'] },

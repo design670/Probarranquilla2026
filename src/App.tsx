@@ -14,7 +14,7 @@ export default function App() {
   return (
     <SiteShell hero={<HeroCarousel />}>
       <InvestmentReasons />
-      <ImpactStatistics id="resultados" title={impact.title} intro={impact.intro} />
+      <ImpactStatistics id="resultados" intro={impact.intro} ariaLabel="Impacto y resultados de ProBarranquilla" className="impact--home" />
       {/* En el home van sin los botones de categoría */}
       <LatestNews filters={[]} items={homeNews} />
       <SuccessStories />

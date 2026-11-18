@@ -62,7 +62,7 @@ export const instalateImpactTitle = ['Barranquilla y el Atlántico: Una ubicaci�
 export const instalateResults = {
   heading: 'Una propuesta de valor respaldada por resultados',
   // Mismas cifras de Inversiones que Home y Sobre ProBarranquilla (impact en content.ts)
-  period: 'Cifras de los últimos 5 años',
+  period: 'Cifras de 2021 a 2025',
   stats: [
     { tone: 'navy', value: ['+USD 2.000'], label: ['Millones en', 'inversión'] },
     { tone: 'orange', value: ['+14.000'], label: ['Empleos', 'directos'] },
