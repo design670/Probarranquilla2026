@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { eventHero } from '../../data/evento';
 import './EventHero.css';
 
@@ -8,6 +8,10 @@ import './EventHero.css';
  */
 export function EventHero() {
   const video = useRef<HTMLVideoElement>(null);
+  // Celular: versión 720p; escritorio y tablet: versión de mayor calidad
+  const [src] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches ? eventHero.video.src : eventHero.video.hd,
+  );
 
   useEffect(() => {
     const v = video.current;
@@ -23,7 +27,7 @@ export function EventHero() {
       <video
         ref={video}
         className="event-hero__video"
-        src={eventHero.video.src}
+        src={src}
         poster={eventHero.video.poster}
         autoPlay
         muted

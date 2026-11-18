@@ -114,3 +114,14 @@
     height: 34px;
   }
 }
+
+/* Celular y tablet: los enlaces se deslizan dentro de su espacio sin ensanchar la página */
+@media (max-width: 900px) {
+  .utility-bar__links {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .utility-bar__lang {
+    flex: none;
+  }
+}

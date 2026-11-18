@@ -179,3 +179,15 @@ p.footer__faq a {
 .footer__contact {
   line-height: 1.6;
 }
+
+/* Tablet y celular: la línea ética puede bajar de línea (el correo en su propia línea) */
+@media (max-width: 900px) {
+  p.footer__faq {
+    white-space: normal;
+    max-width: 100%;
+  }
+  p.footer__faq a {
+    display: inline-block;
+    overflow-wrap: anywhere;
+  }
+}

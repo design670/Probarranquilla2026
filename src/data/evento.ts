@@ -15,8 +15,15 @@ export const eventAnchors = { apoyo: 'como-te-apoyamos', formulario: 'postula-tu
 
 export const eventHero = {
   title: 'Barranquilla, el punto de encuentro del Caribe para los grandes eventos',
-  /** Video de fondo (Video banner - Trae tu evento, convertido a MP4 720p sin audio) */
-  video: { src: '/assets/evento/hero-trae-tu-evento.mp4', poster: '/assets/evento/hero-trae-tu-evento.jpg' },
+  /**
+   * Video de fondo (Video banner - Trae tu evento, sin audio): `hd` 1600 px para
+   * escritorio y tablet; `src` 720p, más liviano, para celular.
+   */
+  video: {
+    hd: '/assets/evento/hero-trae-tu-evento-hd.mp4',
+    src: '/assets/evento/hero-trae-tu-evento.mp4',
+    poster: '/assets/evento/hero-trae-tu-evento.jpg',
+  },
 };
 
 /* ---------- Ventajas estratégicas: conectividad aérea ---------- */

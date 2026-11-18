@@ -588,3 +588,18 @@
 .training__centers--row .zones__arrows {
   margin: 0;
 }
+
+/* Celular: frase SENA, sección de visión y título de centros más proporcionados */
+@media (max-width: 640px) {
+  .training__lead {
+    margin-top: 48px;
+    font-size: 22px;
+  }
+  .vision {
+    margin-top: 64px;
+    padding-bottom: 56px;
+  }
+  .vision__banner--full .vision__content {
+    padding: 56px var(--gutter) 16px;
+  }
+}
