@@ -212,8 +212,8 @@ export const impact = {
       label: 'INVERSIONES',
       period: 'Cifras de 2021 a 2025',
       stats: [
-        { tone: 'navy', value: ['+USD 2.000'], label: ['Millones en', 'inversión'] },
-        { tone: 'orange', value: ['+14.000'], label: ['Empleos', 'directos'] },
+        { tone: 'navy', value: ['+USD 2.000'], label: ['Millones en', 'inversión directa'] },
+        { tone: 'orange', value: ['+14.000'], label: ['Empleos directos', 'generados'] },
         { tone: 'blue', value: ['80%'], label: ['De proyectos con', 'vocación exportadora'] },
       ] as Stat[],
     },
