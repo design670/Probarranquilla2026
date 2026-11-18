@@ -12,3 +12,7 @@ src/pages/Casos de exito/
 .DS_Store
 Thumbs.db
 src/pages/Consejo Directo/
+
+# Videos originales pesados (se usa la versión MP4 de public/assets)
+*.MOV
+*.mov
