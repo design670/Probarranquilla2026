@@ -151,6 +151,8 @@ export type ConnectivityContent = {
   map: ConnectivityMap;
   /** Cuadro azul sobre el mapa: cifras en chips o un texto */
   highlight?: { title?: string; chips?: { icon: IconName; text: string[] }[]; text?: string };
+  /** Párrafo al pie del cuadro (aérea: conexión con Bogotá y Panamá) */
+  note?: string;
 };
 
 export const connectivity = {
@@ -227,14 +229,7 @@ export const connectivity = {
             },
           },
         },
-        highlight: {
-          title: 'CONEXIÓN RÁPIDA A BOGOTÁ',
-          chips: [
-            { icon: 'plane', text: ['1 hora', 'de vuelo'] },
-            { icon: 'globe', text: ['Acceso a 44 destinos', 'internacionales'] },
-            { icon: 'calendar', text: ['164 frecuencias', 'semanales'] },
-          ],
-        },
+        note: 'Barranquilla está a menos de dos horas de vuelo de Bogotá y Panamá, dos de los principales hubs aéreos de las Américas, que facilitan la conexión con más de 50 destinos internacionales.',
       },
     },
     {
@@ -246,15 +241,16 @@ export const connectivity = {
         table: {
           columns: ['Ciudad destino', 'Proximidad', 'Tiempo estimado'],
           rows: [
+            // Primero Bogotá, luego las ciudades de la costa Caribe y después el resto
+            ['Bogotá', '1.048 km', '18 h'],
             ['Cartagena', '120 km', '2 h'],
             ['Santa Marta', '100 km', '1 h 40 min'],
-            ['Bogotá', '1.048 km', '18 h'],
-            ['Medellín', '772 km', '12 h'],
-            ['Cali', '1.179 km', '19 h 34 min'],
-            ['Montería', '376 km', '6 h'],
             ['Riohacha', '268 km', '4 h 49 min'],
             ['Sincelejo', '258 km', '4 h 17 min'],
+            ['Montería', '376 km', '6 h'],
+            ['Medellín', '772 km', '12 h'],
             ['Bucaramanga', '699 km', '12 h'],
+            ['Cali', '1.179 km', '19 h 34 min'],
           ],
         },
         map: {
@@ -289,6 +285,7 @@ export const connectivity = {
         items: [
           { icon: 'globe', text: '4 de los 10 cables submarinos de fibra óptica que conectan a Colombia con el mundo entran por el Atlántico.' },
           { icon: 'compass', text: 'El territorio tiene baja exposición a desastres naturales, que favorecen la conectividad y continuidad de las operaciones empresariales.' },
+          { icon: 'archive', text: 'La conexión directa con el NAP de las Américas mejora la seguridad de los datos, agiliza las transferencias y reduce la latencia.' },
         ],
         map: {
           geo: 'continental',
@@ -306,8 +303,8 @@ export const connectivity = {
 
 /* ---------- E. Infraestructura ---------- */
 export const infrastructure = {
-  eyebrow: 'INFRAESTRUCTURA CON ESTÁNDARES INTERNACIONALES',
-  title: ['Un territorio con infraestructura', 'con estándares internacionales'],
+  subtitle: 'Un territorio con infraestructura con estándares internacionales',
+  title: ['Infraestructura con', 'estándares internacionales'],
   intro:
     'Barranquilla y el Atlántico cuentan con una oferta de zonas francas y parques industriales que facilita la instalación y expansión de empresas. Estos espacios ofrecen infraestructura especializada y condiciones para el desarrollo de operaciones industriales, logísticas y de servicios, conectadas con el ecosistema empresarial del territorio y los mercados nacionales e internacionales.',
   zones: {

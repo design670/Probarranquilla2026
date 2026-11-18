@@ -1,6 +1,5 @@
 import { infrastructure } from '../../data/instalate';
 import { LineIcon } from '../../components/LineIcon';
-import { Eyebrow } from '../../components/Eyebrow';
 import './Infrastructure.css';
 
 /** Infraestructura con estándares internacionales: zonas francas y sus beneficios. */
@@ -10,12 +9,13 @@ export function Infrastructure() {
     <section id="infraestructura" className="infra" aria-labelledby="infra-title">
       <div className="container">
         <header className="infra__head">
-          <Eyebrow>{infrastructure.eyebrow}</Eyebrow>
+          {/* Sin píldora: título grande y, debajo, el subtítulo en color (como "Conectividad Estratégica") */}
           <h2 id="infra-title" className="section-title infra__title">
             {infrastructure.title.map((l) => (
               <span key={l}>{l}</span>
             ))}
           </h2>
+          <p className="infra__subtitle">{infrastructure.subtitle}</p>
           <p className="infra__intro">{infrastructure.intro}</p>
         </header>
 

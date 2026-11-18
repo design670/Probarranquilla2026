@@ -168,6 +168,8 @@ export function Connectivity() {
               </div>
             )}
 
+            {c.note && <p className="connect__note">{c.note}</p>}
+
             {c.highlight?.chips && (
               <div className="connect__quick">
                 {c.highlight.title && <p className="connect__quick-title">{c.highlight.title}</p>}

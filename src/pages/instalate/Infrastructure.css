@@ -272,3 +272,13 @@
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
+
+/* Subtítulo en color bajo el título (en lugar de la píldora) */
+.infra__subtitle {
+  margin-top: 16px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  color: #17877a;
+}

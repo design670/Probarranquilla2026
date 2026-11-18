@@ -586,3 +586,22 @@
 .connect__heading span {
   display: block;
 }
+
+/* Párrafo al pie del cuadro, en lugar de las cifras de conexión con Bogotá */
+.connect__note {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid #e3e8ef;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--c-navy);
+}
+
+/* El párrafo va en un recuadro azul claro */
+.connect__note {
+  padding: 18px 20px;
+  border-top: 0;
+  border-radius: 10px;
+  background: #eaf1fa;
+  border-left: 4px solid var(--c-blue-bright);
+}
