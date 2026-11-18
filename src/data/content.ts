@@ -246,7 +246,7 @@ export type SuccessStoriesData = { title: string; subtitle: string; moreHref: st
 
 export const successStories = {
   title: 'Casos de éxito',
-  subtitle: 'Conoce algunos de los eventos que han elegido Barranquilla como su sede',
+  subtitle: 'Conoce las empresas que han establecido sus operaciones en Barranquilla y el Atlántico',
   moreHref: routes.casosDeExito,
   // Textos: "Casos de exito info - Pág web 2026.pdf" (primera oración en negrita)
   cases: [
