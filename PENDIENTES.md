@@ -317,3 +317,8 @@ Contenido tomado de https://probarranquilla.org/nuestra-gestion/ (datos en `src/
 
 - El menú "Sobre ProBarranquilla → Equipo" lleva ahora a esta página propia (antes bajaba a `/sobre-probarranquilla/#equipo`). El bloque del equipo sigue también dentro de Sobre ProBarranquilla.
 - El hero reutiliza la foto de "Atracción de inversiones" (`assets/sobre/que-hace-acompanamiento.jpg`). Si hay una foto del equipo, reemplazar `teamHero.image` en `src/data/sobre.ts`.
+
+## Política de privacidad (`/politica-de-privacidad/`)
+
+- **Foto del hero:** falta `public/assets/hero/politica-de-privacidad.jpg` (hoy se ve el placeholder rayado).
+- Texto tomado de https://probarranquilla.org/politicas-tratamiento/ (`src/data/privacidad.ts`).

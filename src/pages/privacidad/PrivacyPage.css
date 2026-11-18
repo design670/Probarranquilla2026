@@ -145,3 +145,12 @@
     padding: 32px 24px 40px;
   }
 }
+
+/* Hero más bajo que el de las demás páginas internas */
+.page-hero.page-hero--privacy {
+  height: clamp(360px, 30vw, 420px);
+}
+
+.page-hero--privacy .page-hero__content {
+  bottom: 64px;
+}

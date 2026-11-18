@@ -9,7 +9,8 @@ export type PolicyBlock = { type: 'p'; text: string } | { type: 'list'; items: P
 export type PolicySection = { id: string; title: string; blocks: PolicyBlock[] };
 
 export const privacyHero = {
-  image: { src: '/assets/hero/hero-home-rueda.jpg', alt: 'Vista aérea del Malecón de Barranquilla al atardecer', position: '60% 50%' },
+  // Pendiente: foto propia del hero (mientras tanto se ve el placeholder)
+  image: { src: '/assets/hero/politica-de-privacidad.jpg', alt: 'Barranquilla' },
   title: ['Política de privacidad'],
   description: ['Política para el tratamiento y protección de datos personales'],
 };

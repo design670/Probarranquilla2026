@@ -6,7 +6,7 @@ import './PrivacyPage.css';
 /** "Política de privacidad": índice fijo a la izquierda y el texto de la política a la derecha. */
 export function PrivacyPage() {
   return (
-    <SiteShell hero={<PageHero image={privacyHero.image} title={privacyHero.title} description={privacyHero.description} shade="navy" />}>
+    <SiteShell hero={<PageHero image={privacyHero.image} title={privacyHero.title} description={privacyHero.description} shade="navy" className="page-hero--privacy" />}>
       <div className="policy">
         <div className="container policy__layout">
           <nav className="policy__index" aria-label="Contenido de la política">
