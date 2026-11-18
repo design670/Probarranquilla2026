@@ -372,7 +372,7 @@ export const eventForm = {
     name: 'Nombre completo',
     organization: 'Organización / asociación',
     email: 'Correo electrónico',
-    phone: 'Teléfono / whatsapp',
+    phone: 'Teléfono / WhatsApp',
     eventType: 'Tipo de evento',
     attendees: 'Asistentes estimados',
     details: 'Detalles o requerimientos de tu evento',

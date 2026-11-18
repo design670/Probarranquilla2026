@@ -37,11 +37,22 @@ function validate(v: Values): Errors {
  * muestra el aviso de error con los correos de contacto.
  */
 /** `showTeam={false}`: sin las tarjetas de contacto; `title`: título propio (Instálate) */
-export function EventContact({ showTeam = true, title = eventForm.title }: { showTeam?: boolean; title?: string[] } = {}) {
+export function EventContact({
+  showTeam = true,
+  title = eventForm.title,
+  labels = {},
+  textFields = [],
+}: {
+  showTeam?: boolean;
+  title?: string[];
+  labels?: Partial<typeof eventForm.fields>;
+  /** Campos que van como texto libre en vez de desplegable */
+  textFields?: ('eventType' | 'attendees')[];
+} = {}) {
   const [values, setValues] = useState<Values>(empty);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
-  const f = eventForm.fields;
+  const f = { ...eventForm.fields, ...labels };
 
   const set = (k: keyof Values) => (e: { target: { value: string } }) => {
     setValues((v) => ({ ...v, [k]: e.target.value }));
@@ -90,7 +101,8 @@ export function EventContact({ showTeam = true, title = eventForm.title }: { sho
       </p>
     );
 
-  const select = (k: 'eventType' | 'attendees', options: string[]) => (
+  const select = (k: 'eventType' | 'attendees', options: string[]) =>
+    textFields.includes(k) ? <input type="text" {...field(k)} /> : (
     <div className="ev-form__select">
       <select {...field(k)}>
         <option value="">{options.length ? 'Selecciona una opción' : ''}</option>
