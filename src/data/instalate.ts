@@ -9,6 +9,7 @@
 import type { ImageAsset } from '../components/SmartImage';
 import type { ImpactResults } from '../components/ImpactStatistics';
 import { successStories, type SuccessStoriesData } from './content';
+import type { SupportStage } from './evento';
 
 const A = (src: string, alt: string, extra: Partial<ImageAsset> = {}): ImageAsset => ({
   src: `/assets/instalate/${src}`,
@@ -501,4 +502,43 @@ export const instalateCases: SuccessStoriesData = {
       body: ' Desde la ciudad presta servicios de atención al cliente y soporte para marcas de distintos mercados.',
     },
   ],
+};
+
+/* ---------- Te acompañamos en cada etapa de tu inversión (línea de tiempo) ---------- */
+
+/** Mismo diseño de «¿Cómo te apoyamos?» de Haz tu evento, con las etapas de inversión. */
+export const instalateSupport = {
+  title: 'Te acompañamos en cada etapa de tu inversión',
+  subtitle: [] as string[],
+  stages: [
+    {
+      id: 'preinversion',
+      label: ['Preinversión'],
+      title: 'Preinversión',
+      description: 'Identificamos y maduramos oportunidades de inversión, brindando información estratégica, sectorial y del entorno de negocios para facilitar la toma de decisiones.',
+      // Fotos de la ciudad tomadas del video «Trae tu evento» (fotogramas)
+      photo: A('etapa-preinversion.jpg', 'Vista aérea de los edificios del norte de Barranquilla con el mar al fondo'),
+    },
+    {
+      id: 'instalacion',
+      label: ['Inversión e', 'instalación'],
+      title: 'Inversión e instalación',
+      description: 'Acompañamos la puesta en marcha del proyecto, facilitando la selección de sitios, la gestión de trámites y el relacionamiento con actores clave del territorio.',
+      photo: A('etapa-inversion-e-instalacion.jpg', 'Monumento Ventana al Mundo en Barranquilla, con la vía y el río al fondo'),
+    },
+    {
+      id: 'reinversion',
+      label: ['Reinversión y', 'expansión'],
+      title: 'Reinversión y expansión',
+      description: 'Identificamos nuevas oportunidades de crecimiento y apoyamos a las empresas en la ampliación, diversificación y fortalecimiento de sus operaciones.',
+      photo: A('etapa-reinversion-y-expansion.jpg', 'Torres de oficinas y apartamentos en el norte de Barranquilla'),
+    },
+    {
+      id: 'aftercare',
+      label: ['Aftercare | Acompañamiento', 'continuo'],
+      title: 'Aftercare | Acompañamiento continuo',
+      description: 'Mantenemos una relación cercana con las empresas instaladas, atendiendo sus necesidades y facilitando su permanencia y crecimiento en el territorio.',
+      photo: A('etapa-aftercare.jpg', 'Vista aérea del Gran Malecón junto al río Magdalena'),
+    },
+  ] as SupportStage[],
 };

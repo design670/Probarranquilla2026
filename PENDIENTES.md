@@ -334,3 +334,7 @@ Página nueva con la misma estructura del listado de Noticias (hero, filtros por
 - **Entradas (EJEMPLO):** hay 12 entradas de muestra en `src/data/blog.ts` (autorizadas para ver el diseño). Títulos, fechas, categorías (Inversión, Turismo de reuniones, Talento, Ciudad) y fotos son provisionales —las fotos reutilizan imágenes del sitio— y ninguna enlaza a un artículo. Reemplazarlas por las reales.
 - **Foto del hero:** `public/assets/blog/hero-blog.jpg` (mientras no exista se ve el placeholder).
 - **Bajada del hero:** pendiente (hoy solo el título "Blog").
+
+## Instálate: «Te acompañamos en cada etapa de tu inversión»
+
+- Fotos de las 4 etapas: provisionales, son fotogramas del video «Trae tu evento» (skyline, Ventana al Mundo, torres del norte y Gran Malecón). Reemplazar por fotos propias si el cliente las envía: `public/assets/instalate/etapa-*.jpg` (datos en `instalateSupport`, `src/data/instalate.ts`).

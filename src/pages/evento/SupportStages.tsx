@@ -1,5 +1,5 @@
 import { useRef, useState, type KeyboardEvent } from 'react';
-import { eventAnchors, support } from '../../data/evento';
+import { eventAnchors, support, type SupportStage } from '../../data/evento';
 import { SmartImage } from '../../components/SmartImage';
 import './SupportStages.css';
 
@@ -12,8 +12,11 @@ const TONES = ['teal', 'orange', 'yellow', 'sky', 'magenta'] as const;
  * "¿Cómo te apoyamos?": cinco etapas como pestañas (tablist/tab/tabpanel).
  * Flechas, Inicio y Fin mueven la selección; el panel se funde al cambiar.
  */
-export function SupportStages() {
-  const { stages } = support;
+export type SupportData = { title: string; subtitle: string[]; stages: SupportStage[] };
+
+/** `data`: contenido propio (Instálate); por defecto, el de «Haz tu evento». */
+export function SupportStages({ data = support, id = eventAnchors.apoyo }: { data?: SupportData; id?: string } = {}) {
+  const { stages } = data;
   const [active, setActive] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const stage = stages[active];
@@ -33,16 +36,18 @@ export function SupportStages() {
   };
 
   return (
-    <section id={eventAnchors.apoyo} className="support" aria-labelledby="support-title">
+    <section id={id} className="support" aria-labelledby="support-title">
       <div className="container">
         <h2 id="support-title" className="support__title">
-          {support.title}
+          {data.title}
         </h2>
-        <p className="support__subtitle">
-          {support.subtitle.map((l) => (
-            <span key={l}>{l}</span>
-          ))}
-        </p>
+        {data.subtitle.length > 0 && (
+          <p className="support__subtitle">
+            {data.subtitle.map((l) => (
+              <span key={l}>{l}</span>
+            ))}
+          </p>
+        )}
 
         <div className="support__steps-scroll">
           <div className="support__steps" role="tablist" aria-label="Etapas del acompañamiento">
@@ -58,7 +63,7 @@ export function SupportStages() {
                 aria-selected={i === active}
                 aria-controls="stage-panel"
                 tabIndex={i === active ? 0 : -1}
-                className={`support__step tone-${TONES[i % TONES.length]} ${i === active ? 'is-active' : ''}`}
+                className={`support__step stage-tone-${TONES[i % TONES.length]} ${i === active ? 'is-active' : ''}`}
                 onClick={() => setActive(i)}
                 onKeyDown={onKeyDown}
               >
@@ -77,7 +82,7 @@ export function SupportStages() {
           </div>
         </div>
 
-        <div id="stage-panel" className={`support__panel tone-${TONES[active % TONES.length]}`} role="tabpanel" aria-labelledby={`stage-tab-${stage.id}`} tabIndex={0}>
+        <div id="stage-panel" className={`support__panel stage-tone-${TONES[active % TONES.length]}`} role="tabpanel" aria-labelledby={`stage-tab-${stage.id}`} tabIndex={0}>
           <div key={stage.id} className="support__panel-inner">
             <div className="support__copy">
               <h3 className="support__panel-title">{stage.title}</h3>

@@ -287,11 +287,11 @@
   color: var(--c-white);
 }
 
-.support .tone-teal { --tone: #23aa99; }
-.support .tone-orange { --tone: #f37021; }
-.support .tone-yellow { --tone: #fbbf09; }
-.support .tone-sky { --tone: #00acf4; }
-.support .tone-magenta { --tone: #d5306c; }
+.support .stage-tone-teal { --tone: #23aa99; }
+.support .stage-tone-orange { --tone: #f37021; }
+.support .stage-tone-yellow { --tone: #fbbf09; }
+.support .stage-tone-sky { --tone: #00acf4; }
+.support .stage-tone-magenta { --tone: #d5306c; }
 
 /* Línea que une los círculos, tenue sobre el fondo oscuro */
 .support__steps::before {
