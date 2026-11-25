@@ -326,3 +326,11 @@ Contenido tomado de https://probarranquilla.org/nuestra-gestion/ (datos en `src/
 ## Instálate: mosaico de indicadores
 
 - Las 4 tarjetas (2,9 millones, Cerca del 30 %, Norte de Colombia, Barranquilla) usan de forma provisional las fotos del mosaico del Home (`assets/razones/`). Reemplazar por fotos propias en `instalateResults.stats[].image` (`src/data/instalate.ts`).
+
+## Blog (/blog/)
+
+Página nueva con la misma estructura del listado de Noticias (hero, filtros por categoría y año, grilla y "Ver más"). Enlace "Blog" en el menú Sobre ProBarranquilla, columna ProBarranquilla.
+
+- **Entradas (EJEMPLO):** hay 12 entradas de muestra en `src/data/blog.ts` (autorizadas para ver el diseño). Títulos, fechas, categorías (Inversión, Turismo de reuniones, Talento, Ciudad) y fotos son provisionales —las fotos reutilizan imágenes del sitio— y ninguna enlaza a un artículo. Reemplazarlas por las reales.
+- **Foto del hero:** `public/assets/blog/hero-blog.jpg` (mientras no exista se ve el placeholder).
+- **Bajada del hero:** pendiente (hoy solo el título "Blog").

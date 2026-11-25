@@ -49,7 +49,7 @@ export function HeroCarousel() {
           sizes="100vw"
           alt={i === index ? im.alt : ''}
           aria-hidden={i === index ? undefined : true}
-          fetchPriority={i === 0 ? 'high' : undefined}
+          {...(i === 0 ? { fetchpriority: 'high' } : {})} // React 18 solo reconoce el atributo en minúscula
           loading={i === 0 ? 'eager' : 'lazy'}
         />
       ))}

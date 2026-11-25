@@ -100,6 +100,7 @@
 .venue__fact {
   font-size: 13px;
   text-transform: uppercase;
+  font-weight: 700; /* Habitaciones, Salones, Dirección en negrita */
   color: var(--c-navy-nav);
   transition: color 0.25s ease;
 }

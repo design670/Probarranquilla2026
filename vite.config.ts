@@ -72,6 +72,7 @@ export default defineConfig({
         simulador: resolve(__dirname, 'simulador-de-impuestos/index.html'),
         prodata: resolve(__dirname, 'prodata/index.html'),
         noticias: resolve(__dirname, 'noticias/index.html'),
+        blog: resolve(__dirname, 'blog/index.html'),
         informes: resolve(__dirname, 'informes-de-labores/index.html'),
         articulo: resolve(__dirname, ARTICLE_TEMPLATE),
         notFound: resolve(__dirname, '404.html'),

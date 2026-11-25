@@ -119,7 +119,7 @@ const lbl = (dx: number, dy: number, anchor: L['anchor']): L => ({ dx, dy, ancho
 
 export type ConnectivityMap = {
   /** `continental` = Florida a Tierra del Fuego (cables submarinos) */
-  geo: 'internacional' | 'nacional' | 'continental';
+  geo: 'internacional' | 'nacional' | 'continental' | 'mundial';
   kind: 'air' | 'sea' | 'road';
   hubLabel: L;
   stops: { id: string; name: string; label: L }[];
@@ -172,12 +172,37 @@ export const connectivity = {
           { icon: 'leaf', value: '80% menos', text: 'emisiones de carbono por tonelada comparado con rutas desde China.' },
         ],
         map: {
-          geo: 'internacional',
+          // Mapa mundial: cada puerto en su lugar real (lista del cliente por regiones)
+          geo: 'mundial',
           kind: 'sea',
-          hubLabel: lbl(0, 28, 'middle'),
-          stops: [{ id: 'miami', name: 'Puerto de Miami', label: lbl(-10, 16, 'end') }],
-          notice: 'Pendiente a más rutas',
-          ariaLabel: 'Mapa de la ruta marítima entre Barranquilla y el Puerto de Miami',
+          hubLabel: lbl(0, 26, 'middle'),
+          stops: [
+            // Norteamérica: los nombres de la costa este van en columna sobre el Atlántico
+            { id: 'nuevayork', name: 'Nueva York', label: lbl(19.3, 2.6, 'start') },
+            { id: 'charleston', name: 'Charleston', label: lbl(38.8, -12, 'start') },
+            { id: 'savannah', name: 'Savannah', label: lbl(42.7, 3.3, 'start') },
+            { id: 'porteverglades', name: 'Port Everglades', label: lbl(39.4, -1.4, 'start') },
+            { id: 'miami', name: 'Miami', label: lbl(39.7, 15.4, 'start') },
+            { id: 'neworleans', name: 'New Orleans', label: lbl(0, -10, 'middle') },
+            { id: 'houston', name: 'Houston', label: lbl(0, 18, 'middle') },
+            // Suramérica y el Caribe
+            { id: 'puertorico', name: 'Puerto Rico', label: lbl(10, 12, 'start') },
+            { id: 'ecuador', name: 'Ecuador', label: lbl(-10, 5, 'end') },
+            { id: 'peru', name: 'Perú', label: lbl(-10, 5, 'end') },
+            { id: 'chile', name: 'Chile', label: lbl(-10, 5, 'end') },
+            { id: 'brasil', name: 'Brasil', label: lbl(10, 5, 'start') },
+            // Europa, Asia y África
+            { id: 'holanda', name: 'Holanda', label: lbl(-10, -2, 'end') },
+            { id: 'belgica', name: 'Bélgica', label: lbl(-10, 14, 'end') },
+            { id: 'espana', name: 'España', label: lbl(-10, 5, 'end') },
+            { id: 'turquia', name: 'Turquía', label: lbl(10, -2, 'start') },
+            { id: 'israel', name: 'Israel', label: lbl(10, 5, 'start') },
+            { id: 'india', name: 'India', label: lbl(10, 5, 'start') },
+            { id: 'china', name: 'China', label: lbl(-10, 14, 'end') },
+            { id: 'corea', name: 'Corea', label: lbl(-10, -4, 'end') },
+            { id: 'sudafrica', name: 'Sudáfrica', label: lbl(10, 5, 'start') },
+          ],
+          ariaLabel: 'Mapa de rutas marítimas desde Barranquilla hacia Norteamérica (Miami, Port Everglades, Savannah, Charleston, Nueva York, New Orleans y Houston), Suramérica y el Caribe (Puerto Rico, Ecuador, Perú, Chile y Brasil) y Europa, Asia y África (Holanda, Bélgica, España, Turquía, Israel, Corea, China, India y Sudáfrica)',
         },
       },
     },

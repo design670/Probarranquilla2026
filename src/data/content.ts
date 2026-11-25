@@ -25,6 +25,7 @@ export const routes = {
   equipo: '/equipo/',
   privacidad: '/politica-de-privacidad/',
   noticias: '/noticias/',
+  blog: '/blog/',
   informes: '/informes-de-labores/',
   // Anclas a secciones del Home (absolutas para que funcionen desde cualquier página)
   resultados: '/#resultados',
@@ -162,7 +163,7 @@ export const mainNav: MegaPanel[] = [
       {
         accent: 'ProBarranquilla',
         description: ['Tu agencia de promoción', 'de inversión y turismo en', 'Barranquilla y el Atlántico.'],
-        links: [L('Quienes somos', `${routes.sobre}#quienes-somos`), L('Servicios', `${routes.sobre}#que-hace`), L('Equipo', routes.equipo), L('Comunidad de miembros', `${routes.sobre}#comunidad-de-miembros`)],
+        links: [L('Quienes somos', `${routes.sobre}#quienes-somos`), L('Servicios', `${routes.sobre}#que-hace`), L('Equipo', routes.equipo), L('Comunidad de miembros', `${routes.sobre}#comunidad-de-miembros`), L('Blog', routes.blog)],
       },
       { heading: ['Publicaciones y', 'Comunicados de Prensa'], links: [L('Noticias', routes.noticias), L('Informes de labores', routes.informes)] },
     ],

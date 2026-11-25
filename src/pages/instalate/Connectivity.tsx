@@ -2,13 +2,14 @@ import { useId, useRef, useState, type KeyboardEvent } from 'react';
 import { connectivity } from '../../data/instalate';
 import { internationalGeo, nationalGeo } from '../../data/airMaps';
 import { continentalGeo } from '../../data/continentalMap';
+import { worldGeo } from '../../data/worldMap';
 import { projectCables } from '../../data/submarineCables';
 import { LineIcon } from '../../components/LineIcon';
 import { RouteMap } from '../../components/RouteMap';
 import { ArrowLabel } from '../../components/ArrowLabel';
 import './Connectivity.css';
 
-const GEO = { internacional: internationalGeo, nacional: nationalGeo, continental: continentalGeo };
+const GEO = { internacional: internationalGeo, nacional: nationalGeo, continental: continentalGeo, mundial: worldGeo };
 const HUB = 'Barranquilla';
 const CABLES = projectCables(continentalGeo.pts.baq);
 
