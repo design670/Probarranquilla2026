@@ -13,6 +13,11 @@ type Props = {
   className?: string;
   /** Cifras propias de la página (sin pestañas), con título y periodo visibles */
   results?: ImpactResults;
+  /**
+   * Instálate: `main` muestra todo menos el bloque `more`; `more` muestra solo ese
+   * bloque como sección aparte (para poder poner otra sección entre los dos).
+   */
+  part?: 'all' | 'main' | 'more';
 };
 
 export type ImpactResults = {
@@ -29,9 +34,43 @@ export type ImpactResults = {
 };
 
 /** Pestañas + tarjetas de cifras. Las cifras vienen de `impact.tabs`. */
-export function ImpactStatistics({ id, title, intro, ariaLabel = 'Impacto y resultados', className = '', results }: Props) {
+export function ImpactStatistics({ id, title, intro, ariaLabel = 'Impacto y resultados', className = '', results, part = 'all' }: Props) {
   const [tabId, setTabId] = useState(impact.tabs[0].id);
   const tab = impact.tabs.find((t) => t.id === tabId)!;
+
+  // Bloque de cifras de inversión (franja blanca)
+  const more = results?.more && (
+    <div className="impact__more">
+      {results.more.heading && <h3 className="impact__results-title">{results.more.heading}</h3>}
+      <ul className="impact__grid impact__grid--three">
+        {results.more.stats.map((s) => (
+          <li key={s.value.join(' ')} className={`impact__card tone-${s.tone}`}>
+            <p className="impact__value">
+              {s.value.map((v) => (
+                <span key={v}>
+                  <CountUp value={v} />
+                </span>
+              ))}
+            </p>
+            <p className="impact__label">
+              {s.label.map((l) => (
+                <span key={l}>{l}</span>
+              ))}
+            </p>
+          </li>
+        ))}
+      </ul>
+      {results.more.period && <p className="impact__period">*{results.more.period}</p>}
+    </div>
+  );
+
+  if (part === 'more') {
+    return more ? (
+      <section id={id} className={`impact impact--more-only ${className}`} aria-label={results?.more?.heading ?? ariaLabel}>
+        <div className="container">{more}</div>
+      </section>
+    ) : null;
+  }
 
   return (
     <section
@@ -87,30 +126,7 @@ export function ImpactStatistics({ id, title, intro, ariaLabel = 'Impacto y resu
               ))}
             </ul>
             {results.period && <p className="impact__period">*{results.period}</p>}
-            {results.more && (
-              <div className="impact__more">
-                {results.more.heading && <h3 className="impact__results-title">{results.more.heading}</h3>}
-                <ul className="impact__grid impact__grid--three">
-                  {results.more.stats.map((s) => (
-                    <li key={s.value.join(' ')} className={`impact__card tone-${s.tone}`}>
-                      <p className="impact__value">
-                        {s.value.map((v) => (
-                          <span key={v}>
-                            <CountUp value={v} />
-                          </span>
-                        ))}
-                      </p>
-                      <p className="impact__label">
-                        {s.label.map((l) => (
-                          <span key={l}>{l}</span>
-                        ))}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-                {results.more.period && <p className="impact__period">*{results.more.period}</p>}
-              </div>
-            )}
+            {part !== 'main' && more}
           </div>
         ) : (
         <>

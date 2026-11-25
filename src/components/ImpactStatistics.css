@@ -663,3 +663,12 @@
     min-height: 180px;
   }
 }
+
+/* Instálate: la franja blanca de cifras como sección propia (después de las etapas de inversión) */
+.impact--more-only {
+  padding: 0;
+  background: var(--c-white);
+}
+.impact--more-only .impact__more {
+  margin-top: 0;
+}

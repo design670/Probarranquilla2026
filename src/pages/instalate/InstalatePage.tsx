@@ -20,8 +20,10 @@ export function InstalatePage() {
         <PageHero image={instalateAssets.hero} title={instalateHero.title} />
       }
     >
-      <ImpactStatistics id="resultados" title={instalateImpactTitle} intro={instalateImpactIntro} results={instalateResults} />
+      <ImpactStatistics id="resultados" title={instalateImpactTitle} intro={instalateImpactIntro} results={instalateResults} part="main" />
       <SupportStages data={instalateSupport} id="etapas-de-inversion" />
+      {/* «Una propuesta de valor respaldada por resultados», después de las etapas */}
+      <ImpactStatistics intro="" results={instalateResults} part="more" />
       <Connectivity />
       <Infrastructure />
       <FreeZonesOffer />
