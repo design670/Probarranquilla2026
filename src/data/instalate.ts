@@ -418,7 +418,7 @@ export const training = {
     'El Servicio Nacional de Aprendizaje (SENA) es una entidad pública colombiana que ofrece formación técnica, tecnológica y complementaria gratuita, orientada a desarrollar las competencias que necesita el sector empresarial.',
     'En Barranquilla y el Atlántico, el SENA cuenta con centros de formación y programas que contribuyen a preparar talento para diferentes actividades productivas.',
   ],
-  centersTitle: 'Centros de formación',
+  centersTitle: 'Entorno competitivo para la inversión',
   offerTitle: '¿Qué ofrece a las empresas?',
   offers: [
     { icon: 'cap', label: 'Formación gratuita', text: 'Programas técnicos, tecnológicos y de actualización de competencias.' },
