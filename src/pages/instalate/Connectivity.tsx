@@ -74,7 +74,7 @@ export function Connectivity() {
 
         <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${tab.id}`} className={`connect__panel connect__panel--${tab.id}${c.highlight?.text ? ' connect__panel--strip' : ''}${c.map.alt ? ' connect__panel--switch' : ''}`}>
           {/* key: el mapa se vuelve a dibujar (con su animación) al cambiar de pestaña */}
-          <div className="connect__map" key={`${tab.id}-${showAlt}`}>
+          <div className={`connect__map connect__map--${map.geo}`} key={`${tab.id}-${showAlt}`}>
             <RouteMap
               geo={GEO[map.geo]}
               hub={{ id: 'baq', name: HUB, label: map.hubLabel }}
@@ -84,7 +84,6 @@ export function Connectivity() {
               cables={map.cables ? CABLES.cables : undefined}
               landings={map.cables ? CABLES.landings : undefined}
               source={map.source}
-              soloFocus={map.geo === 'nacional'}
             />
           </div>
 

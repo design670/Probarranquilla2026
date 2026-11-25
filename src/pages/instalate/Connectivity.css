@@ -605,3 +605,26 @@
   background: #eaf1fa;
   border-left: 4px solid var(--c-blue-bright);
 }
+
+/* Título de cada conectividad ("Una plataforma portuaria para el mundo"…) centrado */
+.connect__title {
+  text-align: center;
+}
+
+/* Mapas de Colombia: los países vecinos solo con su línea de frontera, sin relleno,
+   para que el fondo sea el mismo azul oscuro del panel (sin efecto de recuadro) */
+.connect__map--nacional .rmap__land {
+  fill: none;
+  stroke: #3b4e78;
+  stroke-width: 0.8;
+}
+
+/* Se recorta el borde del dibujo de los vecinos (donde el mapa los corta) y se
+   desvanece hacia los lados, para que no aparezcan líneas rectas */
+.connect__map--nacional .rmap__land {
+  clip-path: inset(2px);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-origin: fill-box;
+  mask-size: 100% 100%;
+}
