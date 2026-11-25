@@ -1,0 +1,342 @@
+/* ---------- Entorno competitivo para la inversión: pestañas + panel limpio ---------- */
+.compete {
+  padding: 96px 0 100px;
+  background: var(--c-white);
+}
+
+.compete-tone-teal { --tone: #23aa99; }
+.compete-tone-orange { --tone: #f37021; }
+.compete-tone-blue { --tone: #0b6bcb; }
+.compete-tone-yellow { --tone: #e0a800; }
+
+.compete__title {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--c-blue-title);
+}
+
+/* Pestañas: texto con subrayado del color del tema */
+.compete__tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px 40px;
+  margin-top: 44px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.compete__tab {
+  position: relative;
+  padding: 0 2px 16px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #64748b;
+  transition: color 0.2s ease;
+}
+
+.compete__tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--tone);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.compete__tab:hover {
+  color: var(--c-blue-title);
+}
+
+.compete__tab.is-active {
+  color: var(--c-blue-title);
+  font-weight: 700;
+}
+
+.compete__tab.is-active::after {
+  transform: scaleX(1);
+}
+
+/* Panel */
+.compete__panel {
+  margin-top: 56px;
+}
+
+.compete__panel:focus-visible {
+  outline-offset: 8px;
+}
+
+.compete__panel-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: center;
+  animation: compete-fade 0.3s ease;
+}
+
+@keyframes compete-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.compete__panel-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--c-blue-title);
+}
+
+/* Subtítulo en color bajo el título (sin rótulos en píldora) */
+.compete__headline {
+  margin-top: 12px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.3;
+  color: var(--tone);
+}
+
+.compete-tone-yellow .compete__headline {
+  color: #b7860b; /* el amarillo puro no se lee sobre blanco */
+}
+
+.compete__text {
+  margin-top: 16px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #475569;
+}
+
+/* Cifras grandes, sin recuadros, separadas por líneas finas */
+.compete__stats {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.compete__stats li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px 20px 4px 0;
+}
+
+.compete__stats li + li {
+  padding-left: 20px;
+  border-left: 1px solid #e2e8f0;
+}
+
+.compete__value {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--c-blue-title);
+}
+
+.compete__label {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #64748b;
+}
+
+.compete__note {
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--c-blue-title);
+}
+
+.compete__terms {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #64748b;
+}
+
+.compete__terms strong {
+  color: var(--c-blue-title);
+}
+
+.compete__link {
+  display: inline-flex;
+  margin-top: 24px;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--c-blue-bright);
+}
+
+.compete__link:hover {
+  text-decoration: underline;
+}
+
+.compete__source {
+  margin-top: 20px;
+  font-size: 13px;
+  font-style: italic;
+  color: #94a3b8;
+}
+
+/* Lado derecho */
+.compete__photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* Incentivos: renglones por municipio */
+.compete__towns,
+.compete__awards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.compete__towns li {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  column-gap: 20px;
+  row-gap: 2px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.compete__towns li:first-child {
+  border-top: 1px solid #e2e8f0;
+}
+
+.compete__town {
+  grid-row: span 2;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--c-blue-title);
+}
+
+.compete__benefit {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--tone);
+}
+
+.compete__req {
+  font-size: 14px;
+  line-height: 1.45;
+  color: #64748b;
+}
+
+/* Reconocimientos: lista con línea de color */
+.compete__awards {
+  display: grid;
+  gap: 0;
+}
+
+.compete__awards li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 0 14px 18px;
+  border-left: 3px solid var(--tone);
+  font-size: 15px;
+  line-height: 1.45;
+  color: #64748b;
+}
+
+.compete__awards li + li {
+  margin-top: 10px;
+}
+
+.compete__awards strong {
+  font-size: 16px;
+  color: var(--c-blue-title);
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 900px) {
+  .compete {
+    padding: 64px 0 72px;
+  }
+  .compete__title {
+    font-size: 34px;
+  }
+  .compete__tabs {
+    justify-content: flex-start;
+    gap: 28px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-top: 32px;
+  }
+  .compete__tab {
+    flex: none;
+    font-size: 16px;
+  }
+  .compete__panel {
+    margin-top: 36px;
+  }
+  .compete__panel-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+}
+
+/* ---------- Celular ---------- */
+@media (max-width: 640px) {
+  .compete__title {
+    font-size: 28px;
+  }
+  .compete__panel-title {
+    font-size: 28px;
+  }
+  .compete__headline {
+    font-size: 18px;
+  }
+  .compete__stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .compete__stats li,
+  .compete__stats li + li {
+    padding: 14px 0;
+    border-left: 0;
+    border-top: 1px solid #e2e8f0;
+  }
+  .compete__value {
+    font-size: 26px;
+  }
+  .compete__towns li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .compete__town {
+    grid-row: auto;
+  }
+}
+
+/* Escritorio y tablet: cada cifra en una sola línea */
+@media (min-width: 641px) {
+  .compete__value {
+    font-size: clamp(22px, 1.9vw, 28px);
+    white-space: nowrap;
+  }
+  .compete__stats li {
+    padding-right: 14px;
+  }
+  .compete__stats li + li {
+    padding-left: 16px;
+  }
+}

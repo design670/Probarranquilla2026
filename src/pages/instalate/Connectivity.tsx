@@ -19,15 +19,20 @@ export function Connectivity() {
   const [active, setActiveTab] = useState(0);
   // Mapa alterno (vuelos nacionales); vuelve al internacional al cambiar de pestaña
   const [showAlt, setShowAlt] = useState(false);
+  // Región del mapa portuario (una a la vez para que las rutas no se enreden)
+  const [region, setRegion] = useState(0);
   const setActive = (i: number) => {
     setActiveTab(i);
     setShowAlt(false);
+    setRegion(0);
   };
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
   const id = useId();
   const tab = tabs[active];
   const c = tab.content;
   const map = showAlt && c.map.alt ? c.map.alt.map : c.map;
+  const regions = map.regions;
+  const stops = regions ? map.stops.filter((st) => regions[region].stops.includes(st.id)) : map.stops;
 
   const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
     const moves: Record<string, number> = { ArrowRight: active + 1, ArrowLeft: active - 1, Home: 0, End: tabs.length - 1 };
@@ -72,13 +77,13 @@ export function Connectivity() {
           ))}
         </div>
 
-        <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${tab.id}`} className={`connect__panel connect__panel--${tab.id}${c.highlight?.text ? ' connect__panel--strip' : ''}${c.map.alt ? ' connect__panel--switch' : ''}`}>
+        <div id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${tab.id}`} className={`connect__panel connect__panel--${tab.id}${c.highlight?.text ? ' connect__panel--strip' : ''}${c.map.alt || c.map.regions ? ' connect__panel--switch' : ''}`}>
           {/* key: el mapa se vuelve a dibujar (con su animación) al cambiar de pestaña */}
-          <div className={`connect__map connect__map--${map.geo}`} key={`${tab.id}-${showAlt}`}>
+          <div className={`connect__map connect__map--${map.geo}`} key={`${tab.id}-${showAlt}-${region}`}>
             <RouteMap
               geo={GEO[map.geo]}
               hub={{ id: 'baq', name: HUB, label: map.hubLabel }}
-              stops={map.stops}
+              stops={stops}
               ariaLabel={map.ariaLabel}
               kind={map.kind}
               cables={map.cables ? CABLES.cables : undefined}
@@ -89,6 +94,18 @@ export function Connectivity() {
 
           {/* Título y selector sobre el mapa: nacional / internacional */}
           {c.map.notice && <span className="connect__map-notice">{c.map.notice}</span>}
+
+          {regions && (
+            <div className="connect__switch">
+              <div className="connect__switch-group" role="group" aria-label="Rutas por región">
+                {regions.map((r, i) => (
+                  <button key={r.label} type="button" className="connect__switch-btn" aria-pressed={region === i} onClick={() => setRegion(i)}>
+                    {r.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {c.map.alt && (
             <div className="connect__switch">

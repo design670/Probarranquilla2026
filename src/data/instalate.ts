@@ -8,7 +8,7 @@
  */
 import type { ImageAsset } from '../components/SmartImage';
 import type { ImpactResults } from '../components/ImpactStatistics';
-import { successStories, type SuccessStoriesData } from './content';
+import { routes, successStories, type SuccessStoriesData } from './content';
 import type { SupportStage } from './evento';
 
 const A = (src: string, alt: string, extra: Partial<ImageAsset> = {}): ImageAsset => ({
@@ -136,6 +136,11 @@ export type ConnectivityMap = {
   alt?: { title: string; label: string; backLabel: string; map: ConnectivityMap };
   /** Aviso en rojo a la derecha del mapa (portuaria: más rutas por anunciar) */
   notice?: string;
+  /**
+   * Selector por región sobre el mapa (portuaria): se dibujan solo las rutas de la
+   * región elegida, para que no se enreden. `stops` son ids de `stops`.
+   */
+  regions?: { label: string; stops: string[] }[];
 };
 
 export type ConnectivityContent = {
@@ -202,6 +207,11 @@ export const connectivity = {
             { id: 'china', name: 'China', label: lbl(-10, 14, 'end') },
             { id: 'corea', name: 'Corea', label: lbl(-10, -4, 'end') },
             { id: 'sudafrica', name: 'Sudáfrica', label: lbl(10, 5, 'start') },
+          ],
+          regions: [
+            { label: 'Norteamérica', stops: ['nuevayork', 'charleston', 'savannah', 'porteverglades', 'miami', 'neworleans', 'houston'] },
+            { label: 'Suramérica y el Caribe', stops: ['puertorico', 'ecuador', 'peru', 'chile', 'brasil'] },
+            { label: 'Europa, Asia y África', stops: ['holanda', 'belgica', 'espana', 'turquia', 'israel', 'india', 'china', 'corea', 'sudafrica'] },
           ],
           ariaLabel: 'Mapa de rutas marítimas desde Barranquilla hacia Norteamérica (Miami, Port Everglades, Savannah, Charleston, Nueva York, New Orleans y Houston), Suramérica y el Caribe (Puerto Rico, Ecuador, Perú, Chile y Brasil) y Europa, Asia y África (Holanda, Bélgica, España, Turquía, Israel, Corea, China, India y Sudáfrica)',
         },
@@ -419,7 +429,7 @@ export const training = {
     'El Servicio Nacional de Aprendizaje (SENA) es una entidad pública colombiana que ofrece formación técnica, tecnológica y complementaria gratuita, orientada a desarrollar las competencias que necesita el sector empresarial.',
     'En Barranquilla y el Atlántico, el SENA cuenta con centros de formación y programas que contribuyen a preparar talento para diferentes actividades productivas.',
   ],
-  centersTitle: 'Entorno competitivo para la inversión',
+  centersTitle: 'Centros de formación',
   offerTitle: '¿Qué ofrece a las empresas?',
   offers: [
     { icon: 'cap', label: 'Formación gratuita', text: 'Programas técnicos, tecnológicos y de actualización de competencias.' },
@@ -541,4 +551,101 @@ export const instalateSupport = {
       photo: A('etapa-aftercare.jpg', 'Vista aérea del Gran Malecón junto al río Magdalena'),
     },
   ] as SupportStage[],
+};
+
+/* ---------- Entorno competitivo para la inversión (carrusel de tarjetas) ---------- */
+/** Información del cliente: «Información entorno competitivo para la inversión.pdf» (noviembre 2026). Se muestra en pestañas. */
+export type CompetitiveSlide = {
+  id: string;
+  tone: 'teal' | 'orange' | 'blue' | 'yellow';
+  title: string;
+  headline: string;
+  text?: string;
+  /** Cifras destacadas */
+  stats?: { value: string; label: string }[];
+  /** Línea bajo las cifras (p. ej. principales destinos) */
+  note?: string;
+  /** Definiciones cortas (término en negrita + explicación) */
+  terms?: { term: string; text: string }[];
+  /** Tabla de beneficios por municipio */
+  table?: { head: [string, string, string]; rows: [string, string, string][] };
+  /** Reconocimientos: año / entidad en negrita + descripción */
+  awards?: { when: string; text: string }[];
+  link?: { label: string; href: string };
+  source?: string;
+  /** Foto al lado del texto (fotograma del video «Trae tu evento») */
+  photo?: ImageAsset;
+};
+
+export const competitiveness = {
+  title: 'Entorno competitivo para la inversión',
+  slides: [
+    {
+      id: 'tejido',
+      tone: 'teal',
+      title: 'Tejido empresarial',
+      headline: 'Un tejido empresarial listo para sumarse a tu cadena',
+      text: 'Proveedores cerca, operación sin pausa.',
+      stats: [
+        { value: '+72.000', label: 'empresas activas' },
+        { value: '+1.900', label: 'medianas y grandes empresas' },
+        { value: '+14.000', label: 'empresas nuevas en 2025' },
+      ],
+      source: 'Cámara de Comercio de Barranquilla',
+      photo: A('entorno-tejido.jpg', 'Sede de Combarranquilla y torres de apartamentos en el norte de Barranquilla'),
+    },
+    {
+      id: 'exportadora',
+      tone: 'orange',
+      title: 'Vocación exportadora',
+      headline: 'El Atlántico es una plataforma para vender al mundo',
+      stats: [
+        { value: '+USD 10.500', label: 'millones exportados en los últimos 5 años' },
+        { value: '+130', label: 'países recibieron nuestros productos en los últimos 5 años' },
+        { value: 'Cerca de 700', label: 'empresas exportadoras cada año' },
+      ],
+      note: 'Principales destinos: Estados Unidos, Brasil, México, China y Ecuador.',
+      source: 'DIAN',
+      photo: A('entorno-exportadora.jpg', 'Buque de carga atracado en un muelle del puerto de Barranquilla, sobre el río Magdalena'),
+    },
+    {
+      id: 'incentivos',
+      tone: 'blue',
+      title: 'Incentivos tributarios locales',
+      headline: 'Hasta 10 años de exención en impuestos municipales',
+      text: 'Barranquilla y los municipios del departamento ofrecen exenciones a las empresas que se instalan. Además, los ingresos por exportaciones no pagan el impuesto municipal sobre ingresos.',
+      terms: [
+        { term: 'Impuesto sobre ingresos:', text: 'impuesto municipal que pagan las empresas sobre sus ventas o ingresos (en Colombia, ICA).' },
+        { term: 'Impuesto a la propiedad:', text: 'impuesto anual sobre terrenos y edificaciones (en Colombia, predial).' },
+      ],
+      // Pendiente de validación con el equipo de entorno de negocios, en especial Palmar de Varela (ver PENDIENTES.md)
+      table: {
+        head: ['Municipio', 'Beneficio', 'Requisito principal'],
+        rows: [
+          ['Barranquilla', '100 % en ambos impuestos · 10 años', 'Industria, logística o actividad portuaria en las zonas industriales definidas por la ciudad'],
+          ['Galapa', '100 % en ambos impuestos · 10 años', '30 % de empleados locales y aporte a un fondo educativo municipal'],
+          ['Malambo', '100 % sobre ingresos · 10 años (industria)', 'Inversión mínima de ≈ USD 730.000 y aporte a un fondo educativo municipal'],
+          ['Sabanagrande', '100 % sobre ingresos · 10 años', 'Mínimo 50 empleos (5 años de exención con 15 a 25 empleos)'],
+          ['Soledad', '100 % sobre ingresos · 5 años (industria) o 2 años (comercio y servicios)', '10 o más empleos, 70 % de ellos locales'],
+          ['Palmar de Varela', 'Hasta 50 % en ambos impuestos, decreciente durante 10 años', '40 % de empleados locales'],
+        ],
+      },
+      link: { label: 'Consulta el detalle en la Guía Tributaria', href: routes.guiaTributaria },
+      source: 'Guía Tributaria ProBarranquilla (2025)',
+    },
+    {
+      id: 'reconocimientos',
+      tone: 'yellow',
+      title: 'Reconocimientos y vitrina internacional',
+      headline: 'El mundo ya está mirando a Barranquilla',
+      awards: [
+        { when: '2024 · fDi Intelligence (Financial Times)', text: '3.ª ciudad de América Latina y el Caribe con mayor crecimiento en atracción de inversión extranjera directa.' },
+        { when: '2026 · Sede del Americas Competitiveness Exchange (ACE)', text: '' },
+        { when: '2026 · USGBC', text: 'Certificación LEED for Cities Gold, la primera de Latinoamérica para una ciudad con más de un millón de habitantes.' },
+        { when: '2026 · PNUMA (ONU) e ICLEI', text: 'Ciudad Modelo y Piloto en restauración de ecosistemas.' },
+        { when: '2022–2024 · World Travel Awards', text: 'Destino líder de festivales y eventos de Sudamérica.' },
+        { when: 'FAO y Arbor Day Foundation', text: 'Ciudad Árbol del Mundo.' },
+      ],
+    },
+  ] satisfies CompetitiveSlide[],
 };

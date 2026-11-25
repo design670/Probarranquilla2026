@@ -144,3 +144,17 @@
     animation: none;
   }
 }
+
+/* Nombres por encima de las rutas, con un contorno más ancho para separarlos de las líneas */
+.rmap__label {
+  stroke-width: 6px;
+  stroke-linejoin: round;
+}
+.rmap__label--stop {
+  animation: rmap-fade 0.4s ease both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rmap__label--stop {
+    animation: none;
+  }
+}

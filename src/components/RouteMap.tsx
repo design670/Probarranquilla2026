@@ -88,10 +88,16 @@ export function RouteMap({ geo, hub, stops, ariaLabel, kind = 'air', cables, lan
             ) : (
               <circle className="rmap__dot" cx={end[0]} cy={end[1]} r={4.5} />
             )}
-            <text className="rmap__label" x={end[0] + s.label.dx} y={end[1] + s.label.dy} textAnchor={s.label.anchor}>
-              {s.name}
-            </text>
           </g>
+        );
+      })}
+      {/* Nombres al final: así ninguna línea de ruta pasa por encima de ellos */}
+      {stops.map((s, i) => {
+        const end = clampToEdge(h, geo.pts[s.id], W, H);
+        return (
+          <text key={s.id} className="rmap__label rmap__label--stop" style={{ animationDelay: `${i * 80}ms` }} x={end[0] + s.label.dx} y={end[1] + s.label.dy} textAnchor={s.label.anchor}>
+            {s.name}
+          </text>
         );
       })}
       <circle className="rmap__hub-halo" cx={h[0]} cy={h[1]} r={13} />

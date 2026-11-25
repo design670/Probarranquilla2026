@@ -8,6 +8,7 @@ import { Infrastructure } from './Infrastructure';
 import { FreeZonesOffer } from './FreeZones';
 import { Talent } from './Talent';
 import { Training, VisionBanner } from './Training';
+import { Competitiveness } from './Competitiveness';
 // Mismo bloque de contacto y formulario de «Haz tu evento»
 import { EventContact } from '../evento/EventContact';
 // Mismo diseño de «¿Cómo te apoyamos?» de «Haz tu evento», con las etapas de inversión
@@ -29,6 +30,7 @@ export function InstalatePage() {
       <FreeZonesOffer />
       <Talent />
       <Training />
+      <Competitiveness />
       <VisionBanner />
       <SuccessStories className="cases--compact" data={instalateCases} />
       <EventContact showTeam={false} title={['Tu empresa tiene un lugar en Barranquilla']} labels={{ organization: 'Nombre de la empresa', eventType: 'Sector', attendees: 'Página web de la empresa', details: 'Detalles o requerimientos' }} textFields={['eventType', 'attendees']} />

@@ -338,3 +338,10 @@ Página nueva con la misma estructura del listado de Noticias (hero, filtros por
 ## Instálate: «Te acompañamos en cada etapa de tu inversión»
 
 - Fotos de las 4 etapas: provisionales, son fotogramas del video «Trae tu evento» (skyline, Ventana al Mundo, torres del norte y Gran Malecón). Reemplazar por fotos propias si el cliente las envía: `public/assets/instalate/etapa-*.jpg` (datos en `instalateSupport`, `src/data/instalate.ts`).
+
+## Instálate: «Entorno competitivo para la inversión»
+
+Carrusel de 4 tarjetas con la información del PDF «Información entorno competitivo para la inversión» (datos en `competitiveness`, `src/data/instalate.ts`).
+
+- **Incentivos tributarios locales:** el PDF indica «Pendiente de validación con el equipo de entorno de negocios, en especial Palmar de Varela». Confirmar la tabla por municipio antes de publicar.
+- El enlace «Consulta el detalle en la Guía Tributaria» lleva a `/guia-tributaria/`.
